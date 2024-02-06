@@ -1,0 +1,21 @@
+<div class="form-group row fitem">
+    <div class="col-md-3 col-form-label d-flex pb-0 pr-md-0">
+        <label class="d-inline word-break">
+            {{#str}}pages_certificate, certificatebeautiful{{/str}}
+        </label>
+    </div>
+    <div class="col-md-9 form-inline align-items-start felement" data-fieldtype="text">
+        <div>
+            {{> mod_certificatebeautiful/list-pages }}
+
+            {{#add-new-page}}
+                <div class="mt-4">
+                    <a href="{{{add-new-page-link}}}"
+                       name="add-new"
+                       class="btn btn-info pt-1 pb-1">
+                        {{#str}}add_new_page, certificatebeautiful{{/str}}</a>
+                </div>
+            {{/add-new-page}}
+        </div>
+    </div>
+</div>

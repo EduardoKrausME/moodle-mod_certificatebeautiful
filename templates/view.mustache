@@ -1,0 +1,15 @@
+<div class="text-center mb-3">
+    <a href="{{pdf-url_base}}&action=view" class="btn btn-info"
+       target="_blank">{{#str}}view_my_certificate,certificatebeautiful{{/str}}</a>
+
+    <a href="{{pdf-url_base}}&action=download" class="btn btn-info ml-3"
+       target="_blank">{{#str}}download_my_certificate,certificatebeautiful{{/str}}</a>
+</div>
+
+<div class="text-center">
+    <h2>{{#str}}preview_certificate,certificatebeautiful{{/str}}</h2>
+    <iframe width="420px" height="320px" frameborder="0" allowfullscreen
+            sandbox="allow-scripts allow-same-origin allow-popups"
+            allow=":encrypted-media; :picture-in-picture"
+            src="{{pdf-viewer-url}}"></iframe>
+</div>
