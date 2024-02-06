@@ -40,8 +40,8 @@ if (optional_param('action', false, PARAM_TEXT) == 'delete') {
     require_sesskey();
     $issueid = required_param('issueid', PARAM_INT);
 
-    /** @var \mod_certificatebeautiful\vo\certificatebeautiful_issue $certificatebeautiful_issue */
-    $certificatebeautiful_issue = $DB->get_record('certificatebeautiful_issue', ['id' => $issueid]);
+    /** @var \mod_certificatebeautiful\vo\certificatebeautiful_issue $certificatebeautifulissue */
+    $certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', ['id' => $issueid]);
 
     $DB->delete_records('certificatebeautiful_issue', ['id' => $issueid]);
 
@@ -51,16 +51,21 @@ if (optional_param('action', false, PARAM_TEXT) == 'delete') {
         "contextid" => $context->id,
         "filearea" => "certificate",
         "filepath" => '/',
-        "itemid" => $certificatebeautiful_issue->userid,
-        "filename" => "{$certificatebeautiful_issue->code}.pdf",
+        "itemid" => $certificatebeautifulissue->userid,
+        "filename" => "{$certificatebeautifulissue->code}.pdf",
     ];
 
-    $stored_file = $fs->get_file($filerecord->contextid, $filerecord->component, $filerecord->filearea, $filerecord->itemid, $filerecord->filepath, $filerecord->filename);
+    $storedfile = $fs->get_file(
+        $filerecord->contextid, $filerecord->component,
+        $filerecord->filearea, $filerecord->itemid,
+        $filerecord->filepath, $filerecord->filename);
 
-    redirect(new moodle_url("/mod/certificatebeautiful/report.php", ["id" => $id]), get_string('report_deleted_certificate', 'certificatebeautiful'));
+    redirect(new moodle_url("/mod/certificatebeautiful/report.php", ["id" => $id]),
+        get_string('report_deleted_certificate', 'certificatebeautiful'));
 }
 
-$table = new \mod_certificatebeautiful\report\certificatebeautiful_view("certificatebeautiful_report", $cm->id,  $certificatebeautiful);
+$table = new \mod_certificatebeautiful\report\certificatebeautiful_view(
+    "certificatebeautiful_report", $cm->id, $certificatebeautiful);
 
 if (!$table->is_downloading()) {
     $PAGE->requires->css('/mod/certificatebeautiful/style.css');

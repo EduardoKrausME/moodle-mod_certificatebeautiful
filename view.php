@@ -58,7 +58,6 @@ $event->trigger();
 $completion = new completion_info($course);
 $completion->set_module_viewed($cm);
 
-
 echo $OUTPUT->header();
 
 if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
@@ -66,17 +65,18 @@ if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
     $title = get_string('report_filename', 'certificatebeautiful');
     echo $OUTPUT->heading($title, 2, 'main', 'certificatebeautifulheading');
 
-    $table = new \mod_certificatebeautiful\report\certificatebeautiful_view("certificatebeautiful_report", $cm->id, $certificatebeautiful);
+    $table = new \mod_certificatebeautiful\report\certificatebeautiful_view(
+        "certificatebeautiful_report", $cm->id, $certificatebeautiful);
     $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/report.php?id={$cm->id}");
     $table->out(40, true);
 
 } else {
 
-    $certificatebeautiful_issue = \mod_certificatebeautiful\issue::get($USER, $certificatebeautiful, $cm);
+    $certificatebeautifulissue = \mod_certificatebeautiful\issue::get($USER, $certificatebeautiful, $cm);
     $viewerurl = "{$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html";
-    $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?issueid={$certificatebeautiful_issue->id}";
+    $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?issueid={$certificatebeautifulissue->id}";
     $data = [
-        'issueid' => $certificatebeautiful_issue->id,
+        'issueid' => $certificatebeautifulissue->id,
         'pdf-viewer-url' => "{$viewerurl}?file=" . urlencode("{$urlbase}&action=view"),
         'pdf-url_base' => $urlbase,
     ];

@@ -40,7 +40,6 @@ echo $OUTPUT->header();
 $title = get_string('reports') . ": " . get_string('modulename', 'certificatebeautiful');
 echo $OUTPUT->heading($title, 2, 'main', 'certificatebeautifulheading');
 
-
 $sql = "SELECT cm.*, cb.name
           FROM {course_modules} cm
           JOIN {modules}        md ON md.id = cm.module
@@ -57,8 +56,6 @@ foreach ($certificatebeautifuls as $certificatebeautiful) {
     ];
 }
 
-
 echo $OUTPUT->render_from_template('core/report_link_page', ['node' => $reportnode]);
-
 
 echo $OUTPUT->footer();

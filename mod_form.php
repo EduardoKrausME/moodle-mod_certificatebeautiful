@@ -59,10 +59,9 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
         $mform->addElement('select', 'model', get_string('select_the_model', 'certificatebeautiful'), models::list_all());
 
         $text = get_string('manage_models', 'certificatebeautiful');
-        $link = "<a class='btn btn-success' href='{$CFG->wwwroot}/mod/certificatebeautiful/manage-model-list.php' 
+        $link = "<a class='btn btn-success' href='{$CFG->wwwroot}/mod/certificatebeautiful/manage-model-list.php'
                     target='_blank'>{$text}</a>";
         $mform->addElement('static', 'manage_models', '', $link);
-
 
         // Add standard elements.
         $this->standard_coursemodule_elements();
@@ -82,26 +81,5 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
         $errors = parent::validation($data, $files);
 
         return $errors;
-    }
-
-    /**
-     * Enforce defaults here.
-     *
-     * @param array $defaultvalues Form defaults
-     * @return void
-     **/
-    public function data_preprocessing(&$defaultvalues) {
-    }
-
-    /**
-     * Allows modules to modify the data returned by form get_data().
-     * This method is also called in the bulk activity completion form.
-     *
-     * Only available on moodleform_mod.
-     *
-     * @param stdClass $data passed by reference
-     */
-    public function data_postprocessing($data) {
-        parent::data_postprocessing($data);
     }
 }

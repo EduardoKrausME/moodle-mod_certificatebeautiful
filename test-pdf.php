@@ -30,11 +30,11 @@ global $PAGE, $USER, $CFG;
 
 $id = required_param('id', PARAM_INT);
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $certificatebeautiful_model */
-$certificatebeautiful_model = $DB->get_record('certificatebeautiful_model', ['id' => $id], "*", MUST_EXIST);
+/** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $certificatebeautifulmodel */
+$certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id' => $id], "*", MUST_EXIST);
 
-$certificatebeautiful_model->pages_info_object = json_decode($certificatebeautiful_model->pages_info);
+$certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
 require_once(__DIR__ . "/classes/pdf/page_pdf.php");
 $pagepdf = new \mod_certificatebeautiful\pdf\page_pdf();
-$pagepdf->create_pdf($certificatebeautiful_model, $USER, $SITE);
+$pagepdf->create_pdf($certificatebeautifulmodel, $USER, $SITE);

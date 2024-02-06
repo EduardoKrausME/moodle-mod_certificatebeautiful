@@ -25,29 +25,29 @@ use mod_certificatebeautiful\model\form_create_page;
 
 ob_start();
 
-require(__DIR__ . '/../../config.php');
-require($CFG->libdir . '/tablelib.php');
+require_once(__DIR__ . '/../../config.php');
+require_once($CFG->libdir . '/tablelib.php');
 
 global $PAGE, $USER, $CFG;
 
 $issueid = required_param('issueid', PARAM_INT);
 $action = required_param('action', PARAM_TEXT);
+require_login();
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful_issue $certificatebeautiful_issue */
-$certificatebeautiful_issue = $DB->get_record('certificatebeautiful_issue', array('id' => $issueid), '*', MUST_EXIST);
+/** @var \mod_certificatebeautiful\vo\certificatebeautiful_issue $certificatebeautifulissue */
+$certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', array('id' => $issueid), '*', MUST_EXIST);
 
-$cm = get_coursemodule_from_id('certificatebeautiful', $certificatebeautiful_issue->cmid, 0, false, MUST_EXIST);
+$cm = get_coursemodule_from_id('certificatebeautiful', $certificatebeautifulissue->cmid, 0, false, MUST_EXIST);
 $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
 
 /** @var \mod_certificatebeautiful\vo\certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = $DB->get_record('certificatebeautiful', array('id' => $cm->instance), '*', MUST_EXIST);
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $certificatebeautiful_model */
-$certificatebeautiful_model = $DB->get_record('certificatebeautiful_model', ['id' => $certificatebeautiful->model], "*", MUST_EXIST);
-$certificatebeautiful_model->pages_info_object = json_decode($certificatebeautiful_model->pages_info);
+/** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $certificatebeautifulmodel */
+$certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id' => $certificatebeautiful->model], "*", MUST_EXIST);
+$certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
 $context = context_module::instance($cm->id);
-
 
 $username = fullname($USER);
 $name = "{$certificatebeautiful->name} - {$username}.pdf";
@@ -85,24 +85,27 @@ $filerecord = (object)[
     "filearea" => "certificate",
     "filepath" => '/',
     "itemid" => $USER->id,
-    "filename" => "{$certificatebeautiful_issue->code}.pdf",
+    "filename" => "{$certificatebeautifulissue->code}.pdf",
 ];
 
-$stored_file = $fs->get_file($filerecord->contextid, $filerecord->component, $filerecord->filearea, $filerecord->itemid, $filerecord->filepath, $filerecord->filename);
-if ($stored_file) {
-    $content = $stored_file->get_content();
+$storedfile = $fs->get_file(
+    $filerecord->contextid, $filerecord->component,
+    $filerecord->filearea, $filerecord->itemid,
+    $filerecord->filepath, $filerecord->filename);
+if ($storedfile) {
+    $content = $storedfile->get_content();
 
     header('Content-Length: ' . strlen($content));
     echo $content;
 } else {
     require_once(__DIR__ . "/classes/pdf/page_pdf.php");
     $pagepdf = new \mod_certificatebeautiful\pdf\page_pdf();
-    $contentPdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautiful_model, $USER, $SITE);
+    $contentpdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulmodel, $USER, $SITE);
 
-    $fs->create_file_from_string($filerecord, $contentPdf);
+    $fs->create_file_from_string($filerecord, $contentpdf);
 
-    header('Content-Length: ' . strlen($contentPdf));
-    echo $contentPdf;
+    header('Content-Length: ' . strlen($contentpdf));
+    echo $contentpdf;
 }
 
 die();

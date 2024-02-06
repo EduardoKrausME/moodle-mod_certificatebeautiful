@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot.'/mod/certificatebeautiful/backup/moodle2/restore_certificatebeautiful_stepslib.php');
+require_once($CFG->dirroot . '/mod/certificatebeautiful/backup/moodle2/restore_certificatebeautiful_stepslib.php');
 
 /**
  * The class provides a complete restore of mod_certificatebeautiful.
@@ -49,8 +49,8 @@ class restore_certificatebeautiful_activity_task extends restore_activity_task {
      */
     protected function define_my_steps(): void {
         $this->add_step(new restore_certificatebeautiful_activity_structure_step(
-            'certificatebeautiful_structure',
-            'certificatebeautiful.xml')
+                'certificatebeautiful_structure',
+                'certificatebeautiful.xml')
         );
     }
 
@@ -76,8 +76,10 @@ class restore_certificatebeautiful_activity_task extends restore_activity_task {
     public static function define_decode_rules(): array {
         $rules = [];
 
-        $rules[] = new restore_decode_rule('CERTIFICATEBEAUTIFULVIEWBYID', '/mod/certificatebeautiful/view.php?id=$1', 'course_module');
-        $rules[] = new restore_decode_rule('CERTIFICATEBEAUTIFULINDEX', '/mod/certificatebeautiful/index.php?id=$1', 'course');
+        $rules[] = new restore_decode_rule(
+            'CERTIFICATEBEAUTIFULVIEWBYID', '/mod/certificatebeautiful/view.php?id=$1', 'course_module');
+        $rules[] = new restore_decode_rule(
+            'CERTIFICATEBEAUTIFULINDEX', '/mod/certificatebeautiful/index.php?id=$1', 'course');
 
         return $rules;
     }

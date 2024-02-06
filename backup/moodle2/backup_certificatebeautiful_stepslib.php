@@ -36,6 +36,8 @@ class backup_certificatebeautiful_activity_structure_step extends backup_activit
      * Defines the structure of the resulting xml file.
      *
      * @return backup_nested_element The structure wrapped by the common 'activity' element.
+     * @throws ddl_exception
+     * @throws dml_exception
      */
     protected function define_structure() {
         global $DB;
@@ -45,8 +47,8 @@ class backup_certificatebeautiful_activity_structure_step extends backup_activit
         }
 
         // Course certificate.
-        $certificatebeautiful = new backup_nested_element('certificatebeautiful', ['id'], ['name', 'timecreated', 'timemodified', 'intro',
-            'introformat', 'template', 'expires', ]);
+        $fields = ['name', 'timecreated', 'timemodified', 'intro', 'introformat', 'template', 'expires'];
+        $certificatebeautiful = new backup_nested_element('certificatebeautiful', ['id'], $fields);
 
         // Issues.
         $issues = new backup_nested_element('issues');

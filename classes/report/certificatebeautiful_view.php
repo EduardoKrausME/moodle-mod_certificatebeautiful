@@ -1,4 +1,19 @@
 <?php
+// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * User: Eduardo Kraus
  * Date: 12/01/2024
@@ -11,7 +26,7 @@ use html_writer;
 use mod_certificatebeautiful\vo\certificatebeautiful;
 use moodle_url;
 
-require_once ("{$CFG->libdir}/tablelib.php");
+require_once("{$CFG->libdir}/tablelib.php");
 
 /**
  * @package   mod_certificatebeautiful
@@ -123,11 +138,13 @@ class certificatebeautiful_view extends \table_sql {
     public function col_extra($linha) {
         global $OUTPUT;
 
+        $urloptions = ['id' => $linha->cmid, 'issueid' => $linha->issueid, 'action' => 'delete', 'sesskey' => sesskey()];
+
         $data = [
             "uniqid" => uniqid(),
-            "url-view" => (new moodle_url('/mod/certificatebeautiful/view-pdf.php?', ['issueid' => $linha->issueid, 'action' => 'view']))->out(),
-            "url-delete" => (new moodle_url('/mod/certificatebeautiful/report.php?',
-                ['id' => $linha->cmid, 'issueid' => $linha->issueid, 'action' => 'delete', 'sesskey' => sesskey()]))->out(),
+            "url-view" => (new moodle_url('/mod/certificatebeautiful/view-pdf.php?',
+                ['issueid' => $linha->issueid, 'action' => 'view']))->out(),
+            "url-delete" => (new moodle_url('/mod/certificatebeautiful/report.php?', $urloptions))->out(),
         ];
         return $OUTPUT->render_from_template('mod_certificatebeautiful/certificatebeautiful_view-extra', $data);
     }
@@ -153,11 +170,12 @@ class certificatebeautiful_view extends \table_sql {
         }
 
         $this->sql = "SELECT cbi.id AS issueid, cbi.cmid, cbi.code, cbi.timecreated,
-                             u.id AS user_id, u.email, u.firstnamephonetic, u.lastnamephonetic, u.middlename, u.alternatename, u.firstname, u.lastname
+                             u.id AS user_id, u.email, u.firstnamephonetic, u.lastnamephonetic,
+                             u.middlename, u.alternatename, u.firstname, u.lastname
                         FROM {certificatebeautiful_issue} cbi
                         JOIN {user}                   u ON u.id = cbi.userid
                         JOIN {certificatebeautiful}        cb ON cb.id = cbi.certificatebeautifulid
-                       WHERE cbi.cmid = :cmid 
+                       WHERE cbi.cmid = :cmid
                              {$where}
                     ORDER BY {$order}";
 

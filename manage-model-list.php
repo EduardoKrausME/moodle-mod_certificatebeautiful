@@ -40,7 +40,6 @@ $PAGE->navbar->add(get_string('list_model', 'certificatebeautiful'), $PAGE->url)
 
 echo $OUTPUT->header();
 
-
 echo $OUTPUT->render_from_template('mod_certificatebeautiful/heading-addnew', [
     "url" => "manage-model.php?id=-1",
     "text" => get_string('add_new_model', 'certificatebeautiful')

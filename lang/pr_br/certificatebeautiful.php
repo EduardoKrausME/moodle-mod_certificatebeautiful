@@ -1,13 +1,25 @@
 <?php
+// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 defined('MOODLE_INTERNAL') || die;
 
-//$string['modulename'] = 'Certificate Builder';
 $string['modulename'] = 'Beautiful certificate';
 $string['pluginname'] = 'Beautiful certificate';
 $string['modulenameplural'] = 'Beautiful certificates';
 $string['pluginadministration'] = 'Administração de certificado de curso';
-
 
 $string['select_a_model'] = 'Selecione um modelo';
 $string['select_the_model'] = 'Selecione o modelo';
@@ -38,8 +50,7 @@ $string['course_certificates'] = 'Certificados do curso';
 $string['my_certificates'] = 'Meus Certificados';
 $string['from_certificates'] = 'Certificados do aluno {$a}';
 
-
-// Report
+// Report.
 $string['report_filename'] = 'Certificados gerados pelos alunos';
 $string['report_usernome'] = 'Nome do aluno';
 $string['report_useremail'] = 'E-mail do aluno';
@@ -50,8 +61,7 @@ $string['report_delete_certificate'] = 'Excluir';
 $string['report_confirm_delete_certificate'] = 'Tem certeza que deseja excluir este certificado?';
 $string['report_deleted_certificate'] = 'Certificado excluído com sucesso!';
 
-
-// install
+// Install.
 $string['certificate-appreciation'] = 'Certificado de Apreciação';
 $string['certificate-elegant'] = 'Certificado Elegante';
 $string['certificate-modern'] = 'Certificado Moderno';
@@ -60,7 +70,7 @@ $string['certificate-vintage'] = 'Certificado Vintage';
 $string['certificate-golden'] = 'Certificado Dourado';
 $string['sumary-secound-page'] = 'Certificado Sumário';
 
-// Modelo de certificado
+// Modelo de certificado.
 $string['certificado-titulo'] = 'Certificado';
 $string['certificado-subtitulo'] = 'DE CONCLUSÃO';
 $string['certificado-presented'] = 'Este certificado é orgulhosamente apresentado a';
@@ -72,12 +82,10 @@ $string['certificado-descricao'] = 'Este certificado atesta que o aluno <strong>
 $string['certificado-sumary'] = 'Sumário';
 $string['certificate_page_empty'] = 'Vazio';
 
-
 $string['help_certificate__name'] = 'Dados do usuário';
 $string['help_certificate_name'] = 'Nome do certificado';
 $string['help_certificate_issue_timecreated'] = 'Data da criação do certificado.';
 $string['help_certificate_issue_code'] = 'Código único do certificado.';
-
 
 $string['help_user__name'] = 'Dados do usuário';
 $string['help_user_id'] = 'Identificador único para cada usuário.';
@@ -108,10 +116,8 @@ $string['help_user_description'] = 'Descrição do usuário.';
 $string['help_user_timecreated'] = 'Carimbo de data/hora da criação da conta do usuário.';
 $string['help_user_timemodified'] = 'Carimbo de data/hora da última modificação na conta do usuário.';
 
-
 $string['help_user_profile__name'] = 'Dados do perfil do usuário';
 $string['help_user_profile'] = 'Altere o "NAME" pelo campo de perfil do usuário';
-
 
 $string['help_course__name'] = 'Dados do curso que está sendo gerado o certificado';
 $string['help_course_id'] = 'Um identificador exclusivo para cada curso.';
@@ -123,12 +129,10 @@ $string['help_course_startdate'] = 'A data de início do curso.';
 $string['help_course_enddate'] = 'A data de término do curso.';
 $string['help_course_lang'] = 'O idioma do curso.';
 
-
 $string['help_site__name'] = 'Dados do Moodle que está sendo gerado o certificado';
 $string['help_site_fullname'] = 'O nome completo do Moodle.';
 $string['help_site_shortname'] = 'Um nome curto do Moodle.';
 $string['help_site_summary'] = 'Um resumo ou descrição breve do Moodle.';
-
 
 $string['help_course_categories__name'] = 'Dados da categoria do curso que está sendo gerado o certificado';
 $string['help_course_categories_id'] = 'Identificador único da categoria de curso.';
@@ -137,29 +141,24 @@ $string['help_course_categories_idnumber'] = 'Número de identificação único 
 $string['help_course_categories_description'] = 'Descrição da categoria de curso.';
 $string['help_course_categories_timemodified'] = 'Timestamp da última modificação na categoria de curso.';
 
-
 $string['help_grade__name'] = 'Nota do aluno no curso';
 $string['help_grade_finalgrade'] = 'Nota final do aluno';
 $string['help_grade_table'] = 'Tabela com as notas do aluno';
-
 
 $string['help_teachers__name'] = 'Professores do curso';
 $string['help_teachers_teacher1'] = 'Somente o primeiro professor';
 $string['help_teachers_teacher2'] = 'Somente os dois primeiros professores';
 $string['help_teachers_teacherall'] = 'Todos os professores';
 
-
 $string['help_enrolments__name'] = 'Dados da matrícula do aluno no curso';
 $string['help_enrolments_timestart'] = 'Data da matrícula do usuário';
-
 
 $string['help_functions__name'] = 'Executa funções as seguintes funções nativas do Moodle e do PHP';
 $string['help_functions_date'] = 'Função <a href="https://php.net/date" target="_blank">date()</a> do PHP';
 $string['help_functions_userdate'] = 'Função <a href="https://moodledev.io/docs/apis/subsystems/time" target="_blank">userdate()</a> do Moodle';
 $string['help_functions_time'] = 'Função <a href="https://php.net/time" target="_blank">time()</a> do PHP';
 
-
-// Editor de Certificado
+// Editor de Certificado.
 $string['grapsjs-assetmanager-addbutton'] = 'Adicionar imagem';
 $string['grapsjs-assetmanager-modaltitle'] = 'Selecionar imagem';
 $string['grapsjs-assetmanager-uploadtitle'] = 'Solte os arquivos aqui ou clique para enviar';

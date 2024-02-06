@@ -270,7 +270,6 @@ function mod_certificatebeautiful_cm_info_dynamic(cm_info $coursemodule) {
     $coursemodule->set_on_click($onclick);
 }
 
-
 /**
  * @param settings_navigation $settings
  * @param navigation_node $certificatebeautifulnode
@@ -341,6 +340,7 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
     }
 
     $url = new moodle_url('/mod/certificatebeautiful/reports-my.php', ['user' => $user->id]);
-    $node = new core_user\output\myprofile\node('miscellaneous', 'certificatebeautiful', get_string('my_certificates', 'certificatebeautiful'), null, $url);
+    $node = new core_user\output\myprofile\node('miscellaneous', 'certificatebeautiful',
+        get_string('my_certificates', 'certificatebeautiful'), null, $url);
     $tree->add_node($node);
 }

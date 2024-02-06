@@ -1,4 +1,19 @@
 <?php
+// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * User: Eduardo Kraus
  * Date: 11/01/2024
@@ -6,7 +21,6 @@
  */
 
 namespace mod_certificatebeautiful\pdf;
-
 
 use mod_certificatebeautiful\help\course;
 use mod_certificatebeautiful\help\course_categories;
@@ -34,9 +48,9 @@ class replace_tags {
     /**
      * @param mixed $html
      */
-    public function setHtml($html) {
+    public function set_html($html) {
 
-        // Remove qualquer HTML nas variáveis
+        // Remove qualquer HTML nas variáveis.
         $html = preg_replace_callback('/\{.*?\$.*?}/', function ($matches) {
             $data = $matches[0];
             $data = strip_tags($data);
@@ -44,7 +58,7 @@ class replace_tags {
             return $data;
         }, $html);
 
-        // Remove qualquer HTML nas funções
+        // Remove qualquer HTML nas funções.
         $html = preg_replace_callback('/\{.*?\{.*?}.*?}/', function ($matches) {
             $data = $matches[0];
             $data = strip_tags($data);
@@ -58,14 +72,14 @@ class replace_tags {
     /**
      * @param mixed $course
      */
-    public function setCourse($course): void {
+    public function set_course($course): void {
         $this->course = $course;
     }
 
     /**
      * @param mixed $user
      */
-    public function setUser($user): void {
+    public function set_user($user): void {
         $this->user = $user;
     }
 
@@ -97,7 +111,6 @@ class replace_tags {
 
         $this->html = functions::replace($this->html, $this->user);
 
-        // die($this->html);
         return $this->html;
     }
 }

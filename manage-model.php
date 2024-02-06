@@ -38,16 +38,16 @@ $PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php', ['id' => $id])
 require_login();
 
 if ($id > 0) {
-    /** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $certificatebeautiful_model */
-    $certificatebeautiful_model = $DB->get_record('certificatebeautiful_model', ['id' => $id], "*", MUST_EXIST);
+    /** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $certificatebeautifulmodel */
+    $certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id' => $id], "*", MUST_EXIST);
 
-    $PAGE->set_title($certificatebeautiful_model->name);
-    $PAGE->set_heading(format_string($certificatebeautiful_model->name));
+    $PAGE->set_title($certificatebeautifulmodel->name);
+    $PAGE->set_heading(format_string($certificatebeautifulmodel->name));
 
     $PAGE->navbar->add(get_string('list_model', 'certificatebeautiful'), "manage-model-list.php");
-    $PAGE->navbar->add($certificatebeautiful_model->name, $PAGE->url);
+    $PAGE->navbar->add($certificatebeautifulmodel->name, $PAGE->url);
 } else {
-    $certificatebeautiful_model = (object)["id" => -1, "name" => "", "pages_info" => "[]"];
+    $certificatebeautifulmodel = (object)["id" => -1, "name" => "", "pages_info" => "[]"];
 
     $PAGE->set_title(get_string('new_model', 'certificatebeautiful'));
     $PAGE->set_heading(format_string(get_string('new_model', 'certificatebeautiful')));
@@ -56,38 +56,38 @@ if ($id > 0) {
     $PAGE->navbar->add(get_string('new_model', 'certificatebeautiful'), $PAGE->url);
 }
 
-$certificatebeautiful_model->pages_info_object = json_decode($certificatebeautiful_model->pages_info);
+$certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 if (optional_param("add-new", false, PARAM_RAW)) {
-    $certificatebeautiful_model->pages_info_object[] = form_create_page::emptyPage();
+    $certificatebeautifulmodel->pages_info_object[] = form_create_page::empty_page();
 }
-if (count($certificatebeautiful_model->pages_info_object) == 0) {
-    $certificatebeautiful_model->pages_info_object = [form_create_page::emptyPage()];
+if (count($certificatebeautifulmodel->pages_info_object) == 0) {
+    $certificatebeautifulmodel->pages_info_object = [form_create_page::empty_page()];
 }
 
-$form_create = new form_create(null, ["certificatebeautiful_model" => $certificatebeautiful_model]);
-if ($form_create->is_cancelled()) {
+$formcreate = new form_create(null, ["certificatebeautiful_model" => $certificatebeautifulmodel]);
+if ($formcreate->is_cancelled()) {
     // redirect("manage-model-list.php");
-} else if ($certificatebeautiful_model = $form_create->get_data()) {
+} else if ($certificatebeautifulmodel = $formcreate->get_data()) {
 
     if ($id > 0) {
         $data = (object)[
-            "id" => $certificatebeautiful_model->id,
-            "name" => $certificatebeautiful_model->name,
+            "id" => $certificatebeautifulmodel->id,
+            "name" => $certificatebeautifulmodel->name,
             "timemodified" => time()
         ];
         $DB->update_record("certificatebeautiful_model", $data);
     } else {
         $data = (object)[
-            "name" => $certificatebeautiful_model->name,
-            "pages_info" => json_encode([form_create_page::emptyPage()], JSON_PRETTY_PRINT),
+            "name" => $certificatebeautifulmodel->name,
+            "pages_info" => json_encode([form_create_page::empty_page()], JSON_PRETTY_PRINT),
             "timecreated" => time(),
             "timemodified" => time()
         ];
-        $certificatebeautiful_model->id = $DB->insert_record("certificatebeautiful_model", $data);
+        $certificatebeautifulmodel->id = $DB->insert_record("certificatebeautiful_model", $data);
     }
-    redirect("manage-model.php?id={$certificatebeautiful_model->id}");
+    redirect("manage-model.php?id={$certificatebeautifulmodel->id}");
 }
 
 echo $OUTPUT->header();
-$form_create->display();
+$formcreate->display();
 echo $OUTPUT->footer();

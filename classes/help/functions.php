@@ -1,4 +1,19 @@
 <?php
+// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * User: Eduardo Kraus
  * Date: 11/01/2024
@@ -6,7 +21,6 @@
  */
 
 namespace mod_certificatebeautiful\help;
-
 
 class functions {
     /**
@@ -26,13 +40,11 @@ class functions {
      * @return string
      */
     public static function replace($html, $user) {
-        // {{userdate(now)}}
 
-        functions::$user = $user;
+        self::$user = $user;
 
         $html = preg_replace_callback('/{{(?<function>userdate|date)\((?<parameters>.*?)}}/',
             function ($matches) {
-
 
                 if (strpos($matches['parameters'], ",")) {
                     preg_match('/(?<p1>.*?[,\)])(?<p2>.*?[,\)])?(?<p3>.*?[,\)])?/', $matches['parameters'], $functions);
@@ -44,16 +56,14 @@ class functions {
                 } else {
                     $functions = ['p1' => $matches['parameters']];
                 }
-                // return '<pre>' . print_r($matches, 1) . '</pre>';
-                // return '<pre>' . print_r($functions, 1) . '</pre>';
                 switch ($matches['function']) {
                     case 'userdate':
                         if (isset($functions['p3'])) {
                             return userdate($functions['p1'], get_string($functions['p2'], 'langconfig'), $functions['p3']);
                         } else if (isset($functions['p2'])) {
-                            return userdate($functions['p1'], get_string($functions['p2'], 'langconfig'), functions::$user->timezone);
+                            return userdate($functions['p1'], get_string($functions['p2'], 'langconfig'), self::$user->timezone);
                         } else if (isset($functions['p1'])) {
-                            return userdate($functions['p1'], get_string('strftimedaydate', 'langconfig'), functions::$user->timezone);
+                            return userdate($functions['p1'], get_string('strftimedaydate', 'langconfig'), self::$user->timezone);
                         }
                         break;
                     case 'date':

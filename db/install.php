@@ -55,9 +55,8 @@ function xmldb_certificatebeautiful_install() {
     foreach ($models as $model) {
 
         $htmldata = \mod_certificatebeautiful\model\get_template_file::load_template($model['key']);
-        // $htmldata = str_replace("{\$COURSE-&gt;fullname}", $model['key'], $htmldata);
 
-        $pages_info = [
+        $pagesinfo = [
             [
                 "htmldata" => $htmldata,
                 "cssdata" => ""
@@ -67,12 +66,12 @@ function xmldb_certificatebeautiful_install() {
             ]
         ];
 
-        $certificatebeautiful_model = (object)[
+        $certificatebeautifulmodel = (object)[
             "name" => $model['name'],
-            "pages_info" => json_encode($pages_info, JSON_PRETTY_PRINT),
+            "pages_info" => json_encode($pagesinfo, JSON_PRETTY_PRINT),
             "timecreated" => time(),
             "timemodified" => time(),
         ];
-        $DB->insert_record('certificatebeautiful_model', $certificatebeautiful_model);
+        $DB->insert_record('certificatebeautiful_model', $certificatebeautifulmodel);
     }
 }

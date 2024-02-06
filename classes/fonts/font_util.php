@@ -1,4 +1,19 @@
 <?php
+// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * User: Eduardo Kraus
  * Date: 10/01/2024
@@ -19,49 +34,45 @@ class font_util {
         global $CFG;
 
         $fonts = ["fonts" => [], "path" => [], "css" => "", "js" => ""];
-        $fontFiles = glob("{$CFG->dirroot}/mod/certificatebeautiful/_editor/_model/*/fonts/*/static/*.ttf");
+        $fontfiles = glob("{$CFG->dirroot}/mod/certificatebeautiful/_editor/_model/*/fonts/*/static/*.ttf");
 
-        foreach ($fontFiles as $fontFile) {
-            $path = pathinfo($fontFile);
+        foreach ($fontfiles as $fontfile) {
+            $path = pathinfo($fontfile);
 
+            $ttfinfo = new font_attributes($fontfile);
 
-            $ttfinfo = new font_attributes($fontFile);
+            $fonts["fonts"][$ttfinfo->get_font_name_id()]['R'] = $path['basename'];
+            $fonts["fonts"][$ttfinfo->get_font_name_id()]['I'] = $path['basename'];
+            $fonts["fonts"][$ttfinfo->get_font_name_id()]['B'] = $path['basename'];
+            $fonts["fonts"][$ttfinfo->get_font_name_id()]['BI'] = $path['basename'];
 
-            $fonts["fonts"][$ttfinfo->getFontNameId()]['R'] = $path['basename'];
-            $fonts["fonts"][$ttfinfo->getFontNameId()]['I'] = $path['basename'];
-            $fonts["fonts"][$ttfinfo->getFontNameId()]['B'] = $path['basename'];
-            $fonts["fonts"][$ttfinfo->getFontNameId()]['BI'] = $path['basename'];
-
-            if ($ttfinfo->getFontSubFamily() == 'Regular') {
-                $fonts["fonts"][$ttfinfo->getFontFamilyId()]['R'] = $path['basename'];
-            } else if ($ttfinfo->getFontSubFamily() == 'Bold Italic') {
-                $fonts["fonts"][$ttfinfo->getFontFamilyId()]['BI'] = $path['basename'];
-            } else if ($ttfinfo->getFontSubFamily() == 'Italic') {
-                $fonts["fonts"][$ttfinfo->getFontFamilyId()]['I'] = $path['basename'];
-            } else if ($ttfinfo->getFontSubFamily() == 'Bold') {
-                $fonts["fonts"][$ttfinfo->getFontFamilyId()]['B'] = $path['basename'];
+            if ($ttfinfo->get_font_sub_family() == 'Regular') {
+                $fonts["fonts"][$ttfinfo->get_font_family_id()]['R'] = $path['basename'];
+            } else if ($ttfinfo->get_font_sub_family() == 'Bold Italic') {
+                $fonts["fonts"][$ttfinfo->get_font_family_id()]['BI'] = $path['basename'];
+            } else if ($ttfinfo->get_font_sub_family() == 'Italic') {
+                $fonts["fonts"][$ttfinfo->get_font_family_id()]['I'] = $path['basename'];
+            } else if ($ttfinfo->get_font_sub_family() == 'Bold') {
+                $fonts["fonts"][$ttfinfo->get_font_family_id()]['B'] = $path['basename'];
             }
 
             $fonts["path"][$path['dirname']] = $path['dirname'];
 
-
-            $fontUrl = str_replace($CFG->dirroot, $CFG->wwwroot, $fontFile);
+            $fonturl = str_replace($CFG->dirroot, $CFG->wwwroot, $fontfile);
             $fonts["css"] .= "
                 @font-face {
-                    font-family : '{$ttfinfo->getFontName()}';
-                    src         : url({$fontUrl}) format('ttf');
+                    font-family : '{$ttfinfo->get_font_name()}';
+                    src         : url({$fonturl}) format('ttf');
                 }";
 
             $fonts["js"] .= "
-                                {id : '{$ttfinfo->getFontNameId()}', label : '{$ttfinfo->getFontName()}', value : \"'{$ttfinfo->getFontNameId()}', '{$ttfinfo->getFontFamilyId()}', '{$ttfinfo->getFontName()}', '{$ttfinfo->getFontFamily()}', 'Arial'\"},";
+                    {
+                        id : '{$ttfinfo->get_font_name_id()}',
+                        label : '{$ttfinfo->get_font_name()}',
+                        value : \"'{$ttfinfo->get_font_name_id()}', '{$ttfinfo->get_font_family_id()}', '{$ttfinfo->get_font_name()}', '{$ttfinfo->get_font_family()}', 'Arial'\"},";
         }
 
         $fonts["path"] = array_keys($fonts["path"]);
-
-        //echo '<pre>';
-        //print_r($fonts['fonts']);
-        //echo '</pre>';die();
-
 
         return $fonts;
     }

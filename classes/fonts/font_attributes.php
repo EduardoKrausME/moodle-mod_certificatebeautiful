@@ -1,4 +1,19 @@
 <?php
+// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * User: Eduardo Kraus
  * Date: 10/01/2024
@@ -6,7 +21,6 @@
  */
 
 namespace mod_certificatebeautiful\fonts;
-
 
 use Exception;
 
@@ -18,8 +32,7 @@ class font_attributes {
      * @access private
      * @var string
      */
-    private $_fileName = NULL;
-
+    private $_filename = null;
 
     /**
      * Copyright
@@ -27,8 +40,7 @@ class font_attributes {
      * @access private
      * @var string
      */
-    private $_copyright = NULL;
-
+    private $_copyright = null;
 
     /**
      * Font Family
@@ -36,8 +48,7 @@ class font_attributes {
      * @access private
      * @var string
      */
-    private $_fontFamily = NULL;
-
+    private $_fontfamily = null;
 
     /**
      * Font SubFamily
@@ -45,8 +56,7 @@ class font_attributes {
      * @access private
      * @var string
      */
-    private $_fontSubFamily = NULL;
-
+    private $_fontsubfamily = null;
 
     /**
      * Font Unique Identifier
@@ -54,8 +64,7 @@ class font_attributes {
      * @access private
      * @var string
      */
-    private $_fontIdentifier = NULL;
-
+    private $_fontidentifier = null;
 
     /**
      * Font Name
@@ -63,8 +72,7 @@ class font_attributes {
      * @access private
      * @var string
      */
-    private $_fontName = NULL;
-
+    private $_fontname = null;
 
     /**
      * Font Version
@@ -72,8 +80,7 @@ class font_attributes {
      * @access private
      * @var string
      */
-    private $_fontVersion = NULL;
-
+    private $_fontversion = null;
 
     /**
      * Postscript Name
@@ -81,8 +88,7 @@ class font_attributes {
      * @access private
      * @var string
      */
-    private $_postscriptName = NULL;
-
+    private $_postscriptname = null;
 
     /**
      * Trademark
@@ -90,20 +96,17 @@ class font_attributes {
      * @access private
      * @var string
      */
-    private $_trademark = NULL;
+    private $_trademark = null;
 
-
-    // --- OPERATIONS ---
-
-    private function _returnValue($inString) {
-        if (ord($inString) == 0) {
+    private function return_value($instring) {
+        if (ord($instring) == 0) {
             if (function_exists('mb_convert_encoding')) {
-                return mb_convert_encoding($inString, "UTF-8", "UTF-16");
+                return mb_convert_encoding($instring, "UTF-8", "UTF-16");
             } else {
-                return str_replace(chr(00), '', $inString);
+                return str_replace(chr(00), '', $instring);
             }
         } else {
-            return $inString;
+            return $instring;
         }
     }
 
@@ -111,93 +114,85 @@ class font_attributes {
      * @access public
      * @return integer
      */
-    public function getCopyright() {
-        return $this->_returnValue($this->_copyright);
-    }
-
-
-    /**
-     * @access public
-     * @return integer
-     */
-    public function getFontFamily() {
-        return $this->_returnValue($this->_fontFamily);
+    public function get_copyright() {
+        return $this->return_value($this->_copyright);
     }
 
     /**
      * @access public
      * @return integer
      */
-    public function getFontFamilyId() {
-        $font = $this->getFontFamily();
+    public function get_font_family() {
+        return $this->return_value($this->_fontfamily);
+    }
+
+    /**
+     * @access public
+     * @return integer
+     */
+    public function get_font_family_id() {
+        $font = $this->get_font_family();
         $font = str_replace(" ", "-", $font);
         $font = strtolower($font);
 
         return $font;
     }
 
+    /**
+     * @access public
+     * @return integer
+     */
+    public function get_font_sub_family() {
+        return $this->return_value($this->_fontsubfamily);
+    }
 
     /**
      * @access public
      * @return integer
      */
-    public function getFontSubFamily() {
-        return $this->_returnValue($this->_fontSubFamily);
+    public function get_font_identifier() {
+        return $this->return_value($this->_fontidentifier);
     }
-
 
     /**
      * @access public
      * @return integer
      */
-    public function getFontIdentifier() {
-        return $this->_returnValue($this->_fontIdentifier);
+    public function get_font_name() {
+        return $this->return_value($this->_fontname);
     }
 
-
-    /**
-     * @access public
-     * @return integer
-     */
-    public function getFontName() {
-        return $this->_returnValue($this->_fontName);
-    }
-
-    public function getFontNameId() {
-        $font = $this->getFontName();
+    public function get_font_name_id() {
+        $font = $this->get_font_name();
         $font = str_replace(" ", "-", $font);
         $font = strtolower($font);
 
         return $font;
     }
 
+    /**
+     * @access public
+     * @return integer
+     */
+    public function get_font_version() {
+        return $this->return_value($this->_fontversion);
+    }
 
     /**
      * @access public
      * @return integer
      */
-    public function getFontVersion() {
-        return $this->_returnValue($this->_fontVersion);
+    public function get_postscript_name() {
+        return $this->return_value($this->_postscriptname);
     }
-
 
     /**
      * @access public
      * @return integer
      */
-    public function getPostscriptName() {
-        return $this->_returnValue($this->_postscriptName);
+    public function get_trademark() {
+        return $this->return_value($this->_trademark);
     }
-
-
-    /**
-     * @access public
-     * @return integer
-     */
-    public function getTrademark() {
-        return $this->_returnValue($this->_trademark);
-    }
-
 
     /**
      *  Convert a big-endian word or longword value to an integer
@@ -205,18 +200,17 @@ class font_attributes {
      * @access private
      * @return integer
      */
-    private function _UConvert($bytesValue, $byteCount) {
-        $retVal = 0;
-        $bytesLength = strlen($bytesValue);
-        for ($i = 0; $i < $bytesLength; $i++) {
-            $tmpVal = ord($bytesValue{$i});
-            $t = pow(256, ($byteCount - $i - 1));
-            $retVal += $tmpVal * $t;
+    private function u_convert($bytesvalue, $bytecount) {
+        $retval = 0;
+        $byteslength = strlen($bytesvalue);
+        for ($i = 0; $i < $byteslength; $i++) {
+            $tmpval = ord($bytesvalue[$i]);
+            $t = pow(256, ($bytecount - $i - 1));
+            $retval += $tmpval * $t;
         }
 
-        return $retVal;
+        return $retval;
     }
-
 
     /**
      *  Convert a big-endian word value to an integer
@@ -224,10 +218,9 @@ class font_attributes {
      * @access private
      * @return integer
      */
-    private function _USHORT($stringValue) {
-        return $this->_UConvert($stringValue, 2);
+    private function u_short($stringvalue) {
+        return $this->u_convert($stringvalue, 2);
     }
-
 
     /**
      *  Convert a big-endian word value to an integer
@@ -235,10 +228,9 @@ class font_attributes {
      * @access private
      * @return integer
      */
-    private function _ULONG($stringValue) {
-        return $this->_UConvert($stringValue, 4);
+    private function u_long($stringvalue) {
+        return $this->u_convert($stringvalue, 4);
     }
-
 
     /**
      *  Read the Font Attributes
@@ -247,156 +239,145 @@ class font_attributes {
      * @return bool
      * @throws Exception
      */
-    private function readFontAttributes() {
-        $fontHandle = fopen($this->_fileName, "rb");
+    private function read_font_attributes() {
+        $fonthandle = fopen($this->_filename, "rb");
 
-        //  Read the file header
-        $TT_OFFSET_TABLE = fread($fontHandle, 12);
+        // Read the file header.
+        $ttoffsettable = fread($fonthandle, 12);
 
-        $uMajorVersion = $this->_USHORT(substr($TT_OFFSET_TABLE, 0, 2));
-        $uMinorVersion = $this->_USHORT(substr($TT_OFFSET_TABLE, 2, 2));
-        $uNumOfTables = $this->_USHORT(substr($TT_OFFSET_TABLE, 4, 2));
-        //      $uSearchRange   = $this->_USHORT(substr($TT_OFFSET_TABLE,6,2));
-        //      $uEntrySelector = $this->_USHORT(substr($TT_OFFSET_TABLE,8,2));
-        //      $uRangeShift    = $this->_USHORT(substr($TT_OFFSET_TABLE,10,2));
+        $umajorversion = $this->u_short(substr($ttoffsettable, 0, 2));
+        $uminorversion = $this->u_short(substr($ttoffsettable, 2, 2));
+        $unumoftables = $this->u_short(substr($ttoffsettable, 4, 2));
 
-        //  Check is this is a true type font and the version is 1.0
-        if ($uMajorVersion != 1 || $uMinorVersion != 0) {
-            fclose($fontHandle);
-            throw new Exception($this->_fileName . ' is not a Truetype font file');
+        // Check is this is a true type font and the version is 1.0.
+        if ($umajorversion != 1 || $uminorversion != 0) {
+            fclose($fonthandle);
+            throw new Exception($this->_filename . ' is not a Truetype font file');
         }
 
-        //  Look for details of the name table
-        $nameTableFound = false;
-        for ($t = 0; $t < $uNumOfTables; $t++) {
-            $TT_TABLE_DIRECTORY = fread($fontHandle, 16);
-            $szTag = substr($TT_TABLE_DIRECTORY, 0, 4);
-            if (strtolower($szTag) == 'name') {
-                //              $uCheckSum  = $this->_ULONG(substr($TT_TABLE_DIRECTORY,4,4));
-                $uOffset = $this->_ULONG(substr($TT_TABLE_DIRECTORY, 8, 4));
-                //              $uLength    = $this->_ULONG(substr($TT_TABLE_DIRECTORY,12,4));
-                $nameTableFound = true;
+        // Look for details of the name table.
+        $nametablefound = false;
+        for ($t = 0; $t < $unumoftables; $t++) {
+            $tttabledirectory = fread($fonthandle, 16);
+            $sztag = substr($tttabledirectory, 0, 4);
+            if (strtolower($sztag) == 'name') {
+                $uoffset = $this->u_long(substr($tttabledirectory, 8, 4));
+                $nametablefound = true;
                 break;
             }
         }
 
-        if (!$nameTableFound) {
-            fclose($fontHandle);
-            throw new Exception('Can\'t find name table in ' . $this->_fileName);
+        if (!$nametablefound) {
+            fclose($fonthandle);
+            throw new Exception('Can\'t find name table in ' . $this->_filename);
         }
 
-        //  Set offset to the start of the name table
-        fseek($fontHandle, $uOffset, SEEK_SET);
+        // Set offset to the start of the name table.
+        fseek($fonthandle, $uoffset, SEEK_SET);
 
-        $TT_NAME_TABLE_HEADER = fread($fontHandle, 6);
+        $ttnametableheader = fread($fonthandle, 6);
 
-        //      $uFSelector     = $this->_USHORT(substr($TT_NAME_TABLE_HEADER,0,2));
-        $uNRCount = $this->_USHORT(substr($TT_NAME_TABLE_HEADER, 2, 2));
-        $uStorageOffset = $this->_USHORT(substr($TT_NAME_TABLE_HEADER, 4, 2));
+        $unrcount = $this->u_short(substr($ttnametableheader, 2, 2));
+        $ustorageoffset = $this->u_short(substr($ttnametableheader, 4, 2));
 
-        $attributeCount = 0;
-        for ($a = 0; $a < $uNRCount; $a++) {
-            $TT_NAME_RECORD = fread($fontHandle, 12);
+        $attributecount = 0;
+        for ($a = 0; $a < $unrcount; $a++) {
+            $ttnamerecord = fread($fonthandle, 12);
 
-            $uNameID = $this->_USHORT(substr($TT_NAME_RECORD, 6, 2));
-            if ($uNameID <= 7) {
-                //              $uPlatformID    = $this->_USHORT(substr($TT_NAME_RECORD,0,2));
-                $uEncodingID = $this->_USHORT(substr($TT_NAME_RECORD, 2, 2));
-                //              $uLanguageID    = $this->_USHORT(substr($TT_NAME_RECORD,4,2));
-                $uStringLength = $this->_USHORT(substr($TT_NAME_RECORD, 8, 2));
-                $uStringOffset = $this->_USHORT(substr($TT_NAME_RECORD, 10, 2));
+            $unameid = $this->u_short(substr($ttnamerecord, 6, 2));
+            if ($unameid <= 7) {
+                $ustringlength = $this->u_short(substr($ttnamerecord, 8, 2));
+                $ustringoffset = $this->u_short(substr($ttnamerecord, 10, 2));
 
-                if ($uStringLength > 0) {
-                    $nPos = ftell($fontHandle);
-                    fseek($fontHandle, $uOffset + $uStringOffset + $uStorageOffset, SEEK_SET);
-                    $testValue = fread($fontHandle, $uStringLength);
+                if ($ustringlength > 0) {
+                    $npos = ftell($fonthandle);
+                    fseek($fonthandle, $uoffset + $ustringoffset + $ustorageoffset, SEEK_SET);
+                    $testvalue = fread($fonthandle, $ustringlength);
 
-                    if (trim($testValue) > '') {
-                        switch ($uNameID) {
+                    if (trim($testvalue) > '') {
+                        switch ($unameid) {
                             case 0  :
-                                if ($this->_copyright == NULL) {
-                                    $this->_copyright = $testValue;
-                                    $attributeCount++;
+                                if ($this->_copyright == null) {
+                                    $this->_copyright = $testvalue;
+                                    $attributecount++;
                                 }
                                 break;
                             case 1  :
-                                if ($this->_fontFamily == NULL) {
-                                    $this->_fontFamily = $testValue;
-                                    $attributeCount++;
+                                if ($this->_fontfamily == null) {
+                                    $this->_fontfamily = $testvalue;
+                                    $attributecount++;
                                 }
                                 break;
                             case 2  :
-                                if ($this->_fontSubFamily == NULL) {
-                                    $this->_fontSubFamily = $testValue;
-                                    $attributeCount++;
+                                if ($this->_fontsubfamily == null) {
+                                    $this->_fontsubfamily = $testvalue;
+                                    $attributecount++;
                                 }
                                 break;
                             case 3  :
-                                if ($this->_fontIdentifier == NULL) {
-                                    $this->_fontIdentifier = $testValue;
-                                    $attributeCount++;
+                                if ($this->_fontidentifier == null) {
+                                    $this->_fontidentifier = $testvalue;
+                                    $attributecount++;
                                 }
                                 break;
                             case 4  :
-                                if ($this->_fontName == NULL) {
-                                    $this->_fontName = $testValue;
-                                    $attributeCount++;
+                                if ($this->_fontname == null) {
+                                    $this->_fontname = $testvalue;
+                                    $attributecount++;
                                 }
                                 break;
                             case 5  :
-                                if ($this->_fontVersion == NULL) {
-                                    $this->_fontVersion = $testValue;
-                                    $attributeCount++;
+                                if ($this->_fontversion == null) {
+                                    $this->_fontversion = $testvalue;
+                                    $attributecount++;
                                 }
                                 break;
                             case 6  :
-                                if ($this->_postscriptName == NULL) {
-                                    $this->_postscriptName = $testValue;
-                                    $attributeCount++;
+                                if ($this->_postscriptname == null) {
+                                    $this->_postscriptname = $testvalue;
+                                    $attributecount++;
                                 }
                                 break;
                             case 7  :
-                                if ($this->_trademark == NULL) {
-                                    $this->_trademark = $testValue;
-                                    $attributeCount++;
+                                if ($this->_trademark == null) {
+                                    $this->_trademark = $testvalue;
+                                    $attributecount++;
                                 }
                                 break;
                         }
                     }
-                    fseek($fontHandle, $nPos, SEEK_SET);
+                    fseek($fonthandle, $npos, SEEK_SET);
                 }
             }
-            if ($attributeCount > 7) {
+            if ($attributecount > 7) {
                 break;
             }
         }
 
-        fclose($fontHandle);
+        fclose($fonthandle);
         return true;
     }
 
-
     /**
      * @access constructor
-     * @param string $fileName
+     * @param string $filename
      * @throws Exception
      */
-    function __construct($fileName = '') {
+    public function __construct($filename = '') {
 
-        if ($fileName == '') {
+        if ($filename == '') {
             throw new Exception('Font File has not been specified');
         }
 
-        $this->_fileName = $fileName;
+        $this->_filename = $filename;
 
-        if (!file_exists($this->_fileName)) {
-            throw new Exception($this->_fileName . ' does not exist');
-        } elseif (!is_readable($this->_fileName)) {
-            throw new Exception($this->_fileName . ' is not a readable file');
+        if (!file_exists($this->_filename)) {
+            throw new Exception($this->_filename . ' does not exist');
+        } else if (!is_readable($this->_filename)) {
+            throw new Exception($this->_filename . ' is not a readable file');
         }
 
-        return $this->readFontAttributes();
+        return $this->read_font_attributes();
     }
-
 
 }
