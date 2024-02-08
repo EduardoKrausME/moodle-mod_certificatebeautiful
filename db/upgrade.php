@@ -30,5 +30,37 @@ defined('MOODLE_INTERNAL') || die;
  * @return bool always true
  */
 function xmldb_certificatebeautiful_upgrade($oldversion) {
+    global $CFG, $DB;
+
+    if ($oldversion < 2024020700) {
+
+        $DB->delete_records('certificatebeautiful_model');
+        require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/model/get_template_file.php");
+
+        foreach (certificatebeautiful_list_all_models() as $model) {
+
+            $pagesinfo = [
+                [
+                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template($model['key']),
+                    "cssdata" => ""
+                ], [
+                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template("sumary-secound-page"),
+                    "cssdata" => ""
+                ]
+            ];
+
+            $certificatebeautifulmodel = (object)[
+                "name" => $model['name'],
+                "pages_info" => json_encode($pagesinfo, JSON_PRETTY_PRINT),
+                "timecreated" => time(),
+                "timemodified" => time(),
+            ];
+            $DB->insert_record('certificatebeautiful_model', $certificatebeautifulmodel);
+        }
+
+        upgrade_mod_savepoint(true, 2024020700, 'certificatebeautiful');
+    }
+
+
     return true;
 }

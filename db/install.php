@@ -30,35 +30,11 @@ function xmldb_certificatebeautiful_install() {
 
     require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/model/get_template_file.php");
 
-    $models = [
-        [
-            "name" => get_string('certificate-appreciation', 'certificatebeautiful'),
-            "key" => 'certificate-appreciation',
-        ], [
-            "name" => get_string('certificate-elegant', 'certificatebeautiful'),
-            "key" => 'certificate-elegant',
-        ], [
-            "name" => get_string('certificate-modern', 'certificatebeautiful'),
-            "key" => 'certificate-modern',
-        ], [
-            "name" => get_string('certificate-simple', 'certificatebeautiful'),
-            "key" => 'certificate-simple',
-        ], [
-            "name" => get_string('certificate-vintage', 'certificatebeautiful'),
-            "key" => 'certificate-vintage',
-        ], [
-            "name" => get_string('certificate-golden', 'certificatebeautiful'),
-            "key" => 'certificate-golden',
-        ],
-    ];
-
-    foreach ($models as $model) {
-
-        $htmldata = \mod_certificatebeautiful\model\get_template_file::load_template($model['key']);
+    foreach (certificatebeautiful_list_all_models() as $model) {
 
         $pagesinfo = [
             [
-                "htmldata" => $htmldata,
+                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template($model['key']),
                 "cssdata" => ""
             ], [
                 "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template("sumary-secound-page"),
@@ -75,3 +51,4 @@ function xmldb_certificatebeautiful_install() {
         $DB->insert_record('certificatebeautiful_model', $certificatebeautifulmodel);
     }
 }
+

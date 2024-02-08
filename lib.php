@@ -344,3 +344,27 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
         get_string('my_certificates', 'certificatebeautiful'), null, $url);
     $tree->add_node($node);
 }
+
+function certificatebeautiful_list_all_models(){
+    return [
+        [
+            "name" => get_string('certificate-appreciation', 'certificatebeautiful'),
+            "key" => 'certificate-appreciation',
+        ], [
+            "name" => get_string('certificate-elegant', 'certificatebeautiful'),
+            "key" => 'certificate-elegant',
+        ], [
+            "name" => get_string('certificate-golden', 'certificatebeautiful'),
+            "key" => 'certificate-golden',
+        ],[
+            "name" => get_string('certificate-modern', 'certificatebeautiful'),
+            "key" => 'certificate-modern',
+        ], [
+            "name" => get_string('certificate-simple', 'certificatebeautiful'),
+            "key" => 'certificate-simple',
+        ], [
+            "name" => get_string('certificate-vintage', 'certificatebeautiful'),
+            "key" => 'certificate-vintage',
+        ],
+    ];
+}
