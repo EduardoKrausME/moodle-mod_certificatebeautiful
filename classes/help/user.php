@@ -66,7 +66,7 @@ class user extends help_base {
      */
     public static function get_data($user) {
         $newuser = self::base_get_data(self::table_structure(), $user);
-        $newuser['fullname'] = fullname($user);
+        $newuser['fullname'] = ucfirst(strtolower(fullname($user)));
 
         return $newuser;
     }
