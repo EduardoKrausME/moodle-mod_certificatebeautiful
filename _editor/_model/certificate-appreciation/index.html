@@ -3,23 +3,21 @@
     <div id="appreciation-in7m">{#s}certificado-titulo{/s}</div>
     <div id="appreciation-ilmx">{#s}certificado-subtitulo{/s}</div>
     <div id="appreciation-i2ae">{#s}certificado-presented{/s}</div>
-    <table autosize="1" id="i9q41">
-        <tbody>
-        <tr>
-            <td id="appreciation-isq9s">{$USER-&gt;fullname}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div id="appreciation-istff">
+        <table id="appreciation-i9q41">
+            <tr>
+                <td id="appreciation-isq9s">{$USER-&gt;fullname}</td>
+            </tr>
+        </table>
+    </div>
     <div id="appreciation-descricao">{#s}certificado-descricao{/s}</div>
     <div id="appreciation-assinatura">
-        <table cellpadding="0" cellspacing="0" id="appreciation-ix0wk">
-            <tbody id="ikmb6">
+        <table id="appreciation-ix0wk">
             <tr>
                 <td id="appreciation-i12ag">
                     <span id="appreciation-ipjgg">{{userdate(time(),strftimedaydate)}}</span>
                 </td>
-                <td id="appreciation-il59t" rowspan="2">
-                </td>
+                <td id="appreciation-il59t" rowspan="2">&nbsp;</td>
                 <td id="appreciation-it6eh">
                     <img src="/mod/certificatebeautiful/_editor/_model/certificate-appreciation/assets/signature.png"
                          id="elegant-i9fsk" width="84" height="63"/>
@@ -33,7 +31,6 @@
                     <span id="appreciation-iprc6">{#s}certificado-signature{/s}</span>
                 </td>
             </tr>
-            </tbody>
         </table>
     </div>
 </section>
@@ -52,8 +49,10 @@
         font-family: Arial;
         color: #424956;
         font-size: 29px;
-        width: 100%;
-        padding: 33px 0 0;
+        position: absolute;
+        top: 33px;
+        left: 30px;
+        right: 30px;
     }
     #appreciation-in7m {
         text-align: left;
@@ -61,8 +60,10 @@
         font-family: 'Cinzel Black';
         --font-weight: 700;
         text-transform: uppercase;
-        width: 100%;
-        padding: 45px 0 0 184px;
+        width: 590px;
+        position: absolute;
+        top: 109px;
+        left: 184px;
     }
     #appreciation-ilmx {
         text-align: left;
@@ -70,18 +71,20 @@
         color: #bca380;
         font-family: 'Cinzel Bold';
         --font-weight: 500;
-        width: 100%;
+        width: 520px;
         letter-spacing: 6px;
-        padding: 0 0 0 187px;
+        position: absolute;
+        top: 158px;
+        left: 187px;
     }
     #appreciation-isq9s {
         color: #c8992e;
         font-size: 43px;
         font-family: 'Parisienne';
         font-weight: 400;
-        text-align: left;
         width: 100%;
-        padding: 5px 120px 0 96px;
+        white-space: nowrap;
+        height: 74px;
     }
     #appreciation-descricao {
         text-align: left;
@@ -91,14 +94,18 @@
         font-size: 16px;
         color: #727477;
         height: 136px;
-        width: 100%;
+        width: 502px;
         letter-spacing: 1px;
-        padding: 16px 217px 0 115px;
+        position: absolute;
+        top: 318px;
+        left: 100px;
     }
     #appreciation-assinatura {
-        width: 100%;
-        margin: 0 0 0 -60px;
-        padding: 0;
+        position: absolute;
+        top: 461px;
+        left: 30px;
+        right: 30px;
+        text-align: center;
     }
     #appreciation-il59t {
         width: 120px;
@@ -144,8 +151,10 @@
         --font-weight: 600;
         color: #424956;
         font-size: 16px;
-        width: 100%;
-        padding: 46px 120px 0 101px;
+        position: absolute;
+        top: 224px;
+        left: 101px;
+        right: 120px;
     }
     #appreciation-ix0wk {
         margin: 0 auto;
@@ -153,16 +162,19 @@
     #elegant-i9fsk {
         margin: 0 0 -20px;
     }
-    #ikmb6 {
-        margin: 0 0 0 0;
-    }
     #appreciation-i12ag-3 {
         text-align: center;
     }
     #appreciation-it6eh-3 {
         text-align: center;
     }
-    #i9q41 {
-        overflow: wrap;
+    #appreciation-i9q41 {
+        width: 100%;
+    }
+    #appreciation-istff {
+        position: absolute;
+        top: 242px;
+        left: 101px;
+        width: 586px;
     }
 </style>
