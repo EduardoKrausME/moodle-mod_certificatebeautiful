@@ -70,7 +70,7 @@ class page_pdf {
 
         // 297 mm    X  210 mm
         // 841,89 px X  595,28 px
-        $proporcao = .79;
+        $proporcao = .75;
         $mpdf = new Mpdf([
             'mode' => '',
             'format' => [210 * $proporcao, 297 * $proporcao],
@@ -101,8 +101,6 @@ class page_pdf {
         $mpdf->SetCreator(get_string('modulename', 'certificatebeautiful') . ' - Model: ' . $certificatebeautifulmodel->name);
         $mpdf->SetTitle($certificatebeautiful->name);
         $mpdf->SetSubject(get_string('create_at_certificate', 'certificatebeautiful', fullname($user)));
-
-        $mpdf->exposeVersion = "2.1.0";
 
         foreach ($certificatebeautifulmodel->pages_info_object as $page) {
             $mpdf->AddPageByArray([]);
