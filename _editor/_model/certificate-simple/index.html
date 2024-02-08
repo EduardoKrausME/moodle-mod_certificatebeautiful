@@ -2,47 +2,45 @@
     <div id="certificate-simple-in7m">{#s}certificado-titulo{/s}</div>
     <div id="certificate-simple-ilmx">{#s}certificado-subtitulo{/s}</div>
     <div id="certificate-simple-i2ae">{#s}certificado-presented{/s}</div>
-    <table autosize="1" id="imc7">
-        <tbody>
-        <tr>
-            <td id="certificate-simple-ifius">{$USER-&gt;fullname}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div id="certificate-simple-indv">
+        <table id="certificate-simple-imc7">
+            <tr>
+                <td id="certificate-simple-ifius">{$USER-&gt;fullname}</td>
+            </tr>
+        </table>
+    </div>
     <div id="certificate-simple-descricao">{#s}certificado-descricao{/s}</div>
     <div id="certificate-simple-assinatura">
-        <table cellpadding="0" cellspacing="0" id="ijumf">
-            <tbody>
+        <table cellpadding="0" cellspacing="0" id="certificate-simple-ijumf">
             <tr>
-                <td id="ipakn">
+                <td id="certificate-simple-ipakn">
                     <span id="certificate-simple-ipjgg">{{userdate(time(),strftimedaydate)}}</span>
                 </td>
-                <td rowspan="3" id="i24ph">
+                <td rowspan="3" id="certificate-simple-i24ph">
                 </td>
-                <td id="i09dh">
+                <td id="certificate-simple-i09dh">
                     <img src="/mod/certificatebeautiful/_editor/_model/certificate-simple/assets/signature.png"
                          id="certificate-simple-i9fsk" width="84" height="63"/>
                 </td>
             </tr>
             <tr>
-                <td id="it556">
+                <td id="certificate-simple-it556">
                     <img src="/mod/certificatebeautiful/_editor/_model/certificate-simple/assets/line.png"
                          id="certificate-simple-i9fsk-2" width="148" height="4"/>
                 </td>
-                <td id="iihzi">
+                <td id="certificate-simple-iihzi">
                     <img src="/mod/certificatebeautiful/_editor/_model/certificate-simple/assets/line.png"
                          id="certificate-simple-i9fsk-3" width="148" height="4"/>
                 </td>
             </tr>
             <tr>
-                <td valign="botton" id="irqzm">
+                <td valign="botton" id="certificate-simple-irqzm">
                     <span id="certificate-simple-il3aj">{#s}certificado-date{/s}</span>
                 </td>
-                <td id="i7vlm">
+                <td id="certificate-simple-i7vlm">
                     <span id="certificate-simple-iprc6">{#s}certificado-signature{/s}</span>
                 </td>
             </tr>
-            </tbody>
         </table>
     </div>
 </section>
@@ -57,7 +55,7 @@
         background-size: cover;
     }
     #certificate-simple-in7m {
-        padding: 61px 0 0 0;
+
         text-align: center;
         margin: 0 0 0 0;
         font-size: 54px;
@@ -67,6 +65,10 @@
         text-transform: uppercase;
         width: 100%;
         letter-spacing: 3px;
+        top: 61px;
+        left: 0px;
+        margin-top: 0px;
+        position: absolute;
     }
     #certificate-simple-ilmx {
         text-align: center;
@@ -75,10 +77,14 @@
         font-family: 'Abhaya Libre';
         font-weight: 400;
         width: 100%;
-        padding: 0;
+
+        top: 124px;
+        left: 0px;
+        margin-top: 0px;
+        position: absolute;
     }
     #certificate-simple-i2ae {
-        padding: 62px 0 6px 0;
+
         font-family: Poppins;
         font-weight: 300;
         text-align: center;
@@ -87,6 +93,10 @@
         font-size: 14px;
         width: 100%;
         text-transform: uppercase;
+        top: 210px;
+        left: 0px;
+        margin-top: 0px;
+        position: absolute;
     }
     #certificate-simple-ifius {
         color: #a58b50;
@@ -94,7 +104,7 @@
         font-family: 'Alex Brush';
         font-weight: 700;
         text-align: center;
-        padding: 0 90px 0 90px;
+        white-space: nowrap;
     }
     #certificate-simple-descricao {
         text-align: center;
@@ -102,15 +112,24 @@
         font-weight: 300;
         font-size: 14px;
         color: #232323;
-        width: 100%;
+        width: auto;
         line-height: 19px;
         height: 135px;
-        padding: 18px 115px 0 115px;
+
+        top: 334px;
+        left: 115px;
+        margin-top: 0px;
+        position: absolute;
+        right: 115px;
     }
     #certificate-simple-assinatura {
         width: 100%;
         margin: 0 auto;
-        padding: 0;
+
+        top: 469px;
+        left: 0px;
+        margin-top: 0px;
+        position: absolute;
     }
     #certificate-simple-ipjgg {
         color: #858585;
@@ -136,38 +155,44 @@
     #certificate-simple-i9fsk {
         margin: 0 0 -23px;
     }
-    #ijumf {
+    #certificate-simple-ijumf {
         margin: 0 auto;
     }
-    #ipakn {
+    #certificate-simple-ipakn {
         text-align: center;
         vertical-align: bottom;
     }
-    #i09dh {
+    #certificate-simple-i09dh {
         width: 100px;
         text-align: center;
         height: 61px;
     }
-    #irqzm {
+    #certificate-simple-irqzm {
         text-align: center;
     }
-    #i7vlm {
+    #certificate-simple-i7vlm {
         width: 100px;
         text-align: center;
     }
-    #i24ph {
+    #certificate-simple-i24ph {
         width: 157px;
     }
-    #it556 {
+    #certificate-simple-it556 {
         height: 7px;
         text-align: center;
     }
-    #iihzi {
+    #certificate-simple-iihzi {
         height: 7px;
         text-align: center;
     }
-    #imc7 {
-        overflow: wrap;
+    #certificate-simple-imc7 {
         width: 100%;
+    }
+    #certificate-simple-indv {
+        top: 237px;
+        left: 90px;
+        right: 90px;
+        margin-top: 0px;
+        position: absolute;
     }
 </style>

@@ -3,17 +3,16 @@
     <div id="certificate-elegant-in7m">{#s}certificado-titulo{/s}</div>
     <div id="certificate-elegant-ilmx">{#s}certificado-subtitulo{/s}</div>
     <div id="certificate-elegant-i2ae">{#s}certificado-presented{/s}</div>
-    <table autosize="1" id="i8a8g">
-        <tbody>
-        <tr>
-            <td id="certificate-elegant-isq9s">{$USER-&gt;fullname}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div id="certificate-elegant-ihsgdf">
+        <table autosize="1" id="certificate-elegant-i8a8g">
+            <tr>
+                <td id="certificate-elegant-isq9s">{$USER-&gt;fullname}</td>
+            </tr>
+        </table>
+    </div>
     <div id="certificate-elegant-descricao">{#s}certificado-descricao{/s}</div>
     <div id="certificate-elegant-assinatura">
         <table cellpadding="0" cellspacing="0" id="certificate-elegant-ix0wk">
-            <tbody>
             <tr>
                 <td id="certificate-elegant-i12ag">
                     <span id="certificate-elegant-ipjgg">{{userdate(time(),strftimedaydate)}}</span>
@@ -35,10 +34,10 @@
                     <span id="certificate-elegant-iprc6">{#s}certificado-signature{/s}</span>
                 </td>
             </tr>
-            </tbody>
         </table>
     </div>
 </section>
+
 <style>
     #certificate-elegant-certificate-root {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-elegant/assets/background.png);
@@ -55,7 +54,11 @@
         color: #424956;
         font-size: 29px;
         width: 100%;
-        padding: 33px 0 0;
+
+        position: absolute;
+        top: 33px;
+        left: 0px;
+        margin-top: 0px;
     }
     #certificate-elegant-in7m {
         text-align: center;
@@ -66,7 +69,11 @@
         font-weight: 400;
         text-transform: uppercase;
         width: 100%;
-        padding: 17px 0 0;
+
+        position: absolute;
+        top: 99px;
+        left: 0px;
+        margin-top: 0px;
     }
     #certificate-elegant-ilmx {
         text-align: center;
@@ -75,7 +82,11 @@
         font-family: Lato;
         font-weight: 500;
         width: 100%;
-        padding: 7px 0 0;
+
+        position: absolute;
+        top: 149px;
+        left: 0px;
+        margin-top: 0px;
     }
     #certificate-elegant-isq9s {
         color: #c8992e;
@@ -84,10 +95,10 @@
         font-weight: 800;
         text-align: center;
         width: 100%;
-        padding: 8px 90px 0 90px;
+        white-space: nowrap;
     }
     #certificate-elegant-descricao {
-        padding: 5px 115px 0 115px;
+
         text-align: center;
         line-height: 20px;
         font-family: Lato;
@@ -96,15 +107,24 @@
         letter-spacing: 1px;
         color: #727477;
         height: 107px;
-        width: 100%;
+        width: auto;
+        position: absolute;
+        top: 306px;
+        left: 115px;
+        margin-top: 0px;
+        right: 115px;
     }
     #certificate-elegant-assinatura {
         width: 100%;
         margin: 0 auto;
-        padding: 0;
+
+        position: absolute;
+        top: 418px;
+        left: 0px;
+        margin-top: 0px;
     }
     #certificate-elegant-il59t {
-        padding: 0;
+
         vertical-align: bottom;
     }
     #certificate-elegant-ipjgg {
@@ -150,7 +170,10 @@
         font-size: 16px;
         margin: 17px 0 0 0;
         width: 100%;
-        padding: 3px 0 0;
+        position: absolute;
+        top: 190px;
+        left: 0px;
+        margin-top: 0px;
     }
     #certificate-elegant-ix0wk {
         margin: 0 auto;
@@ -163,8 +186,14 @@
         vertical-align: text-bottom;
         text-align: center;
     }
-    #i8a8g {
-        overflow: wrap;
+    #certificate-elegant-i8a8g {
         width: 100%;
+    }
+    #certificate-elegant-ihsgdf {
+        position: absolute;
+        top: 217px;
+        left: 90px;
+        right: 90px;
+        margin-top: 0px;
     }
 </style>
