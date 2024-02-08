@@ -43,7 +43,7 @@ class functions {
 
         self::$user = $user;
 
-        $html = preg_replace_callback('/{{(?<function>userdate|date)\((?<parameters>.*?)}}/',
+        $html = preg_replace_callback('/{{(?<function>userdate|date)\((?<parameters>.*?)\)}}/',
             function ($matches) {
 
                 if (strpos($matches['parameters'], ",")) {
