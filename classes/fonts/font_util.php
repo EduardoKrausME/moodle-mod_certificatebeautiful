@@ -34,6 +34,7 @@ class font_util {
         global $CFG;
 
         $fonts = ["fonts" => [], "path" => [], "css" => "", "js" => ""];
+        $fontsitens = [];
         $fontfiles = glob("{$CFG->dirroot}/mod/certificatebeautiful/_editor/_model/*/fonts/*/static/*.ttf");
 
         foreach ($fontfiles as $fontfile) {
@@ -65,7 +66,7 @@ class font_util {
                     src         : url({$fonturl}) format('ttf');
                 }";
 
-            $fonts["js"] .= "
+            $fontsitens[$ttfinfo->get_font_name()] = "
                     {
                         id : '{$ttfinfo->get_font_name_id()}',
                         label : '{$ttfinfo->get_font_name()}',
@@ -73,6 +74,9 @@ class font_util {
         }
 
         $fonts["path"] = array_keys($fonts["path"]);
+
+        ksort($fontsitens);
+        $fonts["options"] = implode("\n", $fontsitens);
 
         return $fonts;
     }
