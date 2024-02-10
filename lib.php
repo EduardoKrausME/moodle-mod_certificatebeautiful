@@ -312,7 +312,7 @@ function certificatebeautiful_extend_settings_navigation($settings, $certificate
 function certificatebeautiful_extend_navigation_course($navigation, $course, $context) {
     if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
         $certificatenode1 = $navigation->add(get_string('course_certificates', 'certificatebeautiful'),
-            null, navigation_node::TYPE_CONTAINER, null, 'course_certificates');
+            null, navigation_node::TYPE_CONTAINER, null, 'course_certificatebeautiful');
         $url = new moodle_url('/mod/certificatebeautiful/reports.php', ['course' => $course->id]);
         $certificatenode1->add(get_string('course_certificates', 'certificatebeautiful'), $url, navigation_node::TYPE_SETTING,
             null, null, new pix_icon('i/report', ''));
@@ -345,7 +345,7 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
     $tree->add_node($node);
 }
 
-function certificatebeautiful_list_all_models(){
+function certificatebeautiful_list_all_models() {
     return [
         [
             "name" => get_string('certificate-appreciation', 'certificatebeautiful'),
@@ -356,7 +356,25 @@ function certificatebeautiful_list_all_models(){
         ], [
             "name" => get_string('certificate-golden', 'certificatebeautiful'),
             "key" => 'certificate-golden',
-        ],[
+        ], [
+            "name" => get_string('certificate-kids-animals', 'certificatebeautiful'),
+            "key" => 'certificate-kids-animals',
+        ], [
+            "name" => get_string('certificate-kids-child-medical', 'certificatebeautiful'),
+            "key" => 'certificate-kids-child-medical',
+        ], [
+            "name" => get_string('certificate-kids-gradient-modern', 'certificatebeautiful'),
+            "key" => 'certificate-kids-gradient-modern',
+        ], [
+            "name" => get_string('certificate-kids-hand-drawn', 'certificatebeautiful'),
+            "key" => 'certificate-kids-hand-drawn',
+        ], [
+            "name" => get_string('certificate-kids-pastel', 'certificatebeautiful'),
+            "key" => 'certificate-kids-pastel',
+        ], [
+            "name" => get_string('certificate-kids-template', 'certificatebeautiful'),
+            "key" => 'certificate-kids-template',
+        ], [
             "name" => get_string('certificate-modern', 'certificatebeautiful'),
             "key" => 'certificate-modern',
         ], [
@@ -366,5 +384,7 @@ function certificatebeautiful_list_all_models(){
             "name" => get_string('certificate-vintage', 'certificatebeautiful'),
             "key" => 'certificate-vintage',
         ],
+
+
     ];
 }
