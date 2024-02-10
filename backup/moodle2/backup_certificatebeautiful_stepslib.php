@@ -36,16 +36,11 @@ class backup_certificatebeautiful_activity_structure_step extends backup_activit
      * Defines the structure of the resulting xml file.
      *
      * @return backup_nested_element The structure wrapped by the common 'activity' element.
-     * @throws ddl_exception
+     * @throws base_element_struct_exception
+     * @throws base_step_exception
      * @throws dml_exception
      */
     protected function define_structure() {
-        global $DB;
-
-        if (!$DB->get_manager()->table_exists('certificatebeautiful_issue')) {
-            throw new \dml_exception('certificatebeautiful_issue table does not exists');
-        }
-
         // Course certificate.
         $fields = ['name', 'timecreated', 'timemodified', 'intro', 'introformat', 'template', 'expires'];
         $certificatebeautiful = new backup_nested_element('certificatebeautiful', ['id'], $fields);
@@ -61,11 +56,6 @@ class backup_certificatebeautiful_activity_structure_step extends backup_activit
 
         // Define the source tables for the elements.
         $certificatebeautiful->set_source_table('certificatebeautiful', ['id' => backup::VAR_ACTIVITYID]);
-
-        // If we are including user info then save the issues.
-        if ($this->get_setting_value('userinfo')) {
-            $issue->set_source_table('certificatebeautiful_issue', ['courseid' => backup::VAR_COURSEID]);
-        }
 
         // Define id annotations.
         $issue->annotate_ids('user', 'userid');
