@@ -1,7 +1,7 @@
 <section id="certificate-simple-root" class="certificate-root">
-    <div id="certificate-simple-in7m">{#s}certificado-titulo{/s}</div>
+    <div id="certificate-simple-in7m">{#s}certtitle{/s}</div>
     <div id="certificate-simple-ilmx">{#s}certificado-subtitulo{/s}</div>
-    <div id="certificate-simple-i2ae">{#s}certificado-presented{/s}</div>
+    <div id="certificate-simple-i2ae">{#s}certpresented{/s}</div>
     <div id="certificate-simple-indv">
         <table id="certificate-simple-imc7">
             <tr>
@@ -14,7 +14,7 @@
         <table cellpadding="0" cellspacing="0" id="certificate-simple-ijumf">
             <tr>
                 <td id="certificate-simple-ipakn">
-                    <span id="certificate-simple-ipjgg">{{userdate(time(),strftimedaydate)}}</span>
+                    <span id="certificate-simple-ipjgg">{{userdate(time(),strftimedate)}}</span>
                 </td>
                 <td rowspan="3" id="certificate-simple-i24ph">
                 </td>
@@ -35,10 +35,10 @@
             </tr>
             <tr>
                 <td valign="botton" id="certificate-simple-irqzm">
-                    <span id="certificate-simple-il3aj">{#s}certificado-date{/s}</span>
+                    <span id="certificate-simple-il3aj">{#s}certdate{/s}</span>
                 </td>
                 <td id="certificate-simple-i7vlm">
-                    <span id="certificate-simple-iprc6">{#s}certificado-signature{/s}</span>
+                    <span id="certificate-simple-iprc6">{#s}certsignature{/s}</span>
                 </td>
             </tr>
         </table>
@@ -55,9 +55,7 @@
         background-size: cover;
     }
     #certificate-simple-in7m {
-
         text-align: center;
-        margin: 0 0 0 0;
         font-size: 54px;
         color: #383838;
         font-family: 'Abhaya Libre';
@@ -84,12 +82,10 @@
         position: absolute;
     }
     #certificate-simple-i2ae {
-
         font-family: Poppins;
         font-weight: 300;
         text-align: center;
         color: #383838;
-        margin: 0 0 0 0;
         font-size: 14px;
         width: 100%;
         text-transform: uppercase;

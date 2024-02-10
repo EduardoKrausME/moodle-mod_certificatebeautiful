@@ -1,8 +1,8 @@
 <section id="certificate-modern-certificate-root" class="certificate-root">
     <div id="certificate-modern-i3vg">{$SITE-&gt;fullname}</div>
-    <div id="certificate-modern-in7m">{#s}certificado-titulo{/s}</div>
+    <div id="certificate-modern-in7m">{#s}certtitle{/s}</div>
     <div id="certificate-modern-ilmx">{#s}certificado-subtitulo{/s}</div>
-    <div id="certificate-modern-i2ae">{#s}certificado-presented{/s}</div>
+    <div id="certificate-modern-i2ae">{#s}certpresented{/s}</div>
     <div id="certificate-modern-ifuql">
         <table id="certificate-modern-itcpw">
             <tr>
@@ -21,7 +21,7 @@
         <table cellpadding="0" cellspacing="0" id="certificate-modern-i50gy">
             <tr>
                 <td id="certificate-modern-i12ag">
-                    <span id="certificate-modern-ipjgg">{{userdate(time(),strftimedaydate)}}</span>
+                    <span id="certificate-modern-ipjgg">{{userdate(time(),strftimedate)}}</span>
                 </td>
                 <td id="certificate-modern-il59t" rowspan="2">
                     <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/badge.png"
@@ -34,10 +34,10 @@
             </tr>
             <tr>
                 <td id="certificate-modern-i12ag-3">
-                    <span id="certificate-modern-il3aj">{#s}certificado-date{/s}</span>
+                    <span id="certificate-modern-il3aj">{#s}certdate{/s}</span>
                 </td>
                 <td id="certificate-modern-it6eh-3">
-                    <span id="certificate-modern-iprc6">{#s}certificado-signature{/s}</span>
+                    <span id="certificate-modern-iprc6">{#s}certsignature{/s}</span>
                 </td>
             </tr>
         </table>
@@ -97,7 +97,6 @@
         font-weight: 100;
         text-align: center;
         color: #42747f;
-        margin: 0 0 0 0;
         font-size: 15px;
         width: 100%;
         text-transform: uppercase;
