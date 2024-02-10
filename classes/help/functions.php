@@ -63,7 +63,7 @@ class functions {
                         } else if (isset($functions['p2'])) {
                             return userdate($functions['p1'], get_string($functions['p2'], 'langconfig'), self::$user->timezone);
                         } else if (isset($functions['p1'])) {
-                            return userdate($functions['p1'], get_string('strftimedaydate', 'langconfig'), self::$user->timezone);
+                            return userdate($functions['p1'], get_string('strftimedate', 'langconfig'), self::$user->timezone);
                         }
                         break;
                     case 'date':
