@@ -25,12 +25,24 @@ namespace mod_certificatebeautiful\help;
 class user_profile extends help_base {
     /**
      * @return array
-     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public static function table_structure() {
-        return [
-            ['key' => 'NAME', 'label' => get_string('help_user_profile', 'certificatebeautiful')],
-        ];
+        global $DB;
+
+        $itens = [];
+
+        $userinfofields = $DB->get_records('user_info_field');
+        if ($userinfofields) {
+            $data = [];
+            foreach ($userinfofields as $userinfofield) {
+                $itens[] = [
+                    ['key' => $userinfofield->shortname, 'label' => $userinfofield->name]
+                ];
+            }
+        }
+
+        return $itens;
     }
 
     /**
