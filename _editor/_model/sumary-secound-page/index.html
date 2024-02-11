@@ -1,12 +1,18 @@
-<section id="sumary-certificate-root" class="certificate-root">
-    <h2 id="sumary-titulo">{#s}certificado-sumary{/s}</h2>
-    <div id="sumary-text">{$course-&gt;summary}</div>
-</section>
+<h2 id="sumary-titulo">{#s}certificado-sumary{/s}</h2>
+<div draggable="false" id="sumary-text">{$course-&gt;summary}</div>
+
+
+<div draggable="false" class="qr-code-block"
+     style="position:absolute;top:549px;left:840px;width:100px;">
+    <img src="img/qr-code.svg" width="100%"/>
+    <div class="qr-code" style="font-size:12px;text-align:center;">{$CERTIFICATE-&gt;code}</div>
+</div>
+
 <style>
-    #sumary-certificate-root {
+    [data-gjs-type=wrapper] {
         position: relative;
         height: 595px;
-        width: 842px;
+        width: 955px;
     }
     #sumary-titulo {
         text-align: center;

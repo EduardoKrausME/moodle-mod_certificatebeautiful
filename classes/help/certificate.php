@@ -21,6 +21,9 @@
 
 namespace mod_certificatebeautiful\help;
 
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
+
 class certificate extends help_base {
     /**
      * @return array
@@ -29,8 +32,9 @@ class certificate extends help_base {
     public static function table_structure() {
         return [
             ['key' => 'name', 'label' => get_string('help_certificate_name', 'certificatebeautiful')],
-            ['key' => 'issue_timecreated', 'label' => get_string('help_certificate_issue_timecreated', 'certificatebeautiful')],
-            ['key' => 'issue_code', 'label' => get_string('help_certificate_issue_code', 'certificatebeautiful')],
+            ['key' => 'timecreated', 'label' => get_string('help_certificate_issue_timecreated', 'certificatebeautiful')],
+            ['key' => 'code', 'label' => get_string('help_certificate_issue_code', 'certificatebeautiful')],
+            ['key' => 'url', 'label' => get_string('help_certificate_issue_url', 'certificatebeautiful')],
         ];
     }
 
@@ -39,7 +43,28 @@ class certificate extends help_base {
      * @return array
      * @throws \coding_exception
      */
-    public static function get_data($course) {
-        return self::base_get_data(self::table_structure(), $course);
+    public static function get_data($certificatebeautiful) {
+        global $CFG;
+
+        require_once(__DIR__ . "/vendor/autoload.php");
+
+        $certificatebeautiful->url = "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$certificatebeautiful->code}";
+
+        return self::base_get_data(self::table_structure(), $certificatebeautiful);
+    }
+
+    public static function custom_replace($html, $certificatebeautiful) {
+
+        if (strpos($html, "img/qr-code.svg")) {
+            $options = new QROptions([
+                'outputType' => QRCode::OUTPUT_IMAGE_PNG,
+                'scale' => 20,
+                'addQuietzone' => false
+            ]);
+            $qrcode = (new QRCode($options))->render($certificatebeautiful['url']);
+            $html = str_replace("img/qr-code.svg", $qrcode, $html);
+        }
+
+        return $html;
     }
 }
