@@ -1,70 +1,83 @@
-<section id="certificate-kids-pastel-root" class="certificate-root">
-    <div id="certificate-kids-pastel-in7m">{#s}certtitle{/s}
-    </div>
-    <div id="certificate-kids-pastel-ilmx">{#s}certificado-subtitulo{/s}
-    </div>
-    <div id="certificate-kids-pastel-i2ae">{#s}certpresented{/s}
-    </div>
-    <div id="certificate-kids-pastel-indv">
-        <table id="certificate-kids-pastel-imc7">
-            <tbody>
-            <tr>
-                <td id="certificate-kids-pastel-ifius">
-                    <span id="certificate-kids-pastel-i11eh">{$USER-&gt;fullname}</span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div id="certificate-kids-pastel-descricao">{#s}certificado-descricao{/s}
-    </div>
-    <div id="certificate-kids-pastel-assinatura1">
-        <table cellpadding="0" cellspacing="0" id="iohom">
-            <tbody>
-            <tr>
-                <td id="certificate-kids-pastel-ipakn">
-                    <span id="certificate-kids-pastel-ipjgg">{{userdate(time(),strftimedate)}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td valign="botton" id="certificate-kids-pastel-irqzm">
-                    <span id="certificate-kids-pastel-il3aj">{#s}certdate{/s}</span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div id="certificate-kids-pastel-assinatura2">
-        <table cellpadding="0" cellspacing="0">
-            <tbody>
-            <tr>
-                <td id="certificate-kids-pastel-i09dh">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-pastel/assets/signature.png"
-                         id="certificate-kids-pastel-i9fsk" width="84" height="63"/>
-                </td>
-            </tr>
-            <tr>
-                <td id="certificate-kids-pastel-i7vlm">
-                    <span id="certificate-kids-pastel-iprc6">{#s}certsignature{/s}</span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+<div draggable="false" id="certificate-kids-pastel-in7m">{#s}certtitle{/s}
+</div>
+<div draggable="false" id="certificate-kids-pastel-ilmx">{#s}certificado-subtitulo{/s}
+</div>
+<div draggable="false" id="certificate-kids-pastel-i2ae">{#s}certpresented{/s}
+</div>
+<div draggable="false" id="certificate-kids-pastel-indv">
+    <table id="certificate-kids-pastel-imc7">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-kids-pastel-ifius">
+                <span id="certificate-kids-pastel-i11eh">{$USER-&gt;fullname}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div draggable="false" id="certificate-kids-pastel-descricao">{#s}certificado-descricao{/s}
+</div>
+<div draggable="false" id="certificate-kids-pastel-assinatura1">
+    <table id="certificate-kids-pastel-iohom">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-kids-pastel-ipakn">
+                <span id="certificate-kids-pastel-ipjgg">{{userdate(time(),strftimedate)}}</span>
+            </td>
+        </tr>
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td valign="botton" id="certificate-kids-pastel-irqzm">
+                <span id="certificate-kids-pastel-il3aj">{#s}certdate{/s}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div draggable="false" id="certificate-kids-pastel-assinatura2">
+    <table>
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-kids-pastel-i09dh">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-pastel/assets/signature.png"
+                     id="certificate-kids-pastel-i9fsk" width="84" height="63"/>
+            </td>
+        </tr>
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-kids-pastel-i7vlm">
+                <span id="certificate-kids-pastel-iprc6">{#s}certsignature{/s}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <style>
-    #certificate-kids-pastel-root {
+    [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-kids-pastel/assets/background.png);
         position: relative;
         height: 595px;
-        width: 842px;
+        width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
     #certificate-kids-pastel-in7m {
         text-align: center;
-
         font-size: 54px;
         color: #272771;
         font-family: riffic-free-bold;
@@ -94,7 +107,6 @@
         font-weight: 300;
         text-align: center;
         color: #808df1;
-
         font-size: 14px;
         width: 100%;
         text-transform: uppercase;
@@ -191,7 +203,7 @@
     #certificate-kids-pastel-i11eh {
         border-bottom: 1px solid #808df1;
     }
-    #iohom {
+    #certificate-kids-pastel-iohom {
         left: 0px;
         top: 25px;
         position: absolute;

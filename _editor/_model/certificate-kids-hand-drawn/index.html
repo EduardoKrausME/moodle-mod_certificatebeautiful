@@ -1,67 +1,73 @@
-<body id="iz2q">
-<section id="certificate-kids-hand-drawn-root" class="certificate-root">
-    <div id="certificate-kids-hand-drawn-i3vg">{$SITE-&gt;fullname}
-    </div>
-    <div id="certificate-kids-hand-drawn-in7m">{#s}certtitle{/s}
-    </div>
-    <div id="certificate-kids-hand-drawn-ilmx">{#s}certificado-subtitulo{/s}
-    </div>
-    <div id="certificate-kids-hand-drawn-i2ae">{#s}certpresented{/s}
-    </div>
-    <div id="certificate-kids-hand-drawn-indv">
-        <table id="certificate-kids-hand-drawn-imc7">
-            <tbody id="ihuv5">
-            <tr>
-                <td id="certificate-kids-hand-drawn-ifius">
-                    <span id="iib3z">{$USER-&gt;fullname}</span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div id="certificate-kids-hand-drawn-descricao">{#s}certificado-descricao{/s}
-    </div>
-    <div id="certificate-kids-hand-drawn-assinatura">
-        <table cellpadding="0" cellspacing="0" id="certificate-kids-hand-drawn-ijumf">
-            <tbody>
-            <tr>
-                <td id="certificate-kids-hand-drawn-ipakn">
-                    <span id="certificate-kids-hand-drawn-ipjgg">{{userdate(time(),strftimedate)}}</span>
-                </td>
-                <td rowspan="2" id="certificate-kids-hand-drawn-i24ph">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-hand-drawn/assets/badge.png"
-                         width="69" height="101" id="iel2e"/>
-                </td>
-                <td id="certificate-kids-hand-drawn-i09dh">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-hand-drawn/assets/signature.png"
-                         id="certificate-kids-hand-drawn-i9fsk" width="84" height="63"/>
-                </td>
-            </tr>
-            <tr>
-                <td valign="botton" id="certificate-kids-hand-drawn-irqzm">
-                    <span id="certificate-kids-hand-drawn-il3aj">{#s}certdate{/s}</span>
-                </td>
-                <td id="certificate-kids-hand-drawn-i7vlm">
-                    <span id="certificate-kids-hand-drawn-iprc6">{#s}certsignature{/s}</span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+<div draggable="false" id="certificate-kids-hand-drawn-i3vg">{$SITE-&gt;fullname}
+</div>
+<div draggable="false" id="certificate-kids-hand-drawn-in7m">{#s}certtitle{/s}
+</div>
+<div draggable="false" id="certificate-kids-hand-drawn-ilmx">{#s}certificado-subtitulo{/s}
+</div>
+<div draggable="false" id="certificate-kids-hand-drawn-i2ae">{#s}certpresented{/s}
+</div>
+<div draggable="false" id="certificate-kids-hand-drawn-indv">
+    <table id="certificate-kids-hand-drawn-imc7">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-kids-hand-drawn-ifius">
+                <span id="iib3z">{$USER-&gt;fullname}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div draggable="false" id="certificate-kids-hand-drawn-descricao">{#s}certificado-descricao{/s}
+</div>
+<div draggable="false" id="certificate-kids-hand-drawn-assinatura">
+    <table id="certificate-kids-hand-drawn-ijumf">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-kids-hand-drawn-ipakn">
+                <span id="certificate-kids-hand-drawn-ipjgg">{{userdate(time(),strftimedate)}}</span>
+            </td>
+            <td rowspan="2" id="certificate-kids-hand-drawn-i24ph">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-hand-drawn/assets/badge.png"
+                     width="69" height="101" id="iel2e"/>
+            </td>
+            <td id="certificate-kids-hand-drawn-i09dh">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-hand-drawn/assets/signature.png"
+                     id="certificate-kids-hand-drawn-i9fsk" width="84" height="63"/>
+            </td>
+        </tr>
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td valign="botton" id="certificate-kids-hand-drawn-irqzm">
+                <span id="certificate-kids-hand-drawn-il3aj">{#s}certdate{/s}</span>
+            </td>
+            <td id="certificate-kids-hand-drawn-i7vlm">
+                <span id="certificate-kids-hand-drawn-iprc6">{#s}certsignature{/s}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <style>
-    #certificate-kids-hand-drawn-root {
+    [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-kids-hand-drawn/assets/background.png);
         position: relative;
         height: 595px;
-        width: 842px;
+        width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
     #certificate-kids-hand-drawn-in7m {
         text-align: center;
-
         font-size: 71px;
         color: #4591ce;
         font-family: montserrat-bold;
@@ -91,7 +97,6 @@
         font-weight: 300;
         text-align: center;
         color: #4490ce;
-
         font-size: 14px;
         width: 100%;
         text-transform: uppercase;

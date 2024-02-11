@@ -1,61 +1,67 @@
-<section id="certificate-kids-child-medical-root" class="certificate-root">
-    <div id="certificate-kids-child-medical-in7m">{#s}certtitle{/s}
-    </div>
-    <div id="certificate-kids-child-medical-ilmx">{#s}certificado-subtitulo{/s}
-    </div>
-    <div id="certificate-kids-child-medical-i2ae">{#s}certpresented{/s}
-    </div>
-    <div id="certificate-kids-child-medical-indv">
-        <table id="certificate-kids-child-medical-imc7">
-            <tbody>
-            <tr>
-                <td id="certificate-kids-child-medical-ifius">{$USER-&gt;fullname}
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div id="certificate-kids-child-medical-descricao">{#s}certificado-descricao{/s}
-    </div>
-    <div id="certificate-kids-child-medical-assinatura">
-        <table cellpadding="0" cellspacing="0" id="certificate-kids-child-medical-ijumf">
-            <tbody>
-            <tr>
-                <td id="certificate-kids-child-medical-ipakn">
-                    <span id="certificate-kids-child-medical-ipjgg">{{userdate(time(),strftimedate)}}</span>
-                </td>
-                <td rowspan="2" id="certificate-kids-child-medical-i24ph">
-                </td>
-                <td id="certificate-kids-child-medical-i09dh">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-child-medical/assets/signature.png"
-                         id="certificate-kids-child-medical-i9fsk" width="200" height="63"/>
-                </td>
-            </tr>
-            <tr>
-                <td valign="botton" id="certificate-kids-child-medical-irqzm">
-                    <span id="certificate-kids-child-medical-il3aj">{#s}certdate{/s}</span>
-                </td>
-                <td id="certificate-kids-child-medical-i7vlm">
-                    <span id="certificate-kids-child-medical-iprc6">{#s}certsignature{/s}</span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+<div draggable="false" id="certificate-kids-child-medical-in7m">{#s}certtitle{/s}
+</div>
+<div draggable="false" id="certificate-kids-child-medical-ilmx">{#s}certificado-subtitulo{/s}
+</div>
+<div draggable="false" id="certificate-kids-child-medical-i2ae">{#s}certpresented{/s}
+</div>
+<div draggable="false" id="certificate-kids-child-medical-indv">
+    <table id="certificate-kids-child-medical-imc7">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-kids-child-medical-ifius">{$USER-&gt;fullname}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div draggable="false" id="certificate-kids-child-medical-descricao">{#s}certificado-descricao{/s}
+</div>
+<div draggable="false" id="certificate-kids-child-medical-assinatura">
+    <table id="certificate-kids-child-medical-ijumf">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-kids-child-medical-ipakn">
+                <span id="certificate-kids-child-medical-ipjgg">{{userdate(time(),strftimedate)}}</span>
+            </td>
+            <td rowspan="2" id="certificate-kids-child-medical-i24ph">
+            </td>
+            <td id="certificate-kids-child-medical-i09dh">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-child-medical/assets/signature.png"
+                     id="certificate-kids-child-medical-i9fsk" width="200" height="63"/>
+            </td>
+        </tr>
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td valign="botton" id="certificate-kids-child-medical-irqzm">
+                <span id="certificate-kids-child-medical-il3aj">{#s}certdate{/s}</span>
+            </td>
+            <td id="certificate-kids-child-medical-i7vlm">
+                <span id="certificate-kids-child-medical-iprc6">{#s}certsignature{/s}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <style>
-    #certificate-kids-child-medical-root {
+    [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-kids-child-medical/assets/background.png);
         position: relative;
         height: 595px;
-        width: 842px;
+        width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
     #certificate-kids-child-medical-in7m {
         text-align: center;
-
         font-size: 31px;
         color: #a052dd;
         font-family: quicksand-bold;
@@ -85,7 +91,6 @@
         font-weight: 300;
         text-align: center;
         color: #5534a5;
-
         font-size: 14px;
         width: 100%;
         text-transform: uppercase;

@@ -1,48 +1,64 @@
-<section id="appreciation-certificate-root" class="certificate-root">
-    <div id="appreciation-i3vg">{$SITE-&gt;fullname}</div>
-    <div id="appreciation-in7m">{#s}certtitle{/s}</div>
-    <div id="appreciation-ilmx">{#s}certificado-subtitulo{/s}</div>
-    <div id="appreciation-i2ae">{#s}certpresented{/s}</div>
-    <div id="appreciation-istff">
-        <table id="appreciation-i9q41">
-            <tr>
-                <td id="appreciation-isq9s">{$USER-&gt;fullname}</td>
-            </tr>
-        </table>
-    </div>
-    <div id="appreciation-descricao">{#s}certificado-descricao{/s}</div>
-    <div id="appreciation-assinatura">
-        <table id="appreciation-ix0wk">
-            <tr>
-                <td id="appreciation-i12ag">
-                    <span id="appreciation-ipjgg">{{userdate(time(),strftimedate)}}</span>
-                </td>
-                <td id="appreciation-il59t" rowspan="2">&nbsp;</td>
-                <td id="appreciation-it6eh">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-appreciation/assets/signature.png"
-                         id="elegant-i9fsk" width="84" height="63"/>
-                </td>
-            </tr>
-            <tr>
-                <td id="appreciation-i12ag-3">
-                    <span id="appreciation-il3aj">{#s}certdate{/s}</span>
-                </td>
-                <td id="appreciation-it6eh-3">
-                    <span id="appreciation-iprc6">{#s}certsignature{/s}</span>
-                </td>
-            </tr>
-        </table>
-    </div>
-</section>
+<div draggable="false" id="appreciation-i3vg">{$SITE-&gt;fullname}</div>
+<div draggable="false" id="appreciation-in7m">{#s}certtitle{/s}</div>
+<div draggable="false" id="appreciation-ilmx">{#s}certificado-subtitulo{/s}</div>
+<div draggable="false" id="appreciation-i2ae">{#s}certpresented{/s}</div>
+<div draggable="false" id="appreciation-istff">
+    <table id="appreciation-i9q41">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="appreciation-isq9s">{$USER-&gt;fullname}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div draggable="false" id="appreciation-descricao">{#s}certificado-descricao{/s}</div>
+<div draggable="false" id="appreciation-assinatura">
+    <table id="appreciation-ix0wk">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="appreciation-i12ag">
+                <span id="appreciation-ipjgg">{{userdate(time(),strftimedate)}}</span>
+            </td>
+            <td id="appreciation-il59t" rowspan="2"></td>
+            <td id="appreciation-it6eh">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-appreciation/assets/signature.png"
+                     id="elegant-i9fsk" width="84" height="63"/>
+            </td>
+        </tr>
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="appreciation-i12ag-3">
+                <span id="appreciation-il3aj">{#s}certdate{/s}</span>
+            </td>
+            <td id="appreciation-it6eh-3">
+                <span id="appreciation-iprc6">{#s}certsignature{/s}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 <style>
-    #appreciation-certificate-root {
+    [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-appreciation/assets/background.png);
         position: relative;
         height: 595px;
-        width: 842px;
+        width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
+    }
+    [data-gjs-type=wrapper] > * * {
+        position: initial !important;
     }
     #appreciation-i3vg {
         text-align: center;

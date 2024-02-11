@@ -1,55 +1,70 @@
-<section id="certificate-simple-root" class="certificate-root">
-    <div id="certificate-simple-in7m">{#s}certtitle{/s}</div>
-    <div id="certificate-simple-ilmx">{#s}certificado-subtitulo{/s}</div>
-    <div id="certificate-simple-i2ae">{#s}certpresented{/s}</div>
-    <div id="certificate-simple-indv">
-        <table id="certificate-simple-imc7">
-            <tr>
-                <td id="certificate-simple-ifius">{$USER-&gt;fullname}</td>
-            </tr>
-        </table>
-    </div>
-    <div id="certificate-simple-descricao">{#s}certificado-descricao{/s}</div>
-    <div id="certificate-simple-assinatura">
-        <table cellpadding="0" cellspacing="0" id="certificate-simple-ijumf">
-            <tr>
-                <td id="certificate-simple-ipakn">
-                    <span id="certificate-simple-ipjgg">{{userdate(time(),strftimedate)}}</span>
-                </td>
-                <td rowspan="3" id="certificate-simple-i24ph">
-                </td>
-                <td id="certificate-simple-i09dh">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-simple/assets/signature.png"
-                         id="certificate-simple-i9fsk" width="84" height="63"/>
-                </td>
-            </tr>
-            <tr>
-                <td id="certificate-simple-it556">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-simple/assets/line.png"
-                         id="certificate-simple-i9fsk-2" width="148" height="4"/>
-                </td>
-                <td id="certificate-simple-iihzi">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-simple/assets/line.png"
-                         id="certificate-simple-i9fsk-3" width="148" height="4"/>
-                </td>
-            </tr>
-            <tr>
-                <td valign="botton" id="certificate-simple-irqzm">
-                    <span id="certificate-simple-il3aj">{#s}certdate{/s}</span>
-                </td>
-                <td id="certificate-simple-i7vlm">
-                    <span id="certificate-simple-iprc6">{#s}certsignature{/s}</span>
-                </td>
-            </tr>
-        </table>
-    </div>
-</section>
+<div draggable="false" id="certificate-simple-in7m">{#s}certtitle{/s}</div>
+<div draggable="false" id="certificate-simple-ilmx">{#s}certificado-subtitulo{/s}</div>
+<div draggable="false" id="certificate-simple-i2ae">{#s}certpresented{/s}</div>
+<div draggable="false" id="certificate-simple-indv">
+    <table id="certificate-simple-imc7">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-simple-ifius">{$USER-&gt;fullname}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div draggable="false" id="certificate-simple-descricao">{#s}certificado-descricao{/s}</div>
+<div draggable="false" id="certificate-simple-assinatura">
+    <table id="certificate-simple-ijumf">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-simple-ipakn">
+                <span id="certificate-simple-ipjgg">{{userdate(time(),strftimedate)}}</span>
+            </td>
+            <td rowspan="3" id="certificate-simple-i24ph">
+            </td>
+            <td id="certificate-simple-i09dh">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-simple/assets/signature.png"
+                     id="certificate-simple-i9fsk" width="84" height="63"/>
+            </td>
+        </tr>
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-simple-it556">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-simple/assets/line.png"
+                     id="certificate-simple-i9fsk-2" width="148" height="4"/>
+            </td>
+            <td id="certificate-simple-iihzi">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-simple/assets/line.png"
+                     id="certificate-simple-i9fsk-3" width="148" height="4"/>
+            </td>
+        </tr>
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td valign="botton" id="certificate-simple-irqzm">
+                <span id="certificate-simple-il3aj">{#s}certdate{/s}</span>
+            </td>
+            <td id="certificate-simple-i7vlm">
+                <span id="certificate-simple-iprc6">{#s}certsignature{/s}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 <style>
-    #certificate-simple-root {
+    [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-simple/assets/background.png);
         position: relative;
         height: 595px;
-        width: 842px;
+        width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -75,7 +90,6 @@
         font-family: 'Abhaya Libre';
         font-weight: 400;
         width: 100%;
-
         top: 124px;
         left: 0px;
         margin-top: 0px;
@@ -111,7 +125,6 @@
         width: auto;
         line-height: 19px;
         height: 135px;
-
         top: 334px;
         left: 115px;
         margin-top: 0px;
@@ -121,7 +134,6 @@
     #certificate-simple-assinatura {
         width: 100%;
         margin: 0 auto;
-
         top: 469px;
         left: 0px;
         margin-top: 0px;

@@ -1,54 +1,66 @@
-<section id="certificate-modern-certificate-root" class="certificate-root">
-    <div id="certificate-modern-i3vg">{$SITE-&gt;fullname}</div>
-    <div id="certificate-modern-in7m">{#s}certtitle{/s}</div>
-    <div id="certificate-modern-ilmx">{#s}certificado-subtitulo{/s}</div>
-    <div id="certificate-modern-i2ae">{#s}certpresented{/s}</div>
-    <div id="certificate-modern-ifuql">
-        <table id="certificate-modern-itcpw">
-            <tr>
-                <td>
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/left.png"/>
-                </td>
-                <td id="certificate-modern-i1y54">{$USER-&gt;fullname}</td>
-                <td>
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/right.png"/>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div id="certificate-modern-descricao">{#s}certificado-descricao{/s}</div>
-    <div id="certificate-modern-assinatura">
-        <table cellpadding="0" cellspacing="0" id="certificate-modern-i50gy">
-            <tr>
-                <td id="certificate-modern-i12ag">
-                    <span id="certificate-modern-ipjgg">{{userdate(time(),strftimedate)}}</span>
-                </td>
-                <td id="certificate-modern-il59t" rowspan="2">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/badge.png"
-                         id="certificate-modern-iljlc" width="79" height="115"/>
-                </td>
-                <td id="certificate-modern-it6eh">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/signature.png"
-                         id="certificate-modern-i9fsk" width="84" height="63"/>
-                </td>
-            </tr>
-            <tr>
-                <td id="certificate-modern-i12ag-3">
-                    <span id="certificate-modern-il3aj">{#s}certdate{/s}</span>
-                </td>
-                <td id="certificate-modern-it6eh-3">
-                    <span id="certificate-modern-iprc6">{#s}certsignature{/s}</span>
-                </td>
-            </tr>
-        </table>
-    </div>
-</section>
+<div draggable="false" id="certificate-modern-i3vg">{$SITE-&gt;fullname}</div>
+<div draggable="false" id="certificate-modern-in7m">{#s}certtitle{/s}</div>
+<div draggable="false" id="certificate-modern-ilmx">{#s}certificado-subtitulo{/s}</div>
+<div draggable="false" id="certificate-modern-i2ae">{#s}certpresented{/s}</div>
+<div draggable="false" id="certificate-modern-ifuql">
+    <table id="certificate-modern-itcpw">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td>
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/left.png"/>
+            </td>
+            <td id="certificate-modern-i1y54">{$USER-&gt;fullname}</td>
+            <td>
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/right.png"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div draggable="false" id="certificate-modern-descricao">{#s}certificado-descricao{/s}</div>
+<div draggable="false" id="certificate-modern-assinatura">
+    <table id="certificate-modern-i50gy">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-modern-i12ag">
+                <span id="certificate-modern-ipjgg">{{userdate(time(),strftimedate)}}</span>
+            </td>
+            <td id="certificate-modern-il59t" rowspan="2">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/badge.png"
+                     id="certificate-modern-iljlc" width="79" height="115"/>
+            </td>
+            <td id="certificate-modern-it6eh">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/signature.png"
+                     id="certificate-modern-i9fsk" width="84" height="63"/>
+            </td>
+        </tr>
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-modern-i12ag-3">
+                <span id="certificate-modern-il3aj">{#s}certdate{/s}</span>
+            </td>
+            <td id="certificate-modern-it6eh-3">
+                <span id="certificate-modern-iprc6">{#s}certsignature{/s}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <style>
-    #certificate-modern-certificate-root {
+    [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/background.png);
         position: relative;
         height: 595px;
-        width: 842px;
+        width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;

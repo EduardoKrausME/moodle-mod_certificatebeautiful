@@ -1,61 +1,75 @@
-<section id="certificate-golden-certificate-root" class="certificate-root">
-    <div id="certificate-golden-in7m">{#s}certtitle{/s}</div>
-    <div id="certificate-golden-ilmx">{#s}certificado-subtitulo{/s}</div>
-    <div id="certificate-golden-i2ae">{#s}certpresented{/s}</div>
-    <div id="certificate-golden-fullname">
-        <table id="certificate-golden-iesz">
-            <tr>
-                <td id="certificate-golden-isq9s">{$USER-&gt;fullname}</td>
-            </tr>
-        </table>
-    </div>
-    <div id="certificate-golden-ihxs1">
-        <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line.png"/>
-    </div>
-    <div id="certificate-golden-descricao">{#s}certificado-descricao{/s}</div>
-    <div id="certificate-golden-assinatura">
-        <table cellpadding="0" cellspacing="0" id="certificate-golden-ic6m9">
-            <tr>
-                <td id="certificate-golden-i12ag">
-                    <span id="certificate-golden-ipjgg">{{userdate(time(),strftimedate)}}</span>
-                </td>
-                <td rowspan="3" id="certificate-golden-ifuql">
-                </td>
-                <td id="certificate-golden-it6eh">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/signature.png"
-                         id="certificate-golden-i9fsk-2" width="84" height="63"/>
-                </td>
-            </tr>
-            <tr>
-                <td id="certificate-golden-i12ag-2">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line-footer.png"/>
-                </td>
-                <td id="certificate-golden-it6eh-2">
-                    <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line-footer.png"/>
-                </td>
-            </tr>
-            <tr>
-                <td id="certificate-golden-i12ag-3">
-                    <span id="certificate-golden-il3aj">{#s}certdate{/s}</span>
-                </td>
-                <td id="certificate-golden-it6eh-3">
-                    <span id="certificate-golden-iprc6">{#s}certsignature{/s}</span>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div id="certificate-golden-iajt" class="badge fixed-position">
-        <div id="certificate-golden-iptm">{#s}certificado-melhor{/s}</div>
-        <div id="certificate-golden-ig2i">{{date(Y)}}</div>
-        <div id="certificate-golden-izax">{#s}certificado-curso{/s}</div>
-    </div>
-</section>
+<div draggable="false" id="certificate-golden-in7m">{#s}certtitle{/s}</div>
+<div draggable="false" id="certificate-golden-ilmx">{#s}certificado-subtitulo{/s}</div>
+<div draggable="false" id="certificate-golden-i2ae">{#s}certpresented{/s}</div>
+<div draggable="false" id="certificate-golden-fullname">
+    <table id="certificate-golden-iesz">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-golden-isq9s">{$USER-&gt;fullname}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div draggable="false" id="certificate-golden-ihxs1">
+    <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line.png"/>
+</div>
+<div draggable="false" id="certificate-golden-descricao">{#s}certificado-descricao{/s}</div>
+<div draggable="false" id="certificate-golden-assinatura">
+    <table id="certificate-golden-ic6m9">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-golden-i12ag">
+                <span id="certificate-golden-ipjgg">{{userdate(time(),strftimedate)}}</span>
+            </td>
+            <td rowspan="3" id="certificate-golden-ifuql">
+            </td>
+            <td id="certificate-golden-it6eh">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/signature.png"
+                     id="certificate-golden-i9fsk-2" width="84" height="63"/>
+            </td>
+        </tr>
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-golden-i12ag-2">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line-footer.png"/>
+            </td>
+            <td id="certificate-golden-it6eh-2">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line-footer.png"/>
+            </td>
+        </tr>
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-golden-i12ag-3">
+                <span id="certificate-golden-il3aj">{#s}certdate{/s}</span>
+            </td>
+            <td id="certificate-golden-it6eh-3">
+                <span id="certificate-golden-iprc6">{#s}certsignature{/s}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div draggable="false" id="certificate-golden-iajt" class="badge fixed-position">
+    <div draggable="false" id="certificate-golden-iptm">{#s}certificado-melhor{/s}</div>
+    <div draggable="false" id="certificate-golden-ig2i">{{date(Y)}}</div>
+    <div draggable="false" id="certificate-golden-izax">{#s}certificado-curso{/s}</div>
+</div>
 <style>
-    #certificate-golden-certificate-root {
+    [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/background.png);
         position: relative;
         height: 595px;
-        width: 842px;
+        width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;

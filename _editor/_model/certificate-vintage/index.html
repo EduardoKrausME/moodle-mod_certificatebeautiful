@@ -1,60 +1,72 @@
-<section id="certificate-vintage-certificate-root" class="certificate-root">
-    <div id="certificate-vintage-in7m">{#s}certtitle{/s}</div>
-    <div id="certificate-vintage-ilmx">{#s}certificado-subtitulo{/s}</div>
-    <div id="certificate-vintage-i2ae">
-        <img src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/line.png" height="10" width="61"/>
-        <span id="certificate-vintage-ij0j">{#s}certpresented{/s}</span>
-        <img src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/line.png" height="10" width="61"/>
-    </div>
-    <div id="certificate-vintage-ifius">
-        <table id="certificate-vintage-iv0pf">
-            <tr>
-                <td>
-                    <img id="certificate-vintage-irddl"
-                         src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/point.png" height="28"
-                         width="28"/>
-                </td>
-                <td id="certificate-vintage-i1y54">{$USER-&gt;fullname}</td>
-                <td>
-                    <img id="certificate-vintage-i2v8l"
-                         src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/point.png" height="28"
-                         width="28"/>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div id="certificate-vintage-descricao">{#s}certificado-descricao{/s}</div>
-    <div id="certificate-vintage-assinatura">
-        <table cellpadding="0" cellspacing="0" id="certificate-vintage-i50gy">
-            <tr>
-                <td id="certificate-vintage-i12ag">
-                    <span id="certificate-vintage-ipjgg">{{userdate(time(),strftimedate)}}</span>
-                </td>
-                <td id="certificate-vintage-il59t" rowspan="2">
-                </td>
-                <td id="certificate-vintage-it6eh">
-                    <img id="certificate-vintage-i9fsk"
-                         src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/signature.png"
-                         width="84" height="63"/>
-                </td>
-            </tr>
-            <tr>
-                <td id="certificate-vintage-i12ag-3">
-                    <span id="certificate-vintage-il3aj">{#s}certdate{/s}</span>
-                </td>
-                <td id="certificate-vintage-it6eh-3">
-                    <span id="certificate-vintage-iprc6">{#s}certsignature{/s}</span>
-                </td>
-            </tr>
-        </table>
-    </div>
-</section>
+<div draggable="false" id="certificate-vintage-in7m">{#s}certtitle{/s}</div>
+<div draggable="false" id="certificate-vintage-ilmx">{#s}certificado-subtitulo{/s}</div>
+<div draggable="false" id="certificate-vintage-i2ae">
+    <img src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/line.png" height="10" width="61"/>
+    <span id="certificate-vintage-ij0j">{#s}certpresented{/s}</span>
+    <img src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/line.png" height="10" width="61"/>
+</div>
+<div draggable="false" id="certificate-vintage-ifius">
+    <table id="certificate-vintage-iv0pf">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td>
+                <img id="certificate-vintage-irddl"
+                     src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/point.png" height="28"
+                     width="28"/>
+            </td>
+            <td id="certificate-vintage-i1y54">{$USER-&gt;fullname}</td>
+            <td>
+                <img id="certificate-vintage-i2v8l"
+                     src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/point.png" height="28"
+                     width="28"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div draggable="false" id="certificate-vintage-descricao">{#s}certificado-descricao{/s}</div>
+<div draggable="false" id="certificate-vintage-assinatura">
+    <table id="certificate-vintage-i50gy">
+        <tbody data-gjs-selectable="false"
+               data-gjs-highlightable="false"
+               data-gjs-hoverable="false">
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-vintage-i12ag">
+                <span id="certificate-vintage-ipjgg">{{userdate(time(),strftimedate)}}</span>
+            </td>
+            <td id="certificate-vintage-il59t" rowspan="2">
+            </td>
+            <td id="certificate-vintage-it6eh">
+                <img id="certificate-vintage-i9fsk"
+                     src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/signature.png"
+                     width="84" height="63"/>
+            </td>
+        </tr>
+        <tr data-gjs-selectable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            <td id="certificate-vintage-i12ag-3">
+                <span id="certificate-vintage-il3aj">{#s}certdate{/s}</span>
+            </td>
+            <td id="certificate-vintage-it6eh-3">
+                <span id="certificate-vintage-iprc6">{#s}certsignature{/s}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <style>
-    #certificate-vintage-certificate-root {
+    [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/background.png);
         position: relative;
         height: 595px;
-        width: 842px;
+        width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -68,7 +80,6 @@
         font-weight: 800;
         text-transform: uppercase;
         width: 100%;
-
         position: absolute;
         top: 82px;
         left: 0px;
@@ -81,7 +92,6 @@
         font-family: Montserrat;
         font-weight: 400;
         width: 100%;
-
         position: absolute;
         top: 115px;
         left: 0px;
@@ -95,7 +105,6 @@
         font-size: 14px;
         width: 100%;
         text-transform: uppercase;
-
         position: absolute;
         top: 215px;
         left: 0px;
@@ -104,7 +113,6 @@
     #certificate-vintage-ifius {
         margin: 0 auto;
         width: auto;
-
         position: absolute;
         top: 252px;
         left: 90px;
@@ -126,7 +134,6 @@
         color: black;
     }
     #certificate-vintage-descricao {
-
         text-align: center;
         font-family: Montserrat;
         font-weight: 400;
@@ -143,7 +150,6 @@
     #certificate-vintage-assinatura {
         width: 100%;
         margin: 0 auto;
-
         position: absolute;
         top: 460px;
         left: 0px;
