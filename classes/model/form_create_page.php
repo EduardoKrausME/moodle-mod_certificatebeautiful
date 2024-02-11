@@ -29,9 +29,17 @@ class form_create_page extends \moodleform {
     public static function empty_page() {
 
         return (object)[
-            "htmldata" => '<section id="topo" class="certificate-root"><div>' .
-                get_string('certificate_page_empty', 'certificatebeautiful') . '</div></section>',
-            "cssdata" => ""
+            "htmldata" => '<div>' . get_string('certificate_page_empty', 'certificatebeautiful') . '</div>',
+            "cssdata" => "
+                [data-gjs-type=wrapper] {
+                    background-image: url(/mod/certificatebeautiful/_editor/img/vazio.jpg);
+                    position: relative;
+                    height: 595px;
+                    width: 955px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                }"
         ];
     }
 
