@@ -70,7 +70,7 @@ class page_pdf {
 
         // 297 mm    X  210 mm
         // 841,89 px X  595,28 px
-        $proporcao = .75;
+        $proporcao = .85;
         $mpdf = new Mpdf([
             'mode' => '',
             'format' => [210 * $proporcao, 297 * $proporcao],
@@ -108,7 +108,6 @@ class page_pdf {
             $page->htmldata = str_replace("<section", "<body", $page->htmldata);
             $page->htmldata = str_replace("</section>", "</body>", $page->htmldata);
 
-            preg_match('/id="(.*?)" class="certificate-root"/', $page->htmldata, $ids);
             $extracss = "
                 @page{
                     page-break-inside : avoid
@@ -118,38 +117,13 @@ class page_pdf {
                 img {
                     margin  : 0;
                     padding : 0;
-                }
-                #{$ids[1]} {
-                    height     : 100%;
-                    width      : 100%;
-                    background : none;
-                    margin     : 0;
-                    padding    : 0;
                 }";
 
-            preg_match_all('/\#' . $ids[1] . '.*?\}/s', $page->htmldata . $page->cssdata, $cssroot);
-            preg_match('/background.*url\((.*?)\)/', $cssroot[0][0], $background);
-            if (isset($background[1])) {
-                $image = $background[1];
-                $image = str_replace("'", "", $image);
-                $image = str_replace("\"", "", $image);
-                // Coloca a imagem como WATERMARK da página.
-                $mpdf->Image($image, 0, 0, 0, 0, '', '', true, false, true);
-            }
 
-            // Muda o CSS do body (antiga section) para que não interfira na página.
-            $newcss = $cssroot[0][0];
-            $newcss = str_replace("width", "a--width", $newcss);
-            $newcss = str_replace("height", "a--height", $newcss);
-            $newcss = str_replace("margin", "a--margin", $newcss);
-            $newcss = str_replace("padding", "a--padding", $newcss);
-            $newcss = str_replace("position", "a--position", $newcss);
-            $newcss = str_replace("background", "a--background", $newcss);
+            // Muda o CSS do body para que não interfira na página.
+            $this->get_background_page($page, $mpdf);
 
-            $page->cssdata = str_replace($cssroot[0][0], $newcss, $page->cssdata);
-            $page->htmldata = str_replace($cssroot[0][0], $newcss, $page->htmldata);
-
-            $replacetags = new replace_tags($page->htmldata, $course, $user);
+            $replacetags = new replace_tags($page->htmldata, $course, $user, $certificatebeautiful);
             $page->htmldata = $replacetags->out();
 
             if (isset($page->cssdata[10])) {
@@ -163,5 +137,19 @@ class page_pdf {
         }
 
         return $mpdf->Output("name.pdf", Destination::STRING_RETURN);
+    }
+
+    private function get_background_page($page, Mpdf $mpdf){
+        preg_match('/\[data-gjs-type="?wrapper"?\].*?}/s', $page->htmldata . $page->cssdata, $cssroot);
+
+        preg_match('/background.*url\((.*?)\)/', $cssroot[0], $background);
+        if (isset($background[1])) {
+            $image = $background[1];
+            $image = str_replace("'", "", $image);
+            $image = str_replace("\"", "", $image);
+
+            // Coloca a imagem como WATERMARK da página.
+            $mpdf->Image($image, 0, 0, 0, 0, '', '', true, false, true);
+        }
     }
 }
