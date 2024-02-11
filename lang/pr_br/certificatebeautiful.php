@@ -50,6 +50,16 @@ $string['course_certificates'] = 'Certificados do curso';
 $string['my_certificates'] = 'Meus Certificados';
 $string['from_certificates'] = 'Certificados do aluno {$a}';
 
+// Validate certificate
+$string['validate_certificate_title'] = 'Verifique a autenticidade do certificado';
+$string['validate_certificate_notfound'] = 'Código de autenticidade não localizado!';
+$string['validate_certificate_code'] = 'Código de autenticidade';
+$string['validate_certificate_submit'] = 'Validar código';
+$string['validate_certificate_date'] = 'Emitido na data de';
+$string['validate_certificate_user'] = 'Emitido para';
+$string['validate_certificate_name'] = 'Nome do Certificado';
+$string['validate_certificate_course'] = 'Curso do Certificado';
+
 // Report.
 $string['report_filename'] = 'Certificados gerados pelos alunos';
 $string['report_usernome'] = 'Nome do aluno';
@@ -71,11 +81,11 @@ $string['certificate-golden'] = 'Certificado Dourado';
 $string['sumary-secound-page'] = 'Certificado Sumário';
 
 // Modelo de certificado.
-$string['certificado-titulo'] = 'Certificado';
+$string['certtitle'] = 'Certificado';
 $string['certificado-subtitulo'] = 'DE CONCLUSÃO';
-$string['certificado-presented'] = 'Este certificado é orgulhosamente apresentado a';
-$string['certificado-date'] = 'Em';
-$string['certificado-signature'] = 'Diretor';
+$string['certpresented'] = 'Este certificado é orgulhosamente apresentado a';
+$string['certdate'] = 'Data';
+$string['certsignature'] = 'Diretor';
 $string['certificado-melhor'] = 'Melhor';
 $string['certificado-curso'] = 'Curso';
 $string['certificado-descricao'] = 'Este certificado atesta que o aluno <strong>{$USER->fullname}</strong> completou o <strong>{$course->fullname}</strong> com distinção, consolidando um conjunto abrangente de conhecimentos e habilidades essenciais para sobressair-se em ambientes dinâmicos.';
@@ -86,6 +96,7 @@ $string['help_certificate__name'] = 'Dados do usuário';
 $string['help_certificate_name'] = 'Nome do certificado';
 $string['help_certificate_issue_timecreated'] = 'Data da criação do certificado.';
 $string['help_certificate_issue_code'] = 'Código único do certificado.';
+$string['help_certificate_issue_url'] = 'URL de validação do certificado';
 
 $string['help_user__name'] = 'Dados do usuário';
 $string['help_user_id'] = 'Identificador único para cada usuário.';
@@ -117,7 +128,6 @@ $string['help_user_timecreated'] = 'Carimbo de data/hora da criação da conta d
 $string['help_user_timemodified'] = 'Carimbo de data/hora da última modificação na conta do usuário.';
 
 $string['help_user_profile__name'] = 'Dados do perfil do usuário';
-$string['help_user_profile'] = 'Altere o "NAME" pelo campo de perfil do usuário';
 
 $string['help_course__name'] = 'Dados do curso que está sendo gerado o certificado';
 $string['help_course_id'] = 'Um identificador exclusivo para cada curso.';
