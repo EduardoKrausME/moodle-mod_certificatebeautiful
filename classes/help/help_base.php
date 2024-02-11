@@ -68,12 +68,62 @@ class help_base {
      */
     public static function replace($html, $class, $fields) {
         foreach ($fields as $key => $field) {
-            $html = str_replace(
+            $html = str_ireplace(
                 "{\${$class}->{$key}}",
                 $field,
                 $html);
         }
 
         return $html;
+    }
+
+    /**
+     * @throws \coding_exception
+     */
+    public static function get_editor_components() {
+
+        $helps = [
+            course::class,
+            user_profile::class,
+            teachers::class,
+            certificate::class,
+            site::class,
+            functions::class,
+            course_categories::class,
+            enrolments::class,
+            user::class,
+            grade::class
+        ];
+
+        $components = [];
+        /** @var course $help */
+        foreach ($helps as $help) {
+
+            $classsname = str_replace('mod_certificatebeautiful\help\\', "", $help);
+            $classsnameup = strtoupper($classsname);
+            $classstitle = get_string("help_{$classsname}__name", 'certificatebeautiful');
+
+            foreach ($help::table_structure() as $table_structure) {
+                $label = $table_structure['label'];
+                $label = str_replace("'", "\\'", $label);
+
+                $components[] = "
+                    editor.BlockManager.add('{$classsname}_{$table_structure['key']}', {
+                        label    : '{$label}',
+                        content  : {
+                            components : `<div data-gjs-type=\"text\" 
+                                               draggable=\"false\"
+                                               data-gjs-copyable=\"false\"
+                                               data-gjs-draggable=\"false\"
+                                               data-gjs-editable=\"false\">{\${$classsnameup}->{$table_structure['key']}}</div>`,
+                            droppable  : ['section'],
+                        },
+                        media    : '{\${$classsnameup}->{$table_structure['key']}}',
+                        category : \"{$classstitle}\",
+                    });";
+            }
+        }
+
+        return implode("\n", $components);
     }
 }
