@@ -22,6 +22,7 @@
 
 namespace mod_certificatebeautiful\pdf;
 
+use mod_certificatebeautiful\help\certificate;
 use mod_certificatebeautiful\help\course;
 use mod_certificatebeautiful\help\course_categories;
 use mod_certificatebeautiful\help\enrolments;
@@ -38,11 +39,13 @@ class replace_tags {
     public $html;
     public $course;
     public $user;
+    public $certificatebeautiful;
 
-    public function __construct($html, $course, $user) {
+    public function __construct($html, $course, $user, $certificatebeautiful) {
         $this->html = $html;
         $this->course = $course;
         $this->user = $user;
+        $this->certificatebeautiful = $certificatebeautiful;
     }
 
     /**
@@ -94,6 +97,10 @@ class replace_tags {
         $this->html = str_replace('now()', time(), $this->html);
 
         $this->html = help_base::replace($this->html, "SITE", site::get_data());
+
+        $certificatebeautiful = certificate::get_data($this->certificatebeautiful);
+        $this->html = help_base::replace($this->html, "certificate", $certificatebeautiful);
+        $this->html = certificate::custom_replace($this->html, $certificatebeautiful);
 
         $this->html = help_base::replace($this->html, "user_profile", user_profile::get_data($this->user));
 
