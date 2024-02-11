@@ -21,13 +21,16 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
-
 /**
  * Book module upgrade task
  *
  * @param int $oldversion the version we are upgrading from
  * @return bool always true
+ * @throws coding_exception
+ * @throws dml_exception
+ * @throws downgrade_exception
+ * @throws moodle_exception
+ * @throws upgrade_exception
  */
 function xmldb_certificatebeautiful_upgrade($oldversion) {
     global $CFG, $DB;
@@ -60,7 +63,6 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
 
         upgrade_mod_savepoint(true, 2024020700, 'certificatebeautiful');
     }
-
 
     return true;
 }

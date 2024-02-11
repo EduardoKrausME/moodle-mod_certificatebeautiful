@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/mod/certificatebeautiful/backup/moodle2/backup_certificatebeautiful_stepslib.php');
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/backup/moodle2/backup_certificatebeautiful_stepslib.php");
 
 /**
  * The class provides all the settings and steps to perform one complete backup of mod_certificatebeautiful.

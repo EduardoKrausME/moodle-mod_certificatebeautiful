@@ -22,8 +22,8 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require(__DIR__ . '/../../config.php');
-require(__DIR__ . '/classes/issue.php');
+require_once('../../config.php');
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/issue.php");
 
 global $PAGE, $USER, $CFG;
 

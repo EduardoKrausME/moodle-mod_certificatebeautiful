@@ -27,6 +27,7 @@ use chillerlan\QRCode\QROptions;
 class certificate extends help_base {
     /**
      * @return array
+     *
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -39,8 +40,10 @@ class certificate extends help_base {
     }
 
     /**
-     * @param $course
+     * @param \stdClass $certificatebeautiful
+     *
      * @return array
+     *
      * @throws \coding_exception
      */
     public static function get_data($certificatebeautiful) {
@@ -53,6 +56,12 @@ class certificate extends help_base {
         return self::base_get_data(self::table_structure(), $certificatebeautiful);
     }
 
+    /**
+     * @param string $html
+     * @param \stdClass $certificatebeautiful
+     *
+     * @return mixed
+     */
     public static function custom_replace($html, $certificatebeautiful) {
 
         if (strpos($html, "img/qr-code.svg")) {

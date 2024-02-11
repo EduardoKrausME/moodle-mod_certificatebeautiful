@@ -23,15 +23,30 @@
 
 namespace mod_certificatebeautiful\report;
 
-require_once($CFG->libdir . '/formslib.php');
+defined('MOODLE_INTERNAL') || die();
+require_once("{$CFG->libdir}/formslib.php");
 
 class validate_certificate_form extends \moodleform {
 
+    /**
+     * validate_certificate_form constructor.
+     *
+     * @param null $action
+     * @param null $customdata
+     * @param string $method
+     * @param string $target
+     * @param null $attributes
+     * @param bool $editable
+     * @param null $ajaxformdata
+     */
     public function __construct($action = null, $customdata = null, $method = 'post', $target = '',
                                 $attributes = null, $editable = true, $ajaxformdata = null) {
         parent::__construct($action, $customdata, 'post', '', ['class' => 'bg-light m-3 p-3']);
     }
 
+    /**
+     * @throws \coding_exception
+     */
     public function definition() {
         $this->_form->addElement('text', 'code', get_string('validate_certificate_code', 'certificatebeautiful'));
         $this->_form->addRule('code', null, 'required', null, 'client');

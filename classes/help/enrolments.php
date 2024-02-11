@@ -25,6 +25,7 @@ namespace mod_certificatebeautiful\help;
 class enrolments extends help_base {
     /**
      * @return array
+     *
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -34,9 +35,11 @@ class enrolments extends help_base {
     }
 
     /**
-     * @param $user
-     * @param $course
+     * @param \stdClass $user
+     * @param \stdClass $course
+     *
      * @return array
+     *
      * @throws \dml_exception
      */
     public static function get_data($course, $user) {

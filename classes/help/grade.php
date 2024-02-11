@@ -28,6 +28,7 @@ use grade_item;
 class grade extends help_base {
     /**
      * @return array
+     *
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -40,9 +41,8 @@ class grade extends help_base {
     /**
      * @param $course
      * @param $user
+     *
      * @return array
-     * @throws \coding_exception
-     * @throws \dml_exception
      */
     public static function get_data($course, $user) {
         return [
@@ -78,6 +78,7 @@ class grade extends help_base {
      * @param $course
      * @param $userid
      * @return string
+     *
      * @throws \coding_exception
      * @throws \dml_exception
      */
@@ -115,7 +116,9 @@ class grade extends help_base {
      * @param $cm
      * @param $course
      * @param $user
+     *
      * @return string
+     *
      * @throws \dml_exception
      */
     private static function get_mod_grade($cm, $course, $user) {

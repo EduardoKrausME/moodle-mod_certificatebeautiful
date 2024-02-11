@@ -27,6 +27,7 @@ use context_course;
 class teachers extends help_base {
     /**
      * @return array
+     *
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -38,8 +39,10 @@ class teachers extends help_base {
     }
 
     /**
-     * @param $course
+     * @param \stdClass $course
+     *
      * @return array
+     *
      * @throws \coding_exception
      * @throws \dml_exception
      */
@@ -67,7 +70,9 @@ class teachers extends help_base {
 
     /**
      * @param $course
+     *
      * @return array
+     *
      * @throws \coding_exception
      * @throws \dml_exception
      */

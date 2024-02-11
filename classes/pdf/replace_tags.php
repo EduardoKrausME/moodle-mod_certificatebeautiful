@@ -36,12 +36,26 @@ use mod_certificatebeautiful\help\user_profile;
 
 class replace_tags {
 
+    /** @var string */
     public $html;
+
+    /** @var int */
     public $course;
+
+    /** @var \stdClass */
     public $user;
+
+    /** @var \stdClass */
     public $certificatebeautiful;
 
-    public function __construct($html, $course, $user, $certificatebeautiful) {
+    /**
+     * replace_tags constructor.
+     * @param string $html
+     * @param int $course
+     * @param \stdClass $user
+     * @param \stdClass $certificatebeautiful
+     */
+    public function __construct(string $html, $course, $user, $certificatebeautiful) {
         $this->html = $html;
         $this->course = $course;
         $this->user = $user;

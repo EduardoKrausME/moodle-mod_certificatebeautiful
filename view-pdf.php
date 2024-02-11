@@ -23,10 +23,10 @@
 use mod_certificatebeautiful\model\form_create;
 use mod_certificatebeautiful\model\form_create_page;
 
-ob_start();
+require_once('../../config.php');
+require_once("{$CFG->libdir}/tablelib.php");
 
-require_once(__DIR__ . '/../../config.php');
-require_once($CFG->libdir . '/tablelib.php');
+ob_start();
 
 global $PAGE, $USER, $CFG;
 
@@ -100,7 +100,7 @@ if ($storedfile) {
     header('Content-Length: ' . strlen($content));
     echo $content;
 } else {
-    require_once(__DIR__ . "/classes/pdf/page_pdf.php");
+    require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/pdf/page_pdf.php");
     $pagepdf = new \mod_certificatebeautiful\pdf\page_pdf();
     $contentpdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulmodel, $USER, $SITE);
 

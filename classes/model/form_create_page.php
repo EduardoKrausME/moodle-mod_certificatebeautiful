@@ -22,10 +22,16 @@
 
 namespace mod_certificatebeautiful\model;
 
-require_once($CFG->dirroot . '/lib/formslib.php');
+defined('MOODLE_INTERNAL') || die();
+require_once("{$CFG->libdir}/formslib.php");
 
 class form_create_page extends \moodleform {
 
+    /**
+     * @return object
+     *
+     * @throws \coding_exception
+     */
     public static function empty_page() {
 
         return (object)[

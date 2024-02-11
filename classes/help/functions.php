@@ -25,6 +25,7 @@ namespace mod_certificatebeautiful\help;
 class functions {
     /**
      * @return array
+     *
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -37,6 +38,7 @@ class functions {
 
     /**
      * @param string $html
+     *
      * @return string
      */
     public static function replace($html, $user) {

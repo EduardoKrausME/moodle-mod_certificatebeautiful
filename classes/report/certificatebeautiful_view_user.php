@@ -23,9 +23,9 @@
 namespace mod_certificatebeautiful\report;
 
 use html_writer;
-use mod_certificatebeautiful\vo\certificatebeautiful;
 use moodle_url;
 
+defined('MOODLE_INTERNAL') || die();
 require_once("{$CFG->libdir}/tablelib.php");
 
 /**
@@ -47,7 +47,6 @@ class certificatebeautiful_view_user extends \table_sql {
      * @param object $user
      *
      * @throws \coding_exception
-     * @throws \dml_exception
      */
     public function __construct($uniqueid, $user) {
         parent::__construct($uniqueid);
@@ -99,6 +98,7 @@ class certificatebeautiful_view_user extends \table_sql {
      *                      current language.
      *
      * @return string contents of cell in column 'fullname', for this row.
+     *
      * @throws \moodle_exception
      */
     public function col_fullname($linha) {
@@ -131,7 +131,7 @@ class certificatebeautiful_view_user extends \table_sql {
      * @param $linha
      *
      * @return string
-     * @throws \coding_exception
+     *
      * @throws \moodle_exception
      */
     public function col_extra($linha) {

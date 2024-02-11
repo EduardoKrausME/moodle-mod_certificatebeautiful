@@ -34,6 +34,9 @@ use Mpdf\Output\Destination;
 
 class page_pdf {
 
+    /**
+     * page_pdf constructor.
+     */
     public function __construct() {
         global $CFG;
 
@@ -119,7 +122,6 @@ class page_pdf {
                     padding : 0;
                 }";
 
-
             // Muda o CSS do body para que não interfira na página.
             $this->get_background_page($page, $mpdf);
 
@@ -139,7 +141,11 @@ class page_pdf {
         return $mpdf->Output("name.pdf", Destination::STRING_RETURN);
     }
 
-    private function get_background_page($page, Mpdf $mpdf){
+    /**
+     * @param $page
+     * @param Mpdf $mpdf
+     */
+    private function get_background_page($page, Mpdf $mpdf) {
         preg_match('/\[data-gjs-type="?wrapper"?\].*?}/s', $page->htmldata . $page->cssdata, $cssroot);
 
         preg_match('/background.*url\((.*?)\)/', $cssroot[0], $background);

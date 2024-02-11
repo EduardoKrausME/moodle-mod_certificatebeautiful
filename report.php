@@ -23,8 +23,8 @@
  */
 
 require_once('../../config.php');
-require_once($CFG->libdir . '/tablelib.php');
-require_once(__DIR__ . "/classes/report/certificatebeautiful_view.php");
+require_once("{$CFG->libdir}/tablelib.php");
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/report/certificatebeautiful_view.php");
 
 $id = optional_param('id', 0, PARAM_INT);
 

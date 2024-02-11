@@ -22,8 +22,8 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require(__DIR__.'/../../config.php');
-require_once(__DIR__.'/lib.php');
+require_once('../../config.php');
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/lib.php");
 
 $id = required_param('id', PARAM_INT);
 
@@ -59,13 +59,13 @@ $table->attributes['class'] = 'generaltable mod_index';
 
 $align = ['center', 'left'];
 if ($course->format == 'weeks') {
-    $table->head  = [get_string('week'), get_string('name')];
+    $table->head = [get_string('week'), get_string('name')];
     $table->align = ['center', 'left'];
 } else if ($course->format == 'topics') {
-    $table->head  = [get_string('topic'), get_string('name')];
+    $table->head = [get_string('topic'), get_string('name')];
     $table->align = ['center', 'left'];
 } else {
-    $table->head  = [get_string('name')];
+    $table->head = [get_string('name')];
     $table->align = ['left'];
 }
 

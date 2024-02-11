@@ -24,6 +24,8 @@
 
 /**
  * Perform the post-install procedures.
+ * @throws coding_exception
+ * @throws dml_exception
  */
 function xmldb_certificatebeautiful_install() {
     global $DB, $CFG;

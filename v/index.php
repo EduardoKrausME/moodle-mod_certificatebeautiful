@@ -22,7 +22,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require(__DIR__ . '/../../../config.php');
+require_once("../../../config.php");
 global $PAGE, $USER, $CFG;
 
 $code = optional_param('code', false, PARAM_TEXT);

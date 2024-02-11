@@ -26,11 +26,19 @@ use table_sql;
 
 class table_list extends table_sql {
 
+    /**
+     * table_list constructor.
+     * @param $uniqueid
+     */
     public function __construct($uniqueid) {
         parent::__construct($uniqueid);
         $this->set_sql('id, name', "{certificatebeautiful_model}", '1=1');
     }
 
+    /**
+     * @param \stdClass $data
+     * @return string
+     */
     public function col_name($data) {
         return "<a href='manage-model.php?id={$data->id}'>{$data->name}</a>";
     }

@@ -25,6 +25,7 @@ namespace mod_certificatebeautiful\help;
 class user_profile extends help_base {
     /**
      * @return array
+     *
      * @throws \dml_exception
      */
     public static function table_structure() {
@@ -34,7 +35,6 @@ class user_profile extends help_base {
 
         $userinfofields = $DB->get_records('user_info_field');
         if ($userinfofields) {
-            $data = [];
             foreach ($userinfofields as $userinfofield) {
                 $itens[] = [
                     ['key' => $userinfofield->shortname, 'label' => $userinfofield->name]
@@ -47,7 +47,9 @@ class user_profile extends help_base {
 
     /**
      * @param $user
+     *
      * @return array
+     *
      * @throws \coding_exception
      * @throws \dml_exception
      */
@@ -58,7 +60,7 @@ class user_profile extends help_base {
         if ($userinfofields) {
             $data = [];
             foreach ($userinfofields as $userinfofield) {
-                require_once($CFG->dirroot . '/user/profile/field/' . $userinfofield->datatype . '/field.class.php');
+                require_once("{$CFG->dirroot}/user/profile/field/{$userinfofield->datatype}/field.class.php" );
                 $newfield = 'profile_field_' . $userinfofield->datatype;
 
                 /** @var \profile_field_base $formfield */

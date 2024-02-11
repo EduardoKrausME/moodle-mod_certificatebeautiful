@@ -25,12 +25,15 @@ namespace mod_certificatebeautiful\model;
 use core\output\notification;
 use mod_certificatebeautiful\vo\certificatebeautiful_model;
 
-require_once($CFG->dirroot . '/lib/formslib.php');
+defined('MOODLE_INTERNAL') || die();
+require_once("{$CFG->libdir}/formslib.php");
 
 class form_create extends \moodleform {
 
     /**
      * Form definition. Abstract method - always override!
+     *
+     * @throws \coding_exception
      */
     protected function definition() {
         global $OUTPUT, $PAGE;

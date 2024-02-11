@@ -22,12 +22,14 @@
 
 namespace mod_certificatebeautiful\fonts;
 
+defined('MOODLE_INTERNAL') || die();
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/fonts/font_attributes.php");
 
 class font_util {
 
     /**
      * @return array
+     *
      * @throws \Exception
      */
     public static function mpdf_list_fonts() {
@@ -42,19 +44,24 @@ class font_util {
 
             $ttfinfo = new font_attributes($fontfile);
 
-            $fonts["fonts"][$ttfinfo->get_font_name_id()]['R'] = $path['basename'];
-            $fonts["fonts"][$ttfinfo->get_font_name_id()]['I'] = $path['basename'];
-            $fonts["fonts"][$ttfinfo->get_font_name_id()]['B'] = $path['basename'];
-            $fonts["fonts"][$ttfinfo->get_font_name_id()]['BI'] = $path['basename'];
+            $fontnameid = $ttfinfo->get_font_name_id();
+            $fontfamilyid = $ttfinfo->get_font_family_id();
+            $fontname = $ttfinfo->get_font_name();
+            $fontfamily = $ttfinfo->get_font_family();
+
+            $fonts["fonts"][$fontnameid]['R'] = $path['basename'];
+            $fonts["fonts"][$fontnameid]['I'] = $path['basename'];
+            $fonts["fonts"][$fontnameid]['B'] = $path['basename'];
+            $fonts["fonts"][$fontnameid]['BI'] = $path['basename'];
 
             if ($ttfinfo->get_font_sub_family() == 'Regular') {
-                $fonts["fonts"][$ttfinfo->get_font_family_id()]['R'] = $path['basename'];
+                $fonts["fonts"][$fontfamilyid]['R'] = $path['basename'];
             } else if ($ttfinfo->get_font_sub_family() == 'Bold Italic') {
-                $fonts["fonts"][$ttfinfo->get_font_family_id()]['BI'] = $path['basename'];
+                $fonts["fonts"][$fontfamilyid]['BI'] = $path['basename'];
             } else if ($ttfinfo->get_font_sub_family() == 'Italic') {
-                $fonts["fonts"][$ttfinfo->get_font_family_id()]['I'] = $path['basename'];
+                $fonts["fonts"][$fontfamilyid]['I'] = $path['basename'];
             } else if ($ttfinfo->get_font_sub_family() == 'Bold') {
-                $fonts["fonts"][$ttfinfo->get_font_family_id()]['B'] = $path['basename'];
+                $fonts["fonts"][$fontfamilyid]['B'] = $path['basename'];
             }
 
             $fonts["path"][$path['dirname']] = $path['dirname'];
@@ -62,15 +69,20 @@ class font_util {
             $fonturl = str_replace($CFG->dirroot, $CFG->wwwroot, $fontfile);
             $fonts["css"] .= "
                 @font-face {
-                    font-family : '{$ttfinfo->get_font_name()}';
+                    font-family : '{$fontname}';
                     src         : url({$fonturl}) format('ttf');
                 }";
 
-            $fontsitens[$ttfinfo->get_font_name()] = "
+            if ($fontname == $fontfamily) {
+                $value = "'{$fontnameid}', '{$fontfamilyid}', '{$fontname}'";
+            } else {
+                $value = "'{$fontnameid}', '{$fontfamilyid}', '{$fontname}', '{$fontfamily}'";
+            }
+            $fontsitens[$fontname] = "
                     {
-                        id : '{$ttfinfo->get_font_name_id()}',
-                        label : '{$ttfinfo->get_font_name()}',
-                        value : \"'{$ttfinfo->get_font_name_id()}', '{$ttfinfo->get_font_family_id()}', '{$ttfinfo->get_font_name()}', '{$ttfinfo->get_font_family()}', 'Arial'\"},";
+                        id : '{$fontnameid}',
+                        label : '{$fontname}',
+                        value : \"{$value}\"},";
         }
 
         $fonts["path"] = array_keys($fonts["path"]);

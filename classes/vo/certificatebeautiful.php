@@ -23,12 +23,28 @@
 namespace mod_certificatebeautiful\vo;
 
 class certificatebeautiful extends \stdClass {
+
+    /** @var int */
     public $id;
+
+    /** @var int */
     public $course;
+
+    /** @var string */
     public $name;
+
+    /** @var string */
     public $intro;
+
+    /** @var int */
     public $introformat;
+
+    /** @var int */
     public $model;
+
+    /** @var int */
     public $timecreated;
+
+    /** @var int */
     public $timemodified;
 }

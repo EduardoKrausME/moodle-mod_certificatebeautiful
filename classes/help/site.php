@@ -25,6 +25,7 @@ namespace mod_certificatebeautiful\help;
 class site extends help_base {
     /**
      * @return array
+     *
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -36,8 +37,8 @@ class site extends help_base {
     }
 
     /**
-     * @param $course
      * @return array
+     *
      * @throws \coding_exception
      */
     public static function get_data() {

@@ -335,8 +335,6 @@ function certificatebeautiful_list_all_models() {
         ], [
             "name" => get_string('certificate-vintage', 'certificatebeautiful'),
             "key" => 'certificate-vintage',
-        ],
-
-
+        ]
     ];
 }

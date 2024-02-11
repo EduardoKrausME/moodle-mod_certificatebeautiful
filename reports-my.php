@@ -23,7 +23,7 @@
  */
 
 require_once('../../config.php');
-require_once($CFG->libdir . '/tablelib.php');
+require_once("{$CFG->libdir}/tablelib.php");
 
 require_login();
 
@@ -41,7 +41,7 @@ $PAGE->set_title(fullname($user) . get_string('reports'));
 $PAGE->set_heading(get_string('from_certificates', 'certificatebeautiful', fullname($user)));
 echo $OUTPUT->header();
 
-require_once(__DIR__ . "/classes/report/certificatebeautiful_view_user.php");
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/report/certificatebeautiful_view_user.php");
 $table = new \mod_certificatebeautiful\report\certificatebeautiful_view_user("certificatebeautiful_view_user", $user);
 $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/reports-my.php?user={$user->id}");
 $table->out(40, true);

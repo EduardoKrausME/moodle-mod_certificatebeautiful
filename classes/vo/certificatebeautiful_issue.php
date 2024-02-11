@@ -23,10 +23,22 @@
 namespace mod_certificatebeautiful\vo;
 
 class certificatebeautiful_issue extends \stdClass {
+
+    /** @var int */
     public $id;
+
+    /** @var int */
     public $userid;
+
+    /** @var int */
     public $cmid;
+
+    /** @var string */
     public $code;
+
+    /** @var int */
     public $version;
+
+    /** @var int */
     public $timecreated;
 }

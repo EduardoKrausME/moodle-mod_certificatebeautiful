@@ -23,10 +23,10 @@
 use mod_certificatebeautiful\model\form_create;
 use mod_certificatebeautiful\model\form_create_page;
 
-require(__DIR__ . '/../../config.php');
-require($CFG->libdir . '/tablelib.php');
-require_once(__DIR__ . '/classes/model/form_create.php');
-require_once(__DIR__ . '/classes/model/form_create_page.php');
+require_once('../../config.php');
+require_once("{$CFG->libdir}/tablelib.php");
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/model/form_create.php");
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/model/form_create_page.php");
 
 global $PAGE, $USER, $CFG;
 
@@ -65,9 +65,7 @@ if (count($certificatebeautifulmodel->pages_info_object) == 0) {
 }
 
 $formcreate = new form_create(null, ["certificatebeautiful_model" => $certificatebeautifulmodel]);
-if ($formcreate->is_cancelled()) {
-    // redirect("manage-model-list.php");
-} else if ($certificatebeautifulmodel = $formcreate->get_data()) {
+if (!$formcreate->is_cancelled() && $certificatebeautifulmodel = $formcreate->get_data()) {
 
     if ($id > 0) {
         $data = (object)[

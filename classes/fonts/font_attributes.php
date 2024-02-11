@@ -195,7 +195,7 @@ class font_attributes {
     }
 
     /**
-     *  Convert a big-endian word or longword value to an integer
+     * Convert a big-endian word or longword value to an integer
      *
      * @access private
      * @return integer
@@ -213,7 +213,7 @@ class font_attributes {
     }
 
     /**
-     *  Convert a big-endian word value to an integer
+     * Convert a big-endian word value to an integer
      *
      * @access private
      * @return integer
@@ -223,7 +223,7 @@ class font_attributes {
     }
 
     /**
-     *  Convert a big-endian word value to an integer
+     * Convert a big-endian word value to an integer
      *
      * @access private
      * @return integer
@@ -233,10 +233,10 @@ class font_attributes {
     }
 
     /**
-     *  Read the Font Attributes
+     * Read the Font Attributes
      *
-     * @access private
      * @return bool
+     *
      * @throws Exception
      */
     private function read_font_attributes() {
@@ -359,8 +359,8 @@ class font_attributes {
     }
 
     /**
-     * @access constructor
      * @param string $filename
+     *
      * @throws Exception
      */
     public function __construct($filename = '') {

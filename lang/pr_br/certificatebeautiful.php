@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-defined('MOODLE_INTERNAL') || die;
+defined('MOODLE_INTERNAL') || die();
 
 $string['modulename'] = 'Beautiful certificate';
 $string['pluginname'] = 'Beautiful certificate';
@@ -50,7 +50,7 @@ $string['course_certificates'] = 'Certificados do curso';
 $string['my_certificates'] = 'Meus Certificados';
 $string['from_certificates'] = 'Certificados do aluno {$a}';
 
-// Validate certificate
+// Validate certificate.
 $string['validate_certificate_title'] = 'Verifique a autenticidade do certificado';
 $string['validate_certificate_notfound'] = 'Código de autenticidade não localizado!';
 $string['validate_certificate_code'] = 'Código de autenticidade';

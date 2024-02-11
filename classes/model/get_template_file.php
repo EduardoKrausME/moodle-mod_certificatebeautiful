@@ -24,6 +24,13 @@ namespace mod_certificatebeautiful\model;
 
 class get_template_file {
 
+    /**
+     * @param $model
+     *
+     * @return bool|mixed|string
+     *
+     * @throws \coding_exception
+     */
     public static function load_template($model) {
         global $CFG;
 

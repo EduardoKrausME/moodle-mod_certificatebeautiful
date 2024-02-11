@@ -103,22 +103,23 @@ class help_base {
             $classsnameup = strtoupper($classsname);
             $classstitle = get_string("help_{$classsname}__name", 'certificatebeautiful');
 
-            foreach ($help::table_structure() as $table_structure) {
-                $label = $table_structure['label'];
+            $structures = $help::table_structure();
+            foreach ($structures as $structure) {
+                $label = $structure['label'];
                 $label = str_replace("'", "\\'", $label);
 
                 $components[] = "
-                    editor.BlockManager.add('{$classsname}_{$table_structure['key']}', {
+                    editor.BlockManager.add('{$classsname}_{$structure['key']}', {
                         label    : '{$label}',
                         content  : {
-                            components : `<div data-gjs-type=\"text\" 
+                            components : `<div data-gjs-type=\"text\"
                                                draggable=\"false\"
                                                data-gjs-copyable=\"false\"
                                                data-gjs-draggable=\"false\"
-                                               data-gjs-editable=\"false\">{\${$classsnameup}->{$table_structure['key']}}</div>`,
+                                               data-gjs-editable=\"false\">{\${$classsnameup}->{$structure['key']}}</div>`,
                             droppable  : ['section'],
                         },
-                        media    : '{\${$classsnameup}->{$table_structure['key']}}',
+                        media    : '{\${$classsnameup}->{$structure['key']}}',
                         category : \"{$classstitle}\",
                     });";
             }

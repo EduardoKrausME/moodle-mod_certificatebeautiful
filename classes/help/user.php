@@ -25,6 +25,7 @@ namespace mod_certificatebeautiful\help;
 class user extends help_base {
     /**
      * @return array
+     *
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -60,8 +61,10 @@ class user extends help_base {
     }
 
     /**
-     * @param $course
+     * @param \stdClass $user
+     *
      * @return array
+     *
      * @throws \coding_exception
      */
     public static function get_data($user) {
