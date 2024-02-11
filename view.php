@@ -41,7 +41,7 @@ $context = context_module::instance($cm->id);
 require_capability('mod/certificatebeautiful:view', $context);
 
 $PAGE->requires->css('/mod/certificatebeautiful/style.css');
-$PAGE->set_context(\context_module::instance($id));
+$PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/view.php', ['id' => $id]);
 $PAGE->set_title($course->shortname . ': ' . $PAGE->activityrecord->name);
 $PAGE->set_heading(format_string($course->fullname));

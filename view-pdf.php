@@ -32,7 +32,6 @@ global $PAGE, $USER, $CFG;
 
 $issueid = required_param('issueid', PARAM_INT);
 $action = required_param('action', PARAM_TEXT);
-require_login();
 
 /** @var \mod_certificatebeautiful\vo\certificatebeautiful_issue $certificatebeautifulissue */
 $certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', array('id' => $issueid), '*', MUST_EXIST);
@@ -48,6 +47,9 @@ $certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id'
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
 $context = context_module::instance($cm->id);
+
+require_course_login($cm->course->id);
+require_capability('mod/certificatebeautiful:view', $context);
 
 $username = fullname($USER);
 $name = "{$certificatebeautiful->name} - {$username}.pdf";
