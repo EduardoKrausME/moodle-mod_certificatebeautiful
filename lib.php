@@ -145,58 +145,6 @@ function certificatebeautiful_page_type_list($pagetype, $parentcontext, $current
 }
 
 /**
- * Callback for tool_certificate - the fields available for the certificates
- * @throws coding_exception
- */
-function mod_certificatebeautiful_tool_certificate_fields() {
-    global $CFG;
-
-    if (!class_exists('tool_certificate\customfield\issue_handler')) {
-        return;
-    }
-
-    $handler = tool_certificate\customfield\issue_handler::create();
-    $gradestring = get_string('gradenoun');
-
-    // TODO: the only currently supported field types are text/textarea (numeric will fallback to text).
-    $handler->ensure_field_exists('courseid', 'numeric',
-        get_string('courseinternalid', 'certificatebeautiful'), false, 1);
-    $handler->ensure_field_exists('courseshortname', 'text', get_string('shortnamecourse'),
-        true, get_string('previewcourseshortname', 'certificatebeautiful'));
-    $handler->ensure_field_exists('coursefullname', 'text', get_string('fullnamecourse'),
-        true, get_string('previewcoursefullname', 'certificatebeautiful'));
-    $handler->ensure_field_exists('courseurl', 'text',
-        get_string('courseurl', 'certificatebeautiful'),
-        true, $CFG->wwwroot . '/course/view.php?id=1');
-    $handler->ensure_field_exists(
-        'coursecompletiondate',
-        'text',
-        get_string('course') . ': ' . get_string('coursecompletiondate', 'certificatebeautiful'),
-        true,
-        get_string('coursecompletiondate', 'certificatebeautiful')
-    );
-    $handler->ensure_field_exists(
-        'coursegrade',
-        'text',
-        get_string('course') . ': ' . $gradestring,
-        true,
-        $gradestring
-    );
-
-    // Get the course custom fields (note the only supported field types are text/textarea).
-    $coursehandler = \core_course\customfield\course_handler::create();
-    foreach ($coursehandler->get_fields() as $field) {
-        $handler->ensure_field_exists(
-            'coursecustomfield_' . $field->get('shortname'),
-            $field->get('type'),
-            get_string('course') . ': ' . $field->get_formatted_name(),
-            true,
-            $field->get_formatted_name()
-        );
-    }
-}
-
-/**
  * This function is used by the reset_course_userdata function in moodlelib.
  *
  * @param stdClass $data the data submitted from the reset course.
@@ -345,6 +293,10 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
     $tree->add_node($node);
 }
 
+/**
+ * @return array
+ * @throws coding_exception
+ */
 function certificatebeautiful_list_all_models() {
     return [
         [
