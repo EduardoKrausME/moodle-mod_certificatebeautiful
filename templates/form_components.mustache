@@ -1,0 +1,121 @@
+<div class="structuresitens">
+    <h3>{{#str}}help_base_title,certificatebeautiful{{/str}}</h3>
+    {{#itens}}
+        <fieldset>
+            <legend>{{{classstitle}}}</legend>
+
+            <table class="table-striped table-hover">
+                {{#structuresitens}}
+                    <tr>
+                        <th>{{{key}}}</th>
+                        <td>{{{label}}}</td>
+                    </tr>
+                {{/structuresitens}}
+            </table>
+        </fieldset>
+    {{/itens}}
+    <div class="read-more" style="display: none">
+        <a href="#">{{#str}}viewmore{{/str}}</a>
+    </div>
+</div>
+
+<style>
+    .structuresitens {
+        height: 130px;
+        overflow: hidden;
+        position: relative;
+    }
+    .structuresitens fieldset {
+        border: 1px solid #c8c8c8;
+        padding-inline-start: 0.75em;
+        border-radius: 5px;
+    }
+    .structuresitens legend {
+        float: initial;
+        width: auto;
+        margin-bottom: 5px;
+    }
+    .structuresitens table {
+        width: 100%;
+    }
+    .structuresitens table th {
+        white-space: nowrap;
+        width: 10px;
+        position: relative;
+    }
+    .structuresitens table th span {
+        position: absolute;
+        top: -15px;
+        left: 0;
+        opacity: 1;
+        font-weight: 400;
+        animation: smooth .8s ease-in;
+        background: #fff;
+    }
+    @keyframes smooth {
+        0% {
+            top: -15px;
+            opacity: 1;
+            background: #fff;
+        }
+        70% {
+            opacity: .8;
+            background: #fff;
+        }
+        100% {
+            top: -30px;
+            opacity: 0;
+            background: #ddd;
+        }
+    }
+    .structuresitens table th span.delete {
+        top: -40px;
+        opacity: 0;
+        background: #ddd;
+    }
+    .structuresitens .read-more {
+        width: 100% !important;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        background: #ffffff;
+        background: linear-gradient(180deg, #ffffff00 0%, #ffffffd4 50%, #ffffff 100%);
+        padding: 14px;
+    }
+</style>
+
+{{#js}}
+    require(['jquery'], function($) {
+        $(".structuresitens .read-more").show(200).click(function() {
+            event.preventDefault();
+
+            $('.structuresitens').css({'height' : 'auto'});
+            $('.structuresitens .read-more').hide();
+            return false;
+        });
+
+        $(".structuresitens th").click(function() {
+            var $element = $(event.target);
+            var id = "animate-" + Math.random().toString(16).slice(2);
+
+            $element.attr('id', id);
+            copyToClipboard(id);
+        });
+
+        function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId);
+            navigator.clipboard.writeText(copyText.innerText);
+
+            var $message = $("<span>{{#str}}textcopiedtoclipboard{{/str}}</span>");
+            $("#" + elementId).append($message);
+            setTimeout(function() {
+                $message.addClass("delete");
+            }, 2);
+            setTimeout(function() {
+                $message.remove();
+            }, 2000);
+        }
+    });
+{{/js}}

@@ -17,15 +17,13 @@
 /**
  * Report for certificatebeautiful.
  *
- * @package    mod_certificatebeautiful
- * @copyright  2023 Eduardo kraus (http://eduardokraus.com)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     mod_certificatebeautiful
+ * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
-
-require_login();
 
 $userid = optional_param('user', 0, PARAM_INT);
 $context = context_system::instance();
@@ -39,6 +37,10 @@ $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/reports.php', array('user' => $userid));
 $PAGE->set_title(fullname($user) . get_string('reports'));
 $PAGE->set_heading(get_string('from_certificates', 'certificatebeautiful', fullname($user)));
+
+require_login();
+require_capability('mod/certificatebeautiful:view', $context);
+
 echo $OUTPUT->header();
 
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/report/certificatebeautiful_view_user.php");

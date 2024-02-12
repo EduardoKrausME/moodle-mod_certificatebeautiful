@@ -36,10 +36,10 @@ function xmldb_certificatebeautiful_install() {
 
         $pagesinfo = [
             [
-                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template($model['key']),
+                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model['key']),
                 "cssdata" => ""
             ], [
-                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template("sumary-secound-page"),
+                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page"),
                 "cssdata" => ""
             ]
         ];

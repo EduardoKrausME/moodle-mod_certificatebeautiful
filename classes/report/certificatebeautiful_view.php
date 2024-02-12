@@ -30,9 +30,9 @@ defined('MOODLE_INTERNAL') || die();
 require_once("{$CFG->libdir}/tablelib.php");
 
 /**
- * @package   mod_certificatebeautiful
- * @copyright 2023 Eduardo Kraus {@link http://eduardokraus.com}
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     mod_certificatebeautiful
+ * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class certificatebeautiful_view extends \table_sql {
 

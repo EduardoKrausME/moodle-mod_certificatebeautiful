@@ -127,4 +127,53 @@ class help_base {
 
         return implode("\n", $components);
     }
+
+    /**
+     * @throws \coding_exception
+     */
+    public static function get_form_components() {
+        global $OUTPUT;
+
+        $helps = [
+            course::class,
+            user_profile::class,
+            teachers::class,
+            // certificate::class,
+            site::class,
+            functions::class,
+            course_categories::class,
+            enrolments::class,
+            user::class,
+            grade::class
+        ];
+
+        $data = ['itens' => []];
+        /** @var course $help */
+        foreach ($helps as $help) {
+
+            $classsname = str_replace('mod_certificatebeautiful\help\\', "", $help);
+            $classsnameup = strtoupper($classsname);
+
+            $structuresitens = [];
+            $structures = $help::table_structure();
+            foreach ($structures as $structure) {
+                $label = $structure['label'];
+                $label = str_replace("'", "\\'", $label);
+
+                $structuresitens[] = [
+                    'label' => $label,
+                    'key' => "{\${$classsnameup}->{$structure['key']}}",
+                ];
+            }
+
+            if ($structuresitens) {
+                $data['itens'][] = [
+                    'classstitle' => get_string("help_{$classsname}__name", 'certificatebeautiful'),
+                    'structuresitens' => $structuresitens
+                ];
+            }
+        }
+
+        return $OUTPUT->render_from_template('mod_certificatebeautiful/form_components', $data);
+    }
 }

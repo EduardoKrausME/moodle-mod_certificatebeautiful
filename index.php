@@ -28,7 +28,6 @@ require_once("{$CFG->dirroot}/mod/certificatebeautiful/lib.php");
 $id = required_param('id', PARAM_INT);
 
 $course = $DB->get_record('course', ['id' => $id], '*', MUST_EXIST);
-require_course_login($course);
 
 $coursecontext = context_course::instance($course->id);
 
@@ -41,6 +40,9 @@ $PAGE->set_context($coursecontext);
 $PAGE->set_url('/mod/certificate/index.php', ['id' => $id]);
 $PAGE->set_title(format_string($course->fullname));
 $PAGE->set_heading(format_string($course->fullname));
+
+require_course_login($course);
+require_capability('mod/certificatebeautiful:view', $coursecontext);
 
 echo $OUTPUT->header();
 

@@ -35,6 +35,8 @@
 function xmldb_certificatebeautiful_upgrade($oldversion) {
     global $CFG, $DB;
 
+    $dbman = $DB->get_manager();
+
     if ($oldversion < 2024020700) {
 
         $DB->delete_records('certificatebeautiful_model');
@@ -44,10 +46,10 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
 
             $pagesinfo = [
                 [
-                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template($model['key']),
+                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model['key']),
                     "cssdata" => ""
                 ], [
-                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template("sumary-secound-page"),
+                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page"),
                     "cssdata" => ""
                 ]
             ];
@@ -60,6 +62,21 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
             ];
             $DB->insert_record('certificatebeautiful_model', $certificatebeautifulmodel);
         }
+
+        upgrade_mod_savepoint(true, 2024020700, 'certificatebeautiful');
+    }
+
+    if ($oldversion < 2024020700) {
+
+        $table = new xmldb_table('certificatebeautiful');
+        $field = new xmldb_field('description', XMLDB_TYPE_TEXT, null, null, null, null, null, 'name');
+
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        $description = get_string('default-description', 'certificatebeautiful');
+        $DB->execute("UPDATE {certificatebeautiful} SET description = '{$description}'");
 
         upgrade_mod_savepoint(true, 2024020700, 'certificatebeautiful');
     }

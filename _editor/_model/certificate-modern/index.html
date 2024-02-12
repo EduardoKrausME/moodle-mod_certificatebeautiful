@@ -1,19 +1,16 @@
 <div draggable="false" id="certificate-modern-i3vg">{$SITE-&gt;fullname}</div>
 <div draggable="false" id="certificate-modern-in7m">{#s}certtitle{/s}</div>
-<div draggable="false" id="certificate-modern-ilmx">{#s}certificado-subtitulo{/s}</div>
+<div draggable="false" id="certificate-modern-ilmx">{#s}subtititle{/s}</div>
 <div draggable="false" id="certificate-modern-i2ae">{#s}certpresented{/s}</div>
 <div draggable="false" id="certificate-modern-ifuql">
     <table id="certificate-modern-itcpw">
-        <tbody data-gjs-selectable="false"
-               data-gjs-highlightable="false"
-               data-gjs-hoverable="false">
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tbody>
+        <tr>
             <td>
                 <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/left.png"/>
             </td>
-            <td id="certificate-modern-i1y54">{$USER-&gt;fullname}</td>
+            <td id="certificate-modern-i1y54">{$USER-&gt;fullname}
+            </td>
             <td>
                 <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/right.png"/>
             </td>
@@ -21,15 +18,11 @@
         </tbody>
     </table>
 </div>
-<div draggable="false" id="certificate-modern-descricao">{#s}certificado-descricao{/s}</div>
+<div draggable="false" id="certificate-modern-descricao">{$certificate->description}</div>
 <div draggable="false" id="certificate-modern-assinatura">
     <table id="certificate-modern-i50gy">
-        <tbody data-gjs-selectable="false"
-               data-gjs-highlightable="false"
-               data-gjs-hoverable="false">
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tbody>
+        <tr>
             <td id="certificate-modern-i12ag">
                 <span id="certificate-modern-ipjgg">{{userdate(time(),strftimedate)}}</span>
             </td>
@@ -42,9 +35,7 @@
                      id="certificate-modern-i9fsk" width="84" height="63"/>
             </td>
         </tr>
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tr>
             <td id="certificate-modern-i12ag-3">
                 <span id="certificate-modern-il3aj">{#s}certdate{/s}</span>
             </td>
@@ -64,9 +55,6 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-    }
-    [data-gjs-type=wrapper] > * * {
-        position: initial !important;
     }
     #certificate-modern-i3vg {
         text-align: right;
@@ -102,7 +90,7 @@
         font-family: Montserrat;
         font-weight: 600;
         width: 100%;
-        top: 148px;
+        top: 169px;
         left: 0px;
         margin-top: 0px;
         position: absolute;
@@ -138,7 +126,7 @@
     #certificate-modern-assinatura {
         width: 100%;
         margin: 0 auto;
-        top: 454px;
+        top: 515px;
         left: 0px;
         margin-top: 0px;
         position: absolute;

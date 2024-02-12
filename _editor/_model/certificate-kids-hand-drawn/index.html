@@ -1,19 +1,11 @@
-<div draggable="false" id="certificate-kids-hand-drawn-i3vg">{$SITE-&gt;fullname}
-</div>
-<div draggable="false" id="certificate-kids-hand-drawn-in7m">{#s}certtitle{/s}
-</div>
-<div draggable="false" id="certificate-kids-hand-drawn-ilmx">{#s}certificado-subtitulo{/s}
-</div>
-<div draggable="false" id="certificate-kids-hand-drawn-i2ae">{#s}certpresented{/s}
-</div>
+<div draggable="false" id="certificate-kids-hand-drawn-i3vg">{$SITE-&gt;fullname}</div>
+<div draggable="false" id="certificate-kids-hand-drawn-in7m">{#s}certtitle{/s}</div>
+<div draggable="false" id="certificate-kids-hand-drawn-ilmx">{#s}subtititle{/s}</div>
+<div draggable="false" id="certificate-kids-hand-drawn-i2ae">{#s}certpresented{/s}</div>
 <div draggable="false" id="certificate-kids-hand-drawn-indv">
     <table id="certificate-kids-hand-drawn-imc7">
-        <tbody data-gjs-selectable="false"
-               data-gjs-highlightable="false"
-               data-gjs-hoverable="false">
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tbody>
+        <tr>
             <td id="certificate-kids-hand-drawn-ifius">
                 <span id="iib3z">{$USER-&gt;fullname}</span>
             </td>
@@ -21,16 +13,11 @@
         </tbody>
     </table>
 </div>
-<div draggable="false" id="certificate-kids-hand-drawn-descricao">{#s}certificado-descricao{/s}
-</div>
+<div draggable="false" id="certificate-kids-hand-drawn-descricao">{$certificate->description}</div>
 <div draggable="false" id="certificate-kids-hand-drawn-assinatura">
     <table id="certificate-kids-hand-drawn-ijumf">
-        <tbody data-gjs-selectable="false"
-               data-gjs-highlightable="false"
-               data-gjs-hoverable="false">
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tbody>
+        <tr>
             <td id="certificate-kids-hand-drawn-ipakn">
                 <span id="certificate-kids-hand-drawn-ipjgg">{{userdate(time(),strftimedate)}}</span>
             </td>
@@ -43,9 +30,7 @@
                      id="certificate-kids-hand-drawn-i9fsk" width="84" height="63"/>
             </td>
         </tr>
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tr>
             <td valign="botton" id="certificate-kids-hand-drawn-irqzm">
                 <span id="certificate-kids-hand-drawn-il3aj">{#s}certdate{/s}</span>
             </td>
@@ -65,9 +50,6 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-    }
-    [data-gjs-type=wrapper] > * * {
-        position: initial !important;
     }
     #certificate-kids-hand-drawn-in7m {
         text-align: center;
@@ -123,7 +105,7 @@
         color: #091622;
         width: auto;
         line-height: 19px;
-        height: 74px;
+        height: 122px;
         top: 377px;
         left: 115px;
         margin-top: 0px;
@@ -133,7 +115,7 @@
     #certificate-kids-hand-drawn-assinatura {
         width: 100%;
         margin: 0 auto;
-        top: 458px;
+        top: 523px;
         left: 0px;
         margin-top: 0px;
         position: absolute;

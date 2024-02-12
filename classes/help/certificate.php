@@ -33,6 +33,7 @@ class certificate extends help_base {
     public static function table_structure() {
         return [
             ['key' => 'name', 'label' => get_string('help_certificate_name', 'certificatebeautiful')],
+            ['key' => 'description', 'label' => get_string('help_certificate_description', 'certificatebeautiful')],
             ['key' => 'timecreated', 'label' => get_string('help_certificate_issue_timecreated', 'certificatebeautiful')],
             ['key' => 'code', 'label' => get_string('help_certificate_issue_code', 'certificatebeautiful')],
             ['key' => 'url', 'label' => get_string('help_certificate_issue_url', 'certificatebeautiful')],

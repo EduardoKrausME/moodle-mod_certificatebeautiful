@@ -17,9 +17,9 @@
 /**
  * Report for certificatebeautiful.
  *
- * @package    mod_certificatebeautiful
- * @copyright  2023 Eduardo kraus (http://eduardokraus.com)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     mod_certificatebeautiful
+ * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once('../../config.php');
@@ -32,9 +32,10 @@ $cm = get_coursemodule_from_id('certificatebeautiful', $id, 0, false, MUST_EXIST
 $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
 $certificatebeautiful = $DB->get_record('certificatebeautiful', array('id' => $cm->instance), '*', MUST_EXIST);
 
-require_course_login($course, true, $cm);
 $context = context_module::instance($cm->id);
-require_capability('mod/certificatebeautiful:addinstance', $context);
+
+require_course_login($course, true, $cm);
+require_capability('mod/certificatebeautiful:viewreport', $context);
 
 if (optional_param('action', false, PARAM_TEXT) == 'delete') {
     require_sesskey();

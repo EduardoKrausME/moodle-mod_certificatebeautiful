@@ -24,12 +24,14 @@ use mod_certificatebeautiful\models;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once(  "{$CFG->dirroot}/course/moodleform_mod.php");
+require_once("{$CFG->dirroot}/course/moodleform_mod.php");
+
+use \mod_certificatebeautiful\help\help_base;
 
 /**
- * @package    mod_certificatebeautiful
- * @copyright  2024 Eduardo Kraus https://eduardokraus.com/
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     mod_certificatebeautiful
+ * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mod_certificatebeautiful_mod_form extends moodleform_mod {
 
@@ -43,18 +45,26 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
 
         $mform = $this->_form;
         $mform->addElement('header', 'general', get_string('general', 'form'));
-        $mform->addElement('text', 'name', get_string('name'), ['size' => '64']);
 
+        $mform->addElement('text', 'name', get_string('name'), ['size' => '64']);
+        $mform->addRule('name', null, 'required', null, 'client');
+        $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
         if (!empty($CFG->formatstringstriptags)) {
             $mform->setType('name', PARAM_TEXT);
         } else {
             $mform->setType('name', PARAM_CLEANHTML);
         }
 
-        $mform->addRule('name', null, 'required', null, 'client');
-        $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-
         $this->standard_intro_elements();
+
+        $mform->addElement('textarea', 'description', get_string('certificate_description', 'certificatebeautiful'));
+        $mform->addRule('description', null, 'required', null, 'client');
+        $mform->setDefault('description', get_string('default-description', 'certificatebeautiful'));
+        $mform->addHelpButton('description', 'certificate_description', 'certificatebeautiful');
+
+        $text = get_string('manage_models', 'certificatebeautiful');
+        $mform->addElement('static', 'manage_models', '', help_base::get_form_components());
+
 
         $mform->addElement('select', 'model', get_string('select_the_model', 'certificatebeautiful'), models::list_all());
 

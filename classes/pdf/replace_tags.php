@@ -110,6 +110,11 @@ class replace_tags {
         $this->html = str_replace('time()', time(), $this->html);
         $this->html = str_replace('now()', time(), $this->html);
 
+        preg_match_all('/{#s}(.*?){\/s}/', $this->html, $strs);
+        foreach ($strs[0] as $key => $str) {
+            $this->html = str_replace($strs[0][$key], get_string($strs[1][$key], 'certificatebeautiful'), $this->html);
+        }
+
         $this->html = help_base::replace($this->html, "SITE", site::get_data());
 
         $certificatebeautiful = certificate::get_data($this->certificatebeautiful);

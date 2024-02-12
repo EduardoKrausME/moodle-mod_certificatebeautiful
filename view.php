@@ -35,16 +35,16 @@ $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST)
 /** @var \mod_certificatebeautiful\vo\certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = $DB->get_record('certificatebeautiful', array('id' => $cm->instance), '*', MUST_EXIST);
 
-require_course_login($course, true, $cm);
-
 $context = context_module::instance($cm->id);
-require_capability('mod/certificatebeautiful:view', $context);
 
 $PAGE->requires->css('/mod/certificatebeautiful/style.css');
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/view.php', ['id' => $id]);
 $PAGE->set_title($course->shortname . ': ' . $PAGE->activityrecord->name);
 $PAGE->set_heading(format_string($course->fullname));
+
+require_course_login($course, true, $cm);
+require_capability('mod/certificatebeautiful:view', $context);
 
 $event = \mod_certificatebeautiful\event\course_module_viewed::create(array(
     'objectid' => $PAGE->cm->instance,

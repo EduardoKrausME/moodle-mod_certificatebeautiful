@@ -1,5 +1,5 @@
 <div draggable="false" id="certificate-vintage-in7m">{#s}certtitle{/s}</div>
-<div draggable="false" id="certificate-vintage-ilmx">{#s}certificado-subtitulo{/s}</div>
+<div draggable="false" id="certificate-vintage-ilmx">{#s}subtititle{/s}</div>
 <div draggable="false" id="certificate-vintage-i2ae">
     <img src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/line.png" height="10" width="61"/>
     <span id="certificate-vintage-ij0j">{#s}certpresented{/s}</span>
@@ -7,18 +7,15 @@
 </div>
 <div draggable="false" id="certificate-vintage-ifius">
     <table id="certificate-vintage-iv0pf">
-        <tbody data-gjs-selectable="false"
-               data-gjs-highlightable="false"
-               data-gjs-hoverable="false">
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tbody>
+        <tr>
             <td>
                 <img id="certificate-vintage-irddl"
                      src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/point.png" height="28"
                      width="28"/>
             </td>
-            <td id="certificate-vintage-i1y54">{$USER-&gt;fullname}</td>
+            <td id="certificate-vintage-i1y54">{$USER-&gt;fullname}
+            </td>
             <td>
                 <img id="certificate-vintage-i2v8l"
                      src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/point.png" height="28"
@@ -28,15 +25,11 @@
         </tbody>
     </table>
 </div>
-<div draggable="false" id="certificate-vintage-descricao">{#s}certificado-descricao{/s}</div>
+<div draggable="false" id="certificate-vintage-descricao">{$certificate->description}</div>
 <div draggable="false" id="certificate-vintage-assinatura">
     <table id="certificate-vintage-i50gy">
-        <tbody data-gjs-selectable="false"
-               data-gjs-highlightable="false"
-               data-gjs-hoverable="false">
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tbody>
+        <tr>
             <td id="certificate-vintage-i12ag">
                 <span id="certificate-vintage-ipjgg">{{userdate(time(),strftimedate)}}</span>
             </td>
@@ -44,13 +37,11 @@
             </td>
             <td id="certificate-vintage-it6eh">
                 <img id="certificate-vintage-i9fsk"
-                     src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/signature.png"
-                     width="84" height="63"/>
+                     src="/mod/certificatebeautiful/_editor/_model/certificate-vintage/assets/signature.png" width="84"
+                     height="63"/>
             </td>
         </tr>
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tr>
             <td id="certificate-vintage-i12ag-3">
                 <span id="certificate-vintage-il3aj">{#s}certdate{/s}</span>
             </td>
@@ -70,9 +61,6 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-    }
-    [data-gjs-type=wrapper] > * * {
-        position: initial !important;
     }
     #certificate-vintage-in7m {
         text-align: center;
@@ -143,9 +131,9 @@
         font-size: 15px;
         color: #010101;
         width: auto;
-        height: 107px;
+        height: 129px;
         position: absolute;
-        top: 350px;
+        top: 351px;
         left: 115px;
         margin-top: 0px;
         right: 115px;
@@ -154,7 +142,7 @@
         width: 100%;
         margin: 0 auto;
         position: absolute;
-        top: 460px;
+        top: 525px;
         left: 0px;
         margin-top: 0px;
     }

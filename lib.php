@@ -260,7 +260,7 @@ function certificatebeautiful_extend_settings_navigation($settings, $certificate
 function certificatebeautiful_extend_navigation_course($navigation, $course, $context) {
     if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
         $certificatenode1 = $navigation->add(get_string('course_certificates', 'certificatebeautiful'),
-            null, navigation_node::TYPE_CONTAINER, null, 'course_certificatebeautiful');
+            null, navigation_node::TYPE_CONTAINER, null, uniqid());
         $url = new moodle_url('/mod/certificatebeautiful/reports.php', ['course' => $course->id]);
         $certificatenode1->add(get_string('course_certificates', 'certificatebeautiful'), $url, navigation_node::TYPE_SETTING,
             null, null, new pix_icon('i/report', ''));
@@ -323,9 +323,6 @@ function certificatebeautiful_list_all_models() {
         ], [
             "name" => get_string('certificate-kids-pastel', 'certificatebeautiful'),
             "key" => 'certificate-kids-pastel',
-        ], [
-            "name" => get_string('certificate-kids-template', 'certificatebeautiful'),
-            "key" => 'certificate-kids-template',
         ], [
             "name" => get_string('certificate-modern', 'certificatebeautiful'),
             "key" => 'certificate-modern',

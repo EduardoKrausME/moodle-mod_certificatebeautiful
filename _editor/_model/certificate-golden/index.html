@@ -1,15 +1,12 @@
 <div draggable="false" id="certificate-golden-in7m">{#s}certtitle{/s}</div>
-<div draggable="false" id="certificate-golden-ilmx">{#s}certificado-subtitulo{/s}</div>
+<div draggable="false" id="certificate-golden-ilmx">{#s}subtititle{/s}</div>
 <div draggable="false" id="certificate-golden-i2ae">{#s}certpresented{/s}</div>
 <div draggable="false" id="certificate-golden-fullname">
     <table id="certificate-golden-iesz">
-        <tbody data-gjs-selectable="false"
-               data-gjs-highlightable="false"
-               data-gjs-hoverable="false">
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
-            <td id="certificate-golden-isq9s">{$USER-&gt;fullname}</td>
+        <tbody>
+        <tr>
+            <td id="certificate-golden-isq9s">{$USER-&gt;fullname}
+            </td>
         </tr>
         </tbody>
     </table>
@@ -17,15 +14,11 @@
 <div draggable="false" id="certificate-golden-ihxs1">
     <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line.png"/>
 </div>
-<div draggable="false" id="certificate-golden-descricao">{#s}certificado-descricao{/s}</div>
+<div draggable="false" id="certificate-golden-descricao">{$certificate->description}</div>
 <div draggable="false" id="certificate-golden-assinatura">
     <table id="certificate-golden-ic6m9">
-        <tbody data-gjs-selectable="false"
-               data-gjs-highlightable="false"
-               data-gjs-hoverable="false">
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tbody>
+        <tr>
             <td id="certificate-golden-i12ag">
                 <span id="certificate-golden-ipjgg">{{userdate(time(),strftimedate)}}</span>
             </td>
@@ -36,9 +29,7 @@
                      id="certificate-golden-i9fsk-2" width="84" height="63"/>
             </td>
         </tr>
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tr>
             <td id="certificate-golden-i12ag-2">
                 <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line-footer.png"/>
             </td>
@@ -46,9 +37,7 @@
                 <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line-footer.png"/>
             </td>
         </tr>
-        <tr data-gjs-selectable="false"
-            data-gjs-highlightable="false"
-            data-gjs-hoverable="false">
+        <tr>
             <td id="certificate-golden-i12ag-3">
                 <span id="certificate-golden-il3aj">{#s}certdate{/s}</span>
             </td>
@@ -60,9 +49,12 @@
     </table>
 </div>
 <div draggable="false" id="certificate-golden-iajt" class="badge fixed-position">
-    <div draggable="false" id="certificate-golden-iptm">{#s}certificado-melhor{/s}</div>
-    <div draggable="false" id="certificate-golden-ig2i">{{date(Y)}}</div>
-    <div draggable="false" id="certificate-golden-izax">{#s}certificado-curso{/s}</div>
+    <div draggable="false" id="certificate-golden-iptm">{#s}best{/s}
+    </div>
+    <div draggable="false" id="certificate-golden-ig2i">{{date(Y)}}
+    </div>
+    <div draggable="false" id="certificate-golden-izax">{#s}course{/s}
+    </div>
 </div>
 <style>
     [data-gjs-type=wrapper] {
@@ -73,9 +65,6 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-    }
-    [data-gjs-type=wrapper] > * * {
-        position: initial !important;
     }
     #certificate-golden-in7m {
         text-align: center;
@@ -130,7 +119,7 @@
         width: 100%;
         margin: 0 auto;
         position: absolute;
-        top: 447px;
+        top: 496px;
         left: 0px;
         margin-top: 0px;
     }
