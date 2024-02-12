@@ -66,7 +66,7 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2024020700, 'certificatebeautiful');
     }
 
-    if ($oldversion < 2024020700) {
+    if ($oldversion < 2024021200) {
 
         $table = new xmldb_table('certificatebeautiful');
         $field = new xmldb_field('description', XMLDB_TYPE_TEXT, null, null, null, null, null, 'name');
@@ -78,7 +78,7 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         $description = get_string('default-description', 'certificatebeautiful');
         $DB->execute("UPDATE {certificatebeautiful} SET description = '{$description}'");
 
-        upgrade_mod_savepoint(true, 2024020700, 'certificatebeautiful');
+        upgrade_mod_savepoint(true, 2024021200, 'certificatebeautiful');
     }
 
     return true;
