@@ -43,32 +43,37 @@ class grade extends help_base {
      * @param $user
      *
      * @return array
+     *
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws \moodle_exception
      */
     public static function get_data($course, $user) {
         return [
-            // 'finalgrade' => self::get_grade($course, $user),
-            // 'table' => self::get_table_grade($course, $user),
+            'finalgrade' => self::get_grade($course, $user),
+            'table' => self::get_table_grade($course, $user),
         ];
     }
 
     /**
      * @param $course
      * @param $user
+     *
      * @return string
+     *
+     * @throws \coding_exception
+     * @throws \moodle_exception
      */
     private static function get_grade($course, $user) {
-        $courseitem = grade_item::fetch_course_item($course->id);
-        if ($courseitem) {
-            $grade = new grade_grade(array('itemid' => $courseitem->id, 'userid' => $user->id));
-            $courseitem->gradetype = GRADE_TYPE_VALUE;
-            $decimals = $courseitem->get_decimals();
+        global $CFG;
 
-            // If no decimals is set get the default decimals.
-            if (empty($decimals)) {
-                $decimals = 2;
-            }
+        require_once("{$CFG->dirroot}/grade/querylib.php");
+        require_once("{$CFG->dirroot}/lib/gradelib.php");
 
-            return grade_format_gradevalue($grade->finalgrade, $courseitem, true, null, $decimals);
+        $resultkrb = grade_get_course_grades($course->id, $user->id);
+        if (isset($resultkrb->grades[$user->id])) {
+            $grd = $resultkrb->grades[$user->id];
+            return $grd->str_grade;
         }
 
         return "";
@@ -77,6 +82,7 @@ class grade extends help_base {
     /**
      * @param $course
      * @param $userid
+     *
      * @return string
      *
      * @throws \coding_exception
@@ -99,7 +105,7 @@ class grade extends help_base {
             return ($asortorder < $bsortorder) ? -1 : 1;
         });
 
-        $retval = '';
+        $retval = '<table>';
         foreach ($items as $id => $item) {
             // Do not include grades for course itens.
             if ($item->itemtype != 'mod') {
@@ -107,8 +113,14 @@ class grade extends help_base {
             }
             $cm = get_coursemodule_from_instance($item->itemmodule, $item->iteminstance);
             $usergrade = self::get_mod_grade($cm, $course, $user);
-            $retval = $item->itemname . ": $usergrade<br>" . $retval;
+
+            $retval .= "
+                    <tr>
+                        <th style=\"text-align: right;\">{$item->itemname}:</th>
+                        <td>{$usergrade}</td>
+                    </tr>";
         }
+        $retval .= '</table>';
         return $retval;
     }
 
