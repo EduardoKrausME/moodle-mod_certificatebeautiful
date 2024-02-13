@@ -303,11 +303,20 @@ function certificatebeautiful_list_all_models() {
             "name" => get_string('certificate-appreciation', 'certificatebeautiful'),
             "key" => 'certificate-appreciation',
         ], [
+            "name" => get_string('certificate-details', 'certificatebeautiful'),
+            "key" => 'certificate-details',
+        ], [
             "name" => get_string('certificate-elegant', 'certificatebeautiful'),
             "key" => 'certificate-elegant',
         ], [
+            "name" => get_string('certificate-flat-modern', 'certificatebeautiful'),
+            "key" => 'certificate-flat-modern',
+        ], [
             "name" => get_string('certificate-golden', 'certificatebeautiful'),
             "key" => 'certificate-golden',
+        ], [
+            "name" => get_string('certificate-gradient-golden-luxury', 'certificatebeautiful'),
+            "key" => 'certificate-gradient-golden-luxury',
         ], [
             "name" => get_string('certificate-kids-animals', 'certificatebeautiful'),
             "key" => 'certificate-kids-animals',
@@ -317,6 +326,9 @@ function certificatebeautiful_list_all_models() {
         ], [
             "name" => get_string('certificate-kids-gradient-modern', 'certificatebeautiful'),
             "key" => 'certificate-kids-gradient-modern',
+        ], [
+            "name" => get_string('certificate-modern-2', 'certificatebeautiful'),
+            "key" => 'certificate-modern-2',
         ], [
             "name" => get_string('certificate-kids-hand-drawn', 'certificatebeautiful'),
             "key" => 'certificate-kids-hand-drawn',

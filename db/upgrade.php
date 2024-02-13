@@ -37,35 +37,6 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
 
     $dbman = $DB->get_manager();
 
-    if ($oldversion < 2024020700) {
-
-        $DB->delete_records('certificatebeautiful_model');
-        require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/model/get_template_file.php");
-
-        foreach (certificatebeautiful_list_all_models() as $model) {
-
-            $pagesinfo = [
-                [
-                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model['key']),
-                    "cssdata" => ""
-                ], [
-                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page"),
-                    "cssdata" => ""
-                ]
-            ];
-
-            $certificatebeautifulmodel = (object)[
-                "name" => $model['name'],
-                "pages_info" => json_encode($pagesinfo, JSON_PRETTY_PRINT),
-                "timecreated" => time(),
-                "timemodified" => time(),
-            ];
-            $DB->insert_record('certificatebeautiful_model', $certificatebeautifulmodel);
-        }
-
-        upgrade_mod_savepoint(true, 2024020700, 'certificatebeautiful');
-    }
-
     if ($oldversion < 2024021200) {
 
         $table = new xmldb_table('certificatebeautiful');
@@ -79,6 +50,36 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         $DB->execute("UPDATE {certificatebeautiful} SET description = '{$description}'");
 
         upgrade_mod_savepoint(true, 2024021200, 'certificatebeautiful');
+    }
+
+    if ($oldversion < 2024021300) {
+
+        require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/model/get_template_file.php");
+
+        foreach (certificatebeautiful_list_all_models() as $model) {
+
+            if (!$DB->get_record('certificatebeautiful_model', ['name' => $model['name']])) {
+                $pagesinfo = [
+                    [
+                        "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model['key']),
+                        "cssdata" => ""
+                    ], [
+                        "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page"),
+                        "cssdata" => ""
+                    ]
+                ];
+
+                $certificatebeautifulmodel = (object)[
+                    "name" => $model['name'],
+                    "pages_info" => json_encode($pagesinfo),
+                    "timecreated" => time(),
+                    "timemodified" => time(),
+                ];
+                $DB->insert_record('certificatebeautiful_model', $certificatebeautifulmodel);
+            }
+        }
+
+        upgrade_mod_savepoint(true, 2024021300, 'certificatebeautiful');
     }
 
     return true;
