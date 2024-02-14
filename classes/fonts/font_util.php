@@ -35,9 +35,9 @@ class font_util {
     public static function mpdf_list_fonts() {
         global $CFG;
 
-        $fonts = ["fonts" => [], "path" => [], "css" => "", "js" => ""];
+        $fonts = ["fonts" => [], "path" => [], "css" => "", "options" => "", "listfonts" => []];
         $fontsitens = [];
-        $fontfiles = glob("{$CFG->dirroot}/mod/certificatebeautiful/_editor/_model/*/fonts/*/static/*.ttf");
+        $fontfiles = glob("{$CFG->dirroot}/mod/certificatebeautiful/_editor/fonts/*/*.ttf");
 
         foreach ($fontfiles as $fontfile) {
             $path = pathinfo($fontfile);
@@ -54,35 +54,34 @@ class font_util {
             $fonts["fonts"][$fontnameid]['B'] = $path['basename'];
             $fonts["fonts"][$fontnameid]['BI'] = $path['basename'];
 
-            if ($ttfinfo->get_font_sub_family() == 'Regular') {
-                $fonts["fonts"][$fontfamilyid]['R'] = $path['basename'];
-            } else if ($ttfinfo->get_font_sub_family() == 'Bold Italic') {
-                $fonts["fonts"][$fontfamilyid]['BI'] = $path['basename'];
-            } else if ($ttfinfo->get_font_sub_family() == 'Italic') {
-                $fonts["fonts"][$fontfamilyid]['I'] = $path['basename'];
-            } else if ($ttfinfo->get_font_sub_family() == 'Bold') {
-                $fonts["fonts"][$fontfamilyid]['B'] = $path['basename'];
-            }
-
             $fonts["path"][$path['dirname']] = $path['dirname'];
 
             $fonturl = str_replace($CFG->dirroot, $CFG->wwwroot, $fontfile);
             $fonts["css"] .= "
                 @font-face {
-                    font-family : '{$fontname}';
-                    src         : url({$fonturl}) format('ttf');
+                    font-family : {$fontnameid};
+                    src         : local(\"{$fontfamily}\"), url({$fonturl}) format('truetype');
                 }";
 
-            if ($fontname == $fontfamily) {
-                $value = "'{$fontnameid}', '{$fontfamilyid}', '{$fontname}'";
-            } else {
-                $value = "'{$fontnameid}', '{$fontfamilyid}', '{$fontname}', '{$fontfamily}'";
-            }
-            $fontsitens[$fontname] = "
+            if (strpos($fontfile, '_signature-') === false) {
+                if ($fontname == $fontfamily) {
+                    $value = "{$fontnameid}, '{$fontfamily}'";
+                } else {
+                    $value = "{$fontnameid}, '{$fontfamily}', '{$fontname}'";
+                }
+                $fontsitens[$fontname] = "
                     {
-                        id : '{$fontnameid}',
+                        id    : '{$fontnameid}, \'{$fontfamily}\'',
                         label : '{$fontname}',
-                        value : \"{$value}\"},";
+                        value : \"{$value}\"
+                    },";
+            }
+
+            $fonts["listfonts"][$fontnameid] = (object)[
+                "fontnameid" => $fontnameid,
+                "fontname" => $fontname,
+                "fontfamily" => $fontfamily
+            ];
         }
 
         $fonts["path"] = array_keys($fonts["path"]);
