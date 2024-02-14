@@ -12402,7 +12402,14 @@
             autoscrollLimit   : 50,
             extHl             : !1,
             frameContent      : '<!DOCTYPE html>',
-            frameStyle        : "\n    body { background-color: #fff }\n    * ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1) }\n    * ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2) }\n    * ::-webkit-scrollbar { width: 10px }\n  ",
+            frameStyle        : `
+    body { background-color: #fff }
+    * ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1) }
+    * ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2) }
+    * ::-webkit-scrollbar { width: 10px }
+    [data-gjs-type=wrapper] > * * { position: initial !important; top: initial !important; left: initial !important; }
+    [data-gjs-type=wrapper] *:hover { border: 1px dashed #a5a3a5; }
+  `,
             notTextable       : ['button', 'a', 'input[type=checkbox]', 'input[type=radio]'],
             allowExternalDrop : !0
         };
@@ -13768,7 +13775,20 @@
                 var t, n, o = this, r = this, i = r.config, s = r.em, a = r.model, l = r.ppfx, c = this.getDoc(),
                     u = this.getBody(), p = this.getWindow(), d = a.hasAutoHeight(), f = s.config;
                 p._isEditor = !0, this.renderStyles({prev : []});
-                (0, Rt.R3)(u, "<style>\n      ".concat(f.baseCss || i.frameStyle || '', "\n\n      ").concat(d ? 'body { overflow: hidden }' : '', "\n\n      [data-gjs-type=\"wrapper\"] {\n        ").concat(d ? '' : 'min-height: 100vh;', "\n        padding-top: 0.001em;\n      }\n\n      .").concat(l, "dashed *[data-gjs-highlightable] {\n        outline: 1px dashed rgba(170,170,170,0.7);\n        outline-offset: -2px;\n      }\n\n      .").concat(l, "selected {\n        outline: 2px solid #3b97e3 !important;\n        outline-offset: -2px;\n      }\n\n      .").concat(l, "selected-parent {\n        outline: 2px solid ").concat('#ffca6f', " !important\n      }\n\n      .").concat(l, "no-select {\n        user-select: none;\n        -webkit-user-select:none;\n        -moz-user-select: none;\n      }\n\n      .").concat(l, "freezed {\n        opacity: 0.5;\n        pointer-events: none;\n      }\n\n      .").concat(l, "no-pointer {\n        pointer-events: none;\n      }\n\n      .").concat(l, "plh-image {\n        background: #f5f5f5;\n        border: none;\n        height: 100px;\n        width: 100px;\n        display: block;\n        outline: 3px solid #ffca6f;\n        cursor: pointer;\n        outline-offset: -2px\n      }\n\n      .").concat(l, "grabbing {\n        cursor: grabbing;\n        cursor: -webkit-grabbing;\n      }\n\n      .").concat(l, "is__grabbing {\n        overflow-x: hidden;\n      }\n\n      .").concat(l, "is__grabbing,\n      .").concat(l, "is__grabbing * {\n        cursor: grabbing !important;\n      }\n\n      ").concat(f.canvasCss || '', "\n      ").concat(f.protectedCss || '', "\n    </style>"));
+                (0, Rt.R3)(u, "<style>\n      "
+                    .concat(f.baseCss || i.frameStyle || '', "\n\n      ")
+                    .concat(d ? 'body { overflow: hidden }' : '', "[data-gjs-type=\"wrapper\"] {}")
+                    .concat(l, "dashed *[data-gjs-highlightable] {outline: 1px dashed rgba(170,170,170,0.7);outline-offset: -2px;}")
+                    .concat(l, "selected {outline: 2px solid #3b97e3 !important;outline-offset: -2px;}")
+                    .concat(l, "selected-parent {outline: 2px solid #ffca6f !important}")
+                    .concat(l, "no-select {user-select: none;-webkit-user-select:none;-moz-user-select: none;}")
+                    .concat(l, "freezed {opacity: 0.5;pointer-events: none;}")
+                    .concat(l, "no-pointer {pointer-events: none;}")
+                    .concat(l, "plh-image {background: #f5f5f5;border: none;height: 100px;width: 100px;display: block;outline: 3px solid #ffca6f;cursor: pointer;outline-offset: -2px}")
+                    .concat(l, "grabbing {cursor: grabbing;cursor: -webkit-grabbing;}")
+                    .concat(l, "is__grabbing {overflow-x: hidden;}")
+                    .concat(l, "is__grabbing,.").concat(l, "is__grabbing * {cursor: grabbing !important;}")
+                    .concat(f.canvasCss || '', "\n      ").concat(f.protectedCss || '', "\n    </style>"));
                 var h = a.root, g = s.Components.getType('wrapper').view;
                 this.wrapper = new g({
                     model  : h,

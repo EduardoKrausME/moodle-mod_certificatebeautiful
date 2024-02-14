@@ -158,7 +158,7 @@ html {
 #gjs {
     margin: 0;
     padding: 0;
-    height: calc(595px + 4px);
+    height: calc(673px + 4px);
     width: calc(955px + 4px);
     position: relative;
 }
@@ -166,7 +166,7 @@ html {
     border: 4px dashed #31468c;
     margin: 11px auto;
     padding: 2px;
-    height: calc(595px + 4px);
+    height: calc(673px + 4px);
     width: calc(955px + 4px);
     position: relative;
 }
