@@ -13,12 +13,12 @@
     <script src="js/toastr.js"></script>
     <script src="js/grapes.js"></script>
     <script src="js/plugins/grapesjs-preset-webpage.js"></script>
-    <script src="js/plugins/grapesjs-blocks-basic.js"></script>
+    <!--script src="js/plugins/grapesjs-blocks-basic.js"></script-->
     <script src="js/plugins/grapesjs-custom-code.js"></script>
     <script src="js/plugins/grapesjs-parser-postcss.js"></script>
     <script src="js/plugins/grapesjs-tui-image-editor.js"></script>
     <script src="js/plugins/grapesjs-style-bg.js"></script>
-    <script src="js/plugins/grapesjs-blocks-table.js"></script>
+    <!--script src="js/plugins/grapesjs-blocks-table.js"></script-->
     <script src="js/plugins/grapesjs-style-border.js"></script>
 
     <?php

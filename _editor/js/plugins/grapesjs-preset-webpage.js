@@ -83,7 +83,7 @@
     const u = function(e, n) {
         void 0 === n && (n = {});
         var c = d({
-            blocks              : ['link-block', 'quote', 'text-basic'],
+            blocks              : [],
             block               : function() {
                 return {}
             },
@@ -116,7 +116,7 @@
                     type      : 'link',
                     editable  : !1,
                     droppable : !0,
-                    style     : {display : 'inline-block', padding : '5px', 'min-height' : '50px', 'min-width' : '50px'}
+                    style     : {disp          ine-block', padding : '5px', 'min-height' : '50px', 'min-width' : '50px'}
                 }
             }), t('quote', {
                 label   : 'Quote',
