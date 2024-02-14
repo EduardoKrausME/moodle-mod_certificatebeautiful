@@ -160,7 +160,7 @@ class replace_tags {
         global $CFG;
 
         $config = get_config('certificatebeautiful');
-        if ($config->config_signature_enable) {
+        if ($config->config_signature_enable && strlen($config->config_signature_text) >= 2) {
             $typography = $config->config_signature_typography;
             $color = $config->config_signature_color;
 
