@@ -60,9 +60,14 @@ class form_create extends \moodleform {
                 if (!isset($page->cssdata)) {
                     $page->cssdata = "";
                 }
+
+                $htmldata = "{$page->htmldata}<style>{$page->cssdata}</style>";
+                $htmldata = str_replace("[data-gjs-type=wrapper]", ".body-{$key}", $htmldata);
+                $htmldata = "<div class='body-{$key}'>{$htmldata}</div>";
+
                 $data["pages"][] = [
                     "title" => get_string('model_page_name', 'certificatebeautiful', $pageid++),
-                    "pagina" => "{$page->htmldata}<style>{$page->cssdata}</style>",
+                    "pagina" => $htmldata,
                     "addpage_title" => get_string('edit_this_page', 'certificatebeautiful'),
                     "addpage_href" => "manage-model-editpage.php?id={$certificatebeautifulmodel->id}&page={$key}"
                 ];
