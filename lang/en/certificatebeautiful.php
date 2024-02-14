@@ -46,6 +46,16 @@ $string['download_my_certificate'] = 'Download my certificate';
 $string['view_my_certificate'] = 'View my certificate in a new tab';
 $string['preview_certificate'] = 'Certificate preview';
 $string['create_at_certificate'] = 'Certificate for {$a}';
+$string['config_signature_heading'] = 'Signature Settings';
+$string['config_signature_heading_desc'] = 'At this point, you must decide whether you want to create a custom signature from the {$a} pre-loaded caligraphies. Your options include:';
+$string['config_signature_enable']='Enable dynamic signature';
+$string['config_signature_enable_desc']='When checked, Beautiful Certificate will create a customized signature based on the chosen handwriting, specified text, and color.';
+$string['config_signature_typography'] = 'Signature Text Style';
+$string['config_signature_typography_desc'] = 'By default, the Beautiful Certificate will generate a signature using the following text and employ this calligraphy to personalize the content.';
+$string['config_signature_text'] = 'Signature Text';
+$string['config_signature_text_desc'] = 'In order to enable Beautiful Certificate to automatically generate a signature, a sequence of up to 10 characters is required.<br>Please note that the sequence cannot contain spaces, numbers, or accents.';
+$string['config_signature_color'] = 'Signature Color';
+$string['config_signature_color_desc'] = 'Specify the color of the signature.';
 
 $string['course_certificates'] = 'Course Certificates';
 $string['my_certificates'] = 'My Certificates';
@@ -74,14 +84,18 @@ $string['report_deleted_certificate'] = 'Certificate deleted successfully!';
 
 // Install.
 $string['certificate-appreciation'] = 'Certificate of Appreciation';
+$string['certificate-details'] = 'Certificate Details';
 $string['certificate-elegant'] = 'Elegant Certificate';
+$string['certificate-flat-modern'] = 'Modern Flat Certificate';
 $string['certificate-golden'] = 'Golden Certificate';
+$string['certificate-gradient-golden-luxury'] = 'Golden Luxury Gradient Certificate';
 $string['certificate-kids-animals'] = 'For kids with animals';
 $string['certificate-kids-child-medical'] = 'Child-like medical certificate';
 $string['certificate-kids-gradient-modern'] = 'Gradient modern certificate template';
 $string['certificate-kids-hand-drawn'] = 'Hand drawn preschool certificate';
 $string['certificate-kids-pastel'] = 'Cute pastel education certificate';
 $string['certificate-modern'] = 'Modern Certificate';
+$string['certificate-modern-2'] = 'Modern Certificate 2';
 $string['certificate-simple'] = 'Simple Certificate';
 $string['certificate-vintage'] = 'Vintage Certificate';
 $string['sumary-secound-page'] = 'Summary Certificate';
@@ -101,9 +115,9 @@ $string['certificatebeautiful-page_empty'] = 'Empty';
 
 $string['help_base_title'] = 'Available keys to replace in the certificate:';
 
-$string['help_certificate__name'] = 'User data';
-$string['help_certificate_name'] = 'Certificate name';
-$string['help_certificate_description'] = 'Certificate description';
+$string['help_certificate_issue__name'] = 'Certificate data';
+$string['help_certificate_issue_name'] = 'Certificate name';
+$string['help_certificate_issue_description'] = 'Certificate description';
 $string['help_certificate_issue_timecreated'] = 'Certificate creation date.';
 $string['help_certificate_issue_code'] = 'Unique code of the certificate.';
 $string['help_certificate_issue_url'] = 'Certificate validation URL';

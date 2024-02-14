@@ -46,6 +46,16 @@ $string['download_my_certificate'] = 'Baixar meu certificado';
 $string['view_my_certificate'] = 'Ver meu certificado em uma nova aba';
 $string['preview_certificate'] = 'Prévia do certificado';
 $string['create_at_certificate'] = 'Certificado para {$a}';
+$string['config_signature_heading'] = 'Configurações da assinatura';
+$string['config_signature_heading_desc'] = 'Neste ponto, você deve decidir se deseja criar uma assinatura personalizada a partir das {$a} caligrafias pré-carregadas. Suas opções incluem:';
+$string['config_signature_enable']='Habilitar assinatura dinâmica';
+$string['config_signature_enable_desc']='Ao ser marcado, o Beautiful Certificate criará uma assinatura personalizada com base na caligrafia escolhida, no texto e na cor especificados.';
+$string['config_signature_typography'] = 'Estilo de texto da assinatura';
+$string['config_signature_typography_desc'] = 'Por padrão, o Beautiful Certificate gerará uma assinatura utilizando o texto a seguir e empregará esta caligrafia para personalizar o conteúdo.';
+$string['config_signature_text'] = 'Texto da assinatura';
+$string['config_signature_text_desc'] = 'A fim de permitir que o Beautiful Certificate gere automaticamente uma assinatura, é necessário uma sequência de até 10 caracteres.<br>Por favor, observe que a sequência não pode conter espaços, números ou acentos.';
+$string['config_signature_color'] = 'Cor da assinatura';
+$string['config_signature_color_desc'] = 'Especifique a cor da assinatura.';
 
 $string['course_certificates'] = 'Certificados de Curso';
 $string['my_certificates'] = 'Meus Certificados';
@@ -74,14 +84,18 @@ $string['report_deleted_certificate'] = 'Certificado excluído com sucesso!';
 
 // Instalação.
 $string['certificate-appreciation'] = 'Certificado de Apreciação';
+$string['certificate-details'] = 'Detalhes do Certificado';
 $string['certificate-elegant'] = 'Certificado Elegante';
+$string['certificate-flat-modern'] = 'Certificado Moderno Plano';
 $string['certificate-golden'] = 'Certificado Dourado';
+$string['certificate-gradient-golden-luxury'] = 'Certificado de Luxo Dourado com Gradiente';
 $string['certificate-kids-animals'] = 'Para crianças com animais';
 $string['certificate-kids-child-medical'] = 'Certificado médico infantil';
 $string['certificate-kids-gradient-modern'] = 'Modelo de certificado moderno com gradiente';
 $string['certificate-kids-hand-drawn'] = 'Certificado pré-escolar desenhado à mão';
 $string['certificate-kids-pastel'] = 'Certificado de educação fofo em tons pastel';
 $string['certificate-modern'] = 'Certificado Moderno';
+$string['certificate-modern-2'] = 'Certificado Moderno 2';
 $string['certificate-simple'] = 'Certificado Simples';
 $string['certificate-vintage'] = 'Certificado Vintage';
 $string['sumary-secound-page'] = 'Certificado de Resumo';
@@ -101,9 +115,9 @@ $string['certificatebeautiful-page_empty'] = 'Vazio';
 
 $string['help_base_title'] = 'Chaves disponíveis para substituir no certificado:';
 
-$string['help_certificate__name'] = 'Dados do usuário';
-$string['help_certificate_name'] = 'Nome do certificado';
-$string['help_certificate_description'] = 'Descrição do certificado';
+$string['help_certificate_issue__name'] = 'Dados do certificado';
+$string['help_certificate_issue_name'] = 'Nome do certificado';
+$string['help_certificate_issue_description'] = 'Descrição do certificado';
 $string['help_certificate_issue_timecreated'] = 'Data de criação do certificado.';
 $string['help_certificate_issue_code'] = 'Código único do certificado.';
 $string['help_certificate_issue_url'] = 'URL de validação do certificado';
