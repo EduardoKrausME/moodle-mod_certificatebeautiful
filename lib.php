@@ -145,41 +145,6 @@ function certificatebeautiful_page_type_list($pagetype, $parentcontext, $current
 }
 
 /**
- * This function is used by the reset_course_userdata function in moodlelib.
- *
- * @param stdClass $data the data submitted from the reset course.
- * @return array status array
- * @throws coding_exception
- * @throws dml_exception
- */
-function certificatebeautiful_reset_userdata($data) {
-    global $DB;
-
-    $status = [];
-    $key = 'archive_certificates';
-
-    if (!empty($data->$key)) {
-        // Archive all issued certificates in this course (but only for the templates that are currently configured in
-        // instances of mod_certificatebeautiful in this course).
-        $certificates = get_coursemodules_in_course('certificatebeautiful', $data->courseid, 'm.template');
-        foreach ($certificates as $certificate) {
-            $DB->execute('UPDATE {certificatebeautiful_issue} SET archived = 1
-                             WHERE courseid = ? AND templateid = ? AND component = ? AND archived = 0',
-                [$data->courseid, $certificate->template, 'certificatebeautiful']);
-        }
-
-        $status[] = [
-            'component' => get_string('modulenameplural', 'certificatebeautiful'),
-            'item' => get_string('certificatesarchived', 'certificatebeautiful'),
-            'error' => false,
-        ];
-
-    }
-
-    return $status;
-}
-
-/**
  * The elements to add the course reset form.
  *
  * @param MoodleQuickForm $mform
@@ -189,18 +154,6 @@ function certificatebeautiful_reset_course_form_definition($mform) {
     $mform->addElement('header', 'certificatebeautifulheader', get_string('modulenameplural', 'certificatebeautiful'));
     $mform->addElement('checkbox', 'archive_certificates', get_string('archivecertificates', 'certificatebeautiful'));
     $mform->addHelpButton('archive_certificates', 'archivecertificates', 'mod_certificatebeautiful');
-}
-
-/**
- * Course reset form defaults
- *
- * @param stdClass $course
- * @return array
- */
-function certificatebeautiful_reset_course_form_defaults($course) {
-    return [
-        'archive_certificates' => 1,
-    ];
 }
 
 /**
@@ -327,9 +280,6 @@ function certificatebeautiful_list_all_models() {
             "name" => get_string('certificate-kids-gradient-modern', 'certificatebeautiful'),
             "key" => 'certificate-kids-gradient-modern',
         ], [
-            "name" => get_string('certificate-modern-2', 'certificatebeautiful'),
-            "key" => 'certificate-modern-2',
-        ], [
             "name" => get_string('certificate-kids-hand-drawn', 'certificatebeautiful'),
             "key" => 'certificate-kids-hand-drawn',
         ], [
@@ -338,6 +288,9 @@ function certificatebeautiful_list_all_models() {
         ], [
             "name" => get_string('certificate-modern', 'certificatebeautiful'),
             "key" => 'certificate-modern',
+        ], [
+            "name" => get_string('certificate-modern-2', 'certificatebeautiful'),
+            "key" => 'certificate-modern-2',
         ], [
             "name" => get_string('certificate-simple', 'certificatebeautiful'),
             "key" => 'certificate-simple',
