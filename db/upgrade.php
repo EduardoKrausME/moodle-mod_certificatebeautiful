@@ -52,12 +52,18 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2024021200, 'certificatebeautiful');
     }
 
-    if ($oldversion < 2024021300) {
+    if ($oldversion < 2024021402) {
+
+        $table = new xmldb_table('certificatebeautiful_model');
+        $field = new xmldb_field('model_key', XMLDB_TYPE_TEXT, null, null, null, null, null, 'name');
+
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+        $DB->delete_records('certificatebeautiful_model');
 
         require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/model/get_template_file.php");
-
         foreach (certificatebeautiful_list_all_models() as $model) {
-
             if (!$DB->get_record('certificatebeautiful_model', ['name' => $model['name']])) {
                 $pagesinfo = [
                     [
@@ -68,9 +74,9 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
                         "cssdata" => ""
                     ]
                 ];
-
                 $certificatebeautifulmodel = (object)[
                     "name" => $model['name'],
+                    "model_key" => $model['key'],
                     "pages_info" => json_encode($pagesinfo),
                     "timecreated" => time(),
                     "timemodified" => time(),
@@ -79,7 +85,7 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
             }
         }
 
-        upgrade_mod_savepoint(true, 2024021300, 'certificatebeautiful');
+        upgrade_mod_savepoint(true, 2024021402, 'certificatebeautiful');
     }
 
     return true;
