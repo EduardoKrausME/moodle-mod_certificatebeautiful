@@ -40,7 +40,7 @@ class form_create_page extends \moodleform {
                 [data-gjs-type=wrapper] {
                     background-image: url(/mod/certificatebeautiful/_editor/img/vazio.jpg);
                     position: relative;
-                    height: 595px;
+                    height: 673px;
                     width: 955px;
                     background-repeat: no-repeat;
                     background-position: center;
