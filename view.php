@@ -40,7 +40,7 @@ $context = context_module::instance($cm->id);
 $PAGE->requires->css('/mod/certificatebeautiful/style.css');
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/view.php', ['id' => $id]);
-$PAGE->set_title($course->shortname . ': ' . $PAGE->activityrecord->name);
+$PAGE->set_title($course->shortname . ': ' . $certificatebeautiful->name);
 $PAGE->set_heading(format_string($course->fullname));
 
 require_course_login($course, true, $cm);
@@ -74,7 +74,8 @@ if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
 
     $certificatebeautifulissue = \mod_certificatebeautiful\issue::get($USER, $certificatebeautiful, $cm);
     $viewerurl = "{$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html";
-    $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?issueid={$certificatebeautifulissue->id}";
+    $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?code={$certificatebeautifulissue->code}";
+
     $data = [
         'issueid' => $certificatebeautifulissue->id,
         'pdf-viewer-url' => "{$viewerurl}?file=" . urlencode("{$urlbase}&action=view"),

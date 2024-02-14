@@ -24,6 +24,7 @@ namespace mod_certificatebeautiful\pdf;
 
 use mod_certificatebeautiful\fonts\font_util;
 use mod_certificatebeautiful\vo\certificatebeautiful;
+use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 use mod_certificatebeautiful\vo\certificatebeautiful_model;
 use Mpdf\HTMLParserMode;
 use Mpdf\Mpdf;
@@ -58,6 +59,7 @@ class page_pdf {
 
     /**
      * @param certificatebeautiful $certificatebeautiful
+     * @param certificatebeautiful_issue $certificatebeautifulissie
      * @param certificatebeautiful_model $certificatebeautifulmodel
      * @param $user
      * @param $course
@@ -65,8 +67,9 @@ class page_pdf {
      * @throws MpdfException
      * @throws \coding_exception
      * @throws \dml_exception
+     * @throws \moodle_exception
      */
-    public function create_pdf($certificatebeautiful, $certificatebeautifulmodel, $user, $course) {
+    public function create_pdf($certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $user, $course) {
         global $COURSE, $CFG;
 
         $fontlist = font_util::mpdf_list_fonts();
@@ -125,8 +128,11 @@ class page_pdf {
             // Muda o CSS do body para que não interfira na página.
             $this->get_background_page($page, $mpdf);
 
-            $replacetags = new replace_tags($page->htmldata, $course, $user, $certificatebeautiful);
-            $page->htmldata = $replacetags->out();
+            $replacetags = new replace_tags($page, $course, $user, $certificatebeautiful, $certificatebeautifulissue);
+            $replacetags->repace_html();
+            $replacetags->repace_css();
+            $replacetags->repace_signature();
+            $page = $replacetags->out_page();
 
             if (isset($page->cssdata[10])) {
 

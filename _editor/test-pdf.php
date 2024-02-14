@@ -30,7 +30,7 @@ require_once("{$CFG->dirroot}/mod/certificatebeautiful/lib.php");
 global $PAGE, $USER, $CFG;
 
 require_login();
-$context=context_system::instance();
+$context = context_system::instance();
 require_capability('mod/certificatebeautiful:addinstance', $context);
 
 $id = optional_param('id', false, PARAM_INT);
@@ -38,41 +38,44 @@ $htmldata = optional_param('htmldata', false, PARAM_RAW);
 $cssdata = optional_param('cssdata', false, PARAM_RAW);
 
 if ($htmldata && $cssdata) {
-
     require_sesskey();
-
-    $models = certificatebeautiful_list_all_models();
-    $model = $models[$id];
     $certificatebeautifulmodel = (object)[
         "id" => $id,
         "name" => 'name',
-        "pages_info_object" => (object)[
+        "pages_info_object" => [
             (object)[
                 "htmldata" => $htmldata,
                 "cssdata" => $cssdata
             ]
         ]
     ];
-
-    $certificatebeautiful = (object)['name' => "teste", "code" => "CODE-EX"];
-    $user = $DB->get_record_sql("SELECT * FROM {user}   WHERE id > 1 ORDER BY RAND() LIMIT 1");
-    $course = $DB->get_record_sql("SELECT * FROM {course} WHERE id > 1 ORDER BY RAND() LIMIT 1");
-
-    header('Content-Type: application/pdf');
-    require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/pdf/page_pdf.php");
-    $pagepdf = new \mod_certificatebeautiful\pdf\page_pdf();
-    echo $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulmodel, $user, $course);
 } else {
     if ($id === false) {
         foreach (certificatebeautiful_list_all_models() as $key => $model) {
             echo "<p><a href='?id={$key}'>{$model['key']}</a></p>";
+        }
+
+        echo "<h4><a href='?id=-2'>Abrir todos os certificados</a></p>";
+
+        die();
+    } else if ($id == -2) {
+        $certificatebeautifulmodel = (object)[
+            "id" => $id,
+            "name" => 'all',
+            "pages_info_object" => []
+        ];
+        foreach (certificatebeautiful_list_all_models() as $key => $model) {
+            $certificatebeautifulmodel->pages_info_object[] = (object)[
+                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model['key']),
+                "cssdata" => ""
+            ];
         }
     } else {
         if ($id == -1) {
             $certificatebeautifulmodel = (object)[
                 "id" => $id,
                 "name" => 'sumary-secound-page',
-                "pages_info_object" => (object)[
+                "pages_info_object" => [
                     (object)[
                         "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file('sumary-secound-page'),
                         "cssdata" => ""
@@ -86,7 +89,7 @@ if ($htmldata && $cssdata) {
             $certificatebeautifulmodel = (object)[
                 "id" => $id,
                 "name" => $model['key'],
-                "pages_info_object" => (object)[
+                "pages_info_object" => [
                     (object)[
                         "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model['key']),
                         "cssdata" => ""
@@ -98,14 +101,23 @@ if ($htmldata && $cssdata) {
                 ]
             ];
         }
-
-        $certificatebeautiful = (object)['name' => "teste", "code" => "CODE-EX"];
-        $user = $DB->get_record_sql("SELECT * FROM {user}   WHERE id > 1 ORDER BY RAND() LIMIT 1");
-        $course = $DB->get_record_sql("SELECT * FROM {course} WHERE id > 1 ORDER BY RAND() LIMIT 1");
-
-        header('Content-Type: application/pdf');
-        require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/pdf/page_pdf.php");
-        $pagepdf = new \mod_certificatebeautiful\pdf\page_pdf();
-        echo $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulmodel, $user, $course);
     }
 }
+
+$certificatebeautiful = (object)[
+    'name' => "teste",
+    "description" => get_string('default-description', 'certificatebeautiful')
+];
+$certificatebeautifulissie = (object)[
+    'name' => "teste",
+    "code" => "CODE-EX"
+];
+$user = $DB->get_record_sql("SELECT * FROM {user}   WHERE id > 1 ORDER BY RAND() LIMIT 1");
+$course = $DB->get_record_sql("SELECT * FROM {course} WHERE id > 1 ORDER BY RAND() LIMIT 1");
+
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/pdf/page_pdf.php");
+$pagepdf = new \mod_certificatebeautiful\pdf\page_pdf();
+$pdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissie, $certificatebeautifulmodel, $user, $course);
+
+header('Content-Type: application/pdf');
+echo $pdf;
