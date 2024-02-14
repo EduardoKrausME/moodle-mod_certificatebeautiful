@@ -144,7 +144,7 @@ class certificatebeautiful_view extends \table_sql {
         $data = [
             "uniqid" => uniqid(),
             "url-view" => (new moodle_url('/mod/certificatebeautiful/view-pdf.php?',
-                ['issueid' => $linha->issueid, 'action' => 'view']))->out(),
+                ['code' => $linha->code, 'action' => 'view']))->out(),
             "url-delete" => (new moodle_url('/mod/certificatebeautiful/report.php?', $urloptions))->out(),
         ];
         return $OUTPUT->render_from_template('mod_certificatebeautiful/certificatebeautiful_view-extra', $data);

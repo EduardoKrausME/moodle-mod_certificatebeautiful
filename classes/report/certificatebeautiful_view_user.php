@@ -137,7 +137,7 @@ class certificatebeautiful_view_user extends \table_sql {
     public function col_extra($linha) {
         global $OUTPUT;
 
-        $urloptions = ['issueid' => $linha->issueid, 'action' => 'view'];
+        $urloptions = ['code' => $linha->code, 'action' => 'view'];
 
         $data = [
             "uniqid" => uniqid(),
