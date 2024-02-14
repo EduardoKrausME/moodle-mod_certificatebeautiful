@@ -20,9 +20,6 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use mod_certificatebeautiful\model\form_create;
-use mod_certificatebeautiful\model\form_create_page;
-
 require_once('../../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/lib.php");
