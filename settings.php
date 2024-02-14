@@ -27,14 +27,18 @@ if ($ADMIN->fulltree) {
         "Wishloved" => "Wishloved",
     ];
 
-    $imagens = "<br>";
+    $imagens = "";
     foreach ($options as $option) {
-        $imagens .= " <img src='{$CFG->wwwroot}/mod/certificatebeautiful/_editor/fonts/_signature-{$option}/_signatre-{$option}.png'>";
+        $imagens .= "
+            <div>
+                <h6 style='text-align:center;margin-bottom: 0;'>{$option}</h6>
+                <img src='{$CFG->wwwroot}/mod/certificatebeautiful/_editor/fonts/_signature-{$option}/_signatre-{$option}.png'>
+            </div>";
     }
 
     $settings->add(new admin_setting_heading('certificatebeautiful_method_heading',
         get_string('config_signature_heading', 'certificatebeautiful'),
-        get_string('config_signature_heading_desc', 'certificatebeautiful', count($options)) . $imagens));
+        get_string('config_signature_heading_desc', 'certificatebeautiful', count($options)) . "<div class='d-flex'>{$imagens}</div>"));
 
 
     $setting = new admin_setting_configcheckbox('certificatebeautiful/config_signature_enable',
