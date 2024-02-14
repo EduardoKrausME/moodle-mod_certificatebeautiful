@@ -22,7 +22,8 @@
 
 namespace mod_certificatebeautiful\pdf;
 
-use mod_certificatebeautiful\help\certificate;
+use mod_certificatebeautiful\fonts\font_util;
+use mod_certificatebeautiful\help\certificate_issue;
 use mod_certificatebeautiful\help\course;
 use mod_certificatebeautiful\help\course_categories;
 use mod_certificatebeautiful\help\enrolments;
@@ -33,33 +34,40 @@ use mod_certificatebeautiful\help\site;
 use mod_certificatebeautiful\help\teachers;
 use mod_certificatebeautiful\help\user;
 use mod_certificatebeautiful\help\user_profile;
+use mod_certificatebeautiful\vo\certificatebeautiful;
+use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 
 class replace_tags {
 
-    /** @var string */
-    public $html;
+    /** @var \stdClass */
+    public $page;
 
-    /** @var int */
+    /** @var \stdClass */
     public $course;
 
     /** @var \stdClass */
     public $user;
 
-    /** @var \stdClass */
+    /** @var certificatebeautiful */
     public $certificatebeautiful;
+
+    /** @var certificatebeautiful_issue */
+    public $certificatebeautifulissue;
 
     /**
      * replace_tags constructor.
-     * @param string $html
+     * @param string $page
      * @param int $course
      * @param \stdClass $user
-     * @param \stdClass $certificatebeautiful
+     * @param certificatebeautiful $certificatebeautiful
+     * @param certificatebeautiful_issue $certificatebeautifulissue
      */
-    public function __construct(string $html, $course, $user, $certificatebeautiful) {
-        $this->html = $html;
+    public function __construct(\stdClass $page, $course, $user, $certificatebeautiful, $certificatebeautifulissue) {
+        $this->page = $page;
         $this->course = $course;
         $this->user = $user;
         $this->certificatebeautiful = $certificatebeautiful;
+        $this->certificatebeautifulissue = $certificatebeautifulissue;
     }
 
     /**
@@ -83,7 +91,7 @@ class replace_tags {
             return $data;
         }, $html);
 
-        $this->html = $html;
+        $this->page->htmldata = $html;
     }
 
     /**
@@ -103,40 +111,101 @@ class replace_tags {
     /**
      * @throws \coding_exception
      * @throws \dml_exception
+     * @throws \moodle_exception
      */
-    public function out() {
+    public function repace_html() {
 
-        $this->html = str_replace('-&gt;', "->", $this->html);
-        $this->html = str_replace('time()', time(), $this->html);
-        $this->html = str_replace('now()', time(), $this->html);
+        $this->page->htmldata = str_replace('-&gt;', "->", $this->page->htmldata);
+        $this->page->htmldata = str_replace('time()', time(), $this->page->htmldata);
+        $this->page->htmldata = str_replace('now()', time(), $this->page->htmldata);
 
-        preg_match_all('/{#s}(.*?){\/s}/', $this->html, $strs);
+        preg_match_all('/{#s}(.*?){\/s}/', $this->page->htmldata, $strs);
         foreach ($strs[0] as $key => $str) {
-            $this->html = str_replace($strs[0][$key], get_string($strs[1][$key], 'certificatebeautiful'), $this->html);
+            $this->page->htmldata = str_replace($strs[0][$key],
+                get_string($strs[1][$key], 'certificatebeautiful'),
+                $this->page->htmldata);
         }
 
-        $this->html = help_base::replace($this->html, "SITE", site::get_data());
+        $this->page->htmldata = help_base::replace($this->page->htmldata, "SITE", site::get_data());
 
-        $certificatebeautiful = certificate::get_data($this->certificatebeautiful);
-        $this->html = help_base::replace($this->html, "certificate", $certificatebeautiful);
-        $this->html = certificate::custom_replace($this->html, $certificatebeautiful);
+        $data = certificate_issue::get_data($this->certificatebeautiful, $this->certificatebeautifulissue);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, certificate_issue::CLASS_NAME, $data);
+        $this->page->htmldata = certificate_issue::custom_replace($this->page->htmldata, $data);
 
-        $this->html = help_base::replace($this->html, "user_profile", user_profile::get_data($this->user));
+        $data = user_profile::get_data($this->user);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, user_profile::CLASS_NAME, $data);
 
-        $this->html = help_base::replace($this->html, "course", course::get_data($this->course));
+        $data = course::get_data($this->course);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, course::CLASS_NAME, $data);
 
-        $this->html = help_base::replace($this->html, "grade", grade::get_data($this->course, $this->user));
+        $data = grade::get_data($this->course, $this->user);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, grade::CLASS_NAME, $data);
 
-        $this->html = help_base::replace($this->html, "course_categories", course_categories::get_data($this->course));
+        $data = course_categories::get_data($this->course);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, course_categories::CLASS_NAME, $data);
 
-        $this->html = help_base::replace($this->html, "USER", user::get_data($this->user));
+        $data = user::get_data($this->user);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, user::CLASS_NAME, $data);
 
-        $this->html = help_base::replace($this->html, "teachers", teachers::get_data($this->course));
+        $data = teachers::get_data($this->course);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, teachers::CLASS_NAME, $data);
 
-        $this->html = help_base::replace($this->html, "enrolments", enrolments::get_data($this->course, $this->user));
+        $data = enrolments::get_data($this->course, $this->user);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, enrolments::CLASS_NAME, $data);
 
-        $this->html = functions::replace($this->html, $this->user);
+        $this->page->htmldata = functions::replace($this->page->htmldata, $this->user);
+    }
 
-        return $this->html;
+    public function repace_signature() {
+        global $CFG;
+
+        $config = get_config('certificatebeautiful');
+        if ($config->config_signature_enable) {
+            $typography = $config->config_signature_typography;
+            $color = $config->config_signature_color;
+
+            $text = $config->config_signature_text;
+            $text = preg_replace('/[^A-Za-z]/', '', $text);
+            $text = substr($text, 0, 10);
+            $text = ucfirst(strtolower($text));
+
+
+            $file = "{$CFG->dirroot}/mod/certificatebeautiful/_editor/fonts/_signature-{$typography}/_signatre-{$typography}.svg";
+            if (file_exists($file)) {
+                $svg = file_get_contents($file);
+                $svg = str_replace("#324A55", $color, $svg);
+                $svg = str_replace(">Kraus<", ">{$text}<", $svg);
+
+                $svgdata = 'src="data:image/svg+xml;base64,' . base64_encode($svg) . '"';
+
+                $this->page->htmldata = preg_replace('/src=".*?\/assets\/signature.png"/', $svgdata, $this->page->htmldata);
+            }
+        }
+    }
+
+    public function repace_css() {
+
+        $replace_tags_replace_fonts = function ($input) {
+            $fonts = font_util::mpdf_list_fonts();
+
+            foreach ($fonts['listfonts'] as $listfont) {
+                $fontnameid = $listfont->fontnameid;
+                //  $fontfamily = $listfont->fontfamily;
+
+                $input[0] = str_replace("{$fontnameid},", "", $input[0]);
+            }
+
+            return $input[0];
+        };
+
+        $this->page->htmldata = preg_replace_callback('/-description\s?\{(.*?)}/s', $replace_tags_replace_fonts, $this->page->htmldata);
+        $this->page->cssdata = preg_replace_callback('/-description\s?\{(.*?)}/s', $replace_tags_replace_fonts, $this->page->cssdata);
+
+        // die($this->page->cssdata);
+    }
+
+    public function out_page() {
+        return $this->page;
     }
 }
+

@@ -23,6 +23,9 @@
 namespace mod_certificatebeautiful\help;
 
 class user extends help_base {
+
+    CONST CLASS_NAME = "user";
+
     /**
      * @return array
      *

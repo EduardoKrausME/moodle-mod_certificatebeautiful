@@ -23,6 +23,9 @@
 namespace mod_certificatebeautiful\help;
 
 class site extends help_base {
+
+    CONST CLASS_NAME = "site";
+
     /**
      * @return array
      *

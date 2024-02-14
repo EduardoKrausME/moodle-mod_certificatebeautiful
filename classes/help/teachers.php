@@ -25,6 +25,9 @@ namespace mod_certificatebeautiful\help;
 use context_course;
 
 class teachers extends help_base {
+
+    CONST CLASS_NAME = "teachers";
+
     /**
      * @return array
      *

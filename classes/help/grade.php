@@ -26,6 +26,9 @@ use grade_grade;
 use grade_item;
 
 class grade extends help_base {
+
+    CONST CLASS_NAME = "grade";
+
     /**
      * @return array
      *
@@ -39,8 +42,8 @@ class grade extends help_base {
     }
 
     /**
-     * @param $course
-     * @param $user
+     * @param \stdClass $course
+     * @param \stdClass $user
      *
      * @return array
      *

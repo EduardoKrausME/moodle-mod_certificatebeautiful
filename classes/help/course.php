@@ -23,6 +23,9 @@
 namespace mod_certificatebeautiful\help;
 
 class course extends help_base {
+
+    CONST CLASS_NAME = "course";
+
     /**
      * @return array
      *

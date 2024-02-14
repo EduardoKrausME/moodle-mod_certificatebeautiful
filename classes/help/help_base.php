@@ -82,34 +82,39 @@ class help_base {
      */
     public static function get_editor_components() {
 
-        $helps = [
-            course::class,
-            user_profile::class,
-            teachers::class,
-            certificate::class,
-            site::class,
-            functions::class,
-            course_categories::class,
-            enrolments::class,
-            user::class,
-            grade::class
+        $classnames = [
+            "course",
+            "user_profile",
+            "teachers",
+            "certificate_issue",
+            "site",
+            "functions",
+            "course_categories",
+            "enrolments",
+            "user",
+            "grade"
         ];
 
         $components = [];
-        /** @var course $help */
-        foreach ($helps as $help) {
+        foreach ($classnames as $classname) {
 
-            $classsname = str_replace('mod_certificatebeautiful\help\\', "", $help);
-            $classsnameup = strtoupper($classsname);
-            $classstitle = get_string("help_{$classsname}__name", 'certificatebeautiful');
+            /** @var course $class */
+            $class = "\mod_certificatebeautiful\help\\" . $classname;
+            $classsnameup = strtoupper($class::CLASS_NAME);
+            $classstitle = get_string("help_{$classname}__name", 'certificatebeautiful');
 
-            $structures = $help::table_structure();
-            foreach ($structures as $structure) {
-                $label = $structure['label'];
+            foreach ($class::table_structure() as $structure) {
+                $label = strip_tags($structure['label']);
                 $label = str_replace("'", "\\'", $label);
 
+                if (strpos($structure['key'], "}")) {
+                    $key = $structure['key'];
+                } else {
+                    $key = "{\${$classsnameup}->{$structure['key']}}";
+                }
+
                 $components[] = "
-                    editor.BlockManager.add('{$classsname}_{$structure['key']}', {
+                    editor.BlockManager.add('{$classname}_{$structure['key']}', {
                         label    : '{$label}',
                         content  : {
                             components : `<div data-gjs-type=\"text\"
@@ -119,7 +124,7 @@ class help_base {
                                                data-gjs-editable=\"false\">{\${$classsnameup}->{$structure['key']}}</div>`,
                             droppable  : ['section'],
                         },
-                        media    : '{\${$classsnameup}->{$structure['key']}}',
+                        media    : '{$key}',
                         category : \"{$classstitle}\",
                     });";
             }
@@ -134,41 +139,46 @@ class help_base {
     public static function get_form_components() {
         global $OUTPUT;
 
-        $helps = [
-            course::class,
-            user_profile::class,
-            teachers::class,
-            // certificate::class,
-            site::class,
-            functions::class,
-            course_categories::class,
-            enrolments::class,
-            user::class,
-            grade::class
+        $classnames = [
+            "course",
+            "user_profile",
+            "teachers",
+            "certificate_issue",
+            "site",
+            "functions",
+            "course_categories",
+            "enrolments",
+            "user",
+            "grade"
         ];
 
         $data = ['itens' => []];
-        /** @var course $help */
-        foreach ($helps as $help) {
+        foreach ($classnames as $classname) {
 
-            $classsname = str_replace('mod_certificatebeautiful\help\\', "", $help);
-            $classsnameup = strtoupper($classsname);
+            /** @var course $class */
+            $class = "\mod_certificatebeautiful\help\\" . $classname;
+            $classsnameup = strtoupper($class::CLASS_NAME);
 
             $structuresitens = [];
-            $structures = $help::table_structure();
-            foreach ($structures as $structure) {
+            foreach ($class::table_structure() as $structure) {
                 $label = $structure['label'];
                 $label = str_replace("'", "\\'", $label);
 
+                if (strpos($structure['key'], "}")) {
+                    $key = $structure['key'];
+                } else {
+                    $key = "{\${$classsnameup}->{$structure['key']}}";
+                }
+
                 $structuresitens[] = [
                     'label' => $label,
-                    'key' => "{\${$classsnameup}->{$structure['key']}}",
+                    'key' => $key,
                 ];
             }
 
             if ($structuresitens) {
                 $data['itens'][] = [
-                    'classstitle' => get_string("help_{$classsname}__name", 'certificatebeautiful'),
+                    'classstitle' => get_string("help_{$classname}__name", 'certificatebeautiful'),
                     'structuresitens' => $structuresitens
                 ];
             }

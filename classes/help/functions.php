@@ -23,6 +23,9 @@
 namespace mod_certificatebeautiful\help;
 
 class functions {
+
+    CONST CLASS_NAME = "";
+
     /**
      * @return array
      *
@@ -30,9 +33,9 @@ class functions {
      */
     public static function table_structure() {
         return [
-            ['key' => 'date', 'label' => get_string('help_functions_date', 'certificatebeautiful')],
-            ['key' => 'userdate', 'label' => get_string('help_functions_userdate', 'certificatebeautiful')],
-            ['key' => 'time', 'label' => get_string('help_functions_time', 'certificatebeautiful')],
+            ['key' => '{{date(xxx)}}', 'label' => get_string('help_functions_date', 'certificatebeautiful')],
+            ['key' => '{{userdate(xx,yy)}}', 'label' => get_string('help_functions_userdate', 'certificatebeautiful')],
+            ['key' => '{{time()}}', 'label' => get_string('help_functions_time', 'certificatebeautiful')],
         ];
     }
 

@@ -23,8 +23,13 @@ namespace mod_certificatebeautiful\help;
 
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
+use mod_certificatebeautiful\vo\certificatebeautiful;
+use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 
-class certificate extends help_base {
+class certificate_issue extends help_base {
+
+    CONST CLASS_NAME = "certificate";
+
     /**
      * @return array
      *
@@ -32,8 +37,8 @@ class certificate extends help_base {
      */
     public static function table_structure() {
         return [
-            ['key' => 'name', 'label' => get_string('help_certificate_name', 'certificatebeautiful')],
-            ['key' => 'description', 'label' => get_string('help_certificate_description', 'certificatebeautiful')],
+            ['key' => 'name', 'label' => get_string('help_certificate_issue_name', 'certificatebeautiful')],
+            ['key' => 'description', 'label' => get_string('help_certificate_issue_description', 'certificatebeautiful')],
             ['key' => 'timecreated', 'label' => get_string('help_certificate_issue_timecreated', 'certificatebeautiful')],
             ['key' => 'code', 'label' => get_string('help_certificate_issue_code', 'certificatebeautiful')],
             ['key' => 'url', 'label' => get_string('help_certificate_issue_url', 'certificatebeautiful')],
@@ -41,29 +46,34 @@ class certificate extends help_base {
     }
 
     /**
-     * @param \stdClass $certificatebeautiful
+     * @param certificatebeautiful $certificatebeautiful
+     * @param certificatebeautiful_issue $certificatebeautifulissue
      *
      * @return array
      *
      * @throws \coding_exception
+     * @throws \dml_exception
      */
-    public static function get_data($certificatebeautiful) {
-        global $CFG;
+    public static function get_data($certificatebeautiful, $certificatebeautifulissue) {
+        global $CFG, $DB;
 
         require_once(__DIR__ . "/vendor/autoload.php");
 
-        $certificatebeautiful->url = "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$certificatebeautiful->code}";
+        $certificatebeautiful->description = trim($certificatebeautiful->description);
+        $certificatebeautiful->description = str_replace("\n", "<br>", $certificatebeautiful->description);
+
+        $certificatebeautiful->url = "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$certificatebeautifulissue->code}";
 
         return self::base_get_data(self::table_structure(), $certificatebeautiful);
     }
 
     /**
      * @param string $html
-     * @param \stdClass $certificatebeautiful
+     * @param array $certificatebeautifulissue
      *
      * @return mixed
      */
-    public static function custom_replace($html, $certificatebeautiful) {
+    public static function custom_replace($html, $certificatebeautifulissue) {
 
         if (strpos($html, "img/qr-code.svg")) {
             $options = new QROptions([
@@ -71,7 +81,7 @@ class certificate extends help_base {
                 'scale' => 20,
                 'addQuietzone' => false
             ]);
-            $qrcode = (new QRCode($options))->render($certificatebeautiful['url']);
+            $qrcode = (new QRCode($options))->render($certificatebeautifulissue['url']);
             $html = str_replace("img/qr-code.svg", $qrcode, $html);
         }
 

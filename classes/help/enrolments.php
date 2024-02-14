@@ -23,6 +23,9 @@
 namespace mod_certificatebeautiful\help;
 
 class enrolments extends help_base {
+
+    CONST CLASS_NAME = "enrolments";
+
     /**
      * @return array
      *
