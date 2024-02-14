@@ -40,6 +40,7 @@ $PAGE->set_heading(get_string('from_certificates', 'certificatebeautiful', fulln
 require_login();
 require_capability('mod/certificatebeautiful:view', $context);
 
+$PAGE->requires->css('/mod/certificatebeautiful/assets/style.css');
 echo $OUTPUT->header();
 
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/report/certificatebeautiful_view_user.php");

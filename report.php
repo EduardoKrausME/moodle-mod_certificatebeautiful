@@ -73,6 +73,7 @@ if (!$table->is_downloading()) {
     $PAGE->set_url('/mod/certificatebeautiful/report.php', array('id' => $cm->id));
     $PAGE->set_title("{$course->shortname}: {$certificatebeautiful->name}");
     $PAGE->set_heading($course->fullname);
+    $PAGE->requires->css('/mod/certificatebeautiful/assets/style.css');
     echo $OUTPUT->header();
 
     $title = get_string('report_filename', 'certificatebeautiful');
