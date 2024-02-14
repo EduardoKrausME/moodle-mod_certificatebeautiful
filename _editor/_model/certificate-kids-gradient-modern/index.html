@@ -1,28 +1,19 @@
-<div draggable="false" id="certificate-kids-gradient-modern-in7m">{#s}certtitle{/s}</div>
-<div draggable="false" id="certificate-kids-gradient-modern-ilmx">{#s}subtititle{/s}</div>
-<div draggable="false" id="certificate-kids-gradient-modern-i2ae">{#s}certpresented{/s}</div>
-<div draggable="false" id="certificate-kids-gradient-modern-indv">
-    <table id="certificate-kids-gradient-modern-imc7">
-        <tbody>
-        <tr>
-            <td id="certificate-kids-gradient-modern-ifius">{$USER-&gt;fullname}            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div draggable="false" id="certificate-kids-gradient-modern-descricao">{$certificate->description}</div>
-<div draggable="false" id="certificate-kids-gradient-modern-assinatura">
-    <table id="certificate-kids-gradient-modern-ijumf">
+<div id="certificate-kids-gradient-modern-certtitle">{#s}certtitle{/s}</div>
+<div id="certificate-kids-gradient-modern-subtititle">{#s}subtititle{/s}</div>
+<div id="certificate-kids-gradient-modern-certpresented">{#s}certpresented{/s}</div>
+<div id="certificate-kids-gradient-modern-fullname">{$USER-&gt;fullname}</div>
+<div id="certificate-kids-gradient-modern-description">{$certificate-&gt;description}</div>
+<div id="certificate-kids-gradient-modern-signature">
+    <table draggable="false" id="certificate-kids-gradient-modern-ijumf">
         <tbody>
         <tr>
             <td id="certificate-kids-gradient-modern-ipakn">
                 <span id="certificate-kids-gradient-modern-ipjgg">{{userdate(time(),strftimedate)}}</span>
             </td>
-            <td rowspan="2" id="certificate-kids-gradient-modern-i24ph">
-            </td>
+            <td rowspan="2" id="certificate-kids-gradient-modern-i24ph"></td>
             <td id="certificate-kids-gradient-modern-i09dh">
                 <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-gradient-modern/assets/signature.png"
-                     id="certificate-kids-gradient-modern-i9fsk" width="84" height="63"/>
+                     id="certificate-kids-gradient-modern-i9fsk" height="90"/>
             </td>
         </tr>
         <tr>
@@ -40,106 +31,107 @@
     [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-kids-gradient-modern/assets/background.png);
         position: relative;
-        height: 595px;
+        height: 673px;
         width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
-    #certificate-kids-gradient-modern-in7m {
+    #certificate-kids-gradient-modern-certtitle {
         text-align: center;
         font-size: 54px;
         color: #36338b;
-        font-family: bebas-neue-regular;
-        font-weight: 700;
+        font-family: bebas-neue-regular, 'Bebas Neue';
         text-transform: uppercase;
-        width: 100%;
+        width: 955px;
         letter-spacing: 3px;
         top: 96px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
     }
-    #certificate-kids-gradient-modern-ilmx {
+    #certificate-kids-gradient-modern-subtititle {
         text-align: center;
         font-size: 20px;
         color: #cd347d;
-        font-family: josefin-sans-bold;
-        width: 100%;
-        top: 167px;
+        font-family: josefin-sans-bold, 'Josefin Sans';
+        width: 955px;
+        top: 152px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
+        text-transform: uppercase;
+        font-weight: 700;
     }
-    #certificate-kids-gradient-modern-i2ae {
-        font-family: josefin-sans-bold;
-        font-weight: 300;
+    #certificate-kids-gradient-modern-certpresented {
+        font-family: josefin-sans-bold, 'Josefin Sans';
         text-align: center;
         color: #36338b;
         font-size: 14px;
-        width: 100%;
+        width: 955px;
         text-transform: uppercase;
         top: 210px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
+        font-weight: 700;
     }
-    #certificate-kids-gradient-modern-ifius {
+    #certificate-kids-gradient-modern-fullname {
         color: #dfa842;
         font-size: 60px;
-        font-family: 'Alex Brush';
+        font-family: alex-brush-regular, 'Alex Brush';
         font-weight: 700;
         text-align: center;
         white-space: nowrap;
+        top: 237px;
+        left: 90px;
+        right: 90px;
+        position: absolute;
+        height: 79px;
     }
-    #certificate-kids-gradient-modern-descricao {
+    #certificate-kids-gradient-modern-description {
         text-align: center;
-        font-family: josefin-sans-regular;
-        font-weight: 300;
+        font-family: josefin-sans-regular, 'Josefin Sans';
         font-size: 14px;
         color: #36338b;
-        width: auto;
+        width: 549px;
         line-height: 19px;
-        height: 98px;
-        top: 334px;
-        left: 143px;
-        margin-top: 0px;
+        top: 337px;
+        left: 203px;
         position: absolute;
         right: 143px;
     }
-    #certificate-kids-gradient-modern-assinatura {
-        width: 100%;
+    #certificate-kids-gradient-modern-signature {
+        width: 955px;
         margin: 0 auto;
-        top: 499px;
+        top: 452px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
     }
     #certificate-kids-gradient-modern-ipjgg {
         color: #191664;
-        font-family: josefin-sans-regular;
+        font-family: josefin-sans-regular, 'Josefin Sans';
         display: block;
         text-align: center;
         white-space: nowrap;
     }
     #certificate-kids-gradient-modern-il3aj {
         color: #36338b;
-        font-family: josefin-sans-bold;
+        font-family: josefin-sans-bold, 'Josefin Sans';
         text-align: center;
         display: block;
         white-space: nowrap;
-        font-size: 25px;
+        font-size: 18px;
+        font-weight: 700;
     }
     #certificate-kids-gradient-modern-iprc6 {
         color: #36338b;
-        font-family: josefin-sans-bold;
+        font-family: josefin-sans-bold, 'Josefin Sans';
         text-align: center;
         display: block;
         white-space: nowrap;
-        font-size: 25px;
+        font-size: 18px;
+        font-weight: 700;
     }
     #certificate-kids-gradient-modern-i9fsk {
-        margin: 0 0 -23px;
+        margin: 0 0 -30px;
     }
     #certificate-kids-gradient-modern-ijumf {
         margin: 0 auto;
@@ -164,15 +156,5 @@
     }
     #certificate-kids-gradient-modern-i24ph {
         width: 104px;
-    }
-    #certificate-kids-gradient-modern-imc7 {
-        width: 100%;
-    }
-    #certificate-kids-gradient-modern-indv {
-        top: 237px;
-        left: 90px;
-        right: 90px;
-        margin-top: 0px;
-        position: absolute;
     }
 </style>

@@ -1,26 +1,15 @@
-<div draggable="false" id="certificate-modern-i3vg">{$SITE-&gt;fullname}</div>
-<div draggable="false" id="certificate-modern-in7m">{#s}certtitle{/s}</div>
-<div draggable="false" id="certificate-modern-ilmx">{#s}subtititle{/s}</div>
-<div draggable="false" id="certificate-modern-i2ae">{#s}certpresented{/s}</div>
-<div draggable="false" id="certificate-modern-ifuql">
-    <table id="certificate-modern-itcpw">
-        <tbody>
-        <tr>
-            <td>
-                <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/left.png"/>
-            </td>
-            <td id="certificate-modern-i1y54">{$USER-&gt;fullname}
-            </td>
-            <td>
-                <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/right.png"/>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div id="certificate-modern-sitefullname">{$SITE-&gt;fullname}</div>
+<div id="certificate-modern-certtitle">{#s}certtitle{/s}</div>
+<div id="certificate-modern-subtititle">{#s}subtititle{/s}</div>
+<div id="certificate-modern-certpresented">{#s}certpresented{/s}</div>
+<div id="certificate-modern-fullname">
+    <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/left.png"/>
+    {$USER-&gt;fullname}
+    <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/right.png"/>
 </div>
-<div draggable="false" id="certificate-modern-descricao">{$certificate->description}</div>
-<div draggable="false" id="certificate-modern-assinatura">
-    <table id="certificate-modern-i50gy">
+<div id="certificate-modern-description">{$certificate-&gt;description}</div>
+<div id="certificate-modern-signature">
+    <table draggable="false" id="certificate-modern-i50gy">
         <tbody>
         <tr>
             <td id="certificate-modern-i12ag">
@@ -32,7 +21,7 @@
             </td>
             <td id="certificate-modern-it6eh">
                 <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/signature.png"
-                     id="certificate-modern-i9fsk" width="84" height="63"/>
+                     id="certificate-modern-i9fsk" height="90"/>
             </td>
         </tr>
         <tr>
@@ -50,85 +39,76 @@
     [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-modern/assets/background.png);
         position: relative;
-        height: 595px;
+        height: 673px;
         width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
-    #certificate-modern-i3vg {
+    #certificate-modern-sitefullname {
         text-align: right;
-        font-family: Arial;
+        font-family: montserrat-medium, 'Montserrat Medium';
         color: #42747f;
         font-size: 29px;
         top: 15px;
         right: 0px;
-        margin-top: 0px;
         position: absolute;
         width: 400px;
         left: 428px;
     }
-    #certificate-modern-in7m {
+    #certificate-modern-certtitle {
         text-align: center;
-        margin: 9px 0 0 0;
         font-size: 43px;
         letter-spacing: 3px;
         color: #42747f;
-        font-family: Montserrat;
-        font-weight: 800;
+        font-family: montserrat-extrabold, 'Montserrat ExtraBold';
         text-transform: uppercase;
-        width: 100%;
-        top: 72px;
+        width: 955px;
+        top: 81px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
+        font-weight: 800;
     }
-    #certificate-modern-ilmx {
+    #certificate-modern-subtititle {
         text-align: center;
         font-size: 20px;
         color: #fff;
-        font-family: Montserrat;
-        font-weight: 600;
-        width: 100%;
+        font-family: montserrat-semibold, 'Montserrat SemiBold';
+        width: 955px;
         top: 169px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
+        font-weight: 600;
     }
-    #certificate-modern-i2ae {
-        font-family: Montserrat;
-        font-weight: 100;
+    #certificate-modern-certpresented {
+        font-family: montserrat-thin, 'Montserrat Thin';
         text-align: center;
         color: #42747f;
         font-size: 15px;
-        width: 100%;
+        width: 955px;
         text-transform: uppercase;
         top: 215px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
+        font-weight: 100;
     }
-    #certificate-modern-descricao {
+    #certificate-modern-description {
         text-align: center;
-        font-family: Lato;
+        font-family: montserrat-light, 'Montserrat Light';
         font-weight: 300;
         font-size: 16px;
         letter-spacing: 0;
         color: rgb(55, 65, 81);
-        width: auto;
-        height: 131px;
-        top: 326px;
-        left: 115px;
-        margin-top: 0px;
-        position: absolute;
-        right: 115px;
+        width:632px;
+        position:absolute;
+        top: 337px;
+        left:161px;
     }
-    #certificate-modern-assinatura {
-        width: 100%;
+    #certificate-modern-signature {
+        width: 955px;
         margin: 0 auto;
         top: 515px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
     }
     #certificate-modern-il59t {
@@ -138,24 +118,27 @@
     }
     #certificate-modern-ipjgg {
         color: #858585;
-        font-family: Lato;
+        font-family: montserrat-light, 'Montserrat Light';
         display: block;
         text-align: center;
         white-space: nowrap;
+        font-weight: 300;
     }
     #certificate-modern-il3aj {
         color: #2c2c47;
-        font-family: Montserrat;
+        font-family: montserrat-bold, 'Montserrat';
         text-align: center;
         display: block;
         white-space: nowrap;
+        font-weight: 700;
     }
     #certificate-modern-iprc6 {
         color: #2c2c47;
-        font-family: Montserrat;
+        font-family: montserrat-bold, 'Montserrat';
         text-align: center;
         display: block;
         white-space: nowrap;
+        font-weight: 700;
     }
     #certificate-modern-i12ag {
         text-align: center;
@@ -169,7 +152,7 @@
         border-bottom: 1px solid #000;
     }
     #certificate-modern-i9fsk {
-        margin: 0 0 -20px 0;
+        margin: 0 0 -30px;
     }
     #certificate-modern-i50gy {
         margin: 0 auto;
@@ -182,9 +165,8 @@
         vertical-align: top;
         text-align: center;
     }
-    #certificate-modern-i1y54 {
-        font-family: Montserrat;
-        font-weight: 800;
+    #certificate-modern-fullname {
+        font-family: montserrat-extrabold, 'Montserrat ExtraBold';
         color: #2c2c47;
         font-size: 49px;
         text-align: center;
@@ -193,15 +175,12 @@
         justify-content: center;
         flex-wrap: nowrap;
         white-space: nowrap;
-    }
-    #certificate-modern-itcpw {
-        margin: 0 auto 0 auto;
-    }
-    #certificate-modern-ifuql {
         top: 234px;
-        left: 60px;
+        left: 98px;
         right: 60px;
-        margin-top: 0px;
         position: absolute;
+        height: 77px;
+        width: 772px;
+        font-weight: 800;
     }
 </style>

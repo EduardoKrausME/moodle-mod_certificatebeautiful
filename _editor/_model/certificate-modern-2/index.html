@@ -1,28 +1,14 @@
-<div id="certificate-modern-2-iz3h1">
+<div id="certificate-modern-2-logo">
     <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern-2/assets/logo.png" width="67" height="67"/>
 </div>
-<div draggable="false" id="certificate-modern-2-i3vg">{$SITE-&gt;fullname}
-</div>
-<div draggable="false" id="certificate-modern-2-in7m">{#s}certtitle{/s}
-</div>
-<div draggable="false" id="certificate-modern-2-ilmx">{#s}subtititle{/s}
-</div>
-<div draggable="false" id="certificate-modern-2-i2ae">{#s}certpresented{/s}
-</div>
-<div draggable="false" id="certificate-modern-2-istff">
-    <table id="certificate-modern-2-i9q41">
-        <tbody>
-        <tr>
-            <td id="certificate-modern-2-isq9s">{$USER-&gt;fullname}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div draggable="false" id="certificate-modern-2-descricao">{$certificate-&gt;description}
-</div>
-<div draggable="false" id="certificate-modern-2-assinatura">
-    <table id="certificate-modern-2-ix0wk">
+<div id="certificate-modern-2-sitefullname">{$SITE-&gt;fullname}</div>
+<div id="certificate-modern-2-certtitle">{#s}certtitle{/s}</div>
+<div id="certificate-modern-2-subtititle">{#s}subtititle{/s}</div>
+<div id="certificate-modern-2-certpresented">{#s}certpresented{/s}</div>
+<div id="certificate-modern-2-fullname">{$USER-&gt;fullname}</div>
+<div id="certificate-modern-2-description">{$certificate-&gt;description}</div>
+<div id="certificate-modern-2-signature">
+    <table draggable="false" id="certificate-modern-2-ix0wk">
         <tbody>
         <tr>
             <td id="certificate-modern-2-i12ag">
@@ -31,7 +17,8 @@
             <td id="certificate-modern-2-il59t" rowspan="2">
             </td>
             <td id="certificate-modern-2-it6eh">
-                <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern-2/assets/signature.png" id="elegant-i9fsk" width="84" height="63"/>
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-modern-2/assets/signature.png"
+                     id="certificate-modern-2-i9fsk" height="90"/>
             </td>
         </tr>
         <tr>
@@ -46,148 +33,153 @@
     </table>
 </div>
 <style>
-    [data-gjs-type=wrapper]{
-        background-image:url(/mod/certificatebeautiful/_editor/_model/certificate-modern-2/assets/background.png);
-        position:relative;
-        height:595px;
-        width:955px;
-        background-repeat:no-repeat;
-        background-position:center;
-        background-size:cover;
+    [data-gjs-type=wrapper] {
+        background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-modern-2/assets/background.png);
+        position: relative;
+        height: 673px;
+        width: 955px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
     }
-    #certificate-modern-2-iz3h1{
-        color:black;
-        left:194px;
-        top:83px;
-        position:absolute;
+    #certificate-modern-2-logo {
+        color: black;
+        left: 194px;
+        top: 83px;
+        position: absolute;
     }
-    #certificate-modern-2-i3vg{
-        text-align:center;
-        font-family:Arial;
-        color:#fff;
-        font-size:29px;
-        position:absolute;
-        top:158px;
-        left:47px;
-        width:361px;
+    #certificate-modern-2-sitefullname {
+        text-align: center;
+        font-family: montserrat-light, 'Montserrat Light';
+        color: #fff;
+        font-size: 26px;
+        position: absolute;
+        top: 158px;
+        left: 47px;
+        width: 361px;
     }
-    #certificate-modern-2-in7m{
-        text-align:center;
-        font-size:40px;
-        font-family:montserrat-bold;
-        text-transform:uppercase;
-        width:361px;
-        position:absolute;
-        top:248px;
-        left:47px;
-        color:#fff;
+    #certificate-modern-2-certtitle {
+        text-align: center;
+        font-size: 40px;
+        font-family: montserrat-bold, 'Montserrat';
+        text-transform: uppercase;
+        width: 361px;
+        position: absolute;
+        top: 248px;
+        left: 47px;
+        color: #fff;
+        font-weight: 700;
     }
-    #certificate-modern-2-ilmx{
-        text-align:center;
-        font-size:17px;
-        color:#fff;
-        font-family:montserrat-regular;
-        width:361px;
-        position:absolute;
-        top:311px;
-        left:47px;
-        text-transform:uppercase;
+    #certificate-modern-2-subtititle {
+        text-align: center;
+        font-size: 17px;
+        color: #fff;
+        font-family: montserrat-regular, 'Montserrat';
+        width: 361px;
+        position: absolute;
+        top: 311px;
+        left: 47px;
+        text-transform: uppercase;
     }
-    #certificate-modern-2-isq9s{
-        color:#262425;
-        font-size:43px;
-        font-family:montserrat-bold;
-        font-weight:400;
-        width:100%;
-        white-space:nowrap;
-        height:74px;
+    #certificate-modern-2-fullname {
+        color: #262425;
+        font-size: 43px;
+        font-family: montserrat-bold, 'Montserrat';
+        width: 443px;
+        white-space: nowrap;
+        height: 86px;
+        position: absolute;
+        top: 211px;
+        left: 435px;
+        font-weight: 700;
     }
-    #certificate-modern-2-descricao{
-        text-align:left;
-        line-height:18px;
-        font-family:open-sans-regular;
-        font-size:16px;
-        color:#262425;
-        height:170px;
-        width:543px;
-        letter-spacing:1px;
-        position:absolute;
-        top:337px;
-        left:435px;
+    #certificate-modern-2-description {
+        text-align: left;
+        line-height: 18px;
+        font-family: open-sans-regular, 'Open Sans';
+        font-size: 16px;
+        color: #262425;
+        width: 491px;
+        letter-spacing: 1px;
+        position: absolute;
+        top: 337px;
+        left: 435px;
     }
-    #certificate-modern-2-assinatura{
-        position:absolute;
-        top:536px;
-        left:391px;
-        right:30px;
-        text-align:center;
+    #certificate-modern-2-signature {
+        position: absolute;
+        top: 497px;
+        left: 383px;
+        right: 30px;
+        text-align: center;
     }
-    #certificate-modern-2-il59t{
-        width:120px;
-        top:428px;
-        left:337px;
+    #certificate-modern-2-il59t {
+        width: 120px;
+        top: 428px;
+        left: 337px;
     }
-    #certificate-modern-2-ipjgg{
-        color:#000;
-        font-family:montserrat-medium;
-        display:block;
-        text-align:center;
-        white-space:nowrap;
+    #certificate-modern-2-ipjgg {
+        color: #000;
+        font-family: montserrat-medium, 'Montserrat Medium';
+        display: block;
+        text-align: center;
+        white-space: nowrap;
+        font-weight: 500;
     }
-    #certificate-modern-2-il3aj{
-        color:#1d323f;
-        font-family:montserrat-bold;
-        text-align:center;
-        display:block;
-        white-space:nowrap;
+    #certificate-modern-2-il3aj {
+        color: #1d323f;
+        font-family: montserrat-bold, 'Montserrat';
+        text-align: center;
+        display: block;
+        white-space: nowrap;
+        font-weight: 700;
     }
-    #certificate-modern-2-iprc6{
-        color:#1d323f;
-        font-family:montserrat-bold;
-        text-align:center;
-        display:block;
-        white-space:nowrap;
+    #certificate-modern-2-iprc6 {
+        color: #1d323f;
+        font-family: montserrat-bold, 'Montserrat';
+        text-align: center;
+        display: block;
+        white-space: nowrap;
+        font-weight: 700;
     }
-    #certificate-modern-2-i12ag{
-        text-align:center;
-        vertical-align:bottom;
-        border-bottom:1px solid #000;
+    #certificate-modern-2-i12ag {
+        text-align: center;
+        vertical-align: bottom;
+        border-bottom: 1px solid #000;
     }
-    #certificate-modern-2-it6eh{
-        width:200px;
-        text-align:center;
-        border-bottom:1px solid #000;
+    #certificate-modern-2-it6eh {
+        width: 200px;
+        text-align: center;
+        border-bottom: 1px solid #000;
     }
-    #certificate-modern-2-i2ae{
-        text-align:center;
-        font-family:montserrat-medium;
-        color:#262425;
-        font-size:17px;
-        position:absolute;
-        top:191px;
-        left:447px;
-        right:64px;
-        text-transform:uppercase;
+    #certificate-modern-2-certpresented {
+        text-align: left;
+        font-family: montserrat-medium, 'Montserrat Medium';
+        color: #262425;
+        font-size: 17px;
+        position: absolute;
+        top: 158px;
+        left: 435px;
+        right: 64px;
+        text-transform: uppercase;
+        height: 23px;
+        width: 472px;
+        font-weight: 500;
     }
-    #certificate-modern-2-ix0wk{
-        margin:0 auto;
+    #certificate-modern-2-ix0wk {
+        margin: 0 auto;
+        left: 6px;
+        top: -38px;
+        position: absolute;
+        width: 533px;
+        height: 94px;
     }
-    #elegant-i9fsk{
-        margin:0 0 -20px;
+    #certificate-modern-2-i9fsk {
+        margin: 0 0 -30px;
     }
-    #certificate-modern-2-i12ag-3{
-        text-align:center;
+    #certificate-modern-2-i12ag-3 {
+        text-align: center;
     }
-    #certificate-modern-2-it6eh-3{
-        text-align:center;
+    #certificate-modern-2-it6eh-3 {
+        text-align: center;
     }
-    #certificate-modern-2-i9q41{
-        width:100%;
-    }
-    #certificate-modern-2-istff{
-        position:absolute;
-        top:233px;
-        left:447px;
-        width:475px;
-    }
-    [data-gjs-type=wrapper] > [data-gjs-type=wrapper] > </style>
+</style>

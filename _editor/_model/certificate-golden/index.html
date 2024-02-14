@@ -1,40 +1,20 @@
-<div draggable="false" id="certificate-golden-in7m">{#s}certtitle{/s}</div>
-<div draggable="false" id="certificate-golden-ilmx">{#s}subtititle{/s}</div>
-<div draggable="false" id="certificate-golden-i2ae">{#s}certpresented{/s}</div>
-<div draggable="false" id="certificate-golden-fullname">
-    <table id="certificate-golden-iesz">
-        <tbody>
-        <tr>
-            <td id="certificate-golden-isq9s">{$USER-&gt;fullname}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div draggable="false" id="certificate-golden-ihxs1">
-    <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line.png"/>
-</div>
-<div draggable="false" id="certificate-golden-descricao">{$certificate->description}</div>
-<div draggable="false" id="certificate-golden-assinatura">
-    <table id="certificate-golden-ic6m9">
+<div id="certificate-golden-certtitle">{#s}certtitle{/s}</div>
+<div id="certificate-golden-subtititle">{#s}subtititle{/s}</div>
+<div id="certificate-golden-certpresented">{#s}certpresented{/s}</div>
+<div id="certificate-golden-fullname">{$USER-&gt;fullname}</div>
+<div id="certificate-golden-description">{$certificate-&gt;description}</div>
+<div id="certificate-golden-signature">
+    <table draggable="false" id="certificate-golden-ic6m9">
         <tbody>
         <tr>
             <td id="certificate-golden-i12ag">
                 <span id="certificate-golden-ipjgg">{{userdate(time(),strftimedate)}}</span>
             </td>
-            <td rowspan="3" id="certificate-golden-ifuql">
+            <td rowspan="2" id="certificate-golden-ifuql">
             </td>
             <td id="certificate-golden-it6eh">
                 <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/signature.png"
-                     id="certificate-golden-i9fsk-2" width="84" height="63"/>
-            </td>
-        </tr>
-        <tr>
-            <td id="certificate-golden-i12ag-2">
-                <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line-footer.png"/>
-            </td>
-            <td id="certificate-golden-it6eh-2">
-                <img src="/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line-footer.png"/>
+                     id="certificate-golden-i9fsk-2" height="90"/>
             </td>
         </tr>
         <tr>
@@ -48,105 +28,112 @@
         </tbody>
     </table>
 </div>
-<div draggable="false" id="certificate-golden-iajt" class="badge fixed-position">
-    <div draggable="false" id="certificate-golden-iptm">{#s}best{/s}
-    </div>
-    <div draggable="false" id="certificate-golden-ig2i">{{date(Y)}}
-    </div>
-    <div draggable="false" id="certificate-golden-izax">{#s}course{/s}
-    </div>
+<div id="certificate-golden-iajt" class="badge fixed-position">
+    <div id="certificate-golden-iptm">{#s}best{/s}</div>
+    <div id="certificate-golden-ig2i">{{date(Y)}}</div>
+    <div id="certificate-golden-izax">{#s}course{/s}</div>
 </div>
 <style>
     [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/background.png);
         position: relative;
-        height: 595px;
+        height: 673px;
         width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
-    #certificate-golden-in7m {
+    #certificate-golden-certtitle {
         text-align: center;
         font-size: 45px;
         letter-spacing: 4px;
         color: #c8992e;
-        font-family: 'Playfair Display';
+        font-family: playfair-display-regular, 'Playfair Display';
         font-weight: 400;
-        width: 100%;
+        width: 955px;
         position: absolute;
         top: 68px;
         left: 0px;
-        margin-top: 0px;
+        text-transform: uppercase;
     }
-    #certificate-golden-ilmx {
+    #certificate-golden-subtititle {
         text-align: center;
         font-size: 20px;
         color: #c8992e;
-        font-family: 'Open Sans';
+        font-family: open-sans-medium, 'Open Sans Medium';
         font-weight: 500;
-        width: 100%;
+        width: 955px;
         position: absolute;
         top: 123px;
         left: 0px;
-        margin-top: 0px;
+        text-transform: uppercase;
     }
-    #certificate-golden-isq9s {
+    #certificate-golden-fullname {
+        width: 826px;
+        top: 235px;
+        left: 90px;
+        position: absolute;
+        height: 87px;
         color: #15334c;
         font-size: 62px;
-        font-family: Parisienne;
+        font-family: parisienne, 'Parisienne';
         font-weight: 800;
         text-align: center;
         white-space: nowrap;
+        background: url(/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line.png);
+        background-repeat: no-repeat;
+        background-position: center bottom;
     }
-    #certificate-golden-descricao {
+    #certificate-golden-description {
         text-align: center;
         line-height: 20px;
-        font-family: 'Open Sans';
+        font-family: open-sans-light, 'Open Sans Light';
         font-weight: 300;
         font-size: 16px;
         letter-spacing: 1px;
         color: #454542;
         height: 122px;
-        width: auto;
-        position: absolute;
-        top: 350px;
-        left: 115px;
-        margin-top: 0px;
-        right: 115px;
+        width:632px;
+        position:absolute;
+        top: 352px;
+        left:161px;
     }
-    #certificate-golden-assinatura {
-        width: 100%;
+    #certificate-golden-signature {
+        width: 81%;
         margin: 0 auto;
         position: absolute;
         top: 496px;
-        left: 0px;
-        margin-top: 0px;
+        left: 4%;
     }
     #certificate-golden-ipjgg {
         color: #000;
-        font-family: 'Open Sans';
+        font-family: open-sans-regular, 'Open Sans';
         display: block;
         text-align: center;
         white-space: nowrap;
+        background: url(/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line-footer.png);
+        background-repeat: no-repeat;
+        background-position: center bottom;
     }
     #certificate-golden-il3aj {
         color: #15334c;
-        font-family: 'Open Sans';
+        font-family: open-sans-bold, 'Open Sans';
         text-align: center;
         display: block;
-        font-size: 12px;
+        font-size: 16px;
         margin: -4px 0 0 0;
         white-space: nowrap;
+        font-weight: 700;
     }
     #certificate-golden-iprc6 {
         color: #15334c;
-        font-family: 'Open Sans';
+        font-family: open-sans-bold, 'Open Sans';
         text-align: center;
         display: block;
-        font-size: 12px;
+        font-size: 16px;
         margin: -4px 0 0 0;
         white-space: nowrap;
+        font-weight: 700;
     }
     #certificate-golden-i12ag {
         text-align: center;
@@ -160,28 +147,21 @@
         height: 61px;
         top: 464px;
         left: 549px;
+        background: url(/mod/certificatebeautiful/_editor/_model/certificate-golden/assets/line-footer.png);
+        background-repeat: no-repeat;
+        background-position: center bottom;
     }
-    #certificate-golden-i2ae {
+    #certificate-golden-certpresented {
         text-align: center;
-        font-family: 'Open Sans';
+        font-family: open-sans-regular, 'Open Sans';
         font-weight: 400;
         color: #15334c;
         font-size: 16px;
-        margin: 25px 0 0 0;
-        width: 100%;
+        width: 955px;
         position: absolute;
-        top: 199px;
+        top: 220px;
         left: 0px;
-        margin-top: 0px;
-    }
-    #certificate-golden-ihxs1 {
-        text-align: center;
-        margin: -12px 0 0 0;
-        width: 100%;
-        position: absolute;
-        top: 291px;
-        left: 0px;
-        margin-top: 0px;
+        text-transform: uppercase;
     }
     #certificate-golden-iajt {
         width: 200px;
@@ -193,29 +173,28 @@
         background-repeat: no-repeat;
         background-size: cover;
         left: 635px;
-        margin-top: 0px;
     }
     #certificate-golden-iptm {
-        font-family: 'Open Sans';
+        font-family: open-sans-regular, 'Open Sans';
         font-weight: 300;
         font-size: 20px;
         margin: 49px 0 0 0;
         color: #fff;
     }
     #certificate-golden-ig2i {
-        font-family: 'DM Serif Display';
+        font-family: dm-serif-display-regular, 'DM Serif Display';
         font-weight: 600;
         font-size: 35px;
         color: #fff;
     }
     #certificate-golden-izax {
-        font-family: 'Open Sans';
+        font-family: open-sans-regular, 'Open Sans';
         font-weight: 300;
         font-size: 14pt;
         color: #fff;
     }
     #certificate-golden-i9fsk-2 {
-        margin: 0 0 -20px 0;
+        margin: 0 0 -30px;
     }
     #certificate-golden-ic6m9 {
         margin: 0 auto;
@@ -226,16 +205,6 @@
     #certificate-golden-ifuql {
         width: 148px;
     }
-    #certificate-golden-i12ag-2 {
-        height: 7px;
-        vertical-align: bottom;
-        text-align: center;
-    }
-    #certificate-golden-it6eh-2 {
-        height: 7px;
-        vertical-align: bottom;
-        text-align: center;
-    }
     #certificate-golden-i12ag-3 {
         vertical-align: top;
         text-align: center;
@@ -243,16 +212,5 @@
     #certificate-golden-it6eh-3 {
         vertical-align: top;
         text-align: center;
-    }
-    #certificate-golden-iesz {
-        width: 100%;
-        margin: 15px 0 0 0;
-    }
-    #certificate-golden-fullname {
-        position: absolute;
-        top: 217px;
-        left: 90px;
-        right: 90px;
-        margin-top: 0px;
     }
 </style>

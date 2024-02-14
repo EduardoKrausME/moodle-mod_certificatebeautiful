@@ -1,128 +1,89 @@
-<div draggable="false" id="certificate-kids-hand-drawn-i3vg">{$SITE-&gt;fullname}</div>
-<div draggable="false" id="certificate-kids-hand-drawn-in7m">{#s}certtitle{/s}</div>
-<div draggable="false" id="certificate-kids-hand-drawn-ilmx">{#s}subtititle{/s}</div>
-<div draggable="false" id="certificate-kids-hand-drawn-i2ae">{#s}certpresented{/s}</div>
-<div draggable="false" id="certificate-kids-hand-drawn-indv">
-    <table id="certificate-kids-hand-drawn-imc7">
-        <tbody>
-        <tr>
-            <td id="certificate-kids-hand-drawn-ifius">
-                <span id="iib3z">{$USER-&gt;fullname}</span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div draggable="false" id="certificate-kids-hand-drawn-descricao">{$certificate->description}</div>
-<div draggable="false" id="certificate-kids-hand-drawn-assinatura">
-    <table id="certificate-kids-hand-drawn-ijumf">
-        <tbody>
-        <tr>
-            <td id="certificate-kids-hand-drawn-ipakn">
-                <span id="certificate-kids-hand-drawn-ipjgg">{{userdate(time(),strftimedate)}}</span>
-            </td>
-            <td rowspan="2" id="certificate-kids-hand-drawn-i24ph">
-                <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-hand-drawn/assets/badge.png"
-                     width="69" height="101" id="iel2e"/>
-            </td>
-            <td id="certificate-kids-hand-drawn-i09dh">
-                <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-hand-drawn/assets/signature.png"
-                     id="certificate-kids-hand-drawn-i9fsk" width="84" height="63"/>
-            </td>
-        </tr>
-        <tr>
-            <td valign="botton" id="certificate-kids-hand-drawn-irqzm">
-                <span id="certificate-kids-hand-drawn-il3aj">{#s}certdate{/s}</span>
-            </td>
-            <td id="certificate-kids-hand-drawn-i7vlm">
-                <span id="certificate-kids-hand-drawn-iprc6">{#s}certsignature{/s}</span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div id="certificate-kids-hand-drawn-sitefullname">{$SITE-&gt;fullname}</div>
+<div id="certificate-kids-hand-drawn-certtitle">{#s}certtitle{/s}</div>
+<div id="certificate-kids-hand-drawn-subtititle">{#s}subtititle{/s}</div>
+<div id="certificate-kids-hand-drawn-certpresented">{#s}certpresented{/s}</div>
+<div id="certificate-kids-hand-drawn-fullname">
+    <span id="certificate-kids-hand-drawn-iib3z">{$USER-&gt;fullname}</span>
 </div>
 <style>
     [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-kids-hand-drawn/assets/background.png);
         position: relative;
-        height: 595px;
+        height: 673px;
         width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
-    #certificate-kids-hand-drawn-in7m {
+    #certificate-kids-hand-drawn-certtitle {
         text-align: center;
         font-size: 71px;
         color: #4591ce;
-        font-family: montserrat-bold;
-        font-weight: 700;
+        font-family: montserrat-bold, 'Montserrat';
         text-transform: uppercase;
-        width: 100%;
+        width: 955px;
         letter-spacing: 3px;
         top: 106px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
+        font-weight: 700;
     }
-    #certificate-kids-hand-drawn-ilmx {
+    #certificate-kids-hand-drawn-subtititle {
         text-align: center;
         font-size: 20px;
         color: #091622;
-        font-family: montserrat-bold;
-        font-weight: 400;
-        width: 100%;
+        font-family: montserrat-bold, 'Montserrat';
+        width: 955px;
         top: 192px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
+        text-transform: uppercase;
+        font-weight: 700;
     }
-    #certificate-kids-hand-drawn-i2ae {
-        font-family: montserrat-bold;
-        font-weight: 300;
+    #certificate-kids-hand-drawn-certpresented {
+        font-family: montserrat-bold, 'Montserrat';
         text-align: center;
         color: #4490ce;
         font-size: 14px;
-        width: 100%;
+        width: 955px;
         text-transform: uppercase;
         top: 277px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
+        font-weight: 700;
     }
-    #certificate-kids-hand-drawn-ifius {
+    #certificate-kids-hand-drawn-fullname {
         color: #091622;
-        font-size: 31px;
-        font-family: montserrat-regular;
         text-align: center;
         white-space: nowrap;
+        top: 310px;
+        left: 90px;
+        right: 90px;
+        position: absolute;
+        height: 56px;
     }
-    #certificate-kids-hand-drawn-descricao {
+    #certificate-kids-hand-drawn-description {
         text-align: center;
-        font-family: nunito-light;
+        font-family: nunito-light, 'Nunito Light';
         font-weight: 300;
         font-size: 16px;
         color: #091622;
-        width: auto;
         line-height: 19px;
-        height: 122px;
+        width:632px;
+        position:absolute;
         top: 377px;
-        left: 115px;
-        margin-top: 0px;
-        position: absolute;
-        right: 115px;
+        left:161px;
     }
-    #certificate-kids-hand-drawn-assinatura {
-        width: 100%;
+    #certificate-kids-hand-drawn-signature {
+        width: 955px;
         margin: 0 auto;
         top: 523px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
     }
     #certificate-kids-hand-drawn-ipjgg {
         color: #091622;
-        font-family: nunito-bold;
+        font-family: nunito-regular, 'Nunito';
         display: block;
         text-align: center;
         white-space: nowrap;
@@ -130,22 +91,24 @@
     }
     #certificate-kids-hand-drawn-il3aj {
         color: #091622;
-        font-family: nunito-bold;
+        font-family: nunito-bold, 'Nunito';
         text-align: center;
         display: block;
         white-space: nowrap;
         font-size: 17px;
+        font-weight: 700;
     }
     #certificate-kids-hand-drawn-iprc6 {
         color: #091622;
-        font-family: nunito-bold;
+        font-family: nunito-bold, 'Nunito';
         text-align: center;
         display: block;
         white-space: nowrap;
         font-size: 17px;
+        font-weight: 700;
     }
     #certificate-kids-hand-drawn-i9fsk {
-        margin: 0 0 -23px;
+        margin: 0 0 -30px;
     }
     #certificate-kids-hand-drawn-ijumf {
         margin: 0 auto;
@@ -154,6 +117,9 @@
         text-align: center;
         vertical-align: bottom;
         border-bottom: 2px dashed #4591ce;
+        height: 59px;
+        top: 547px;
+        left: 195px;
     }
     #certificate-kids-hand-drawn-i09dh {
         width: 100px;
@@ -171,26 +137,52 @@
     #certificate-kids-hand-drawn-i24ph {
         padding: 0px 40px 0px 40px;
     }
-    #certificate-kids-hand-drawn-imc7 {
-        width: 100%;
-    }
-    #certificate-kids-hand-drawn-indv {
-        top: 310px;
-        left: 90px;
-        right: 90px;
-        margin-top: 0px;
-        position: absolute;
-    }
-    #certificate-kids-hand-drawn-i3vg {
+    #certificate-kids-hand-drawn-sitefullname {
         position: absolute;
         top: 53px;
-        width: 100%;
+        width: 955px;
         text-align: center;
         color: #091622;
-        font-family: montserrat-medium;
+        font-family: montserrat-medium, 'Montserrat Medium';
         font-size: 20px;
     }
-    #iib3z {
+    #certificate-kids-hand-drawn-iib3z {
         border-bottom: 2px dashed #4591ce;
+        font-family: montserrat-regular, 'Montserrat';
+        font-size: 31px;
     }
 </style>
+<div id="certificate-kids-hand-drawn-description">{$certificate-&gt;description}</div>
+<div id="certificate-kids-hand-drawn-signature">
+    <table draggable="false" id="certificate-kids-hand-drawn-ijumf">
+        <tbody>
+        <tr>
+            <td id="certificate-kids-hand-drawn-ipakn">
+                <span id="certificate-kids-hand-drawn-ipjgg">{{userdate(time(),strftimedate)}}</span>
+            </td>
+            <td rowspan="3" id="certificate-kids-hand-drawn-i24ph">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-hand-drawn/assets/badge.png"
+                     width="69" height="101" id="iel2e"/>
+            </td>
+            <td id="certificate-kids-hand-drawn-i09dh">
+                <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-hand-drawn/assets/signature.png"
+                     id="certificate-kids-hand-drawn-i9fsk" height="90"/>
+            </td>
+        </tr>
+        <tr>
+            <td valign="botton" id="certificate-kids-hand-drawn-irqzm">
+                <span id="certificate-kids-hand-drawn-il3aj">{#s}certdate{/s}</span>
+            </td>
+            <td id="certificate-kids-hand-drawn-i7vlm">
+                <span id="certificate-kids-hand-drawn-iprc6">{#s}certsignature{/s}</span>
+            </td>
+        </tr>
+        <tr>
+            <td> 
+            </td>
+            <td> 
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,38 +1,29 @@
-<div draggable="false" id="appreciation-i3vg">{$SITE-&gt;fullname}</div>
-<div draggable="false" id="appreciation-in7m">{#s}certtitle{/s}</div>
-<div draggable="false" id="appreciation-ilmx">{#s}subtititle{/s}</div>
-<div draggable="false" id="appreciation-i2ae">{#s}certpresented{/s}</div>
-<div draggable="false" id="appreciation-istff">
-    <table id="appreciation-i9q41">
+<div id="certificate-appreciation-sitefullname">{$SITE-&gt;fullname}</div>
+<div id="certificate-appreciation-certtitle">{#s}certtitle{/s}</div>
+<div id="certificate-appreciation-subtititle">{#s}subtititle{/s}</div>
+<div id="certificate-appreciation-certpresented">{#s}certpresented{/s}</div>
+<div id="certificate-appreciation-fullname">{$USER-&gt;fullname}</div>
+<div id="certificate-appreciation-description">{$certificate-&gt;description}</div>
+<div id="certificate-appreciation-signature">
+    <table draggable="false" id="certificate-appreciation-ix0wk">
         <tbody>
         <tr>
-            <td id="appreciation-isq9s">{$USER-&gt;fullname}
+            <td id="certificate-appreciation-i12ag">
+                <span id="certificate-appreciation-ipjgg">{{userdate(time(),strftimedate)}}</span>
             </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div draggable="false" id="appreciation-descricao">{$certificate->description}</div>
-<div draggable="false" id="appreciation-assinatura">
-    <table id="appreciation-ix0wk">
-        <tbody>
-        <tr>
-            <td id="appreciation-i12ag">
-                <span id="appreciation-ipjgg">{{userdate(time(),strftimedate)}}</span>
+            <td id="certificate-appreciation-il59t" rowspan="2">
             </td>
-            <td id="appreciation-il59t" rowspan="2">
-            </td>
-            <td id="appreciation-it6eh">
+            <td id="certificate-appreciation-it6eh">
                 <img src="/mod/certificatebeautiful/_editor/_model/certificate-appreciation/assets/signature.png"
-                     id="elegant-i9fsk" width="84" height="63"/>
+                     id="certificate-appreciation-i9fsk" height="90"/>
             </td>
         </tr>
         <tr>
-            <td id="appreciation-i12ag-3">
-                <span id="appreciation-il3aj">{#s}certdate{/s}</span>
+            <td id="certificate-appreciation-i12ag-3">
+                <span id="certificate-appreciation-il3aj">{#s}certdate{/s}</span>
             </td>
-            <td id="appreciation-it6eh-3">
-                <span id="appreciation-iprc6">{#s}certsignature{/s}</span>
+            <td id="certificate-appreciation-it6eh-3">
+                <span id="certificate-appreciation-iprc6">{#s}certsignature{/s}</span>
             </td>
         </tr>
         </tbody>
@@ -42,15 +33,15 @@
     [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-appreciation/assets/background.png);
         position: relative;
-        height: 595px;
+        height: 673px;
         width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
-    #appreciation-i3vg {
+    #certificate-appreciation-sitefullname {
         text-align: center;
-        font-family: Arial;
+        font-family: cinzel-regular, 'Cinzel';
         color: #424956;
         font-size: 29px;
         position: absolute;
@@ -58,127 +49,122 @@
         left: 30px;
         right: 30px;
     }
-    #appreciation-in7m {
+    #certificate-appreciation-certtitle {
         text-align: left;
         font-size: 35px;
-        font-family: 'Cinzel Black';
-        --font-weight: 700;
+        font-family: cinzel-black, 'Cinzel Black';
+        font-weight: 900;
         text-transform: uppercase;
         width: 590px;
         position: absolute;
-        top: 109px;
-        left: 184px;
+        top: 127px;
+        left: 200px;
     }
-    #appreciation-ilmx {
+    #certificate-appreciation-subtititle {
         text-align: left;
         font-size: 17px;
         color: #bca380;
-        font-family: 'Cinzel Bold';
-        --font-weight: 500;
+        font-family: cinzel-bold, 'Cinzel';
+        font-weight: 700;
         width: 520px;
-        letter-spacing: 6px;
+        letter-spacing: 3px;
         position: absolute;
-        top: 158px;
-        left: 187px;
+        top: 168px;
+        left: 200px;
     }
-    #appreciation-isq9s {
+    #certificate-appreciation-fullname {
         color: #c8992e;
         font-size: 43px;
-        font-family: 'Parisienne';
-        font-weight: 400;
-        width: 100%;
-        white-space: nowrap;
-        height: 74px;
+        font-family: parisienne, 'Parisienne';
+        width: 584px;
+        height: 76px;
+        position: absolute;
+        top: 267px;
+        left: 102px;
+        display: flex;
+        align-items: center;
+        line-height: 43px;
     }
-    #appreciation-descricao {
+    #certificate-appreciation-description {
         text-align: left;
         line-height: 18px;
-        font-family: 'Raleway Regular';
-        --font-weight: 400;
+        font-family: raleway-regular, 'Raleway';
+        font-weight: 400;
         font-size: 16px;
         color: #727477;
-        height: 170px;
         width: 543px;
         letter-spacing: 1px;
         position: absolute;
-        top: 318px;
-        left: 100px;
+        top: 356px;
+        left: 102px;
     }
-    #appreciation-assinatura {
+    #certificate-appreciation-signature {
         position: absolute;
         top: 518px;
         left: 30px;
         right: 30px;
         text-align: center;
+        width: 733px;
     }
-    #appreciation-il59t {
+    #certificate-appreciation-il59t {
         width: 120px;
         top: 428px;
         left: 337px;
     }
-    #appreciation-ipjgg {
+    #certificate-appreciation-ipjgg {
         color: #000;
-        font-family: 'Cinzel Bold';
+        font-family: cinzel-regular, 'Cinzel';
         display: block;
         text-align: center;
         white-space: nowrap;
     }
-    #appreciation-il3aj {
+    #certificate-appreciation-il3aj {
         color: #1d323f;
-        font-family: 'Cinzel Black';
-        --font-weight: 700;
+        font-family: cinzel-bold, 'Cinzel';
         text-align: center;
         display: block;
         white-space: nowrap;
+        font-weight: 700;
     }
-    #appreciation-iprc6 {
+    #certificate-appreciation-iprc6 {
         color: #1d323f;
-        font-family: 'Cinzel Black';
-        --font-weight: 700;
+        font-family: cinzel-bold, 'Cinzel';
         text-align: center;
         display: block;
         white-space: nowrap;
+        font-weight: 700;
     }
-    #appreciation-i12ag {
+    #certificate-appreciation-i12ag {
         text-align: center;
-        vertical-align: bottom;
         border-bottom: 1px solid #000;
+        vertical-align: bottom;
     }
-    #appreciation-it6eh {
+    #certificate-appreciation-it6eh {
         width: 200px;
         text-align: center;
         border-bottom: 1px solid #000;
     }
-    #appreciation-i2ae {
+    #certificate-appreciation-certpresented {
         text-align: left;
-        font-family: 'Cinzel Bold';
-        --font-weight: 600;
+        font-family: cinzel-bold, 'Cinzel';
         color: #424956;
         font-size: 16px;
         position: absolute;
-        top: 224px;
+        top: 245px;
         left: 101px;
         right: 120px;
+        font-weight: 700;
     }
-    #appreciation-ix0wk {
+    #certificate-appreciation-ix0wk {
         margin: 0 auto;
     }
-    #elegant-i9fsk {
-        margin: 0 0 -20px;
+    #certificate-appreciation-i9fsk {
+        margin: 0 0 -30px;
     }
-    #appreciation-i12ag-3 {
+    #certificate-appreciation-i12ag-3 {
         text-align: center;
     }
-    #appreciation-it6eh-3 {
+    #certificate-appreciation-it6eh-3 {
         text-align: center;
-    }
-    #appreciation-i9q41 {
-        width: 100%;
-    }
-    #appreciation-istff {
-        position: absolute;
-        top: 242px;
-        left: 101px;
-        width: 586px;
     }
 </style>

@@ -1,19 +1,9 @@
-<div draggable="false" id="certificate-kids-animals-in7m">{#s}certtitle{/s}</div>
-<div draggable="false" id="certificate-kids-animals-i2ae">{#s}certpresented{/s}</div>
-<div draggable="false" id="certificate-kids-animals-indv">
-    <table id="certificate-kids-animals-imc7">
-        <tbody>
-        <tr>
-            <td id="certificate-kids-animals-ifius">
-                <span id="certificate-kids-animals-ic3t5">{$USER-&gt;fullname}</span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div draggable="false" id="certificate-kids-animals-i3vg">{$SITE-&gt;fullname}</div>
-<div draggable="false" id="certificate-kids-animals-assinatura">
-    <table id="certificate-kids-animals-ijumf">
+<div id="certificate-kids-animals-certtitle">{#s}certtitle{/s}</div>
+<div id="certificate-kids-animals-certpresented">{#s}certpresented{/s}</div>
+<div id="certificate-kids-animals-fullname">{$USER-&gt;fullname}</div>
+<div id="certificate-kids-animals-sitefullname">{$SITE-&gt;fullname}</div>
+<div id="certificate-kids-animals-signature">
+    <table draggable="false" id="certificate-kids-animals-ijumf">
         <tbody>
         <tr>
             <td id="certificate-kids-animals-ipakn">
@@ -23,7 +13,7 @@
             </td>
             <td id="certificate-kids-animals-i09dh">
                 <img src="/mod/certificatebeautiful/_editor/_model/certificate-kids-animals/assets/signature.png"
-                     id="certificate-kids-animals-i9fsk" width="84" height="63"/>
+                     id="certificate-kids-animals-i9fsk" height="90"/>
             </td>
         </tr>
         <tr>
@@ -41,67 +31,68 @@
     [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-kids-animals/assets/background.png);
         position: relative;
-        height: 595px;
+        height: 673px;
         width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
-    #certificate-kids-animals-in7m {
+    #certificate-kids-animals-certtitle {
         text-align: center;
-        margin: 0 0 0 0;
         font-size: 110px;
         color: #49bda1;
-        font-family: vibur;
+        font-family: vibur, 'Vibur';
         text-transform: uppercase;
-        width: 100%;
+        width: 955px;
         letter-spacing: -9px;
         top: 97px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
         white-space: nowrap;
     }
-    #certificate-kids-animals-i2ae {
-        font-family: montserrat-bold;
-        font-weight: 300;
+    #certificate-kids-animals-certpresented {
+        font-family: montserrat-bold, 'Montserrat';
         text-align: center;
         color: #997d78;
-        margin: 0 0 0 0;
         font-size: 14px;
-        width: 100%;
+        width: 955px;
         text-transform: uppercase;
         top: 225px;
         left: 0px;
-        margin-top: 0px;
         position: absolute;
     }
-    #certificate-kids-animals-ifius {
+    #certificate-kids-animals-fullname {
         color: #010101;
         font-size: 60px;
-        font-family: 'Alex Brush';
-        font-weight: 700;
+        font-family: alex-brush-regular, 'Alex Brush';
         text-align: center;
         white-space: nowrap;
+        top: 276px;
+        left: 102px;
+        right: 30px;
+        position: absolute;
+        height: 86px;
+        text-decoration: underline;
+        width: 767px;
     }
-    #certificate-kids-animals-assinatura {
-        width: 100%;
+    #certificate-kids-animals-signature {
+        width: 64%;
         margin: 0 auto;
-        top: 466px;
-        left: 0px;
-        margin-top: 0px;
+        top: 435px;
+        left: 179px;
         position: absolute;
     }
     #certificate-kids-animals-ipjgg {
         color: #3d3d3d;
-        font-family: 'Abhaya Libre';
+        font-family: vibur, 'Vibur';
         display: block;
         text-align: center;
         white-space: nowrap;
+        font-size: 17px;
     }
     #certificate-kids-animals-il3aj {
         color: #fdc368;
-        font-family: vibur;
+        font-family: vibur, 'Vibur';
         text-align: center;
         display: block;
         white-space: nowrap;
@@ -109,14 +100,14 @@
     }
     #certificate-kids-animals-iprc6 {
         color: #fdc368;
-        font-family: vibur;
+        font-family: vibur, 'Vibur';
         text-align: center;
         display: block;
         white-space: nowrap;
         font-size: 24px;
     }
     #certificate-kids-animals-i9fsk {
-        margin: 0 0 -23px;
+        margin: 0 0 -30px;
     }
     #certificate-kids-animals-ijumf {
         margin: 0 auto;
@@ -142,31 +133,15 @@
     #certificate-kids-animals-i24ph {
         width: 101px;
     }
-    #certificate-kids-animals-imc7 {
-        width: 100%;
-        height: 81px;
-    }
-    #certificate-kids-animals-indv {
-        top: 276px;
-        left: 30px;
-        right: 30px;
-        margin-top: 0px;
-        position: absolute;
-    }
-    #certificate-kids-animals-i3vg {
+    #certificate-kids-animals-sitefullname {
         position: absolute;
         top: 377px;
         width: auto;
         left: 221px;
         text-align: center;
         color: #f0723d;
-        font-family: vibur;
+        font-family: vibur, 'Vibur';
         font-size: 28px;
         right: 221px;
-    }
-    #certificate-kids-animals-ic3t5 {
-        border-bottom: 2px solid #000;
-        line-height: 41px;
-        display: inline-block;
     }
 </style>

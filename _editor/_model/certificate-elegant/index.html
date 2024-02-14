@@ -1,20 +1,11 @@
-<div draggable="false" id="certificate-elegant-i3vg">{$SITE-&gt;fullname}</div>
-<div draggable="false" id="certificate-elegant-in7m">{#s}certtitle{/s}</div>
-<div draggable="false" id="certificate-elegant-ilmx">{#s}subtititle{/s}</div>
-<div draggable="false" id="certificate-elegant-i2ae">{#s}certpresented{/s}</div>
-<div draggable="false" id="certificate-elegant-ihsgdf">
-    <table id="certificate-elegant-i8a8g">
-        <tbody>
-        <tr>
-            <td id="certificate-elegant-isq9s">{$USER-&gt;fullname}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div draggable="false" id="certificate-elegant-descricao">{$certificate->description}</div>
-<div draggable="false" id="certificate-elegant-assinatura">
-    <table id="certificate-elegant-ix0wk">
+<div id="certificate-elegant-sitefullname">{$SITE-&gt;fullname}</div>
+<div id="certificate-elegant-certtitle">{#s}certtitle{/s}</div>
+<div id="certificate-elegant-subtititle">{#s}subtititle{/s}</div>
+<div id="certificate-elegant-certpresented">{#s}certpresented{/s}</div>
+<div id="certificate-elegant-fullname">{$USER-&gt;fullname}</div>
+<div id="certificate-elegant-description">{$certificate-&gt;description}</div>
+<div id="certificate-elegant-signature">
+    <table draggable="false" id="certificate-elegant-ix0wk">
         <tbody>
         <tr>
             <td id="certificate-elegant-i12ag">
@@ -26,7 +17,7 @@
             </td>
             <td id="certificate-elegant-it6eh">
                 <img src="/mod/certificatebeautiful/_editor/_model/certificate-elegant/assets/signature.png"
-                     id="certificate-elegant-i9fsk" width="84" height="63"/>
+                     id="certificate-elegant-i9fsk" height="90"/>
             </td>
         </tr>
         <tr>
@@ -44,105 +35,107 @@
     [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-elegant/assets/background.png);
         position: relative;
-        height: 595px;
+        height: 673px;
         width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
-    #certificate-elegant-i3vg {
+    #certificate-elegant-sitefullname {
         text-align: center;
-        font-family: Arial;
+        font-family: lato-regular, 'Lato';
         color: #424956;
-        font-size: 29px;
-        width: 100%;
+        font-size: 18px;
+        width: 955px;
         position: absolute;
         top: 33px;
         left: 0px;
-        margin-top: 0px;
     }
-    #certificate-elegant-in7m {
+    #certificate-elegant-certtitle {
         text-align: center;
         font-size: 44px;
         letter-spacing: 3px;
         color: #424956;
-        font-family: 'Playfair Display';
-        font-weight: 400;
+        font-family: playfair-display-black, 'Playfair Display Black';
+        font-weight: 500;
         text-transform: uppercase;
-        width: 100%;
+        width: 955px;
         position: absolute;
         top: 99px;
         left: 0px;
-        margin-top: 0px;
     }
-    #certificate-elegant-ilmx {
+    #certificate-elegant-subtititle {
         text-align: center;
         font-size: 20px;
         color: #424956;
-        font-family: Lato;
-        font-weight: 500;
-        width: 100%;
+        font-family: cinzel-bold, 'Cinzel';
+        font-weight: 700;
+        width: 955px;
         position: absolute;
         top: 149px;
         left: 0px;
-        margin-top: 0px;
+        text-transform: uppercase;
     }
-    #certificate-elegant-isq9s {
+    #certificate-elegant-fullname {
         color: #c8992e;
         font-size: 62px;
-        font-family: Parisienne;
-        font-weight: 800;
+        font-family: parisienne, 'Parisienne';
         text-align: center;
-        width: 100%;
+        width: 85%;
         white-space: nowrap;
+        position: absolute;
+        top: 228px;
+        left: 89px;
+        right: 90px;
+        height: 83px;
+        font-weight: 800;
     }
-    #certificate-elegant-descricao {
+    #certificate-elegant-description {
         text-align: center;
         line-height: 20px;
-        font-family: Lato;
+        font-family: lato-light, 'Lato Light';
         font-weight: 300;
         font-size: 16px;
         letter-spacing: 1px;
         color: #727477;
         height: 146px;
         position: absolute;
-        top: 306px;
-        left: 115px;
-        margin-top: 0px;
-        right: 115px;
-        width: auto;
+        width: 632px;
+        top: 319px;
+        left: 161px;
     }
-    #certificate-elegant-assinatura {
-        width: 100%;
+    #certificate-elegant-signature {
+        width: 87%;
         margin: 0 auto;
         position: absolute;
         top: 476px;
-        left: 0px;
-        margin-top: 0px;
+        left: 12%;
     }
     #certificate-elegant-il59t {
         vertical-align: bottom;
     }
     #certificate-elegant-ipjgg {
         color: #000;
-        font-family: Lato;
+        font-family: lato-regular, 'Lato';
         display: block;
         text-align: center;
         white-space: nowrap;
     }
     #certificate-elegant-il3aj {
         color: #424956;
-        font-family: Montserrat;
+        font-family: montserrat-bold, 'Montserrat';
         text-align: center;
         display: block;
         white-space: nowrap;
+        font-weight: 700;
     }
     #certificate-elegant-iprc6 {
         color: #2c2c47;
-        font-family: Montserrat;
+        font-family: montserrat-bold, 'Montserrat';
         text-align: center;
         display: block;
         white-space: nowrap;
+        font-weight: 700;
     }
     #certificate-elegant-i12ag {
         text-align: center;
@@ -156,20 +149,19 @@
         border-bottom: 1px solid #000;
     }
     #certificate-elegant-i9fsk {
-        margin: 0 0 -20px 0;
+        margin: 0 0 -30px;
     }
-    #certificate-elegant-i2ae {
+    #certificate-elegant-certpresented {
         text-align: center;
-        font-family: Lato;
+        font-family: lato-black, 'Lato Black';
         font-weight: 600;
         color: #424956;
         font-size: 16px;
-        margin: 17px 0 0 0;
-        width: 100%;
+        width: 955px;
         position: absolute;
         top: 190px;
         left: 0px;
-        margin-top: 0px;
+        text-transform: uppercase;
     }
     #certificate-elegant-ix0wk {
         margin: 0 auto;
@@ -181,15 +173,5 @@
     #certificate-elegant-it6eh-3 {
         vertical-align: text-bottom;
         text-align: center;
-    }
-    #certificate-elegant-i8a8g {
-        width: 100%;
-    }
-    #certificate-elegant-ihsgdf {
-        position: absolute;
-        top: 217px;
-        left: 90px;
-        right: 90px;
-        margin-top: 0px;
     }
 </style>

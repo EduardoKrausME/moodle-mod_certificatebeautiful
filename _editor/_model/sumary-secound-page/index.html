@@ -1,37 +1,41 @@
 <h2 id="sumary-titulo">{#s}sumary{/s}</h2>
-<div draggable="false" id="sumary-text">{$course-&gt;summary}</div>
-
-
-<div draggable="false" class="qr-code-block"
-     style="position:absolute;top:549px;left:840px;width:100px;">
+<div id="sumary-text">{$course-&gt;summary}</div>
+<div class="qr-code-block" id="ijgw">
     <img src="img/qr-code.svg" width="100%"/>
-    <div class="qr-code" style="font-size:12px;text-align:center;">{$CERTIFICATE-&gt;code}</div>
+    <div class="qr-code" id="i0gb">{$CERTIFICATE-&gt;code}</div>
 </div>
-
 <style>
     [data-gjs-type=wrapper] {
         position: relative;
-        height: 595px;
+        height: 673px;
         width: 955px;
     }
     #sumary-titulo {
         text-align: center;
-        font-family: Arial;
+        font-family: lato-bold, 'Lato';
         color: #4e4e4e;
         position: absolute;
         top: 34px;
         left: 30px;
         right: 30px;
-        margin-top: 0px;
     }
     #sumary-text {
-        font-family: Arial;
+        font-family: lato-regular, 'Lato';
         line-height: 24px;
         color: #606060;
         position: absolute;
         top: 92px;
         left: 40px;
         right: 40px;
-        margin-top: 0px;
+    }
+    #ijgw {
+        position: absolute;
+        top: 549px;
+        left: 840px;
+        width: 100px;
+    }
+    #i0gb {
+        font-size: 12px;
+        text-align: center;
     }
 </style>

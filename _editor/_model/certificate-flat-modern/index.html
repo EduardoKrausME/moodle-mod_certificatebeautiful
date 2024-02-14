@@ -1,25 +1,11 @@
-<div draggable="false" id="certificate-flat-modern-i3vg">{$SITE-&gt;fullname}
-</div>
-<div draggable="false" id="certificate-flat-modern-in7m">{#s}certtitle{/s}
-</div>
-<div draggable="false" id="certificate-flat-modern-ilmx">{#s}subtititle{/s}
-</div>
-<div draggable="false" id="certificate-flat-modern-i2ae">{#s}certpresented{/s}
-</div>
-<div draggable="false" id="certificate-flat-modern-istff">
-    <table id="certificate-flat-modern-i9q41">
-        <tbody>
-        <tr>
-            <td id="certificate-flat-modern-isq9s">{$USER-&gt;fullname}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div draggable="false" id="certificate-flat-modern-descricao">{$certificate-&gt;description}
-</div>
-<div draggable="false" id="certificate-flat-modern-assinatura">
-    <table id="certificate-flat-modern-ix0wk">
+<div id="certificate-flat-modern-sitefullname">{$SITE-&gt;fullname}</div>
+<div id="certificate-flat-modern-certtitle">{#s}certtitle{/s}</div>
+<div id="certificate-flat-modern-subtititle">{#s}subtititle{/s}</div>
+<div id="certificate-flat-modern-certpresented">{#s}certpresented{/s}</div>
+<div id="certificate-flat-modern-fullname">{$USER-&gt;fullname}</div>
+<div id="certificate-flat-modern-description">{$certificate-&gt;description}</div>
+<div id="certificate-flat-modern-signature">
+    <table draggable="false" id="certificate-flat-modern-ix0wk">
         <tbody>
         <tr>
             <td id="certificate-flat-modern-i12ag">
@@ -29,7 +15,7 @@
             </td>
             <td id="certificate-flat-modern-it6eh">
                 <img src="/mod/certificatebeautiful/_editor/_model/certificate-flat-modern/assets/signature.png"
-                     id="elegant-i9fsk" width="84" height="63"/>
+                     id="certificate-flat-modern-i9fsk" height="90"/>
             </td>
         </tr>
         <tr>
@@ -47,69 +33,78 @@
     [data-gjs-type=wrapper] {
         background-image: url(/mod/certificatebeautiful/_editor/_model/certificate-flat-modern/assets/background.png);
         position: relative;
-        height: 595px;
+        height: 673px;
         width: 955px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
-    #certificate-flat-modern-i3vg {
+    #certificate-flat-modern-sitefullname {
         text-align: left;
-        font-family: inter-light;
+        font-family: inter-light, 'Inter Light';
         color: #fff;
         font-size: 17px;
         position: absolute;
         top: 44px;
         left: 79px;
         width: 274px;
+        font-weight: 300;
     }
-    #certificate-flat-modern-in7m {
+    #certificate-flat-modern-certtitle {
         text-align: center;
         font-size: 50px;
-        font-family: inter-black;
+        font-family: inter-black, 'Inter Black';
         text-transform: uppercase;
         width: 590px;
         position: absolute;
-        top: 135px;
-        left: 184px;
+        top: 120px;
+        left: 185px;
+        font-weight: 600;
     }
-    #certificate-flat-modern-ilmx {
+    #certificate-flat-modern-subtititle {
         text-align: center;
         font-size: 30px;
         color: #ed712a;
-        font-family: inter-light;
+        font-family: inter-light, 'Inter Light';
         position: absolute;
-        top: 191px;
-        left: 290px;
+        top: 179px;
+        left: 291px;
         right: 290px;
         text-transform: uppercase;
+        font-weight: 300;
     }
-    #certificate-flat-modern-isq9s {
+    #certificate-flat-modern-fullname {
         color: #ed712a;
         font-size: 59px;
-        font-family: playfair-display-bold;
-        width: 95%;
+        font-family: playfair-display-bold, 'Playfair Display';
+        width: 605px;
         white-space: nowrap;
-        height: 74px;
+        height: 78px;
+        position: absolute;
+        top: 287px;
+        left: 205px;
+        font-weight: 700;
     }
-    #certificate-flat-modern-descricao {
+    #certificate-flat-modern-description {
         text-align: left;
         line-height: 18px;
-        font-family: inter-light;
-        font-size: 16px;
+        font-family: inter-light, 'Inter Light';
+        font-size: 13px;
         color: #252755;
-        width: 394px;
+        width: 569px;
         letter-spacing: 1px;
         position: absolute;
-        top: 417px;
-        left: 282px;
+        top: 382px;
+        left: 207px;
+        font-weight: 300;
     }
-    #certificate-flat-modern-assinatura {
+    #certificate-flat-modern-signature {
         position: absolute;
         top: 482px;
-        left: 30px;
+        left: 81px;
         right: 30px;
         text-align: center;
+        width: 843px;
     }
     #certificate-flat-modern-il59t {
         width: 120px;
@@ -118,26 +113,28 @@
     }
     #certificate-flat-modern-ipjgg {
         color: #252755;
-        font-family: inter-regular;
+        font-family: inter-regular, 'Inter';
         display: block;
         text-align: center;
         white-space: nowrap;
     }
     #certificate-flat-modern-il3aj {
         color: #252755;
-        font-family: inter-bold;
+        font-family: inter-bold, 'Inter';
         text-align: center;
         display: block;
         white-space: nowrap;
         font-size: 18px;
+        font-weight: 700;
     }
     #certificate-flat-modern-iprc6 {
         color: #252755;
-        font-family: inter-bold;
+        font-family: inter-bold, 'Inter';
         text-align: center;
         display: block;
         white-space: nowrap;
         font-size: 18px;
+        font-weight: 700;
     }
     #certificate-flat-modern-i12ag {
         text-align: center;
@@ -149,35 +146,27 @@
         text-align: center;
         border-bottom: 1px solid #000;
     }
-    #certificate-flat-modern-i2ae {
+    #certificate-flat-modern-certpresented {
         text-align: left;
-        font-family: inter-regular;
+        font-family: inter-regular, 'Inter';
         color: #252755;
         font-size: 19px;
         position: absolute;
-        top: 281px;
-        left: 259px;
+        top: 256px;
+        left: 207px;
         text-transform: uppercase;
+        width: 622px;
     }
     #certificate-flat-modern-ix0wk {
         margin: 0 auto;
     }
-    #elegant-i9fsk {
-        margin: 0 0 -20px;
+    #certificate-flat-modern-i9fsk {
+        margin: 0 0 -30px;
     }
     #certificate-flat-modern-i12ag-3 {
         text-align: center;
     }
     #certificate-flat-modern-it6eh-3 {
         text-align: center;
-    }
-    #certificate-flat-modern-i9q41 {
-        width: 586px;
-        height: 78px;
-    }
-    #certificate-flat-modern-istff {
-        position: absolute;
-        top: 312px;
-        left: 259px;
     }
 </style>
