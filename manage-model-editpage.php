@@ -30,7 +30,7 @@ $id = required_param('id', PARAM_INT);
 $page = required_param('page', PARAM_INT);
 $action = optional_param('action', '', PARAM_TEXT);
 
-$context=context_system::instance();
+$context = context_system::instance();
 $PAGE->requires->css('/mod/certificatebeautiful/style.css');
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php', ['id' => $id]);
@@ -131,7 +131,7 @@ switch ($action) {
             "text" => get_string('select_model_preview', 'certificatebeautiful')
         ]);
         echo "<iframe src=\"{$CFG->wwwroot}/mod/certificatebeautiful/_editor/index.php?id={$id}&page={$page}\"
-                      style=\"width: 100%;height: 676px;\"></iframe>";
+                      style=\"width:100%;height:720px;min-width:1190px;\"></iframe>";
 
         echo $OUTPUT->footer();
 }
