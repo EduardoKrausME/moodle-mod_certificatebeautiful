@@ -22,7 +22,6 @@
 
 namespace mod_certificatebeautiful\help;
 
-use grade_grade;
 use grade_item;
 
 class grade extends help_base {
