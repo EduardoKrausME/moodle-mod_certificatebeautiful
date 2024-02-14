@@ -37,7 +37,6 @@ $certificatebeautiful = $DB->get_record('certificatebeautiful', array('id' => $c
 
 $context = context_module::instance($cm->id);
 
-$PAGE->requires->css('/mod/certificatebeautiful/style.css');
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/view.php', ['id' => $id]);
 $PAGE->set_title($course->shortname . ': ' . $certificatebeautiful->name);

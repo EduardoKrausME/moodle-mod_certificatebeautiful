@@ -35,7 +35,6 @@ $event = \mod_certificatebeautiful\event\course_module_instance_list_viewed::cre
 $event->add_record_snapshot('course', $course);
 $event->trigger();
 
-$PAGE->requires->css('/mod/certificatebeautiful/style.css');
 $PAGE->set_context($coursecontext);
 $PAGE->set_url('/mod/certificate/index.php', ['id' => $id]);
 $PAGE->set_title(format_string($course->fullname));

@@ -69,12 +69,10 @@ $table = new \mod_certificatebeautiful\report\certificatebeautiful_view(
     "certificatebeautiful_report", $cm->id, $certificatebeautiful);
 
 if (!$table->is_downloading()) {
-    $PAGE->requires->css('/mod/certificatebeautiful/style.css');
     $PAGE->set_context($context);
     $PAGE->set_url('/mod/certificatebeautiful/report.php', array('id' => $cm->id));
     $PAGE->set_title("{$course->shortname}: {$certificatebeautiful->name}");
     $PAGE->set_heading($course->fullname);
-    $PAGE->requires->css('/mod/certificatebeautiful/assets/style.css');
     echo $OUTPUT->header();
 
     $title = get_string('report_filename', 'certificatebeautiful');

@@ -32,7 +32,6 @@ if (!has_capability('moodle/course:manageactivities', $context, $USER)) {
 }
 $user = $DB->get_record('user', array('id' => $userid), '*', MUST_EXIST);
 
-$PAGE->requires->css('/mod/certificatebeautiful/style.css');
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/reports.php', array('user' => $userid));
 $PAGE->set_title(fullname($user) . get_string('reports'));

@@ -28,7 +28,6 @@ global $PAGE, $USER, $CFG;
 $code = optional_param('code', false, PARAM_TEXT);
 $context = context_system::instance();
 
-$PAGE->requires->css('/mod/certificatebeautiful/style.css');
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/v/', ['code' => $code]);
 $PAGE->set_title(get_string('validate_certificate_title', 'certificatebeautiful'));

@@ -29,7 +29,6 @@ $courseid = optional_param('course', 0, PARAM_INT);
 $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
 
 $context = context_system::instance();
-$PAGE->requires->css('/mod/certificatebeautiful/style.css');
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/reports.php', array('course' => $courseid));
 $PAGE->set_title("{$course->shortname}: " . get_string('reports'));

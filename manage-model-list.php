@@ -28,7 +28,6 @@ require_once("{$CFG->libdir}/tablelib.php");
 global $PAGE, $USER, $CFG;
 
 $context = context_system::instance();
-$PAGE->requires->css('/mod/certificatebeautiful/style.css');
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php');
 $PAGE->set_title(get_string('list_model', 'certificatebeautiful'));
