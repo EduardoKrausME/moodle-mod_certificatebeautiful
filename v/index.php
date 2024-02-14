@@ -36,7 +36,6 @@ $PAGE->set_heading(format_string(get_string('validate_certificate_title', 'certi
 
 echo $OUTPUT->header();
 
-
 if ($code) {
     $certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', ["code" => $code]);
     if ($certificatebeautifulissue) {
