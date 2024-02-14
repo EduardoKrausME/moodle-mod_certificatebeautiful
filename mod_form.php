@@ -62,9 +62,7 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
         $mform->setDefault('description', get_string('default-description', 'certificatebeautiful'));
         $mform->addHelpButton('description', 'certificate_description', 'certificatebeautiful');
 
-        $text = get_string('manage_models', 'certificatebeautiful');
         $mform->addElement('static', 'manage_models', '', help_base::get_form_components());
-
 
         $mform->addElement('select', 'model', get_string('select_the_model', 'certificatebeautiful'), models::list_all());
 
