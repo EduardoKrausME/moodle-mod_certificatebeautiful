@@ -27,10 +27,9 @@ use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 
 class issue {
     /**
-     * @param $user
+     * @param \stdClass $user
      * @param certificatebeautiful $certificatebeautiful
-     * @param $cm
-     * @param $course
+     * @param \stdClass $cm
      *
      * @return certificatebeautiful_issue
      *
@@ -39,6 +38,7 @@ class issue {
     public static function get($user, $certificatebeautiful, $cm) {
         global $DB;
 
+        /** @var certificatebeautiful_issue $certificatebeautifulissue */
         $certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', ["userid" => $user->id, "cmid" => $cm->id]);
         if (!$certificatebeautifulissue) {
             $certificatebeautifulissue = (object)[
@@ -47,7 +47,8 @@ class issue {
                 "certificatebeautifulid" => $certificatebeautiful->id,
                 "code" => substr(strtoupper("c" . uniqid()), 0, 10),
                 "version" => $certificatebeautiful->timemodified,
-                "timecreated" => time()
+                "timecreated" => time(),
+                "timemodified" => time(),
             ];
             $certificatebeautifulissue->id = $DB->insert_record('certificatebeautiful_issue', $certificatebeautifulissue);
         }
