@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8" ?>
 <XMLDB PATH="mod/certificatebeautiful/db" VERSION="20240214" COMMENT="XMLDB file for Moodle mod certificatebeautiful"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
