@@ -21,8 +21,6 @@
         assetManager    : {
             embedAsBase64 : true,
             assets        : [],
-            upload        : './upload.php',
-            uploadName    : 'files',
         },
         selectorManager : {componentFirst : true},
         styleManager    : {
@@ -421,7 +419,7 @@
         category : "Basic",
     });
 
-    editor.on("component:selected", function(component){
+    editor.on("component:selected", function(component) {
         component.set("resizable", true);
     });
 
