@@ -23,7 +23,7 @@
  */
 
 require_once('../../config.php');
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/issue.php");
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/issue.php");
 
 global $PAGE, $USER, $CFG;
 
@@ -32,7 +32,7 @@ $id = required_param('id', PARAM_INT);
 $cm = get_coursemodule_from_id('certificatebeautiful', $id, 0, false, MUST_EXIST);
 $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful $certificatebeautiful */
+/** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = $DB->get_record('certificatebeautiful', array('id' => $cm->instance), '*', MUST_EXIST);
 
 $context = context_module::instance($cm->id);
@@ -64,14 +64,14 @@ if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
     $title = get_string('report_filename', 'certificatebeautiful');
     echo $OUTPUT->heading($title, 2, 'main', 'certificatebeautifulheading');
 
-    $table = new \mod_certificatebeautiful\report\certificatebeautiful_view(
+    $table = new \mod_certificatebeautiful\local\report\certificatebeautiful_view(
         "certificatebeautiful_report", $cm->id, $certificatebeautiful);
     $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/report.php?id={$cm->id}");
     $table->out(40, true);
 
 } else {
 
-    $certificatebeautifulissue = \mod_certificatebeautiful\issue::get($USER, $certificatebeautiful, $cm);
+    $certificatebeautifulissue = \mod_certificatebeautiful\local\issue::get($USER, $certificatebeautiful, $cm);
     $viewerurl = "{$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html";
     $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?code={$certificatebeautifulissue->code}";
 

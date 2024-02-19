@@ -20,7 +20,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use mod_certificatebeautiful\model\table_list;
+use mod_certificatebeautiful\local\model\table_list;
 
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
@@ -46,7 +46,7 @@ echo $OUTPUT->render_from_template('mod_certificatebeautiful/heading-addnew', [
     "text" => get_string('add_new_model', 'certificatebeautiful')
 ]);
 
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/model/table_list.php");
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/model/table_list.php");
 $table = new table_list('certificatebeautiful_model');
 $table->define_baseurl("/mod/certificatebeautiful/manage-model-list.php");
 $table->out(40, true);

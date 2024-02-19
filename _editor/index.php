@@ -28,8 +28,8 @@
     $context = context_system::instance();
     require_capability('mod/certificatebeautiful:addinstance', $context);
 
-    require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/fonts/font_util.php");
-    $fontList = \mod_certificatebeautiful\fonts\font_util::mpdf_list_fonts();
+    require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/fonts/font_util.php");
+    $fontList = \mod_certificatebeautiful\local\fonts\font_util::mpdf_list_fonts();
 
     echo "<style>{$fontList['css']}</style>"
     ?>

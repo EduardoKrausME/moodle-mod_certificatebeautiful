@@ -24,7 +24,7 @@
 
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/report/certificatebeautiful_view.php");
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/report/certificatebeautiful_view.php");
 
 $id = optional_param('id', 0, PARAM_INT);
 
@@ -41,7 +41,7 @@ if (optional_param('action', false, PARAM_TEXT) == 'delete') {
     require_sesskey();
     $issueid = required_param('issueid', PARAM_INT);
 
-    /** @var \mod_certificatebeautiful\vo\certificatebeautiful_issue $certificatebeautifulissue */
+    /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_issue $certificatebeautifulissue */
     $certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', ['id' => $issueid]);
 
     $DB->delete_records('certificatebeautiful_issue', ['id' => $issueid]);
@@ -65,7 +65,7 @@ if (optional_param('action', false, PARAM_TEXT) == 'delete') {
         get_string('report_deleted_certificate', 'certificatebeautiful'));
 }
 
-$table = new \mod_certificatebeautiful\report\certificatebeautiful_view(
+$table = new \mod_certificatebeautiful\local\report\certificatebeautiful_view(
     "certificatebeautiful_report", $cm->id, $certificatebeautiful);
 
 if (!$table->is_downloading()) {

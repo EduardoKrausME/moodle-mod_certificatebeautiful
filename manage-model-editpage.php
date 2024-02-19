@@ -22,7 +22,7 @@
 
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/model/get_template_file.php");
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/model/get_template_file.php");
 
 global $PAGE, $USER, $CFG;
 
@@ -37,7 +37,7 @@ $PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php', ['id' => $id])
 require_login();
 require_capability('mod/certificatebeautiful:addinstance', $context);
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $certificatebeautifulmodel */
+/** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $certificatebeautifulmodel */
 $certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id' => $id], "*", MUST_EXIST);
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
@@ -85,7 +85,7 @@ switch ($action) {
         foreach ($modelfiles as $modelfile) {
 
             $model = pathinfo(pathinfo($modelfile, PATHINFO_DIRNAME), PATHINFO_BASENAME);
-            $htmldata = \mod_certificatebeautiful\model\get_template_file::load_template_file($model);
+            $htmldata = \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model);
 
             $htmldata = str_replace("[data-gjs-type=wrapper]", ".body-{$model}", $htmldata);
             $htmldata = "<div class='body-{$model}'>{$htmldata}</div>";
@@ -105,7 +105,7 @@ switch ($action) {
     case 'changue':
         $model = optional_param('model', '', PARAM_TEXT);
 
-        $htmldata = \mod_certificatebeautiful\model\get_template_file::load_template_file($model);
+        $htmldata = \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model);
 
         $certificatebeautifulmodel->pages_info_object[$page] = [
             "htmldata" => $htmldata,
@@ -129,7 +129,7 @@ switch ($action) {
             "url-changemodel" => "?id={$id}&page={$page}&action=changemodel",
             "url-setting" => "{$CFG->wwwroot}/admin/settings.php?section=modsettingcertificatebeautiful",
             "iframe-url" => "{$CFG->wwwroot}/mod/certificatebeautiful/_editor/index.php?id={$id}&page={$page}",
-            "form_components"=>\mod_certificatebeautiful\help\help_base::get_form_components()
+            "form_components"=>\mod_certificatebeautiful\local\help\help_base::get_form_components()
         ];
         echo $OUTPUT->render_from_template('mod_certificatebeautiful/editpage', $data);
 

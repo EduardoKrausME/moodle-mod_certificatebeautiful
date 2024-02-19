@@ -64,7 +64,7 @@ if ($code) {
 }
 
 if (!$code) {
-    $form = new \mod_certificatebeautiful\report\validate_certificate_form(
+    $form = new \mod_certificatebeautiful\local\report\validate_certificate_form(
         "{$CFG->wwwroot}/mod/certificatebeautiful/v/");
     $form->display();
 }

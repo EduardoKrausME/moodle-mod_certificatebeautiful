@@ -43,8 +43,8 @@ require_capability('mod/certificatebeautiful:view', $context);
 $PAGE->requires->css('/mod/certificatebeautiful/assets/style.css');
 echo $OUTPUT->header();
 
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/report/certificatebeautiful_view_user.php");
-$table = new \mod_certificatebeautiful\report\certificatebeautiful_view_user("certificatebeautiful_view_user", $user);
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/report/certificatebeautiful_view_user.php");
+$table = new \mod_certificatebeautiful\local\report\certificatebeautiful_view_user("certificatebeautiful_view_user", $user);
 $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/reports-my.php?user={$user->id}");
 $table->out(40, true);
 

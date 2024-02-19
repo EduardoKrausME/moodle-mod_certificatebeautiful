@@ -24,6 +24,8 @@ require_once('../../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/lib.php");
 
+ob_start();
+
 global $PAGE, $USER, $CFG;
 
 require_login();
@@ -63,7 +65,7 @@ if ($htmldata && $cssdata) {
         ];
         foreach (certificatebeautiful_list_all_models() as $key => $model) {
             $certificatebeautifulmodel->pages_info_object[] = (object)[
-                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model['key']),
+                "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model['key']),
                 "cssdata" => ""
             ];
         }
@@ -74,7 +76,7 @@ if ($htmldata && $cssdata) {
                 "name" => 'sumary-secound-page',
                 "pages_info_object" => [
                     (object)[
-                        "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file('sumary-secound-page'),
+                        "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file('sumary-secound-page'),
                         "cssdata" => ""
                     ]
                 ]
@@ -88,11 +90,11 @@ if ($htmldata && $cssdata) {
                 "name" => $model['key'],
                 "pages_info_object" => [
                     (object)[
-                        "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model['key']),
+                        "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model['key']),
                         "cssdata" => ""
                     ],
                     (object)[
-                        "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page"),
+                        "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
                         "cssdata" => ""
                     ]
                 ]
@@ -109,12 +111,13 @@ $certificatebeautifulissie = (object)[
     'name' => "teste",
     "code" => "CODE-EX"
 ];
-$user = $DB->get_record_sql("SELECT * FROM {user}   WHERE id > 1 ORDER BY RAND() LIMIT 1");
-$course = $DB->get_record_sql("SELECT * FROM {course} WHERE id > 1 ORDER BY RAND() LIMIT 1");
+$user   = $DB->get_record_sql("SELECT * FROM {user}   WHERE id = 2 ORDER BY RAND() LIMIT 1");
+$course = $DB->get_record_sql("SELECT * FROM {course} WHERE id = 13 ORDER BY RAND() LIMIT 1");
 
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/pdf/page_pdf.php");
-$pagepdf = new \mod_certificatebeautiful\pdf\page_pdf();
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/pdf/page_pdf.php");
+$pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
 $pdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissie, $certificatebeautifulmodel, $user, $course);
 
+ob_clean();
 header('Content-Type: application/pdf');
 echo $pdf;

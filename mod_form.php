@@ -20,13 +20,12 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use mod_certificatebeautiful\models;
-
 defined('MOODLE_INTERNAL') || die();
 
 require_once("{$CFG->dirroot}/course/moodleform_mod.php");
 
-use \mod_certificatebeautiful\help\help_base;
+use \mod_certificatebeautiful\local\help\help_base;
+use mod_certificatebeautiful\local\models;
 
 /**
  * @package     mod_certificatebeautiful

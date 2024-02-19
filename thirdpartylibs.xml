@@ -15,14 +15,14 @@
         <licenseversion></licenseversion>
     </library>
     <library>
-        <location>classes/help/vendor</location>
+        <location>classes/local/help/vendor</location>
         <name>QR Code</name>
         <version>5.0.1</version>
         <license>MIT</license>
         <licenseversion></licenseversion>
     </library>
     <library>
-        <location>classes/pdf/vendor</location>
+        <location>classes/local/pdf/vendor</location>
         <name>mPDF</name>
         <version>^8</version>
         <license>GPL-2.0-only</license>

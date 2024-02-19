@@ -1393,7 +1393,8 @@ span.CodeMirror-selectedtext {
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: 9
+    z-index: 9;
+    border: 1px solid var(--gjs-color-blue);
 }
 .gjs-margin-v-el, .gjs-padding-v-el, .gjs-fixedmargin-v-el, .gjs-fixedpadding-v-el {
     opacity: .1;

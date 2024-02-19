@@ -423,7 +423,7 @@
         component.set("resizable", true);
     });
 
-    <?php echo \mod_certificatebeautiful\help\help_base::get_editor_components(); ?>
+    <?php echo \mod_certificatebeautiful\local\help\help_base::get_editor_components(); ?>
 
     var pn = editor.Panels;
 

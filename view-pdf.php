@@ -20,8 +20,8 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use mod_certificatebeautiful\model\form_create;
-use mod_certificatebeautiful\model\form_create_page;
+use mod_certificatebeautiful\local\model\form_create;
+use mod_certificatebeautiful\local\model\form_create_page;
 
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
@@ -33,16 +33,16 @@ global $PAGE, $USER, $CFG;
 $code = required_param('code', PARAM_TEXT);
 $action = required_param('action', PARAM_TEXT);
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful_issue $certificatebeautifulissue */
+/** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_issue $certificatebeautifulissue */
 $certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', array('code' => $code), '*', MUST_EXIST);
 
 $cm = get_coursemodule_from_id('certificatebeautiful', $certificatebeautifulissue->cmid, 0, false, MUST_EXIST);
 $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful $certificatebeautiful */
+/** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = $DB->get_record('certificatebeautiful', array('id' => $cm->instance), '*', MUST_EXIST);
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $certificatebeautifulmodel */
+/** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $certificatebeautifulmodel */
 $certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id' => $certificatebeautiful->model], "*", MUST_EXIST);
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
@@ -100,8 +100,8 @@ if ($storedfile) {
     header('Content-Length: ' . strlen($content));
     echo $content;
 } else {
-    require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/pdf/page_pdf.php");
-    $pagepdf = new \mod_certificatebeautiful\pdf\page_pdf();
+    require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/pdf/page_pdf.php");
+    $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
     $contentpdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $USER, $SITE);
 
     $fs->create_file_from_string($filerecord, $contentpdf);
