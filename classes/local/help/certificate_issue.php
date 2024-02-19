@@ -56,9 +56,7 @@ class certificate_issue extends help_base {
      * @throws \dml_exception
      */
     public static function get_data($certificatebeautiful, $certificatebeautifulissue) {
-        global $CFG, $DB;
-
-        require_once(__DIR__ . "/vendor/autoload.php");
+        global $CFG;
 
         $certificatebeautiful->description = trim($certificatebeautiful->description);
         $certificatebeautiful->description = str_replace("\n", "<br>", $certificatebeautiful->description);
@@ -80,12 +78,11 @@ class certificate_issue extends help_base {
         if (strpos($html, "img/qr-code.svg")) {
 
             $pngfile = $CFG->tempdir . "/" . uniqid() . ".png";
-            require_once(__DIR__ . "/util/qrcode.php");
 
             $options = [
                 'wq'=> 0,
-                'w' => 300,
-                'h' => 300,
+                'w' => 500,
+                'h' => 500,
                 'p' => 0,
             ];
             $generator = new qrcode($certificatebeautifulissue['url'], $options);
