@@ -20,6 +20,7 @@ $string['modulename'] = 'Beautiful certificate';
 $string['pluginname'] = 'Beautiful certificate';
 $string['modulenameplural'] = 'Certificados bonitos';
 $string['pluginadministration'] = 'Administração de certificados de curso';
+$string['certificatebeautiful:addinstance'] = 'Adicionar instancia';
 
 $string['select_a_model'] = 'Selecionar um modelo';
 $string['select_the_model'] = 'Selecionar o modelo';
@@ -59,8 +60,8 @@ $string['config_signature_text_desc'] = 'Para habilitar a geração automática 
 $string['config_signature_color'] = 'Cor da linha da assinatura';
 $string['config_signature_color_desc'] = 'Selecione a cor da linha de escrita para a assinatura.';
 
-$string['course_certificates'] = 'Certificados de Curso';
-$string['my_certificates'] = 'Meus Certificados';
+$string['course_certificates'] = 'Certificados do curso';
+$string['my_certificates'] = 'Meus certificados';
 $string['from_certificates'] = 'Certificados do estudante {$a}';
 
 // Validação de certificado.
@@ -104,7 +105,7 @@ $string['sumary-secound-page'] = 'Certificado de Resumo';
 
 // Modelo de certificado.
 $string['certtitle'] = 'Certificado';
-$string['subtititle'] = 'DE CONCLUSÃO';
+$string['subtititle'] = 'De conclusão';
 $string['certpresented'] = 'Este certificado é orgulhosamente apresentado a';
 $string['certdate'] = 'Data';
 $string['certsignature'] = 'Diretor';
