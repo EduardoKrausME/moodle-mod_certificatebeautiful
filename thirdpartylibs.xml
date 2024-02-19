@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>_pdfjs-2.8.335-legacy</location>
+        <name>PDF JS</name>
+        <version>2.8.335</version>
+        <license>Apache License</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor</location>
+        <name>Grapes JS</name>
+        <version>0.21.8</version>
+        <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>classes/help/vendor</location>
+        <name>QR Code</name>
+        <version>5.0.1</version>
+        <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>classes/pdf/vendor</location>
+        <name>mPDF</name>
+        <version>^8</version>
+        <license>GPL-2.0-only</license>
+        <licenseversion></licenseversion>
+    </library>
+</libraries>
