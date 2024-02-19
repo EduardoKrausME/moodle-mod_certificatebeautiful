@@ -1,8 +1,10 @@
 <?php
 /**
- * User: Eduardo Kraus
- * Date: 13/02/2024
- * Time: 12:51
+ * @package     mod_certificatebeautiful
+ * @category    backup
+ * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @date        13/02/2024 12:51
  */
 
 ?>

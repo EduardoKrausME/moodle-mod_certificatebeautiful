@@ -15,9 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * User: Eduardo Kraus
- * Date: 11/01/2024
- * Time: 12:24
+ * @package     mod_certificatebeautiful
+ * @category    backup
+ * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @date        11/01/2024 12:24
  */
 
 namespace mod_certificatebeautiful\help;

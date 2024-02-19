@@ -15,14 +15,17 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * User: Eduardo Kraus
- * Date: 10/01/2024
- * Time: 12:25
+ * @package     mod_certificatebeautiful
+ * @category    backup
+ * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @date        10/01/2024 12:25
  */
 
 namespace mod_certificatebeautiful\pdf;
 
 use mod_certificatebeautiful\fonts\font_util;
+use mod_certificatebeautiful\pdf\asign\pdf_asign;
 use mod_certificatebeautiful\vo\certificatebeautiful;
 use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 use mod_certificatebeautiful\vo\certificatebeautiful_model;
@@ -100,7 +103,7 @@ class page_pdf {
                     $fontlist["fonts"]
                 )
         ]);
-        $mpdf->SetProtection(['print', 'print-highres'], '', 'asjdfasjdhfgajdhsfagsdfhasjdfasdgjfhagyruitywuerfdf', 128);
+        //$mpdf->SetProtection(['print', 'print-highres'], '', 'asjdfasjdhfgajdhsfagsdfhasjdfasdgjfhagyruitywuerfdf', 128);
         $mpdf->autoPageBreak = false;
 
         $mpdf->SetAuthor($COURSE->fullname);
@@ -144,7 +147,14 @@ class page_pdf {
             }
         }
 
-        return $mpdf->Output("name.pdf", Destination::STRING_RETURN);
+        $pdf = $mpdf->Output("name.pdf", Destination::STRING_RETURN);
+
+        // require_once("{$CFG->dirroot}/lib/tcpdf/tcpdf.php");
+        // require_once(__DIR__ . "/pdf_asign.php");
+        // $pdfasign = new pdf_asign($pdf, $mpdf);
+        // $pdf = $pdfasign->createSignature();
+
+        return $pdf;
     }
 
     /**

@@ -17,9 +17,11 @@
 /**
  * This code just receives the image and returns it in base64
  *
- * User: Eduardo Kraus
- * Date: 08/01/2024
- * Time: 12:02
+ * @package     mod_certificatebeautiful
+ * @category    backup
+ * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @date        08/01/2024 12:02
  */
 
 $resultArray = [];

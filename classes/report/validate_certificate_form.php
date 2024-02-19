@@ -16,9 +16,11 @@
 
 
 /**
- * User: Eduardo Kraus
- * Date: 10/02/2024
- * Time: 02:22
+ * @package     mod_certificatebeautiful
+ * @category    backup
+ * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @date        10/02/2024 02:22
  */
 
 namespace mod_certificatebeautiful\report;
