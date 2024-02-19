@@ -82,7 +82,7 @@ class certificatebeautiful_view_user extends \table_sql {
         }
 
         $this->define_columns($columns);
-        $this->column_class('extra', 'report-extra-width');
+        $this->column_class('extra', 'certificatebeautiful-report-extra-width');
         $this->define_headers($headers);
     }
 

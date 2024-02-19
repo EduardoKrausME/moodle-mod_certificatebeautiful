@@ -1,23 +1,23 @@
 <div id="box-link-{{uniqid}}" class="text-nowrap">
     <a href="{{{url-view}}}" target="_blank"
-       class="btn btn-success report-btn-small">{{#str}}report_view_certificate,certificatebeautiful{{/str}}</a>
+       class="btn btn-success certificatebeautiful-report-btn-small">{{#str}}report_view_certificate,certificatebeautiful{{/str}}</a>
     {{#url-delete}}
         <span id="delete-{{uniqid}}"
-              class="btn btn-danger ml-2 report-btn-small">{{#str}}
+              class="btn btn-danger ml-2 certificatebeautiful-report-btn-small">{{#str}}
             report_delete_certificate,certificatebeautiful{{/str}}</span>
     {{/url-delete}}
 </div>
 
 {{#url-delete}}
     <div id="box-confirm-{{uniqid}}"
-         class="alert alert-danger m-0 report-extra-width"
+         class="alert alert-danger m-0 certificatebeautiful-report-extra-width"
          style="display:none;min-width: 254px;">
         <p class="text-center">{{#str}}report_confirm_delete_certificate,certificatebeautiful{{/str}}</p>
         <p class="text-center text-nowrap">
             <a href="{{{url-delete}}}"
-               class="btn btn-danger report-btn-small">{{#str}}yes{{/str}}</a>
+               class="btn btn-danger certificatebeautiful-report-btn-small">{{#str}}yes{{/str}}</a>
             <span id="cancel-{{uniqid}}" href="{{url-delete}}"
-                  class="btn btn-info report-btn-small">{{#str}}cancel{{/str}}</span>
+                  class="btn btn-info certificatebeautiful-report-btn-small">{{#str}}cancel{{/str}}</span>
         </p>
     </div>
 {{/url-delete}}
