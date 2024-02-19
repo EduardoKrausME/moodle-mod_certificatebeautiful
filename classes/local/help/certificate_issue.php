@@ -23,8 +23,7 @@
 
 namespace mod_certificatebeautiful\local\help;
 
-use chillerlan\QRCode\QRCode;
-use chillerlan\QRCode\QROptions;
+use mod_certificatebeautiful\local\help\util\qrcode;
 use mod_certificatebeautiful\local\vo\certificatebeautiful;
 use mod_certificatebeautiful\local\vo\certificatebeautiful_issue;
 
@@ -76,15 +75,26 @@ class certificate_issue extends help_base {
      * @return mixed
      */
     public static function custom_replace($html, $certificatebeautifulissue) {
+        global $CFG;
 
         if (strpos($html, "img/qr-code.svg")) {
-            $options = new QROptions([
-                'outputType' => QRCode::OUTPUT_IMAGE_PNG,
-                'scale' => 20,
-                'addQuietzone' => false
-            ]);
-            $qrcode = (new QRCode($options))->render($certificatebeautifulissue['url']);
-            $html = str_replace("img/qr-code.svg", $qrcode, $html);
+
+            $pngfile = $CFG->tempdir . "/" . uniqid() . ".png";
+            require_once(__DIR__ . "/util/qrcode.php");
+
+            $options = [
+                'wq'=> 0,
+                'w' => 300,
+                'h' => 300,
+                'p' => 0,
+            ];
+            $generator = new qrcode($certificatebeautifulissue['url'], $options);
+            $generator->output_image();
+            $image = $generator->render_image();
+            imagepng($image, $pngfile);
+
+            $base64 = 'data:image/png;base64,' . base64_encode(file_get_contents($pngfile));
+            $html = str_replace("img/qr-code.svg", $base64, $html);
         }
 
         return $html;
