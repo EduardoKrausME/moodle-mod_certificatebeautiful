@@ -16,7 +16,6 @@
 
 /**
  * @package     mod_certificatebeautiful
- * @category    backup
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @date        11/01/2024 12:31

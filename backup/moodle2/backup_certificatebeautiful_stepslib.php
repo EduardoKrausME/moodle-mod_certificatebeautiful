@@ -18,7 +18,6 @@
  * Define the complete structure for backup, with file and id annotations.
  *
  * @package     mod_certificatebeautiful
- * @category    backup
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

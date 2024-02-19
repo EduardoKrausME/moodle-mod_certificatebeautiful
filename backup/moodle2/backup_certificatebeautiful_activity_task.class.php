@@ -18,7 +18,6 @@
  * The task that provides all the steps to perform a complete backup is defined here.
  *
  * @package     mod_certificatebeautiful
- * @category    backup
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
