@@ -42,10 +42,6 @@
     $id = required_param('id', PARAM_INT);
     $page = required_param('page', PARAM_INT);
 
-    require_login();
-    $context = context_system::instance();
-    require_capability('mod/certificatebeautiful:addinstance', $context);
-
     $certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id' => $id], "*", MUST_EXIST);
     $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
