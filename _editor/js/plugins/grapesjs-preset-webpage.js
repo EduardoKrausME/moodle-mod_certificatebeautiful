@@ -116,7 +116,7 @@
                     type      : 'link',
                     editable  : !1,
                     droppable : !0,
-                    style     : {disp          ine-block', padding : '5px', 'min-height' : '50px', 'min-width' : '50px'}
+                    style     : {display : 'inline-block', padding : '5px', 'min-height' : '50px', 'min-width' : '50px'}
                 }
             }), t('quote', {
                 label   : 'Quote',
