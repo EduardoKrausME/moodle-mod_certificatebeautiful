@@ -69,6 +69,7 @@
   -webkit-transform: translate(-50%, 0.5rem);
   -ms-transform: translate(-50%, 0.5rem);
   transform: translate(-50%, 0.5rem);
+  white-space: nowrap;
 }
 
 [data-tooltip-pos=left]::after {
