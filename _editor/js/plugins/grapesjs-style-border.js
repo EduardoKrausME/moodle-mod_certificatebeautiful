@@ -45,43 +45,47 @@
 
     e.r(t), e.d(t, {default : () => p});
     const p = function(e) {
-        var t, r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, o = n(n({}, {
-                sector : 'decorations',
-                originalBorder : {sector : 'decorations', name : 'border'},
-                extendType : {},
-                extendWidth : {},
-                extendStyle : {},
-                extendColor : {},
-                extendBorder : {},
-                extendBorderTop : {},
-                extendBorderLeft : {},
+        var t, r                                                                                                   = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, o                          = n(n({}, {
+                sector             : 'decorations',
+                originalBorder     : {sector : 'decorations', name : 'border'},
+                extendType         : {},
+                extendWidth        : {},
+                extendStyle        : {},
+                extendColor        : {},
+                extendBorder       : {},
+                extendBorderTop    : {},
+                extendBorderLeft   : {},
                 extendBorderBottom : {},
-                extendBorderRight : {},
-                at : !1
-            }), r), p = e.Styles, i = [], a = e.getConfig('stylePrefix'), l = ".".concat(a, "sm-property"),
-            d = function() {
+                extendBorderRight  : {},
+                at                 : !1
+            }), r), p                                                                                              = e.Styles, i                                                                                = [], a = e.getConfig('stylePrefix'), l = ".".concat(a, "sm-property"),
+            d                                                                                                      = function() {
                 var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : '';
                 i.forEach((function(r) {
-                    var o = (r.view || {}).$el;
-                    o && (o.show(), r.get('property') === "border".concat(e) ? t.view.$el.insertBefore(o.find(l).first()) : o.hide())
+                    if (r) {
+                        var o = (r.view || {}).$el;
+                        o && (o.show(), r.get('property') === "border".concat(e) ? t.view.$el.insertBefore(o.find(l).first()) : o.hide())
+                    }
                 })), i.forEach((function(t) {
-                    t.get('property') !== "border".concat(e) ? t.set('requires', {display : 'invisible'}) : t.set('requires', null)
+                    if (t) {
+                        t.get('property') !== "border".concat(e) ? t.set('requires', {display : 'invisible'}) : t.set('requires', null)
+                    }
                 }))
-            }, s = n({
-                property : 'border-type',
-                type : 'composite',
+            }, s                                                                                                   = n({
+                property   : 'border-type',
+                type       : 'composite',
                 properties : [n({
                     property : 'border-options',
-                    type : 'radio',
-                    name : ' ',
-                    default : 'all',
-                    options : [{value : 'all', title : 'all', className : 'fa fa-arrows'}, {
-                        value : 'top',
-                        title : 'top',
+                    type     : 'radio',
+                    name     : ' ',
+                    default  : 'all',
+                    options  : [{value : 'all', title : 'all', className : 'fa fa-arrows'}, {
+                        value     : 'top',
+                        title     : 'top',
                         className : 'fa fa-long-arrow-up'
                     }, {value : 'right', title : 'right', className : 'fa fa-long-arrow-right'}, {
-                        value : 'bottom',
-                        title : 'bottom',
+                        value     : 'bottom',
+                        title     : 'bottom',
                         className : 'fa fa-long-arrow-down'
                     }, {value : 'left', title : 'left', className : 'fa fa-long-arrow-left'}],
                     onChange : function(e) {
@@ -93,43 +97,43 @@
                         }
                     }
                 }, o.extendType)],
-                toStyle : function(e, t) {
+                toStyle    : function(e, t) {
                     t.name;
                     return {}
                 }
-            }, o.extendType), c = n({
+            }, o.extendType), c                                                                                    = n({
                 property : 'border-style',
-                type : 'select',
-                default : 'solid',
-                full : 'true',
-                options : [{value : 'none'}, {value : 'solid'}, {value : 'dotted'}, {value : 'dashed'}, {value : 'double'}, {value : 'groove'}, {value : 'ridge'}, {value : 'inset'}, {value : 'outset'}]
-            }, o.extendStyle), f = n({
+                type     : 'select',
+                default  : 'solid',
+                full     : 'true',
+                options  : [{value : 'none'}, {value : 'solid'}, {value : 'dotted'}, {value : 'dashed'}, {value : 'double'}, {value : 'groove'}, {value : 'ridge'}, {value : 'inset'}, {value : 'outset'}]
+            }, o.extendStyle), f                                                                                   = n({
                 property : 'border-width',
-                units : ['px', 'em', 'rem', 'vh', 'vw'],
-                unit : 'px',
-                type : 'slider',
+                units    : ['px', 'em', 'rem', 'vh', 'vw'],
+                unit     : 'px',
+                type     : 'slider',
                 defaults : 1,
-                min : 0,
-                max : 20
+                min      : 0,
+                max      : 20
             }, o.extendWidth), u = n({property : 'border-color', type : 'color'}, o.extendColor), y = [f, c, u], b = [n({
-                property : 'border',
-                type : 'composite',
+                property   : 'border',
+                type       : 'composite',
                 properties : y
             }, o.extendBorder), n({
-                property : 'border-top',
-                type : 'composite',
+                property   : 'border-top',
+                type       : 'composite',
                 properties : y
             }, o.extendBorderTop), n({
-                property : 'border-right',
-                type : 'composite',
+                property   : 'border-right',
+                type       : 'composite',
                 properties : y
             }, o.extendBorderRight), n({
-                property : 'border-bottom',
-                type : 'composite',
+                property   : 'border-bottom',
+                type       : 'composite',
                 properties : y
             }, o.extendBorderBottom), n({
-                property : 'border-left',
-                type : 'composite',
+                property   : 'border-left',
+                type       : 'composite',
                 properties : y
             }, o.extendBorderLeft)];
         e.on('load', (function() {
