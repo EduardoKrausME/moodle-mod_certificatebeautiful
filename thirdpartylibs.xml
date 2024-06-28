@@ -1,17 +1,381 @@
 <?xml version="1.0"?>
 <libraries>
     <library>
-        <location>_pdfjs-2.8.335-legacy</location>
-        <name>PDF JS</name>
-        <version>2.8.335</version>
-        <license>Apache License</license>
-        <licenseversion></licenseversion>
-    </library>
-    <library>
         <location>_editor</location>
         <name>Grapes JS</name>
         <version>0.21.8</version>
         <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-appreciation</location>
+        <name>Certtificate appreciation</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-details</location>
+        <name>Certtificate details</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-elegant</location>
+        <name>Certtificate elegant</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-flat-modern</location>
+        <name>Certtificate flat-modern</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-golden</location>
+        <name>Certtificate golden</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-gradient-golden-luxury</location>
+        <name>Certtificate gradient-golden-luxury</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-kids-animals</location>
+        <name>Certtificate kids-animals</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-kids-child-medical</location>
+        <name>Certtificate kids-child-medical</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-kids-gradient-modern</location>
+        <name>Certtificate kids-gradient-modern</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-kids-hand-drawn</location>
+        <name>Certtificate kids-hand-drawn</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-kids-pastel</location>
+        <name>Certtificate kids-pastel</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-modern</location>
+        <name>Certtificate modern</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-modern-2</location>
+        <name>Certtificate modern-2</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-simple</location>
+        <name>Certtificate simple</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/_model/certificate-vintage</location>
+        <name>Certtificate vintage</name>
+        <version>0.21.8</version>
+        <license>Free Freepik Terms</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/fonts/_signature-Aerotis</location>
+        <name>Font signature Aerotis</name>
+        <version></version>
+        <license>1001Fonts Free For Personal Use License</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/fonts/_signature-Allison</location>
+        <name>Font Allison</name>
+        <version></version>
+        <license>1001Fonts Free For Personal Use License</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/fonts/_signature-Autography</location>
+        <name>Font Autography</name>
+        <version></version>
+        <license>Demo</license>
+        <licenseversion>https://www.fontspace.com/autography-font-f43655</licenseversion>
+    </library>
+    <library>
+        <location>_editor/fonts/_signature-Creata</location>
+        <name>Font Creata</name>
+        <version></version>
+        <license>Demo</license>
+        <licenseversion>https://www.glyphstyle.net/creata/</licenseversion>
+    </library>
+    <library>
+        <location>_editor/fonts/_signature-Tomatoes</location>
+        <name>Font Tomatoes</name>
+        <version>Demo</version>
+        <license></license>
+        <licenseversion>https://www.fontspace.com/tomatoes-font-f29709</licenseversion>
+    </library>
+    <library>
+        <location>_editor/fonts/_signature-Wishloved</location>
+        <name>Font Wishloved</name>
+        <version></version>
+        <license></license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>_editor/fonts/Alex_Brush</location>
+        <name>Font Alex Brush</name>
+        <version></version>
+        <license>The Alex Brush Project Authors</license>
+        <licenseversion>https://github.com/googlefonts/alex-brush</licenseversion>
+    </library>
+    <library>
+        <location>_editor/fonts/Bebas_Neue</location>
+        <name>Font Bebas Neue</name>
+        <version></version>
+        <license>Dharma Type</license>
+        <licenseversion>https://fonts.google.com/specimen/Bebas+Neue</licenseversion>
+    </library>
+    <library>
+        <location>_editor/fonts/Caveat</location>
+        <name>Font Caveat</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Caveat</licenseversion>
+    </library>
+    <library>
+        <location>_editor/fonts/Cinzel</location>
+        <name>Font Cinzel</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Cinzel</licenseversion>
+    </library>
+    <library>
+        <location>_editor/fonts/DM_Serif_Display</location>
+        <name>Font DM Serif Display</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/DM+Serif+Display</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Inter</location>
+        <name>Font Inter</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Inter</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Josefin_Sans</location>
+        <name>Font Josefin Sans</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Josefin+Sans</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Lato</location>
+        <name>Font Lato</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Lato</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Montserrat</location>
+        <name>Font Montserrat</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Montserrat</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Nunito</location>
+        <name>Font Nunito</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Nunito</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Open_Sans</location>
+        <name>Font Open Sans</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Open+Sans</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Parisienne</location>
+        <name>Font Parisienne</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Parisienne</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Playfair_Display</location>
+        <name>Font Playfair Display</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Playfair+Display</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Poppins</location>
+        <name>Font Poppins</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Poppins</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Quicksand</location>
+        <name>Font Quicksand</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Quicksand</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Raleway</location>
+        <name>Font Raleway</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Raleway</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Riffic</location>
+        <name>Font Riffic</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Riffic</licenseversion>
+    </library>
+  <library>
+        <location>_editor/fonts/Vibur</location>
+        <name>Font Vibur</name>
+        <version></version>
+        <license>Copyright 2015 Google Inc</license>
+        <licenseversion>https://fonts.google.com/specimen/Vibur</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/plugins/grapesjs-blocks-basic.js</location>
+        <name>grapesjs blocks basic</name>
+        <version>1.0.2</version>
+        <license>BSD-3-Clause</license>
+        <licenseversion>https://github.com/GrapesJS/blocks-basic</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/plugins/grapesjs-blocks-table.js</location>
+        <name>grapesjs-blocks-table</name>
+        <version>1.3.0</version>
+        <license>BSD-3-Clause</license>
+        <licenseversion>https://github.com/VojtechLanka/grapesjs-blocks-table</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/plugins/grapesjs-custom-code.js</location>
+        <name>grapesjs-custom-code</name>
+        <version>1.0.2</version>
+        <license>BSD-3-Clause</license>
+        <licenseversion>https://github.com/GrapesJS/components-custom-code</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/plugins/grapesjs-parser-postcss.js</location>
+        <name>grapesjs-parser-postcss</name>
+        <version>1.0.3</version>
+        <license>BSD-3-Clause</license>
+        <licenseversion>https://github.com/GrapesJS/parser-postcss</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/plugins/grapesjs-preset-webpage.js</location>
+        <name>grapesjs-preset-webpage</name>
+        <version>1.0.3</version>
+        <license>BSD-3-Clause</license>
+        <licenseversion>https://github.com/GrapesJS/preset-webpage</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/plugins/grapesjs-style-bg.js</location>
+        <name>grapesjs-style-bg</name>
+        <version>2.0.2</version>
+        <license>BSD-3-Clause</license>
+        <licenseversion>https://github.com/GrapesJS/style-bg</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/plugins/grapesjs-style-border.js</location>
+        <name>grapesjs-style-border</name>
+        <version>1.0.4</version>
+        <license>MIT</license>
+        <licenseversion>https://github.com/Ju99ernaut/grapesjs-style-border</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/plugins/grapesjs-tui-image-editor.js</location>
+        <name>grapesjs-tui-image-editor</name>
+        <version>1.0.2</version>
+        <license>BSD-3-Clause</license>
+        <licenseversion>https://github.com/GrapesJS/tui-image-editor</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/tui/tui-code-snippet.js</location>
+        <name>tui-code-snippet</name>
+        <version>1.5.2</version>
+        <license>MIT</license>
+        <licenseversion>https://github.com/nhn/tui.code-snippet</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/tui/tui-color-picker.js</location>
+        <name>TOAST UI Color Picker</name>
+        <version>2.2.7</version>
+        <license>MIT</license>
+        <licenseversion>https://ui.toast.com/tui-color-picker</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/tui/tui-image-editor.js</location>
+        <name>TOAST UI ImageEditor</name>
+        <version>3.15.2</version>
+        <license>MIT</license>
+        <licenseversion>https://ui.toast.com/tui-image-editor/</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/jquery.js</location>
+        <name>jQuery</name>
+        <version>3.3.1</version>
+        <license>MIT</license>
+        <licenseversion>https://jquery.com/license/</licenseversion>
+    </library>
+    <library>
+        <location>_editor/js/toastr.js</location>
+        <name>toastr</name>
+        <version>2.1.1</version>
+        <license>MIT</license>
+        <licenseversion>hhttps://cdnjs.com/libraries/toastr.js</licenseversion>
+    </library>
+    <library>
+        <location>_pdfjs-2.8.335-legacy</location>
+        <name>PDF JS</name>
+        <version>2.8.335</version>
+        <license>Apache License</license>
         <licenseversion></licenseversion>
     </library>
     <library>
