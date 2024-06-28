@@ -22,6 +22,8 @@ $string['modulenameplural'] = 'Beautiful certificates';
 $string['pluginadministration'] = 'Course certificate administration';
 $string['certificatebeautiful:addinstance'] = 'Add instance';
 
+$string['privacy:metadata'] = 'Beautiful certificate does not store any personal data';
+
 $string['select_a_model'] = 'Select a model';
 $string['select_the_model'] = 'Select the model';
 $string['certificate_description'] = 'Describe the certificate';
