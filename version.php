@@ -22,8 +22,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2024062700;
-$plugin->release = '2.1.8';
+$plugin->version = 2024062800;
+$plugin->release = '2.1.9';
 $plugin->requires = 2021041900;
 $plugin->maturity = MATURITY_STABLE;
 $plugin->component = 'mod_certificatebeautiful';
