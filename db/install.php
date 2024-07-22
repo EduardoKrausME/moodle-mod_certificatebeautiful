@@ -37,11 +37,11 @@ function xmldb_certificatebeautiful_install() {
         $pagesinfo = [
             [
                 "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model['key']),
-                "cssdata" => ""
+                "cssdata" => "",
             ], [
                 "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
-                "cssdata" => ""
-            ]
+                "cssdata" => "",
+            ],
         ];
 
         $certificatebeautifulmodel = (object)[
@@ -53,4 +53,3 @@ function xmldb_certificatebeautiful_install() {
         $DB->insert_record('certificatebeautiful_model', $certificatebeautifulmodel);
     }
 }
-

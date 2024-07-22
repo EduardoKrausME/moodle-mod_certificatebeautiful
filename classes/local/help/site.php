@@ -15,21 +15,32 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class site
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        11/01/2024 12:24
  */
 
 namespace mod_certificatebeautiful\local\help;
 
+/**
+ * Class site
+ *
+ * @package mod_certificatebeautiful\local\help
+ */
 class site extends help_base {
 
-    CONST CLASS_NAME = "site";
+    /**
+     * CLASS_NAME value
+     */
+    const CLASS_NAME = "site";
+
 
     /**
-     * @return array
+     * Function table_structure
      *
+     * @return array
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -40,9 +51,11 @@ class site extends help_base {
         ];
     }
 
+
     /**
-     * @return array
+     * Function get_data
      *
+     * @return array
      * @throws \coding_exception
      */
     public static function get_data() {

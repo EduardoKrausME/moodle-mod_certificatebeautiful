@@ -15,20 +15,27 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class table_list
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        07/01/2024 23:23
  */
 
 namespace mod_certificatebeautiful\local\model;
 
 use table_sql;
 
+/**
+ * Class table_list
+ *
+ * @package mod_certificatebeautiful\local\model
+ */
 class table_list extends table_sql {
 
     /**
      * table_list constructor.
+     *
      * @param $uniqueid
      */
     public function __construct($uniqueid) {
@@ -37,6 +44,8 @@ class table_list extends table_sql {
     }
 
     /**
+     * col_name function
+     *
      * @param \stdClass $data
      * @return string
      */

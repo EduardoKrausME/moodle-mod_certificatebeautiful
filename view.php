@@ -30,10 +30,10 @@ global $PAGE, $USER, $CFG;
 $id = required_param('id', PARAM_INT);
 
 $cm = get_coursemodule_from_id('certificatebeautiful', $id, 0, false, MUST_EXIST);
-$course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
+$course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
 
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
-$certificatebeautiful = $DB->get_record('certificatebeautiful', array('id' => $cm->instance), '*', MUST_EXIST);
+$certificatebeautiful = $DB->get_record('certificatebeautiful', ['id' => $cm->instance], '*', MUST_EXIST);
 
 $context = context_module::instance($cm->id);
 
@@ -45,10 +45,10 @@ $PAGE->set_heading(format_string($course->fullname));
 require_course_login($course, true, $cm);
 require_capability('mod/certificatebeautiful:view', $context);
 
-$event = \mod_certificatebeautiful\event\certificatebeautiful_course_module_viewed::create(array(
+$event = \mod_certificatebeautiful\event\certificatebeautiful_course_module_viewed::create([
     'objectid' => $PAGE->cm->instance,
     'context' => $PAGE->context,
-));
+]);
 $event->add_record_snapshot('course', $PAGE->course);
 $event->add_record_snapshot($PAGE->cm->modname, $certificatebeautiful);
 $event->trigger();

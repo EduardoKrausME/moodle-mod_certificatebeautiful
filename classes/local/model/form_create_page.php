@@ -15,10 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class form_create_page
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        09/01/2024 12:15
  */
 
 namespace mod_certificatebeautiful\local\model;
@@ -26,11 +27,17 @@ namespace mod_certificatebeautiful\local\model;
 defined('MOODLE_INTERNAL') || die();
 require_once("{$CFG->libdir}/formslib.php");
 
+/**
+ * Class form_create_page
+ *
+ * @package mod_certificatebeautiful\local\model
+ */
 class form_create_page extends \moodleform {
 
     /**
-     * @return object
+     * Function empty_page
      *
+     * @return object
      * @throws \coding_exception
      */
     public static function empty_page() {
@@ -46,7 +53,7 @@ class form_create_page extends \moodleform {
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
-                }"
+                }",
         ];
     }
 

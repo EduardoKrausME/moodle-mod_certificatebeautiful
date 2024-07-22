@@ -15,10 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class replace_tags
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @Date        11/01/2024 11:52
  */
 
 namespace mod_certificatebeautiful\local\pdf;
@@ -38,6 +39,11 @@ use mod_certificatebeautiful\local\help\user_profile;
 use mod_certificatebeautiful\local\vo\certificatebeautiful;
 use mod_certificatebeautiful\local\vo\certificatebeautiful_issue;
 
+/**
+ * Class replace_tags
+ *
+ * @package mod_certificatebeautiful\local\pdf
+ */
 class replace_tags {
 
     /** @var \stdClass */
@@ -57,6 +63,7 @@ class replace_tags {
 
     /**
      * replace_tags constructor.
+     *
      * @param string $page
      * @param int $course
      * @param \stdClass $user
@@ -72,6 +79,8 @@ class replace_tags {
     }
 
     /**
+     * set_html
+     *
      * @param mixed $html
      */
     public function set_html($html) {
@@ -96,6 +105,8 @@ class replace_tags {
     }
 
     /**
+     * set_course
+     *
      * @param mixed $course
      */
     public function set_course($course): void {
@@ -103,6 +114,8 @@ class replace_tags {
     }
 
     /**
+     * set_user
+     *
      * @param mixed $user
      */
     public function set_user($user): void {
@@ -110,6 +123,8 @@ class replace_tags {
     }
 
     /**
+     * repace_html
+     *
      * @throws \coding_exception
      * @throws \dml_exception
      * @throws \moodle_exception
@@ -157,6 +172,11 @@ class replace_tags {
         $this->page->htmldata = functions::replace($this->page->htmldata, $this->user);
     }
 
+    /**
+     * Function repace_signature
+     *
+     * @throws \dml_exception
+     */
     public function repace_signature() {
         global $CFG;
 
@@ -169,7 +189,6 @@ class replace_tags {
             $text = preg_replace('/[^A-Za-z]/', '', $text);
             $text = substr($text, 0, 10);
             $text = ucfirst(strtolower($text));
-
 
             $file = "{$CFG->dirroot}/mod/certificatebeautiful/_editor/fonts/_signature-{$typography}/_signatre-{$typography}.svg";
             if (file_exists($file)) {
@@ -184,14 +203,16 @@ class replace_tags {
         }
     }
 
+    /**
+     * Function repace_css
+     */
     public function repace_css() {
 
-        $replace_tags_replace_fonts = function ($input) {
+        $replacetagsreplacefonts = function ($input) {
             $fonts = font_util::mpdf_list_fonts();
 
             foreach ($fonts['listfonts'] as $listfont) {
                 $fontnameid = $listfont->fontnameid;
-                //  $fontfamily = $listfont->fontfamily;
 
                 $input[0] = str_replace("{$fontnameid},", "", $input[0]);
             }
@@ -199,12 +220,17 @@ class replace_tags {
             return $input[0];
         };
 
-        $this->page->htmldata = preg_replace_callback('/-description\s?\{(.*?)}/s', $replace_tags_replace_fonts, $this->page->htmldata);
-        $this->page->cssdata = preg_replace_callback('/-description\s?\{(.*?)}/s', $replace_tags_replace_fonts, $this->page->cssdata);
-
-        // die($this->page->cssdata);
+        $this->page->htmldata = preg_replace_callback('/-description\s?\{(.*?)}/s',
+            $replacetagsreplacefonts, $this->page->htmldata);
+        $this->page->cssdata = preg_replace_callback('/-description\s?\{(.*?)}/s',
+            $replacetagsreplacefonts, $this->page->cssdata);
     }
 
+    /**
+     * Function out_page
+     *
+     * @return \stdClass|string
+     */
     public function out_page() {
         return $this->page;
     }

@@ -14,6 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Lang en file
+ *
+ * @package     mod_certificatebeautiful
+ * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 defined('MOODLE_INTERNAL') || die();
 
 $string['modulename'] = 'Beautiful certificate';
@@ -53,8 +61,8 @@ $string['preview_certificate'] = 'Certificate preview';
 $string['create_at_certificate'] = 'Certificate for {$a}';
 $string['config_signature_heading'] = 'Signature Settings';
 $string['config_signature_heading_desc'] = 'At this point, you must decide whether you want to create a custom signature from the {$a} pre-loaded caligraphies. Your options include:';
-$string['config_signature_enable']='Enable dynamic signature';
-$string['config_signature_enable_desc']='When checked, Beautiful Certificate will create a customized signature based on the chosen handwriting, specified text, and color.';
+$string['config_signature_enable'] = 'Enable dynamic signature';
+$string['config_signature_enable_desc'] = 'When checked, Beautiful Certificate will create a customized signature based on the chosen handwriting, specified text, and color.';
 $string['config_signature_typography'] = 'Signature Text Style';
 $string['config_signature_typography_desc'] = 'By default, the Beautiful Certificate will generate a signature using the following text and employ this calligraphy to personalize the content.';
 $string['config_signature_text'] = 'Signature Text';

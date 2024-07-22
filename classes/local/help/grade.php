@@ -15,23 +15,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class grade
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        11/01/2024 12:39
  */
 
 namespace mod_certificatebeautiful\local\help;
 
 use grade_item;
 
+/**
+ * Class grade
+ *
+ * @package mod_certificatebeautiful\local\help
+ */
 class grade extends help_base {
 
-    CONST CLASS_NAME = "grade";
+    /**
+     * CLASS_NAME value
+     */
+    const CLASS_NAME = "grade";
+
 
     /**
-     * @return array
+     * Function table_structure
      *
+     * @return array
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -42,14 +53,12 @@ class grade extends help_base {
     }
 
     /**
-     * @param \stdClass $course
-     * @param \stdClass $user
+     * Function get_data
+     *
+     * @param $course
+     * @param $user
      *
      * @return array
-     *
-     * @throws \coding_exception
-     * @throws \dml_exception
-     * @throws \moodle_exception
      */
     public static function get_data($course, $user) {
         return [
@@ -59,13 +68,12 @@ class grade extends help_base {
     }
 
     /**
+     * Function get_grade
+     *
      * @param $course
      * @param $user
      *
      * @return string
-     *
-     * @throws \coding_exception
-     * @throws \moodle_exception
      */
     private static function get_grade($course, $user) {
         global $CFG;
@@ -83,13 +91,13 @@ class grade extends help_base {
     }
 
     /**
+     * Function get_table_grade
+     *
      * @param $course
-     * @param $userid
+     * @param $user
      *
      * @return string
-     *
      * @throws \coding_exception
-     * @throws \dml_exception
      */
     private static function get_table_grade($course, $user) {
 
@@ -128,12 +136,13 @@ class grade extends help_base {
     }
 
     /**
+     * Function get_mod_grade
+     *
      * @param $cm
      * @param $course
      * @param $user
      *
      * @return string
-     *
      * @throws \dml_exception
      */
     private static function get_mod_grade($cm, $course, $user) {

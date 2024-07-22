@@ -15,10 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Font util
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        10/01/2024 17:58
  */
 
 namespace mod_certificatebeautiful\local\fonts;
@@ -26,9 +27,16 @@ namespace mod_certificatebeautiful\local\fonts;
 defined('MOODLE_INTERNAL') || die();
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/fonts/font_attributes.php");
 
+/**
+ * Class font_util
+ *
+ * @package mod_certificatebeautiful\local\fonts
+ */
 class font_util {
 
     /**
+     * mpdf_list_fonts function
+     *
      * @return array
      *
      * @throws \Exception
@@ -81,7 +89,7 @@ class font_util {
             $fonts["listfonts"][$fontnameid] = (object)[
                 "fontnameid" => $fontnameid,
                 "fontname" => $fontname,
-                "fontfamily" => $fontfamily
+                "fontfamily" => $fontfamily,
             ];
         }
 

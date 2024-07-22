@@ -931,9 +931,9 @@ class Otl
 						  $char = $this->OTLdata[$ptr]['uni'];
 						  $sub = Indic::decompose_indic($char);
 						  if ($sub) {
-						  $newinfo = array();
+						  $newinfo = [];
 						  for($i=0;$i<count($sub);$i++) {
-						  $newinfo[$i] = array();
+						  $newinfo[$i] = [];
 						  $ucd_record = Ucdn::get_ucd_record($sub[$i]);
 						  $newinfo[$i]['general_category'] = $ucd_record[0];
 						  $newinfo[$i]['bidi_type'] = $ucd_record[2];
@@ -2370,8 +2370,8 @@ class Otl
 			// Update position of Ligatures and associated Marks
 			// Foreach lig/assocMarks
 			// Any position lpos or mpos > $pos + count($substitute)
-			//  $this->assocMarks = array();    // assocMarks[$pos mpos] => array(compID, ligPos)
-			//  $this->assocLigs = array(); // Ligatures[$pos lpos] => nc
+			//  $this->assocMarks = [];    // assocMarks[$pos mpos] => array(compID, ligPos)
+			//  $this->assocLigs = []; // Ligatures[$pos lpos] => nc
 			for ($p = count($this->OTLdata) - 1; $p >= ($pos + $n); $p--) {
 				if (isset($this->assocLigs[$p])) {
 					$tmp = $this->assocLigs[$p];
@@ -2675,8 +2675,8 @@ class Otl
 				unset($this->assocLigs[$gpos]);
 				unset($this->assocMarks[$gpos]);
 			}
-			//  $this->assocLigs = array(); // Ligatures[$posarr lpos] => nc
-			//  $this->assocMarks = array();    // assocMarks[$posarr mpos] => array(compID, ligPos)
+			//  $this->assocLigs = []; // Ligatures[$posarr lpos] => nc
+			//  $this->assocMarks = [];    // assocMarks[$posarr mpos] => array(compID, ligPos)
 			// Update position of pre-existing Ligatures and associated Marks
 			// Start after first GlyphPos
 			// count($GlyphPos)-1  is the number of glyphs removed from string
@@ -5718,7 +5718,7 @@ class Otl
 				}
 				if ($k >= $OTLcutoffpos) {
 					unset($cOTLdata['GPOSinfo'][$k]);
-					//$cOTLdata['GPOSinfo'][$k] = array();
+					//$cOTLdata['GPOSinfo'][$k] = [];
 				}
 			}
 		}

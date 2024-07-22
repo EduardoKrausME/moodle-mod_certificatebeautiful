@@ -23,11 +23,14 @@
  */
 
 require_once("../../../config.php");
+require_once($CFG->dirroot . '/lib/adminlib.php');
 global $PAGE, $USER, $CFG;
 
-$code = optional_param('code', false, PARAM_TEXT);
-$context = context_system::instance();
+admin_externalpage_setup('admins');
 
+$code = optional_param('code', false, PARAM_TEXT);
+
+$context = context_system::instance();
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/v/', ['code' => $code]);
 $PAGE->set_title(get_string('validate_certificate_title', 'certificatebeautiful'));
@@ -56,7 +59,7 @@ if ($code) {
         }
     } else {
         $data = [
-            'message' => get_string('validate_certificate_notfound', 'certificatebeautiful')
+            'message' => get_string('validate_certificate_notfound', 'certificatebeautiful'),
         ];
         $code = false;
     }

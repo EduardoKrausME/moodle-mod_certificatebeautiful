@@ -15,35 +15,59 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class functions
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        11/01/2024 15:48
  */
 
 namespace mod_certificatebeautiful\local\help;
 
+/**
+ * Class functions
+ *
+ * @package mod_certificatebeautiful\local\help
+ */
 class functions {
 
-    CONST CLASS_NAME = "";
+    /**
+     * CLASS_NAME value
+     */
+    const CLASS_NAME = "";
+
 
     /**
-     * @return array
+     * Function table_structure
      *
+     * @return array
      * @throws \coding_exception
      */
     public static function table_structure() {
         return [
-            ['key' => '{{date(xxx)}}', 'label' => get_string('help_functions_date', 'certificatebeautiful')],
-            ['key' => '{{userdate(xx,yy)}}', 'label' => get_string('help_functions_userdate', 'certificatebeautiful')],
-            ['key' => '{{time()}}', 'label' => get_string('help_functions_time', 'certificatebeautiful')],
+            [
+                'key' => '{{date(xxx)}}',
+                'label' => get_string('help_functions_date', 'certificatebeautiful'),
+            ],
+            [
+                'key' => '{{userdate(xx,yy)}}',
+                'label' => get_string('help_functions_userdate', 'certificatebeautiful'),
+            ],
+            [
+                'key' => '{{time()}}',
+                'label' => get_string('help_functions_time', 'certificatebeautiful'),
+            ],
         ];
     }
 
+
     /**
-     * @param string $html
+     * Function replace
      *
-     * @return string
+     * @param $html
+     * @param $user
+     *
+     * @return null|string|string[]
      */
     public static function replace($html, $user) {
 
@@ -86,5 +110,10 @@ class functions {
         return $html;
     }
 
+    /**
+     * Var user
+     *
+     * @var \stdClass
+     */
     public static $user;
 }

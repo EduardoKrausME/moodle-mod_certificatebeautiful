@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * view PDF file
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -34,13 +35,13 @@ $code = required_param('code', PARAM_TEXT);
 $action = required_param('action', PARAM_TEXT);
 
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_issue $certificatebeautifulissue */
-$certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', array('code' => $code), '*', MUST_EXIST);
+$certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', ['code' => $code], '*', MUST_EXIST);
 
 $cm = get_coursemodule_from_id('certificatebeautiful', $certificatebeautifulissue->cmid, 0, false, MUST_EXIST);
-$course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
+$course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
 
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
-$certificatebeautiful = $DB->get_record('certificatebeautiful', array('id' => $cm->instance), '*', MUST_EXIST);
+$certificatebeautiful = $DB->get_record('certificatebeautiful', ['id' => $cm->instance], '*', MUST_EXIST);
 
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $certificatebeautifulmodel */
 $certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id' => $certificatebeautiful->model], "*", MUST_EXIST);

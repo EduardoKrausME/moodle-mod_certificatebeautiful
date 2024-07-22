@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class models
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -22,10 +24,16 @@
 
 namespace mod_certificatebeautiful\local;
 
+/**
+ * Class models
+ *
+ * @package mod_certificatebeautiful\local
+ */
 class models {
     /**
+     * Function list_all
+     *
      * @return array
-     * @throws \coding_exception
      * @throws \dml_exception
      */
     public static function list_all() {

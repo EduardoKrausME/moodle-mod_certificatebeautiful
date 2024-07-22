@@ -29,8 +29,8 @@ require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/report/cert
 $id = optional_param('id', 0, PARAM_INT);
 
 $cm = get_coursemodule_from_id('certificatebeautiful', $id, 0, false, MUST_EXIST);
-$course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
-$certificatebeautiful = $DB->get_record('certificatebeautiful', array('id' => $cm->instance), '*', MUST_EXIST);
+$course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
+$certificatebeautiful = $DB->get_record('certificatebeautiful', ['id' => $cm->instance], '*', MUST_EXIST);
 
 $context = context_module::instance($cm->id);
 
@@ -70,7 +70,7 @@ $table = new \mod_certificatebeautiful\local\report\certificatebeautiful_view(
 
 if (!$table->is_downloading()) {
     $PAGE->set_context($context);
-    $PAGE->set_url('/mod/certificatebeautiful/report.php', array('id' => $cm->id));
+    $PAGE->set_url('/mod/certificatebeautiful/report.php', ['id' => $cm->id]);
     $PAGE->set_title("{$course->shortname}: {$certificatebeautiful->name}");
     $PAGE->set_heading($course->fullname);
     $PAGE->requires->css('/mod/certificatebeautiful/assets/style.css');

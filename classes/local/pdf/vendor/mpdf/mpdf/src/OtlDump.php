@@ -3688,7 +3688,7 @@ $MarkAttachmentType = ' . var_export($this->MarkAttachmentType, true) . ';
 									  $this->seek($LigatureAttach[$j]);
 									  $ComponentCount = $this->read_ushort();
 									  $html .= '<span class="unchanged">'.$this->formatEntity($LigatureGlyphs[$j]).'</span>';
-									  $offsets = array();
+									  $offsets = [];
 									  for ($comp=0;$comp<$ComponentCount;$comp++) {
 									  // ComponentRecords
 									  for ($class=0;$class<$ClassCount;$class++) {

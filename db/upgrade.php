@@ -25,6 +25,7 @@
  * Book module upgrade task
  *
  * @param int $oldversion the version we are upgrading from
+ *
  * @return bool always true
  * @throws coding_exception
  * @throws dml_exception
@@ -68,11 +69,12 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
                 $pagesinfo = [
                     [
                         "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model['key']),
-                        "cssdata" => ""
+                        "cssdata" => "",
                     ], [
-                        "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
-                        "cssdata" => ""
-                    ]
+                        "htmldata" =>
+                            \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
+                        "cssdata" => "",
+                    ],
                 ];
                 $certificatebeautifulmodel = (object)[
                     "name" => $model['name'],

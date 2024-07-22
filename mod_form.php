@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * mod_form file
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -24,13 +26,11 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once("{$CFG->dirroot}/course/moodleform_mod.php");
 
-use \mod_certificatebeautiful\local\help\help_base;
+use mod_certificatebeautiful\local\help\help_base;
 use mod_certificatebeautiful\local\models;
 
 /**
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * Class mod_certificatebeautiful_mod_form
  */
 class mod_certificatebeautiful_mod_form extends moodleform_mod {
 

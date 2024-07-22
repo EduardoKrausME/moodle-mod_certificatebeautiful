@@ -178,7 +178,7 @@ if (!isset(self::$installed['versions'][$packageName])) {
 throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed');
 }
 
-$ranges = array();
+$ranges = [];
 if (isset(self::$installed['versions'][$packageName]['pretty_version'])) {
 $ranges[] = self::$installed['versions'][$packageName]['pretty_version'];
 }

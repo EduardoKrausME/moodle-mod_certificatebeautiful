@@ -15,10 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class certificatebeautiful_view
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        12/01/2024 11:30
  */
 
 namespace mod_certificatebeautiful\local\report;
@@ -31,9 +32,9 @@ defined('MOODLE_INTERNAL') || die();
 require_once("{$CFG->libdir}/tablelib.php");
 
 /**
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * Class certificatebeautiful_view
+ *
+ * @package mod_certificatebeautiful\local\report
  */
 class certificatebeautiful_view extends \table_sql {
 
@@ -113,15 +114,17 @@ class certificatebeautiful_view extends \table_sql {
         }
 
         if ($COURSE->id == SITEID) {
-            $profileurl = new moodle_url('/user/profile.php', array('id' => $linha->user_id));
+            $profileurl = new moodle_url('/user/profile.php', ['id' => $linha->user_id]);
         } else {
             $profileurl = new moodle_url('/user/view.php',
-                array('id' => $linha->user_id, 'course' => $COURSE->id));
+                ['id' => $linha->user_id, 'course' => $COURSE->id]);
         }
         return html_writer::link($profileurl, $name, ['target' => '_blank']);
     }
 
     /**
+     * col_timecreated
+     *
      * @param $linha
      *
      * @return string
@@ -131,6 +134,8 @@ class certificatebeautiful_view extends \table_sql {
     }
 
     /**
+     * col_extra
+     *
      * @param $linha
      *
      * @return string
@@ -152,6 +157,8 @@ class certificatebeautiful_view extends \table_sql {
     }
 
     /**
+     * query_db
+     *
      * @param int $pagesize
      * @param bool $useinitialsbar
      *

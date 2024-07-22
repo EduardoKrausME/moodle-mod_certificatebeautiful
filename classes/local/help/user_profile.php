@@ -15,21 +15,31 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class user_profile
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        11/01/2024 13:08
  */
 
 namespace mod_certificatebeautiful\local\help;
 
+/**
+ * Class user_profile
+ *
+ * @package mod_certificatebeautiful\local\help
+ */
 class user_profile extends help_base {
 
-    CONST CLASS_NAME = "userprofile";
+    /**
+     * CLASS_NAME value
+     */
+    const CLASS_NAME = "userprofile";
 
     /**
-     * @return array
+     * Function table_structure
      *
+     * @return array
      * @throws \dml_exception
      */
     public static function table_structure() {
@@ -41,7 +51,10 @@ class user_profile extends help_base {
         if ($userinfofields) {
             foreach ($userinfofields as $userinfofield) {
                 $itens[] = [
-                    ['key' => $userinfofield->shortname, 'label' => $userinfofield->name]
+                    [
+                        'key' => $userinfofield->shortname,
+                        'label' => $userinfofield->name,
+                    ],
                 ];
             }
         }
@@ -50,10 +63,11 @@ class user_profile extends help_base {
     }
 
     /**
+     * Function get_data
+     *
      * @param $user
      *
      * @return array
-     *
      * @throws \coding_exception
      * @throws \dml_exception
      */
@@ -64,7 +78,7 @@ class user_profile extends help_base {
         if ($userinfofields) {
             $data = [];
             foreach ($userinfofields as $userinfofield) {
-                require_once("{$CFG->dirroot}/user/profile/field/{$userinfofield->datatype}/field.class.php" );
+                require_once("{$CFG->dirroot}/user/profile/field/{$userinfofield->datatype}/field.class.php");
                 $newfield = 'profile_field_' . $userinfofield->datatype;
 
                 /** @var \profile_field_base $formfield */

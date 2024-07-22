@@ -15,10 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class issue
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        12/01/2024 11:02
  */
 
 namespace mod_certificatebeautiful\local;
@@ -26,14 +27,20 @@ namespace mod_certificatebeautiful\local;
 use mod_certificatebeautiful\local\vo\certificatebeautiful;
 use mod_certificatebeautiful\local\vo\certificatebeautiful_issue;
 
+/**
+ * Class issue
+ *
+ * @package mod_certificatebeautiful\local
+ */
 class issue {
     /**
-     * @param \stdClass $user
-     * @param certificatebeautiful $certificatebeautiful
-     * @param \stdClass $cm
+     * Function get
      *
-     * @return certificatebeautiful_issue
+     * @param $user
+     * @param $certificatebeautiful
+     * @param $cm
      *
+     * @return certificatebeautiful_issue|object
      * @throws \dml_exception
      */
     public static function get($user, $certificatebeautiful, $cm) {

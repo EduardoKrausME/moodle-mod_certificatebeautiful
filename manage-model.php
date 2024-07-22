@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * manage-model file
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -73,7 +75,7 @@ if (!$formcreate->is_cancelled() && $certificatebeautifulmodel = $formcreate->ge
         $data = (object)[
             "id" => $certificatebeautifulmodel->id,
             "name" => $certificatebeautifulmodel->name,
-            "timemodified" => time()
+            "timemodified" => time(),
         ];
         $DB->update_record("certificatebeautiful_model", $data);
     } else {
@@ -81,7 +83,7 @@ if (!$formcreate->is_cancelled() && $certificatebeautifulmodel = $formcreate->ge
             "name" => $certificatebeautifulmodel->name,
             "pages_info" => json_encode([form_create_page::empty_page()], JSON_PRETTY_PRINT),
             "timecreated" => time(),
-            "timemodified" => time()
+            "timemodified" => time(),
         ];
         $certificatebeautifulmodel->id = $DB->insert_record("certificatebeautiful_model", $data);
     }

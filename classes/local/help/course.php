@@ -15,21 +15,32 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class course
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        11/01/2024 12:24
  */
 
 namespace mod_certificatebeautiful\local\help;
 
+/**
+ * Class course
+ *
+ * @package mod_certificatebeautiful\local\help
+ */
 class course extends help_base {
 
-    CONST CLASS_NAME = "course";
+    /**
+     * CLASS_NAME value
+     */
+    const CLASS_NAME = "course";
+
 
     /**
-     * @return array
+     * Function table_structure
      *
+     * @return array
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -46,10 +57,11 @@ class course extends help_base {
     }
 
     /**
-     * @param \stdClass $course
+     * Function get_data
+     *
+     * @param $course
      *
      * @return array
-     *
      * @throws \coding_exception
      */
     public static function get_data($course) {

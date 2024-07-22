@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * manage-model-editpage file
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -66,7 +68,7 @@ if (sesskey() == optional_param('sesskey', false, PARAM_RAW)) {
     $data = (object)[
         "id" => $certificatebeautifulmodel->id,
         "pages_info" => json_encode($certificatebeautifulmodel->pages_info_object, JSON_PRETTY_PRINT),
-        "timemodified" => time()
+        "timemodified" => time(),
     ];
     $DB->update_record("certificatebeautiful_model", $data);
     redirect("manage-model.php?id={$id}");
@@ -94,7 +96,7 @@ switch ($action) {
                 "title" => get_string($model, 'certificatebeautiful'),
                 "pagina" => $htmldata,
                 "addpage_title" => get_string('using_this_page', 'certificatebeautiful'),
-                "addpage_href" => "?id={$id}&page={$page}&action=changue&model={$model}"
+                "addpage_href" => "?id={$id}&page={$page}&action=changue&model={$model}",
             ];
         }
         echo $OUTPUT->render_from_template('mod_certificatebeautiful/list-pages', $data);
@@ -115,7 +117,7 @@ switch ($action) {
         $data = (object)[
             "id" => $certificatebeautifulmodel->id,
             "pages_info" => json_encode($certificatebeautifulmodel->pages_info_object, JSON_PRETTY_PRINT),
-            "timemodified" => time()
+            "timemodified" => time(),
         ];
         $DB->update_record("certificatebeautiful_model", $data);
         redirect("manage-model-editpage.php?id={$id}&page={$page}");
@@ -129,7 +131,7 @@ switch ($action) {
             "url-changemodel" => "?id={$id}&page={$page}&action=changemodel",
             "url-setting" => "{$CFG->wwwroot}/admin/settings.php?section=modsettingcertificatebeautiful",
             "iframe-url" => "{$CFG->wwwroot}/mod/certificatebeautiful/_editor/index.php?id={$id}&page={$page}",
-            "form_components"=>\mod_certificatebeautiful\local\help\help_base::get_form_components()
+            "form_components" => \mod_certificatebeautiful\local\help\help_base::get_form_components(),
         ];
         echo $OUTPUT->render_from_template('mod_certificatebeautiful/editpage', $data);
 

@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * manage-model-list file
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -43,7 +45,7 @@ echo $OUTPUT->header();
 
 echo $OUTPUT->render_from_template('mod_certificatebeautiful/heading-addnew', [
     "url" => "manage-model.php?id=-1",
-    "text" => get_string('add_new_model', 'certificatebeautiful')
+    "text" => get_string('add_new_model', 'certificatebeautiful'),
 ]);
 
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/model/table_list.php");

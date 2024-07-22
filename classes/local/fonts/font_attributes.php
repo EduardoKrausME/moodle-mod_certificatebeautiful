@@ -15,22 +15,27 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * font attributes
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        10/01/2024 14:19
  */
 
 namespace mod_certificatebeautiful\local\fonts;
 
 use Exception;
 
+/**
+ * Class font_attributes
+ *
+ * @package mod_certificatebeautiful\local\fonts
+ */
 class font_attributes {
 
     /**
      * Name of the truetype font file
      *
-     * @access private
      * @var string
      */
     private $_filename = null;
@@ -38,7 +43,6 @@ class font_attributes {
     /**
      * Copyright
      *
-     * @access private
      * @var string
      */
     private $_copyright = null;
@@ -46,7 +50,6 @@ class font_attributes {
     /**
      * Font Family
      *
-     * @access private
      * @var string
      */
     private $_fontfamily = null;
@@ -54,7 +57,6 @@ class font_attributes {
     /**
      * Font SubFamily
      *
-     * @access private
      * @var string
      */
     private $_fontsubfamily = null;
@@ -62,7 +64,6 @@ class font_attributes {
     /**
      * Font Unique Identifier
      *
-     * @access private
      * @var string
      */
     private $_fontidentifier = null;
@@ -70,7 +71,6 @@ class font_attributes {
     /**
      * Font Name
      *
-     * @access private
      * @var string
      */
     private $_fontname = null;
@@ -78,7 +78,6 @@ class font_attributes {
     /**
      * Font Version
      *
-     * @access private
      * @var string
      */
     private $_fontversion = null;
@@ -86,7 +85,6 @@ class font_attributes {
     /**
      * Postscript Name
      *
-     * @access private
      * @var string
      */
     private $_postscriptname = null;
@@ -94,11 +92,17 @@ class font_attributes {
     /**
      * Trademark
      *
-     * @access private
      * @var string
      */
     private $_trademark = null;
 
+    /**
+     * Function return_value
+     *
+     * @param $instring
+     *
+     * @return mixed|string
+     */
     private function return_value($instring) {
         if (ord($instring) == 0) {
             if (function_exists('mb_convert_encoding')) {
@@ -111,25 +115,30 @@ class font_attributes {
         }
     }
 
+
     /**
-     * @access public
-     * @return integer
+     * Function get_copyright
+     *
+     * @return mixed|string
      */
     public function get_copyright() {
         return $this->return_value($this->_copyright);
     }
 
+
     /**
-     * @access public
-     * @return integer
+     * Function get_font_family
+     *
+     * @return mixed|string
      */
     public function get_font_family() {
         return $this->return_value($this->_fontfamily);
     }
 
     /**
-     * @access public
-     * @return integer
+     * Function get_font_family_id
+     *
+     * @return mixed|string
      */
     public function get_font_family_id() {
         $font = $this->get_font_family();
@@ -140,29 +149,39 @@ class font_attributes {
     }
 
     /**
-     * @access public
-     * @return integer
+     * Function get_font_sub_family
+     *
+     * @return mixed|string
      */
     public function get_font_sub_family() {
         return $this->return_value($this->_fontsubfamily);
     }
 
+
     /**
-     * @access public
-     * @return integer
+     * Function get_font_identifier
+     *
+     * @return mixed|string
      */
     public function get_font_identifier() {
         return $this->return_value($this->_fontidentifier);
     }
 
+
     /**
-     * @access public
-     * @return integer
+     * Function get_font_name
+     *
+     * @return mixed|string
      */
     public function get_font_name() {
         return $this->return_value($this->_fontname);
     }
 
+    /**
+     * Function get_font_name_id
+     *
+     * @return int|mixed|string
+     */
     public function get_font_name_id() {
         $font = $this->get_font_name();
         $font = str_replace(" ", "-", $font);
@@ -171,25 +190,31 @@ class font_attributes {
         return $font;
     }
 
+
     /**
-     * @access public
-     * @return integer
+     * Function get_font_version
+     *
+     * @return mixed|string
      */
     public function get_font_version() {
         return $this->return_value($this->_fontversion);
     }
 
+
     /**
-     * @access public
-     * @return integer
+     * Function get_postscript_name
+     *
+     * @return mixed|string
      */
     public function get_postscript_name() {
         return $this->return_value($this->_postscriptname);
     }
 
+
     /**
-     * @access public
-     * @return integer
+     * Function get_trademark
+     *
+     * @return mixed|string
      */
     public function get_trademark() {
         return $this->return_value($this->_trademark);
@@ -198,7 +223,6 @@ class font_attributes {
     /**
      * Convert a big-endian word or longword value to an integer
      *
-     * @access private
      * @return integer
      */
     private function u_convert($bytesvalue, $bytecount) {
@@ -216,7 +240,6 @@ class font_attributes {
     /**
      * Convert a big-endian word value to an integer
      *
-     * @access private
      * @return integer
      */
     private function u_short($stringvalue) {
@@ -226,7 +249,6 @@ class font_attributes {
     /**
      * Convert a big-endian word value to an integer
      *
-     * @access private
      * @return integer
      */
     private function u_long($stringvalue) {
@@ -360,6 +382,8 @@ class font_attributes {
     }
 
     /**
+     * font_attributes constructor.
+     *
      * @param string $filename
      *
      * @throws Exception

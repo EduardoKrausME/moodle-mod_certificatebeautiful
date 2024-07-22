@@ -25,7 +25,7 @@ class ReflectionHelper
     public static function getProperties(ReflectionClass $ref)
     {
         $props = $ref->getProperties();
-        $propsArr = array();
+        $propsArr = [];
 
         foreach ($props as $prop) {
             $propertyName = $prop->getName();

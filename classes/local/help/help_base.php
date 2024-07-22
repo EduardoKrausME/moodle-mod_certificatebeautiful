@@ -15,18 +15,27 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class help_base
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        11/01/2024 13:49
  */
 
 namespace mod_certificatebeautiful\local\help;
 
+/**
+ * Class help_base
+ *
+ * @package mod_certificatebeautiful\local\help
+ */
 class help_base {
 
     /**
-     * @param $fields
+     * Function help_text
+     *
+     * @param array $fields
+     *
      * @return string
      */
     public static function help_text($fields) {
@@ -42,8 +51,11 @@ class help_base {
     }
 
     /**
-     * @param $fields
-     * @param $data
+     * Function base_get_data
+     *
+     * @param array $fields
+     * @param array $data
+     *
      * @return array
      */
     protected static function base_get_data($fields, $data) {
@@ -62,10 +74,13 @@ class help_base {
     }
 
     /**
+     * Function replace
+     *
      * @param string $html
-     * @param string $key
+     * @param \stdClass $class
      * @param array $fields
-     * @return string
+     *
+     * @return mixed
      */
     public static function replace($html, $class, $fields) {
         foreach ($fields as $key => $field) {
@@ -79,6 +94,9 @@ class help_base {
     }
 
     /**
+     * Function get_editor_components
+     *
+     * @return string
      * @throws \coding_exception
      */
     public static function get_editor_components() {
@@ -93,7 +111,7 @@ class help_base {
             "course_categories",
             "enrolments",
             "user",
-            "grade"
+            "grade",
         ];
 
         $components = [];
@@ -135,6 +153,9 @@ class help_base {
     }
 
     /**
+     * Function get_form_components
+     *
+     * @return mixed
      * @throws \coding_exception
      */
     public static function get_form_components() {
@@ -150,7 +171,7 @@ class help_base {
             "course_categories",
             "enrolments",
             "user",
-            "grade"
+            "grade",
         ];
 
         $data = ['itens' => []];
@@ -180,7 +201,7 @@ class help_base {
             if ($structuresitens) {
                 $data['itens'][] = [
                     'classstitle' => get_string("help_{$classname}__name", 'certificatebeautiful'),
-                    'structuresitens' => $structuresitens
+                    'structuresitens' => $structuresitens,
                 ];
             }
         }

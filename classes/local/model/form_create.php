@@ -15,10 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class form_create
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        09/01/2024 09:55
  */
 
 namespace mod_certificatebeautiful\local\model;
@@ -29,6 +30,11 @@ use mod_certificatebeautiful\local\vo\certificatebeautiful_model;
 defined('MOODLE_INTERNAL') || die();
 require_once("{$CFG->libdir}/formslib.php");
 
+/**
+ * Class form_create
+ *
+ * @package mod_certificatebeautiful\local\model
+ */
 class form_create extends \moodleform {
 
     /**
@@ -70,7 +76,7 @@ class form_create extends \moodleform {
                     "title" => get_string('model_page_name', 'certificatebeautiful', $pageid++),
                     "pagina" => $htmldata,
                     "addpage_title" => get_string('edit_this_page', 'certificatebeautiful'),
-                    "addpage_href" => "manage-model-editpage.php?id={$certificatebeautifulmodel->id}&page={$key}"
+                    "addpage_href" => "manage-model-editpage.php?id={$certificatebeautifulmodel->id}&page={$key}",
                 ];
             }
 

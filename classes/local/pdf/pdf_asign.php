@@ -1,9 +1,25 @@
 <?php
+// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
+ * Class pdf_asign
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        18/02/2024 11:31
  */
 
 namespace mod_certificatebeautiful\local\pdf\asign;
@@ -13,56 +29,65 @@ use setasign\Fpdi\Tcpdf\Fpdi;
 
 use Exception;
 
+/**
+ * Class pdf_asign
+ *
+ * @package mod_certificatebeautiful\local\pdf\asign
+ */
 class pdf_asign {
 
-    public $documentoParaAssinar;
-    public $filePrivate;
-    public $fileCRT;
+    /**
+     * Var documentoparaassinar
+     *
+     * @var string
+     */
+    public $documentoparaassinar;
+    /**
+     * Var fileprivate
+     *
+     * @var string
+     */
+    public $fileprivate;
+    /**
+     * Var filecrt
+     *
+     * @var string
+     */
+    public $filecrt;
+    /**
+     * Var password
+     *
+     * @var string
+     */
     public $password;
 
     /** @var Mpdf */
     public $mpdf;
 
+    /**
+     * pdf_asign constructor.
+     *
+     * @param $pdf
+     * @param Mpdf $mpdf
+     */
     public function __construct($pdf, Mpdf $mpdf) {
         global $CFG;
 
         $diretorio = "{$CFG->tempdir}/" . uniqid();
-        $this->fileCRT = "{$diretorio}-tcpdf.crt";
+        $this->filecrt = "{$diretorio}-tcpdf.crt";
         $this->password = "1234567890";
         $this->mpdf = $mpdf;
 
+        $this->filecrt = __DIR__ . "/cert/domain.csr";
+        $this->fileprivate = __DIR__ . "/cert/domain.key";
 
-        $this->fileCRT = __DIR__ . "/cert/domain.csr";
-        $this->filePrivate = __DIR__ . "/cert/domain.key";
-
-        $this->documentoParaAssinar = "{$diretorio}-contrato.pdf";
-        file_put_contents($this->documentoParaAssinar, $pdf);
-
-//        $dn = array(
-//            "countryName" => "GB",
-//            "stateOrProvinceName" => "Somerset",
-//            "localityName" => "Glastonbury",
-//            "organizationName" => "The Brain Room Limited",
-//            "organizationalUnitName" => "PHP Documentation Team",
-//            "commonName" => "Wez Furlong",
-//            "emailAddress" => "wez@example.com"
-//        );
-//        $privkey = openssl_pkey_new(array(
-//            "private_key_bits" => 2048,
-//            "private_key_type" => OPENSSL_KEYTYPE_RSA,
-//        ));
-//        $csr = openssl_csr_new($dn, $privkey, ['digest_alg' => 'sha256']);
-//        $x509 = openssl_csr_sign($csr, null, $privkey, $days = 365, ['digest_alg' => 'sha256']);
-//        openssl_csr_export($csr, $csrout);
-//        openssl_x509_export($x509, $certout);
-//        openssl_pkey_export($privkey, $pkeyout, $this->password);
-//
-//        file_put_contents($this->filePrivate, $pkeyout);
-//        file_put_contents($this->fileCRT, $pkeyout);
-
+        $this->documentoparaassinar = "{$diretorio}-contrato.pdf";
+        file_put_contents($this->documentoparaassinar, $pdf);
     }
 
     /**
+     * create_signature
+     *
      * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
      * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
      * @throws \setasign\Fpdi\PdfParser\PdfParserException
@@ -70,29 +95,21 @@ class pdf_asign {
      * @throws \setasign\Fpdi\PdfReader\PdfReaderException
      * @throws Exception
      */
-    public function createSignature() {
-
-        // $p = file_get_contents($this->fileCRT);
-        // $cert = openssl_x509_read($p);
-        // $cert_parsed = openssl_x509_parse($cert, true);
-        // echo '<pre>';print_r($cert_parsed);echo '</pre>';
-
-        $info = array(
+    public function create_signature() {
+        $info = [
             'Name' => 'TCPDF',
             'Location' => 'Office',
             'Reason' => 'Testing TCPDF',
             'ContactInfo' => 'http://www.tcpdf.org',
-        );
+        ];
 
         $pdf = new Fpdi('L', 'mm', 'A4', true, 'UTF-8', false, false);
-        // $numPages = $pdf->setSourceFile($this->documentoParaAssinar);
-        $numPages = 2;
-        $pdf->setSignature("file://{$this->fileCRT}", "file://{$this->filePrivate}", $this->password, '', 2, $info);
+        $numpages = 2;
+        $pdf->setSignature("file://{$this->filecrt}", "file://{$this->fileprivate}", $this->password, '', 2, $info);
 
-        for ($i = 0; $i < $numPages; $i++) {
+        for ($i = 0; $i < $numpages; $i++) {
             $pdf->AddPage();
 
-            //$pdf->useTemplate($pdf->importPage($i + 1), 0, 0);
             $pdf->setSignatureAppearance(10, 20, 30, 30);
             $pdf->addEmptySignatureAppearance(10, 20, 30, 30);
 

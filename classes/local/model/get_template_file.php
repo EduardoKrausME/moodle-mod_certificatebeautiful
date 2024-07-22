@@ -15,22 +15,28 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class get_template_file
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        09/01/2024 16:27
  */
 
 namespace mod_certificatebeautiful\local\model;
 
+/**
+ * Class get_template_file
+ *
+ * @package mod_certificatebeautiful\local\model
+ */
 class get_template_file {
 
     /**
+     * Function load_template_file
+     *
      * @param $model
      *
      * @return bool|mixed|string
-     *
-     * @throws \coding_exception
      */
     public static function load_template_file($model) {
         global $CFG;

@@ -15,35 +15,50 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class enrolments
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        11/01/2024 13:04
  */
 
 namespace mod_certificatebeautiful\local\help;
 
+/**
+ * Class enrolments
+ *
+ * @package mod_certificatebeautiful\local\help
+ */
 class enrolments extends help_base {
 
-    CONST CLASS_NAME = "enrolments";
+    /**
+     * CLASS_NAME value
+     */
+    const CLASS_NAME = "enrolments";
+
 
     /**
-     * @return array
+     * Function table_structure
      *
+     * @return array
      * @throws \coding_exception
      */
     public static function table_structure() {
         return [
-            ['key' => 'timestart', 'label' => get_string('help_enrolments_timestart', 'certificatebeautiful')],
+            [
+                'key' => 'timestart',
+                'label' => get_string('help_enrolments_timestart', 'certificatebeautiful'),
+            ],
         ];
     }
 
     /**
-     * @param \stdClass $user
-     * @param \stdClass $course
+     * Function get_data
+     *
+     * @param $course
+     * @param $user
      *
      * @return array
-     *
      * @throws \dml_exception
      */
     public static function get_data($course, $user) {
@@ -58,7 +73,7 @@ class enrolments extends help_base {
         $params = ['userid' => $user->id, 'courseid' => $course->id];
 
         return [
-            'timestart' => $DB->get_field_sql($sql, $params)
+            'timestart' => $DB->get_field_sql($sql, $params),
         ];
     }
 }

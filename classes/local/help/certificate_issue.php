@@ -14,10 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
+ * Class certificate_issue
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        12/01/2024 18:38
  */
 
 namespace mod_certificatebeautiful\local\help;
@@ -26,13 +27,22 @@ use mod_certificatebeautiful\local\help\util\qrcode;
 use mod_certificatebeautiful\local\vo\certificatebeautiful;
 use mod_certificatebeautiful\local\vo\certificatebeautiful_issue;
 
+/**
+ * Class certificate_issue
+ *
+ * @package mod_certificatebeautiful\local\help
+ */
 class certificate_issue extends help_base {
 
-    CONST CLASS_NAME = "certificate";
+    /**
+     * CLASS_NAME value
+     */
+    const CLASS_NAME = "certificate";
 
     /**
-     * @return array
+     * Function table_structure
      *
+     * @return array
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -46,13 +56,13 @@ class certificate_issue extends help_base {
     }
 
     /**
-     * @param certificatebeautiful $certificatebeautiful
-     * @param certificatebeautiful_issue $certificatebeautifulissue
+     * Function get_data
+     *
+     * @param $certificatebeautiful
+     * @param $certificatebeautifulissue
      *
      * @return array
-     *
      * @throws \coding_exception
-     * @throws \dml_exception
      */
     public static function get_data($certificatebeautiful, $certificatebeautifulissue) {
         global $CFG;
@@ -66,8 +76,10 @@ class certificate_issue extends help_base {
     }
 
     /**
-     * @param string $html
-     * @param array $certificatebeautifulissue
+     * Function custom_replace
+     *
+     * @param $html
+     * @param $certificatebeautifulissue
      *
      * @return mixed
      */
@@ -79,7 +91,7 @@ class certificate_issue extends help_base {
             $pngfile = $CFG->tempdir . "/" . uniqid() . ".png";
 
             $options = [
-                'wq'=> 0,
+                'wq' => 0,
                 'w' => 500,
                 'h' => 500,
                 'p' => 0,

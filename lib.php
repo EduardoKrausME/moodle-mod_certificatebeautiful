@@ -33,7 +33,9 @@
  * @uses FEATURE_COMPLETION_HAS_RULES
  * @uses FEATURE_MODEDIT_DEFAULT_COMPLETION
  * @uses FEATURE_BACKUP_MOODLE2
+ *
  * @param string $feature FEATURE_xx constant for requested feature
+ *
  * @return mixed True if module supports feature, false if not, null if doesn't know
  */
 function certificatebeautiful_supports(string $feature) {
@@ -66,12 +68,13 @@ function certificatebeautiful_supports(string $feature) {
  * in mod_form.php) this function will create a new instance and return the id
  * number of the instance.
  *
- * @param stdClass $data An object from the form.
+ * @param stdClass $data                           An object from the form.
  * @param mod_certificatebeautiful_mod_form $mform The form.
+ *
  * @return int The id of the newly inserted record.
  * @throws dml_exception
  */
-function certificatebeautiful_add_instance(stdClass $data, mod_certificatebeautiful_mod_form $mform = null): int {
+function certificatebeautiful_add_instance(stdClass $data, $mform = null): int {
     global $DB;
 
     $data->timecreated = time();
@@ -91,12 +94,13 @@ function certificatebeautiful_add_instance(stdClass $data, mod_certificatebeauti
  * Given an object containing all the necessary data (defined in mod_form.php),
  * this function will update an existing instance with new data.
  *
- * @param stdClass $data An object from the form in mod_form.php.
+ * @param stdClass $data                           An object from the form in mod_form.php.
  * @param mod_certificatebeautiful_mod_form $mform The form.
+ *
  * @return bool True if successful, false otherwise.
  * @throws dml_exception
  */
-function certificatebeautiful_update_instance(stdClass $data, mod_certificatebeautiful_mod_form $mform = null): bool {
+function certificatebeautiful_update_instance(stdClass $data, $mform = null): bool {
     global $DB;
 
     $data->timemodified = time();
@@ -109,6 +113,7 @@ function certificatebeautiful_update_instance(stdClass $data, mod_certificatebea
  * Removes an instance of the mod_certificatebeautiful from the database.
  *
  * @param int $id Id of the module instance.
+ *
  * @return bool True if successful, false on failure.
  * @throws coding_exception
  * @throws dml_exception
@@ -131,9 +136,10 @@ function certificatebeautiful_delete_instance(int $id): bool {
 /**
  * Return a list of page types
  *
- * @param string $pagetype current page type
- * @param stdClass $parentcontext Block's parent context
+ * @param string $pagetype         current page type
+ * @param stdClass $parentcontext  Block's parent context
  * @param stdClass $currentcontext Current context of block
+ *
  * @return array array of page types and it's names
  * @throws coding_exception
  */
@@ -148,6 +154,7 @@ function certificatebeautiful_page_type_list($pagetype, $parentcontext, $current
  * The elements to add the course reset form.
  *
  * @param MoodleQuickForm $mform
+ *
  * @throws coding_exception
  */
 function certificatebeautiful_reset_course_form_definition($mform) {
@@ -160,6 +167,7 @@ function certificatebeautiful_reset_course_form_definition($mform) {
  * Callback from modinfo allowing to add attributes to individual student link
  *
  * @param cm_info $coursemodule the cm_info object for the Appointment instance
+ *
  * @throws moodle_exception
  */
 function mod_certificatebeautiful_cm_info_dynamic(cm_info $coursemodule) {
@@ -172,6 +180,8 @@ function mod_certificatebeautiful_cm_info_dynamic(cm_info $coursemodule) {
 }
 
 /**
+ * certificatebeautiful_extend_settings_navigation function
+ *
  * @param settings_navigation $settings
  * @param navigation_node $certificatebeautifulnode
  *
@@ -195,7 +205,7 @@ function certificatebeautiful_extend_settings_navigation($settings, $certificate
 
     if (has_capability('moodle/course:manageactivities', $PAGE->cm->context)) {
         $node = navigation_node::create(get_string('report', 'certificatebeautiful'),
-            new moodle_url('/mod/certificatebeautiful/report.php', array('id' => $PAGE->cm->id)),
+            new moodle_url('/mod/certificatebeautiful/report.php', ['id' => $PAGE->cm->id]),
             navigation_node::TYPE_SETTING, null, 'mod_certificatebeautiful_report',
             new pix_icon('i/report', ''));
         $certificatebeautifulnode->add_node($node, $beforekey);
@@ -203,6 +213,8 @@ function certificatebeautiful_extend_settings_navigation($settings, $certificate
 }
 
 /**
+ * certificatebeautiful_extend_navigation_course function
+ *
  * @param \navigation_node $navigation
  * @param stdClass $course
  * @param \context $context
@@ -227,10 +239,13 @@ function certificatebeautiful_extend_navigation_course($navigation, $course, $co
 }
 
 /**
+ * certificatebeautiful_myprofile_navigation
+ *
  * @param \core_user\output\myprofile\tree $tree Tree object
- * @param stdClass $user user object
+ * @param stdClass $user                         user object
  * @param bool $iscurrentuser
- * @param stdClass $course Course object
+ * @param stdClass $course                       Course object
+ *
  * @return void
  * @throws coding_exception
  * @throws moodle_exception
@@ -247,6 +262,8 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
 }
 
 /**
+ * certificatebeautiful_list_all_models
+ *
  * @return array
  * @throws coding_exception
  */
@@ -297,6 +314,6 @@ function certificatebeautiful_list_all_models() {
         ], [
             "name" => get_string('certificate-vintage', 'certificatebeautiful'),
             "key" => 'certificate-vintage',
-        ]
+        ],
     ];
 }

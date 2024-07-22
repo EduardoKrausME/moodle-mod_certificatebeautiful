@@ -15,23 +15,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class teachers
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        11/01/2024 13:00
  */
 
 namespace mod_certificatebeautiful\local\help;
 
 use context_course;
 
+/**
+ * Class teachers
+ *
+ * @package mod_certificatebeautiful\local\help
+ */
 class teachers extends help_base {
 
-    CONST CLASS_NAME = "teachers";
+    /**
+     * CLASS_NAME value
+     */
+    const CLASS_NAME = "teachers";
+
 
     /**
-     * @return array
+     * Function table_structure
      *
+     * @return array
      * @throws \coding_exception
      */
     public static function table_structure() {
@@ -43,10 +54,11 @@ class teachers extends help_base {
     }
 
     /**
-     * @param \stdClass $course
+     * Function get_data
+     *
+     * @param $course
      *
      * @return array
-     *
      * @throws \coding_exception
      * @throws \dml_exception
      */
@@ -73,10 +85,11 @@ class teachers extends help_base {
     }
 
     /**
+     * Function get_teachers
+     *
      * @param $course
      *
      * @return array
-     *
      * @throws \coding_exception
      * @throws \dml_exception
      */

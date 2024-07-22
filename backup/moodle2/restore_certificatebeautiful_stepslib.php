@@ -52,6 +52,8 @@ class restore_certificatebeautiful_activity_structure_step extends restore_activ
      * Processes the element restore data.
      *
      * @param array $data Parsed element data.
+     *
+     * @throws dml_exception
      */
     protected function process_certificatebeautiful(array $data): void {
         global $DB;
@@ -67,6 +69,9 @@ class restore_certificatebeautiful_activity_structure_step extends restore_activ
      * Handles restoring a tool_certificate issue.
      *
      * @param stdClass $data Parsed element data.
+     *
+     * @throws ddl_exception
+     * @throws dml_exception
      */
     protected function process_tool_certificate_issue($data) {
         global $DB;
@@ -82,7 +87,6 @@ class restore_certificatebeautiful_activity_structure_step extends restore_activ
         $codefound = $DB->record_exists('certificatebeautiful_issue', ['code' => $data->code]);
         $templatefound = $DB->record_exists('certificatebeautiful_model', ['id' => $data->templateid]);
 
-        // TODO WP-1997 For now, we only restore issues if is same site, template exists and same issue code does not exist.
         if ($this->task->is_samesite() && $templatefound && !$codefound) {
             $oldid = $data->id;
             $data->courseid = $this->get_courseid();

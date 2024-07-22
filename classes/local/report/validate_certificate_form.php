@@ -16,10 +16,11 @@
 
 
 /**
+ * Class validate_certificate_form
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @date        10/02/2024 02:22
  */
 
 namespace mod_certificatebeautiful\local\report;
@@ -27,6 +28,11 @@ namespace mod_certificatebeautiful\local\report;
 defined('MOODLE_INTERNAL') || die();
 require_once("{$CFG->libdir}/formslib.php");
 
+/**
+ * Class validate_certificate_form
+ *
+ * @package mod_certificatebeautiful\local\report
+ */
 class validate_certificate_form extends \moodleform {
 
     /**
@@ -46,6 +52,8 @@ class validate_certificate_form extends \moodleform {
     }
 
     /**
+     * definition
+     *
      * @throws \coding_exception
      */
     public function definition() {

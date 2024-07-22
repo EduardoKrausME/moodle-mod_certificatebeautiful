@@ -14,6 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Setting file
+ *
+ * @package     mod_certificatebeautiful
+ * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
@@ -38,7 +46,8 @@ if ($ADMIN->fulltree) {
 
     $settings->add(new admin_setting_heading('certificatebeautiful_method_heading',
         get_string('config_signature_heading', 'certificatebeautiful'),
-        get_string('config_signature_heading_desc', 'certificatebeautiful', count($options)) . "<div class='d-flex'>{$imagens}</div>"));
+        get_string('config_signature_heading_desc', 'certificatebeautiful', count($options)) .
+        "<div class='d-flex'>{$imagens}</div>"));
 
 
     $setting = new admin_setting_configcheckbox('certificatebeautiful/config_signature_enable',
