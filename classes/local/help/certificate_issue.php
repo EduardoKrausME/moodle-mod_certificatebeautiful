@@ -97,7 +97,6 @@ class certificate_issue extends help_base {
                 'p' => 0,
             ];
             $generator = new qrcode($certificatebeautifulissue['url'], $options);
-            $generator->output_image();
             $image = $generator->render_image();
             imagepng($image, $pngfile);
 

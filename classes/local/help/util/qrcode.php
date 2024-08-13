@@ -206,6 +206,7 @@ class qrcode {
 
     /* - - - - DISPATCH - - - - */
 
+
     /**
      * Function dispatch_encode
      *
@@ -227,7 +228,6 @@ class qrcode {
             default:
                 return $this->qr_encode($data, 0);
         }
-        return null;
     }
 
     /* - - - - MATRIX BARCODE RENDERER - - - - */
@@ -289,10 +289,10 @@ class qrcode {
         $mode = $this->qr_detect_mode($data);
         $version = $this->qr_detect_version($data, $mode, $ecl);
         $versiongroup = (($version < 10) ? 0 : (($version < 27) ? 1 : 2));
-        $ecparams = $this->qr_ec_params[($version - 1) * 4 + $ecl];
+        $ecparams = $this->qrecparams[($version - 1) * 4 + $ecl];
 
         /* Don't cut off mid-character if exceeding capacity. */
-        $maxchars = $this->qr_capacity[$version - 1][$ecl][$mode];
+        $maxchars = $this->qrcapacity[$version - 1][$ecl][$mode];
         if ($mode == 3) {
             $maxchars <<= 1;
         }
@@ -398,7 +398,7 @@ class qrcode {
             $length >>= 1;
         }
         for ($v = 0; $v < 40; $v++) {
-            if ($length <= $this->qr_capacity[$v][$ecl][$mode]) {
+            if ($length <= $this->qrcapacity[$v][$ecl][$mode]) {
                 return $v + 1;
             }
         }
@@ -659,7 +659,7 @@ class qrcode {
             $code[] = $ch & 0x02;
             $code[] = $ch & 0x01;
         }
-        for ($n = $this->qr_remainder_bits[$version - 1]; $n > 0; $n--) {
+        for ($n = $this->qrremainderbits[$version - 1]; $n > 0; $n--) {
             $code[] = 0;
         }
         return $code;
@@ -698,17 +698,17 @@ class qrcode {
     private function qr_ec_divide($data, $ecparams) {
         $numdata = count($data);
         $numerror = $ecparams[1];
-        $generator = $this->qr_ec_polynomials[$numerror];
+        $generator = $this->qrecpolynomials[$numerror];
         $message = $data;
         for ($i = 0; $i < $numerror; $i++) {
             $message[] = 0;
         }
         for ($i = 0; $i < $numdata; $i++) {
             if ($message[$i]) {
-                $leadterm = $this->qr_log[$message[$i]];
+                $leadterm = $this->qrlog[$message[$i]];
                 for ($j = 0; $j <= $numerror; $j++) {
                     $term = ($generator[$j] + $leadterm) % 255;
-                    $message[$i + $j] ^= $this->qr_exp[$term];
+                    $message[$i + $j] ^= $this->qrexp[$term];
                 }
             }
         }
@@ -773,7 +773,7 @@ class qrcode {
 
         /* Alignment patterns. */
         if ($version >= 2) {
-            $alignment = $this->qr_alignment_patterns[$version - 2];
+            $alignment = $this->qralignmentpatterns[$version - 2];
             foreach ($alignment as $i) {
                 foreach ($alignment as $j) {
                     if (!$matrix[$i][$j]) {
@@ -1096,7 +1096,7 @@ class qrcode {
      */
     private function qr_finalize_matrix($matrix, $size, $ecl, $mask, $version) {
         /* Format Info */
-        $format = $this->qr_format_info[$ecl * 8 + $mask];
+        $format = $this->qrformatinfo[$ecl * 8 + $mask];
         $matrix[8][0] = $format[0];
         $matrix[8][1] = $format[1];
         $matrix[8][2] = $format[2];
@@ -1130,7 +1130,7 @@ class qrcode {
 
         /* Version Info */
         if ($version >= 7) {
-            $version = $this->qr_version_info[$version - 7];
+            $version = $this->qrversioninfo[$version - 7];
             for ($i = 0; $i < 18; $i++) {
                 $r = $size - 9 - ($i % 3);
                 $c = 5 - floor($i / 3);
@@ -1149,7 +1149,7 @@ class qrcode {
     }
 
     /**
-     * Variable qr_capacity
+     * Variable qrcapacity
      *
      * @var array
      */
@@ -1197,7 +1197,7 @@ class qrcode {
     ];
 
     /**
-     * Var qr_ec_params
+     * Var qrecparams
      *
      * @var array
      */
@@ -1365,7 +1365,7 @@ class qrcode {
     ];
 
     /**
-     * Var qr_ec_polynomials
+     * Var qrecpolynomials
      *
      * @var array
      */
@@ -1426,7 +1426,7 @@ class qrcode {
     ];
 
     /**
-     * Var qr_log
+     * Var qrlog
      *
      * @var array
      */
@@ -1466,7 +1466,7 @@ class qrcode {
     ];
 
     /**
-     * Var qr_exp
+     * Var qrexp
      *
      * @var array
      */
@@ -1506,7 +1506,7 @@ class qrcode {
     ];
 
     /**
-     * Var qr_remainder_bits
+     * Var qrremainderbits
      *
      * @var array
      */
@@ -1516,7 +1516,7 @@ class qrcode {
     ];
 
     /**
-     * Var qr_alignment_patterns
+     * Var qralignmentpatterns
      *
      * @var array
      */
@@ -1566,7 +1566,7 @@ class qrcode {
     /*    (0 for L, 8 for M, 16 for Q, 24 for H) + mask  */
     /*  ];                                               */
     /**
-     * Var qr_format_info
+     * Var qrformatinfo
      *
      * @var array
      */
@@ -1607,7 +1607,7 @@ class qrcode {
 
     /*  version info string = $qrversioninfo[ (version - 7) ]  */
     /**
-     * Var qr_version_info
+     * Var qrversioninfo
      *
      * @var array
      */
