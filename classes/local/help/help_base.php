@@ -54,7 +54,7 @@ class help_base {
      * Function base_get_data
      *
      * @param array $fields
-     * @param array $data
+     * @param \stdClass $data
      *
      * @return array
      */
@@ -77,15 +77,15 @@ class help_base {
      * Function replace
      *
      * @param string $html
-     * @param \stdClass $class
+     * @param string $classname
      * @param array $fields
      *
      * @return mixed
      */
-    public static function replace($html, $class, $fields) {
+    public static function replace($html, $classname, $fields) {
         foreach ($fields as $key => $field) {
             $html = str_ireplace(
-                "{\${$class}->{$key}}",
+                "{\${$classname}->{$key}}",
                 $field,
                 $html);
         }
@@ -183,19 +183,21 @@ class help_base {
 
             $structuresitens = [];
             foreach ($class::table_structure() as $structure) {
-                $label = $structure['label'];
-                $label = str_replace("'", "\\'", $label);
+                if (isset($structure['label'])) {
+                    $label = $structure['label'];
+                    $label = str_replace("'", "\\'", $label);
 
-                if (strpos($structure['key'], "}")) {
-                    $key = $structure['key'];
-                } else {
-                    $key = "{\${$classsnameup}->{$structure['key']}}";
+                    if (strpos($structure['key'], "}")) {
+                        $key = $structure['key'];
+                    } else {
+                        $key = "{\${$classsnameup}->{$structure['key']}}";
+                    }
+
+                    $structuresitens[] = [
+                        'label' => $label,
+                        'key' => $key,
+                    ];
                 }
-
-                $structuresitens[] = [
-                    'label' => $label,
-                    'key' => $key,
-                ];
             }
 
             if ($structuresitens) {
