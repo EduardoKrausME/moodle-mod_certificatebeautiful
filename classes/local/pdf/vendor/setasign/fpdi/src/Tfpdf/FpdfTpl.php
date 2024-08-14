@@ -17,7 +17,6 @@ use setasign\Fpdi\FpdfTplTrait;
  *
  * We need to change some access levels and implement the setPageFormat() method to bring back compatibility to tFPDF.
  */
-class FpdfTpl extends \tFPDF
-{
+class FpdfTpl extends \tFPDF {
     use FpdfTplTrait;
 }

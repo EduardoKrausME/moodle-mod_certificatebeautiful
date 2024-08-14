@@ -40,8 +40,7 @@ namespace Psr\Http\Message;
  * be implemented such that they retain the internal state of the current
  * message and return an instance that contains the changed state.
  */
-interface ServerRequestInterface extends RequestInterface
-{
+interface ServerRequestInterface extends RequestInterface {
     /**
      * Retrieve server parameters.
      *
@@ -80,6 +79,7 @@ interface ServerRequestInterface extends RequestInterface
      * updated cookie values.
      *
      * @param array $cookies Array of key/value pairs representing cookies.
+     *
      * @return static
      */
     public function withCookieParams(array $cookies);
@@ -117,7 +117,8 @@ interface ServerRequestInterface extends RequestInterface
      * updated query string arguments.
      *
      * @param array $query Array of query string arguments, typically from
-     *     $_GET.
+     *                     $_GET.
+     *
      * @return static
      */
     public function withQueryParams(array $query);
@@ -144,6 +145,7 @@ interface ServerRequestInterface extends RequestInterface
      * updated body parameters.
      *
      * @param array $uploadedFiles An array tree of UploadedFileInterface instances.
+     *
      * @return static
      * @throws \InvalidArgumentException if an invalid structure is provided.
      */
@@ -189,7 +191,8 @@ interface ServerRequestInterface extends RequestInterface
      * updated body parameters.
      *
      * @param null|array|object $data The deserialized body data. This will
-     *     typically be in an array or object.
+     *                                typically be in an array or object.
+     *
      * @return static
      * @throws \InvalidArgumentException if an unsupported argument type is
      *     provided.
@@ -220,8 +223,10 @@ interface ServerRequestInterface extends RequestInterface
      * specifying a default value to return if the attribute is not found.
      *
      * @see getAttributes()
-     * @param string $name The attribute name.
+     *
+     * @param string $name   The attribute name.
      * @param mixed $default Default value to return if the attribute does not exist.
+     *
      * @return mixed
      */
     public function getAttribute($name, $default = null);
@@ -237,8 +242,10 @@ interface ServerRequestInterface extends RequestInterface
      * updated attribute.
      *
      * @see getAttributes()
+     *
      * @param string $name The attribute name.
      * @param mixed $value The value of the attribute.
+     *
      * @return static
      */
     public function withAttribute($name, $value);
@@ -254,7 +261,9 @@ interface ServerRequestInterface extends RequestInterface
      * the attribute.
      *
      * @see getAttributes()
+     *
      * @param string $name The attribute name.
+     *
      * @return static
      */
     public function withoutAttribute($name);

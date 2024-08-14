@@ -2,7 +2,6 @@
 
 namespace Mpdf;
 
-interface Watermark
-{
+interface Watermark {
 
 }

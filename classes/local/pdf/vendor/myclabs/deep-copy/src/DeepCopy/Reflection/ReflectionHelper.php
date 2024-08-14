@@ -8,22 +8,20 @@ use ReflectionException;
 use ReflectionObject;
 use ReflectionProperty;
 
-class ReflectionHelper
-{
+class ReflectionHelper {
     /**
      * Retrieves all properties (including private ones), from object and all its ancestors.
      *
      * Standard \ReflectionClass->getProperties() does not return private properties from ancestor classes.
      *
      * @author muratyaman@gmail.com
-     * @see http://php.net/manual/en/reflectionclass.getproperties.php
+     * @see    http://php.net/manual/en/reflectionclass.getproperties.php
      *
      * @param ReflectionClass $ref
      *
      * @return ReflectionProperty[]
      */
-    public static function getProperties(ReflectionClass $ref)
-    {
+    public static function getProperties(ReflectionClass $ref) {
         $props = $ref->getProperties();
         $propsArr = [];
 
@@ -55,8 +53,7 @@ class ReflectionHelper
      *
      * @return ReflectionProperty
      */
-    public static function getProperty($object, $name)
-    {
+    public static function getProperty($object, $name) {
         $reflection = is_object($object) ? new ReflectionObject($object) : new ReflectionClass($object);
 
         if ($reflection->hasProperty($name)) {

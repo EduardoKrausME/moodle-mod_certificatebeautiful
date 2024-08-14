@@ -13,8 +13,7 @@ namespace setasign\Fpdi\PdfParser\Filter;
 /**
  * Exception for flate filter class
  */
-class FlateException extends FilterException
-{
+class FlateException extends FilterException {
     /**
      * @var integer
      */

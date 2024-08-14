@@ -2,65 +2,57 @@
 
 namespace Mpdf;
 
-class WatermarkText implements \Mpdf\Watermark
-{
+class WatermarkText implements \Mpdf\Watermark {
 
-	/** @var string */
-	private $text;
+    /** @var string */
+    private $text;
 
-	/** @var int */
-	private $size;
+    /** @var int */
+    private $size;
 
-	/** @var int */
-	private $angle;
+    /** @var int */
+    private $angle;
 
-	/** @var mixed */
-	private $color;
+    /** @var mixed */
+    private $color;
 
-	/** @var float */
-	private $alpha;
+    /** @var float */
+    private $alpha;
 
-	/** @var string */
-	private $font;
+    /** @var string */
+    private $font;
 
-	public function __construct($text, $size = 96, $angle = 45, $color = 0, $alpha = 0.2, $font = null)
-	{
-		$this->text = $text;
-		$this->size = $size;
-		$this->angle = $angle;
-		$this->color = $color;
-		$this->alpha = $alpha;
-		$this->font = $font;
-	}
+    public function __construct($text, $size = 96, $angle = 45, $color = 0, $alpha = 0.2, $font = null) {
+        $this->text = $text;
+        $this->size = $size;
+        $this->angle = $angle;
+        $this->color = $color;
+        $this->alpha = $alpha;
+        $this->font = $font;
+    }
 
-	public function getText()
-	{
-		return $this->text;
-	}
+    public function getText() {
+        return $this->text;
+    }
 
-	public function getSize()
-	{
-		return $this->size;
-	}
+    public function getSize() {
+        return $this->size;
+    }
 
-	public function getAngle()
-	{
-		return $this->angle;
-	}
+    public function getAngle() {
+        return $this->angle;
+    }
 
-	public function getColor()
-	{
-		return $this->color;
-	}
+    public function getColor() {
+        return $this->color;
+    }
 
-	public function getAlpha()
-	{
-		return $this->alpha;
-	}
+    public function getAlpha() {
+        return $this->alpha;
+    }
 
-	public function getFont()
-	{
-		return $this->font;
-	}
+    public function getFont() {
+        return $this->font;
+    }
 
 }

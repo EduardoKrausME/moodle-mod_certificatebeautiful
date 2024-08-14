@@ -17,19 +17,18 @@ use setasign\Fpdi\PdfParser\Tokenizer;
 /**
  * Class representing a PDF dictionary object
  */
-class PdfDictionary extends PdfType
-{
+class PdfDictionary extends PdfType {
     /**
      * Parses a dictionary of the passed tokenizer, stream-reader and parser.
      *
      * @param Tokenizer $tokenizer
      * @param StreamReader $streamReader
      * @param PdfParser $parser
+     *
      * @return bool|self
      * @throws PdfTypeException
      */
-    public static function parse(Tokenizer $tokenizer, StreamReader $streamReader, PdfParser $parser)
-    {
+    public static function parse(Tokenizer $tokenizer, StreamReader $streamReader, PdfParser $parser) {
         $entries = [];
 
         while (true) {
@@ -88,10 +87,10 @@ class PdfDictionary extends PdfType
      * Helper method to create an instance.
      *
      * @param PdfType[] $entries The keys are the name entries of the dictionary.
+     *
      * @return self
      */
-    public static function create(array $entries = [])
-    {
+    public static function create(array $entries = []) {
         $v = new self();
         $v->value = $entries;
 
@@ -104,11 +103,11 @@ class PdfDictionary extends PdfType
      * @param mixed $dictionary
      * @param string $key
      * @param PdfType|null $default
+     *
      * @return PdfNull|PdfType
      * @throws PdfTypeException
      */
-    public static function get($dictionary, $key, PdfType $default = null)
-    {
+    public static function get($dictionary, $key, PdfType $default = null) {
         $dictionary = self::ensure($dictionary);
 
         if (isset($dictionary->value[$key])) {
@@ -124,11 +123,11 @@ class PdfDictionary extends PdfType
      * Ensures that the passed value is a PdfDictionary instance.
      *
      * @param mixed $dictionary
+     *
      * @return self
      * @throws PdfTypeException
      */
-    public static function ensure($dictionary)
-    {
+    public static function ensure($dictionary) {
         return PdfType::ensureType(self::class, $dictionary, 'Dictionary value expected.');
     }
 }

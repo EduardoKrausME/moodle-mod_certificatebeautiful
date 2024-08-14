@@ -24,19 +24,18 @@ use setasign\FpdiPdfParser\PdfParser\Filter\Predictor;
 /**
  * Class representing a PDF stream object
  */
-class PdfStream extends PdfType
-{
+class PdfStream extends PdfType {
     /**
      * Parses a stream from a stream reader.
      *
      * @param PdfDictionary $dictionary
      * @param StreamReader $reader
      * @param PdfParser $parser Optional to keep backwards compatibility
+     *
      * @return self
      * @throws PdfTypeException
      */
-    public static function parse(PdfDictionary $dictionary, StreamReader $reader, PdfParser $parser = null)
-    {
+    public static function parse(PdfDictionary $dictionary, StreamReader $reader, PdfParser $parser = null) {
         $v = new self();
         $v->value = $dictionary;
         $v->reader = $reader;
@@ -76,13 +75,13 @@ class PdfStream extends PdfType
      *
      * @param PdfDictionary $dictionary
      * @param string $stream
+     *
      * @return self
      */
-    public static function create(PdfDictionary $dictionary, $stream)
-    {
+    public static function create(PdfDictionary $dictionary, $stream) {
         $v = new self();
         $v->value = $dictionary;
-        $v->stream = (string) $stream;
+        $v->stream = (string)$stream;
 
         return $v;
     }
@@ -91,11 +90,11 @@ class PdfStream extends PdfType
      * Ensures that the passed value is a PdfStream instance.
      *
      * @param mixed $stream
+     *
      * @return self
      * @throws PdfTypeException
      */
-    public static function ensure($stream)
-    {
+    public static function ensure($stream) {
         return PdfType::ensureType(self::class, $stream, 'Stream value expected.');
     }
 
@@ -124,13 +123,13 @@ class PdfStream extends PdfType
      * Get the stream data.
      *
      * @param bool $cache Whether cache the stream data or not.
+     *
      * @return bool|string
      * @throws PdfTypeException
      * @throws CrossReferenceException
      * @throws PdfParserException
      */
-    public function getStream($cache = false)
-    {
+    public function getStream($cache = false) {
         if (\is_int($this->stream)) {
             $length = PdfDictionary::get($this->value, 'Length');
             if ($this->parser !== null) {
@@ -172,8 +171,7 @@ class PdfStream extends PdfType
      * @return string
      * @throws PdfTypeException
      */
-    protected function extractStream()
-    {
+    protected function extractStream() {
         while (true) {
             $buffer = $this->reader->getBuffer(false);
             $length = \strpos($buffer, 'endstream');
@@ -218,8 +216,7 @@ class PdfStream extends PdfType
      * @return PdfType[]
      * @throws PdfTypeException
      */
-    public function getFilters()
-    {
+    public function getFilters() {
         $filters = PdfDictionary::get($this->value, 'Filter');
         if ($filters instanceof PdfNull) {
             return [];
@@ -241,8 +238,7 @@ class PdfStream extends PdfType
      * @throws FilterException
      * @throws PdfParserException
      */
-    public function getUnfilteredStream()
-    {
+    public function getUnfilteredStream() {
         $stream = $this->getStream();
         $filters = $this->getFilters();
         if ($filters === []) {

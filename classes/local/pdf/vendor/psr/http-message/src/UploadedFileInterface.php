@@ -10,8 +10,7 @@ namespace Psr\Http\Message;
  * state of the current instance and return an instance that contains the
  * changed state.
  */
-interface UploadedFileInterface
-{
+interface UploadedFileInterface {
     /**
      * Retrieve a stream representing the uploaded file.
      *
@@ -64,7 +63,7 @@ interface UploadedFileInterface
      * @throws \RuntimeException on any error during the move operation, or on
      *     the second or subsequent call to the method.
      */
-    public function moveTo( $targetPath );
+    public function moveTo($targetPath);
 
     /**
      * Retrieve the file size.

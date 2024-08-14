@@ -30,8 +30,7 @@ use setasign\Fpdi\PdfParser\Type\PdfTypeException;
 /**
  * A PDF parser class
  */
-class PdfParser
-{
+class PdfParser {
     /**
      * @var StreamReader
      */
@@ -73,8 +72,7 @@ class PdfParser
      *
      * @param StreamReader $streamReader
      */
-    public function __construct(StreamReader $streamReader)
-    {
+    public function __construct(StreamReader $streamReader) {
         $this->streamReader = $streamReader;
         $this->tokenizer = new Tokenizer($streamReader);
     }
@@ -84,8 +82,7 @@ class PdfParser
      *
      * @internal
      */
-    public function cleanUp()
-    {
+    public function cleanUp() {
         $this->xref = null;
     }
 
@@ -94,8 +91,7 @@ class PdfParser
      *
      * @return StreamReader
      */
-    public function getStreamReader()
-    {
+    public function getStreamReader() {
         return $this->streamReader;
     }
 
@@ -104,8 +100,7 @@ class PdfParser
      *
      * @return Tokenizer
      */
-    public function getTokenizer()
-    {
+    public function getTokenizer() {
         return $this->tokenizer;
     }
 
@@ -115,8 +110,7 @@ class PdfParser
      * @throws PdfParserException
      * @return int
      */
-    protected function resolveFileHeader()
-    {
+    protected function resolveFileHeader() {
         if ($this->fileHeader) {
             return $this->fileHeaderOffset;
         }
@@ -152,8 +146,7 @@ class PdfParser
      * @throws CrossReferenceException
      * @throws PdfParserException
      */
-    public function getCrossReference()
-    {
+    public function getCrossReference() {
         if ($this->xref === null) {
             $this->xref = new CrossReference($this, $this->resolveFileHeader());
         }
@@ -167,8 +160,7 @@ class PdfParser
      * @return int[] An array of major and minor version.
      * @throws PdfParserException
      */
-    public function getPdfVersion()
-    {
+    public function getPdfVersion() {
         $this->resolveFileHeader();
 
         if (\preg_match('/%PDF-(\d)\.(\d)/', $this->fileHeader, $result) === 0) {
@@ -190,7 +182,7 @@ class PdfParser
             }
         }
 
-        return [(int) $major, (int) $minor];
+        return [(int)$major, (int)$minor];
     }
 
     /**
@@ -201,8 +193,7 @@ class PdfParser
      * @throws CrossReferenceException
      * @throws PdfParserException
      */
-    public function getCatalog()
-    {
+    public function getCatalog() {
         $trailer = $this->getCrossReference()->getTrailer();
 
         $catalog = PdfType::resolve(PdfDictionary::get($trailer, 'Root'), $this);
@@ -215,13 +206,13 @@ class PdfParser
      *
      * @param int $objectNumber
      * @param bool $cache
+     *
      * @return PdfIndirectObject
      * @throws CrossReferenceException
      * @throws PdfParserException
      */
-    public function getIndirectObject($objectNumber, $cache = false)
-    {
-        $objectNumber = (int) $objectNumber;
+    public function getIndirectObject($objectNumber, $cache = false) {
+        $objectNumber = (int)$objectNumber;
         if (isset($this->objects[$objectNumber])) {
             return $this->objects[$objectNumber];
         }
@@ -240,11 +231,11 @@ class PdfParser
      *
      * @param null|bool|string $token
      * @param null|string $expectedType
+     *
      * @return false|PdfArray|PdfBoolean|PdfDictionary|PdfHexString|PdfIndirectObject|PdfIndirectObjectReference|PdfName|PdfNull|PdfNumeric|PdfStream|PdfString|PdfToken
      * @throws Type\PdfTypeException
      */
-    public function readValue($token = null, $expectedType = null)
-    {
+    public function readValue($token = null, $expectedType = null) {
         if ($token === null) {
             $token = $this->tokenizer->getNextToken();
         }
@@ -349,16 +340,14 @@ class PdfParser
     /**
      * @return PdfString
      */
-    protected function parsePdfString()
-    {
+    protected function parsePdfString() {
         return PdfString::parse($this->streamReader);
     }
 
     /**
      * @return false|PdfHexString
      */
-    protected function parsePdfHexString()
-    {
+    protected function parsePdfHexString() {
         return PdfHexString::parse($this->streamReader);
     }
 
@@ -366,16 +355,14 @@ class PdfParser
      * @return bool|PdfDictionary
      * @throws PdfTypeException
      */
-    protected function parsePdfDictionary()
-    {
+    protected function parsePdfDictionary() {
         return PdfDictionary::parse($this->tokenizer, $this->streamReader, $this);
     }
 
     /**
      * @return PdfName
      */
-    protected function parsePdfName()
-    {
+    protected function parsePdfName() {
         return PdfName::parse($this->tokenizer, $this->streamReader);
     }
 
@@ -383,19 +370,18 @@ class PdfParser
      * @return false|PdfArray
      * @throws PdfTypeException
      */
-    protected function parsePdfArray()
-    {
+    protected function parsePdfArray() {
         return PdfArray::parse($this->tokenizer, $this);
     }
 
     /**
      * @param int $objectNumber
      * @param int $generationNumber
+     *
      * @return false|PdfIndirectObject
      * @throws Type\PdfTypeException
      */
-    protected function parsePdfIndirectObject($objectNumber, $generationNumber)
-    {
+    protected function parsePdfIndirectObject($objectNumber, $generationNumber) {
         return PdfIndirectObject::parse(
             $objectNumber,
             $generationNumber,
@@ -410,11 +396,11 @@ class PdfParser
      *
      * @param string $token
      * @param string|null $expectedType
+     *
      * @return bool
      * @throws Type\PdfTypeException
      */
-    protected function ensureExpectedType($token, $expectedType)
-    {
+    protected function ensureExpectedType($token, $expectedType) {
         static $mapping = [
             '(' => PdfString::class,
             '<' => PdfHexString::class,

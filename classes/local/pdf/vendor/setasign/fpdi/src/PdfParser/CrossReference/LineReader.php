@@ -19,8 +19,7 @@ use setasign\Fpdi\PdfParser\StreamReader;
  * This reader class read all cross-reference entries in a single run.
  * It supports reading cross-references with e.g. invalid data (e.g. entries with a length < or > 20 bytes).
  */
-class LineReader extends AbstractReader implements ReaderInterface
-{
+class LineReader extends AbstractReader implements ReaderInterface {
     /**
      * The object offsets.
      *
@@ -32,10 +31,10 @@ class LineReader extends AbstractReader implements ReaderInterface
      * LineReader constructor.
      *
      * @param PdfParser $parser
+     *
      * @throws CrossReferenceException
      */
-    public function __construct(PdfParser $parser)
-    {
+    public function __construct(PdfParser $parser) {
         $this->read($this->extract($parser->getStreamReader()));
         parent::__construct($parser);
     }
@@ -44,8 +43,7 @@ class LineReader extends AbstractReader implements ReaderInterface
      * @inheritdoc
      * @return int|false
      */
-    public function getOffsetFor($objectNumber)
-    {
+    public function getOffsetFor($objectNumber) {
         if (isset($this->offsets[$objectNumber])) {
             return $this->offsets[$objectNumber][0];
         }
@@ -58,8 +56,7 @@ class LineReader extends AbstractReader implements ReaderInterface
      *
      * @return array
      */
-    public function getOffsets()
-    {
+    public function getOffsets() {
         return $this->offsets;
     }
 
@@ -67,11 +64,11 @@ class LineReader extends AbstractReader implements ReaderInterface
      * Extracts the cross reference data from the stream reader.
      *
      * @param StreamReader $reader
+     *
      * @return string
      * @throws CrossReferenceException
      */
-    protected function extract(StreamReader $reader)
-    {
+    protected function extract(StreamReader $reader) {
         $bytesPerCycle = 100;
         $reader->reset(null, $bytesPerCycle);
 
@@ -100,10 +97,10 @@ class LineReader extends AbstractReader implements ReaderInterface
      * Read the cross-reference entries.
      *
      * @param string $xrefContent
+     *
      * @throws CrossReferenceException
      */
-    protected function read($xrefContent)
-    {
+    protected function read($xrefContent) {
         // get eol markers in the first 100 bytes
         \preg_match_all("/(\r\n|\n|\r)/", \substr($xrefContent, 0, 100), $m);
 
@@ -140,20 +137,20 @@ class LineReader extends AbstractReader implements ReaderInterface
 
             switch (\count($pieces)) {
                 case 2:
-                    $start = (int) $pieces[0];
+                    $start = (int)$pieces[0];
                     break;
 
                 case 3:
                     switch ($pieces[2]) {
                         case 'n':
-                            $offsets[$start] = [(int) $pieces[0], (int) $pieces[1]];
+                            $offsets[$start] = [(int)$pieces[0], (int)$pieces[1]];
                             $start++;
                             break 2;
                         case 'f':
                             $start++;
                             break 2;
                     }
-                    // fall through if pieces doesn't match
+                // fall through if pieces doesn't match
 
                 default:
                     throw new CrossReferenceException(

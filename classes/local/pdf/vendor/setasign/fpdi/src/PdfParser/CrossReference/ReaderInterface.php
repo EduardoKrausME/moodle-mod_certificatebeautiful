@@ -15,12 +15,12 @@ use setasign\Fpdi\PdfParser\Type\PdfDictionary;
 /**
  * ReaderInterface for cross-reference readers.
  */
-interface ReaderInterface
-{
+interface ReaderInterface {
     /**
      * Get an offset by an object number.
      *
      * @param int $objectNumber
+     *
      * @return int|bool False if the offset was not found.
      */
     public function getOffsetFor($objectNumber);

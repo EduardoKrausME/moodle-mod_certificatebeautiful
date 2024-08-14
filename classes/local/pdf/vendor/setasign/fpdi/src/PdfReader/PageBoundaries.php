@@ -13,8 +13,7 @@ namespace setasign\Fpdi\PdfReader;
 /**
  * An abstract class for page boundary constants and some helper methods
  */
-abstract class PageBoundaries
-{
+abstract class PageBoundaries {
     /**
      * MediaBox
      *
@@ -85,10 +84,10 @@ abstract class PageBoundaries
      * Checks if a name is a valid page boundary name.
      *
      * @param string $name The boundary name
+     *
      * @return boolean A boolean value whether the name is valid or not.
      */
-    public static function isValidName($name)
-    {
+    public static function isValidName($name) {
         return \in_array($name, self::$all, true);
     }
 }

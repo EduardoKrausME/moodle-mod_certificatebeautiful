@@ -13,6 +13,5 @@ namespace setasign\Fpdi;
 /**
  * Base exception class for the FPDI package.
  */
-class FpdiException extends \Exception
-{
+class FpdiException extends \Exception {
 }

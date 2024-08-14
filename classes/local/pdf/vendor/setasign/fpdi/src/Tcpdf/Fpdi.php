@@ -34,8 +34,7 @@ use setasign\Fpdi\PdfParser\Type\PdfTypeException;
  *
  * @method _encrypt_data(int $n, string $s) string
  */
-class Fpdi extends \TCPDF
-{
+class Fpdi extends \TCPDF {
     use FpdiTrait {
         writePdfType as fpdiWritePdfType;
         useImportedPage as fpdiUseImportedPage;
@@ -62,8 +61,7 @@ class Fpdi extends \TCPDF
      */
     protected $currentObjectNumber;
 
-    protected function _enddoc()
-    {
+    protected function _enddoc() {
         parent::_enddoc();
         $this->cleanUp();
     }
@@ -73,8 +71,7 @@ class Fpdi extends \TCPDF
      *
      * @return int
      */
-    protected function getNextTemplateId()
-    {
+    protected function getNextTemplateId() {
         return $this->templateId++;
     }
 
@@ -84,18 +81,18 @@ class Fpdi extends \TCPDF
      * Give only one of the size parameters (width, height) to calculate the other one automatically in view to the
      * aspect ratio.
      *
-     * @param mixed $tpl The template id
-     * @param float|int|array $x The abscissa of upper-left corner. Alternatively you could use an assoc array
-     *                           with the keys "x", "y", "width", "height", "adjustPageSize".
-     * @param float|int $y The ordinate of upper-left corner.
-     * @param float|int|null $width The width.
+     * @param mixed $tpl             The template id
+     * @param float|int|array $x     The abscissa of upper-left corner. Alternatively you could use an assoc array
+     *                               with the keys "x", "y", "width", "height", "adjustPageSize".
+     * @param float|int $y           The ordinate of upper-left corner.
+     * @param float|int|null $width  The width.
      * @param float|int|null $height The height.
      * @param bool $adjustPageSize
+     *
      * @return array The size
      * @see FpdiTrait::getTemplateSize()
      */
-    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false)
-    {
+    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false) {
         return $this->useImportedPage($tpl, $x, $y, $width, $height, $adjustPageSize);
     }
 
@@ -105,18 +102,18 @@ class Fpdi extends \TCPDF
      * Give only one of the size parameters (width, height) to calculate the other one automatically in view to the
      * aspect ratio.
      *
-     * @param mixed $pageId The page id
-     * @param float|int|array $x The abscissa of upper-left corner. Alternatively you could use an assoc array
-     *                           with the keys "x", "y", "width", "height", "adjustPageSize".
-     * @param float|int $y The ordinate of upper-left corner.
-     * @param float|int|null $width The width.
+     * @param mixed $pageId          The page id
+     * @param float|int|array $x     The abscissa of upper-left corner. Alternatively you could use an assoc array
+     *                               with the keys "x", "y", "width", "height", "adjustPageSize".
+     * @param float|int $y           The ordinate of upper-left corner.
+     * @param float|int|null $width  The width.
      * @param float|int|null $height The height.
      * @param bool $adjustPageSize
+     *
      * @return array The size.
      * @see Fpdi::getTemplateSize()
      */
-    public function useImportedPage($pageId, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false)
-    {
+    public function useImportedPage($pageId, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false) {
         $size = $this->fpdiUseImportedPage($pageId, $x, $y, $width, $height, $adjustPageSize);
         if ($this->inxobj) {
             $importedPage = $this->importedPages[$pageId];
@@ -132,13 +129,13 @@ class Fpdi extends \TCPDF
      * Give only one of the size parameters (width, height) to calculate the other one automatically in view to the
      * aspect ratio.
      *
-     * @param mixed $tpl The template id
-     * @param float|int|null $width The width.
+     * @param mixed $tpl             The template id
+     * @param float|int|null $width  The width.
      * @param float|int|null $height The height.
+     *
      * @return array|bool An array with following keys: width, height, 0 (=width), 1 (=height), orientation (L or P)
      */
-    public function getTemplateSize($tpl, $width = null, $height = null)
-    {
+    public function getTemplateSize($tpl, $width = null, $height = null) {
         return $this->getImportedPageSize($tpl, $width, $height);
     }
 
@@ -146,8 +143,7 @@ class Fpdi extends \TCPDF
      * @inheritdoc
      * @return string
      */
-    protected function _getxobjectdict()
-    {
+    protected function _getxobjectdict() {
         $out = parent::_getxobjectdict();
 
         foreach ($this->importedPages as $pageData) {
@@ -162,8 +158,7 @@ class Fpdi extends \TCPDF
      * @throws CrossReferenceException
      * @throws PdfParserException
      */
-    protected function _putxobjects()
-    {
+    protected function _putxobjects() {
         foreach ($this->importedPages as $key => $pageData) {
             $this->currentObjectNumber = $this->_newobj();
             $this->importedPages[$key]['objectNumber'] = $this->currentObjectNumber;
@@ -214,8 +209,7 @@ class Fpdi extends \TCPDF
      * @param string $s
      * @param bool $newLine
      */
-    protected function _put($s, $newLine = true)
-    {
+    protected function _put($s, $newLine = true) {
         if ($newLine) {
             $this->setBuffer($s . "\n");
         } else {
@@ -227,10 +221,10 @@ class Fpdi extends \TCPDF
      * Begin a new object and return the object number.
      *
      * @param int|string $objid Object ID (leave empty to get a new ID).
+     *
      * @return int object number
      */
-    protected function _newobj($objid = '')
-    {
+    protected function _newobj($objid = '') {
         $this->_out($this->_getobj($objid));
         return $this->n;
     }
@@ -239,10 +233,10 @@ class Fpdi extends \TCPDF
      * Writes a PdfType object to the resulting buffer.
      *
      * @param PdfType $value
+     *
      * @throws PdfTypeException
      */
-    protected function writePdfType(PdfType $value)
-    {
+    protected function writePdfType(PdfType $value) {
         if (!$this->encrypted) {
             $this->fpdiWritePdfType($value);
             return;
@@ -285,10 +279,10 @@ class Fpdi extends \TCPDF
      * @param float|int $newHeightPt
      * @param float|int $scaleY
      * @param array $importedPage
+     *
      * @return void
      */
-    protected function adjustLastLink($externalLink, $xPt, $scaleX, $yPt, $newHeightPt, $scaleY, $importedPage)
-    {
+    protected function adjustLastLink($externalLink, $xPt, $scaleX, $yPt, $newHeightPt, $scaleY, $importedPage) {
         $parser = $this->getPdfReader($importedPage['readerId'])->getParser();
 
         if ($this->inxobj) {
@@ -371,7 +365,7 @@ class Fpdi extends \TCPDF
                         // is broken in current TCPDF version: "bc" key is checked but "bs" is used.
                         break;
                 }
-            // let's silence invalid/not supported values
+                // let's silence invalid/not supported values
             } catch (FpdiException $e) {
                 continue;
             }

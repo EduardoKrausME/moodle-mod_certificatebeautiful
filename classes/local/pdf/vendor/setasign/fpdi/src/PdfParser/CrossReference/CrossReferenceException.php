@@ -15,8 +15,7 @@ use setasign\Fpdi\PdfParser\PdfParserException;
 /**
  * Exception used by the CrossReference and Reader classes.
  */
-class CrossReferenceException extends PdfParserException
-{
+class CrossReferenceException extends PdfParserException {
     /**
      * @var int
      */

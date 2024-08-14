@@ -2,8 +2,7 @@
 
 namespace Mpdf\Tag;
 
-class Bdi extends InlineTag
-{
+class Bdi extends InlineTag {
 
 
 }

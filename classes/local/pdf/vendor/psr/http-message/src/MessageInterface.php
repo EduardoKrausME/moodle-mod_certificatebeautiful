@@ -14,8 +14,7 @@ namespace Psr\Http\Message;
  * @link http://www.ietf.org/rfc/rfc7230.txt
  * @link http://www.ietf.org/rfc/rfc7231.txt
  */
-interface MessageInterface
-{
+interface MessageInterface {
     /**
      * Retrieves the HTTP protocol version as a string.
      *
@@ -36,6 +35,7 @@ interface MessageInterface
      * new protocol version.
      *
      * @param string $version HTTP protocol version
+     *
      * @return static
      */
     public function withProtocolVersion($version);
@@ -71,6 +71,7 @@ interface MessageInterface
      * Checks if a header exists by the given case-insensitive name.
      *
      * @param string $name Case-insensitive header field name.
+     *
      * @return bool Returns true if any header names match the given header
      *     name using a case-insensitive string comparison. Returns false if
      *     no matching header name is found in the message.
@@ -87,6 +88,7 @@ interface MessageInterface
      * empty array.
      *
      * @param string $name Case-insensitive header field name.
+     *
      * @return string[] An array of string values as provided for the given
      *    header. If the header does not appear in the message, this method MUST
      *    return an empty array.
@@ -108,6 +110,7 @@ interface MessageInterface
      * an empty string.
      *
      * @param string $name Case-insensitive header field name.
+     *
      * @return string A string of values as provided for the given header
      *    concatenated together using a comma. If the header does not appear in
      *    the message, this method MUST return an empty string.
@@ -124,8 +127,9 @@ interface MessageInterface
      * immutability of the message, and MUST return an instance that has the
      * new and/or updated header and value.
      *
-     * @param string $name Case-insensitive header field name.
+     * @param string $name           Case-insensitive header field name.
      * @param string|string[] $value Header value(s).
+     *
      * @return static
      * @throws \InvalidArgumentException for invalid header names or values.
      */
@@ -142,8 +146,9 @@ interface MessageInterface
      * immutability of the message, and MUST return an instance that has the
      * new header and/or value.
      *
-     * @param string $name Case-insensitive header field name to add.
+     * @param string $name           Case-insensitive header field name to add.
      * @param string|string[] $value Header value(s).
+     *
      * @return static
      * @throws \InvalidArgumentException for invalid header names or values.
      */
@@ -159,6 +164,7 @@ interface MessageInterface
      * the named header.
      *
      * @param string $name Case-insensitive header field name to remove.
+     *
      * @return static
      */
     public function withoutHeader($name);
@@ -180,6 +186,7 @@ interface MessageInterface
      * new body stream.
      *
      * @param StreamInterface $body Body.
+     *
      * @return static
      * @throws \InvalidArgumentException When the body is not valid.
      */

@@ -8,15 +8,13 @@ use DeepCopy\Reflection\ReflectionHelper;
 /**
  * @final
  */
-class DoctrineCollectionFilter implements Filter
-{
+class DoctrineCollectionFilter implements Filter {
     /**
      * Copies the object property doctrine collection.
      *
      * {@inheritdoc}
      */
-    public function apply($object, $property, $objectCopier)
-    {
+    public function apply($object, $property, $objectCopier) {
         $reflectionProperty = ReflectionHelper::getProperty($object, $property);
 
         $reflectionProperty->setAccessible(true);

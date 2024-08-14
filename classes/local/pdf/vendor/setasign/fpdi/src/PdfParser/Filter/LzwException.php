@@ -13,8 +13,7 @@ namespace setasign\Fpdi\PdfParser\Filter;
 /**
  * Exception for LZW filter class
  */
-class LzwException extends FilterException
-{
+class LzwException extends FilterException {
     /**
      * @var integer
      */

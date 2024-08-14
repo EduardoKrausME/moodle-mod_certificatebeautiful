@@ -2,8 +2,7 @@
 
 namespace Mpdf\Tag;
 
-class Ul extends BlockTag
-{
+class Ul extends BlockTag {
 
 
 }

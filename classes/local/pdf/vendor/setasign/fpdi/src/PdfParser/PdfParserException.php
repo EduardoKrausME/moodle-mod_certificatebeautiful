@@ -15,8 +15,7 @@ use setasign\Fpdi\FpdiException;
 /**
  * Exception for the pdf parser class
  */
-class PdfParserException extends FpdiException
-{
+class PdfParserException extends FpdiException {
     /**
      * @var int
      */

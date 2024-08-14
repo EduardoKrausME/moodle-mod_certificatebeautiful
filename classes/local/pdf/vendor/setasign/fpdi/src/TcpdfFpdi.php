@@ -17,7 +17,6 @@ namespace setasign\Fpdi;
  *
  * @deprecated Class was moved to \setasign\Fpdi\Tcpdf\Fpdi
  */
-class TcpdfFpdi extends \setasign\Fpdi\Tcpdf\Fpdi
-{
+class TcpdfFpdi extends \setasign\Fpdi\Tcpdf\Fpdi {
     // this class is moved to \setasign\Fpdi\Tcpdf\Fpdi
 }

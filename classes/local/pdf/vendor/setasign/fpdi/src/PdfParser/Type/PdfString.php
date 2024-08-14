@@ -15,16 +15,15 @@ use setasign\Fpdi\PdfParser\StreamReader;
 /**
  * Class representing a PDF string object
  */
-class PdfString extends PdfType
-{
+class PdfString extends PdfType {
     /**
      * Parses a string object from the stream reader.
      *
      * @param StreamReader $streamReader
+     *
      * @return self
      */
-    public static function parse(StreamReader $streamReader)
-    {
+    public static function parse(StreamReader $streamReader) {
         $pos = $startPos = $streamReader->getOffset();
         $openBrackets = 1;
         do {
@@ -56,10 +55,10 @@ class PdfString extends PdfType
      * Helper method to create an instance.
      *
      * @param string $value The string needs to be escaped accordingly.
+     *
      * @return self
      */
-    public static function create($value)
-    {
+    public static function create($value) {
         $v = new self();
         $v->value = $value;
 
@@ -70,11 +69,11 @@ class PdfString extends PdfType
      * Ensures that the passed value is a PdfString instance.
      *
      * @param mixed $string
+     *
      * @return self
      * @throws PdfTypeException
      */
-    public static function ensure($string)
-    {
+    public static function ensure($string) {
         return PdfType::ensureType(self::class, $string, 'String value expected.');
     }
 
@@ -82,15 +81,15 @@ class PdfString extends PdfType
      * Escapes sequences in a string according to the PDF specification.
      *
      * @param string $s
+     *
      * @return string
      */
-    public static function escape($s)
-    {
+    public static function escape($s) {
         // Still a bit faster, than direct replacing
         if (
             \strpos($s, '\\') !== false ||
-            \strpos($s, ')')  !== false ||
-            \strpos($s, '(')  !== false ||
+            \strpos($s, ')') !== false ||
+            \strpos($s, '(') !== false ||
             \strpos($s, "\x0D") !== false ||
             \strpos($s, "\x0A") !== false ||
             \strpos($s, "\x09") !== false ||
@@ -99,8 +98,8 @@ class PdfString extends PdfType
         ) {
             // is faster than strtr(...)
             return \str_replace(
-                ['\\',   ')',   '(',   "\x0D", "\x0A", "\x09", "\x08", "\x0C"],
-                ['\\\\', '\\)', '\\(', '\r',   '\n',   '\t',   '\b',   '\f'],
+                ['\\', ')', '(', "\x0D", "\x0A", "\x09", "\x08", "\x0C"],
+                ['\\\\', '\\)', '\\(', '\r', '\n', '\t', '\b', '\f'],
                 $s
             );
         }
@@ -112,10 +111,10 @@ class PdfString extends PdfType
      * Unescapes escaped sequences in a PDF string according to the PDF specification.
      *
      * @param string $s
+     *
      * @return string
      */
-    public static function unescape($s)
-    {
+    public static function unescape($s) {
         $out = '';
         /** @noinspection ForeachInvariantsInspection */
         for ($count = 0, $n = \strlen($s); $count < $n; $count++) {

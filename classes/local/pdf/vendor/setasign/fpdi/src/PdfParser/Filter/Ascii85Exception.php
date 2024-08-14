@@ -13,8 +13,7 @@ namespace setasign\Fpdi\PdfParser\Filter;
 /**
  * Exception for Ascii85 filter class
  */
-class Ascii85Exception extends FilterException
-{
+class Ascii85Exception extends FilterException {
     /**
      * @var integer
      */

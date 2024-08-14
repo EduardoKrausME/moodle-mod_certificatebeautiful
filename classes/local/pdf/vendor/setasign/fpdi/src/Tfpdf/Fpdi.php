@@ -18,8 +18,7 @@ use setasign\Fpdi\FpdiTrait;
  *
  * This class let you import pages of existing PDF documents into a reusable structure for tFPDF.
  */
-class Fpdi extends FpdfTpl
-{
+class Fpdi extends FpdfTpl {
     use FpdiTrait;
     use FpdfTrait;
 

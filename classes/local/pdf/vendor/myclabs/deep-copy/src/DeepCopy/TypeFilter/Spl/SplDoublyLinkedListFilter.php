@@ -10,20 +10,17 @@ use SplDoublyLinkedList;
 /**
  * @final
  */
-class SplDoublyLinkedListFilter implements TypeFilter
-{
+class SplDoublyLinkedListFilter implements TypeFilter {
     private $copier;
 
-    public function __construct(DeepCopy $copier)
-    {
+    public function __construct(DeepCopy $copier) {
         $this->copier = $copier;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function apply($element)
-    {
+    public function apply($element) {
         $newElement = clone $element;
 
         $copy = $this->createCopyClosure();
@@ -31,8 +28,7 @@ class SplDoublyLinkedListFilter implements TypeFilter
         return $copy($newElement);
     }
 
-    private function createCopyClosure()
-    {
+    private function createCopyClosure() {
         $copier = $this->copier;
 
         $copy = function (SplDoublyLinkedList $list) use ($copier) {

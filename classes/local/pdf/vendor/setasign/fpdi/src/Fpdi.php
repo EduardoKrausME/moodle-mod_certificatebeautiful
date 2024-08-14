@@ -20,8 +20,7 @@ use setasign\Fpdi\PdfParser\Type\PdfNull;
  *
  * This class let you import pages of existing PDF documents into a reusable structure for FPDF.
  */
-class Fpdi extends FpdfTpl
-{
+class Fpdi extends FpdfTpl {
     use FpdiTrait;
     use FpdfTrait;
 

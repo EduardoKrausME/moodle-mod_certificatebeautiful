@@ -24,8 +24,7 @@ use setasign\Fpdi\PdfParser\Type\PdfTypeException;
 /**
  * A PDF reader class
  */
-class PdfReader
-{
+class PdfReader {
     /**
      * @var PdfParser
      */
@@ -48,16 +47,14 @@ class PdfReader
      *
      * @param PdfParser $parser
      */
-    public function __construct(PdfParser $parser)
-    {
+    public function __construct(PdfParser $parser) {
         $this->parser = $parser;
     }
 
     /**
      * PdfReader destructor.
      */
-    public function __destruct()
-    {
+    public function __destruct() {
         if ($this->parser !== null) {
             $this->parser->cleanUp();
         }
@@ -68,8 +65,7 @@ class PdfReader
      *
      * @return PdfParser
      */
-    public function getParser()
-    {
+    public function getParser() {
         return $this->parser;
     }
 
@@ -79,8 +75,7 @@ class PdfReader
      * @return string
      * @throws PdfParserException
      */
-    public function getPdfVersion()
-    {
+    public function getPdfVersion() {
         return \implode('.', $this->parser->getPdfVersion());
     }
 
@@ -92,8 +87,7 @@ class PdfReader
      * @throws CrossReferenceException
      * @throws PdfParserException
      */
-    public function getPageCount()
-    {
+    public function getPageCount() {
         if ($this->pageCount === null) {
             $catalog = $this->parser->getCatalog();
 
@@ -110,14 +104,14 @@ class PdfReader
      * Get a page instance.
      *
      * @param int $pageNumber
+     *
      * @return Page
      * @throws PdfTypeException
      * @throws CrossReferenceException
      * @throws PdfParserException
      * @throws \InvalidArgumentException
      */
-    public function getPage($pageNumber)
-    {
+    public function getPage($pageNumber) {
         if (!\is_numeric($pageNumber)) {
             throw new \InvalidArgumentException(
                 'Page number needs to be a number.'
@@ -192,12 +186,12 @@ class PdfReader
      * Walk the page tree and resolve all indirect objects of all pages.
      *
      * @param bool $readAll
+     *
      * @throws CrossReferenceException
      * @throws PdfParserException
      * @throws PdfTypeException
      */
-    protected function readPages($readAll = false)
-    {
+    protected function readPages($readAll = false) {
         if (\count($this->pages) > 0) {
             return;
         }

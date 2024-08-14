@@ -33,8 +33,7 @@ use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
 /**
  * Class representing a page of a PDF document
  */
-class Page
-{
+class Page {
     /**
      * @var PdfIndirectObject
      */
@@ -63,8 +62,7 @@ class Page
      * @param PdfIndirectObject $page
      * @param PdfParser $parser
      */
-    public function __construct(PdfIndirectObject $page, PdfParser $parser)
-    {
+    public function __construct(PdfIndirectObject $page, PdfParser $parser) {
         $this->pageObject = $page;
         $this->parser = $parser;
     }
@@ -74,8 +72,7 @@ class Page
      *
      * @return PdfIndirectObject
      */
-    public function getPageObject()
-    {
+    public function getPageObject() {
         return $this->pageObject;
     }
 
@@ -87,8 +84,7 @@ class Page
      * @throws PdfTypeException
      * @throws CrossReferenceException
      */
-    public function getPageDictionary()
-    {
+    public function getPageDictionary() {
         if ($this->pageDictionary === null) {
             $this->pageDictionary = PdfDictionary::ensure(PdfType::resolve($this->getPageObject(), $this->parser));
         }
@@ -101,13 +97,13 @@ class Page
      *
      * @param string $name
      * @param bool $inherited
+     *
      * @return PdfType|null
      * @throws PdfParserException
      * @throws PdfTypeException
      * @throws CrossReferenceException
      */
-    public function getAttribute($name, $inherited = true)
-    {
+    public function getAttribute($name, $inherited = true) {
         $dict = $this->getPageDictionary();
 
         if (isset($dict->value[$name])) {
@@ -158,8 +154,7 @@ class Page
      * @throws PdfTypeException
      * @throws CrossReferenceException
      */
-    public function getRotation()
-    {
+    public function getRotation() {
         $rotation = $this->getAttribute('Rotate');
         if ($rotation === null) {
             return 0;
@@ -179,14 +174,14 @@ class Page
      *
      * @param string $box
      * @param bool $fallback
+     *
      * @return bool|Rectangle
      * @throws PdfParserException
      * @throws PdfTypeException
      * @throws CrossReferenceException
      * @see PageBoundaries
      */
-    public function getBoundary($box = PageBoundaries::CROP_BOX, $fallback = true)
-    {
+    public function getBoundary($box = PageBoundaries::CROP_BOX, $fallback = true) {
         $value = $this->getAttribute($box);
 
         if ($value !== null) {
@@ -214,13 +209,13 @@ class Page
      *
      * @param string $box
      * @param bool $fallback
+     *
      * @return array|bool
      * @throws PdfParserException
      * @throws PdfTypeException
      * @throws CrossReferenceException
      */
-    public function getWidthAndHeight($box = PageBoundaries::CROP_BOX, $fallback = true)
-    {
+    public function getWidthAndHeight($box = PageBoundaries::CROP_BOX, $fallback = true) {
         $boundary = $this->getBoundary($box, $fallback);
         if ($boundary === false) {
             return false;
@@ -244,8 +239,7 @@ class Page
      * @throws FilterException
      * @throws PdfParserException
      */
-    public function getContentStream()
-    {
+    public function getContentStream() {
         $dict = $this->getPageDictionary();
         $contents = PdfType::resolve(PdfDictionary::get($dict, 'Contents'), $this->parser);
         if ($contents instanceof PdfNull) {
@@ -283,8 +277,7 @@ class Page
      *
      * @return array
      */
-    public function getExternalLinks($box = PageBoundaries::CROP_BOX)
-    {
+    public function getExternalLinks($box = PageBoundaries::CROP_BOX) {
         try {
             $dict = $this->getPageDictionary();
             $annotations = PdfType::resolve(PdfDictionary::get($dict, 'Annots'), $this->parser);

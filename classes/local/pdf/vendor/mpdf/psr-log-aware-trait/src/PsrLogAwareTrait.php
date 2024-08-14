@@ -4,15 +4,13 @@ namespace Mpdf\PsrLogAwareTrait;
 
 use Psr\Log\LoggerInterface;
 
-trait PsrLogAwareTrait
-{
+trait PsrLogAwareTrait {
     /**
      * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
 
-    public function setLogger( LoggerInterface $logger )
-    {
+    public function setLogger(LoggerInterface $logger) {
         $this->logger = $logger;
     }
 

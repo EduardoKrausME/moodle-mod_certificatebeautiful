@@ -22,8 +22,7 @@ use setasign\Fpdi\PdfParser\Type\PdfTypeException;
 /**
  * Class representing a rectangle
  */
-class Rectangle
-{
+class Rectangle {
     /**
      * @var int|float
      */
@@ -49,13 +48,13 @@ class Rectangle
      *
      * @param PdfArray|mixed $array
      * @param PdfParser $parser
+     *
      * @return Rectangle
      * @throws PdfTypeException
      * @throws CrossReferenceException
      * @throws PdfParserException
      */
-    public static function byPdfArray($array, PdfParser $parser)
-    {
+    public static function byPdfArray($array, PdfParser $parser) {
         $array = PdfArray::ensure(PdfType::resolve($array, $parser), 4)->value;
         $ax = PdfNumeric::ensure(PdfType::resolve($array[0], $parser))->value;
         $ay = PdfNumeric::ensure(PdfType::resolve($array[1], $parser))->value;
@@ -65,8 +64,7 @@ class Rectangle
         return new self($ax, $ay, $bx, $by);
     }
 
-    public static function byVectors(Vector $ll, Vector $ur)
-    {
+    public static function byVectors(Vector $ll, Vector $ur) {
         return new self($ll->getX(), $ll->getY(), $ur->getX(), $ur->getY());
     }
 
@@ -78,8 +76,7 @@ class Rectangle
      * @param float|int $bx
      * @param float|int $by
      */
-    public function __construct($ax, $ay, $bx, $by)
-    {
+    public function __construct($ax, $ay, $bx, $by) {
         $this->llx = \min($ax, $bx);
         $this->lly = \min($ay, $by);
         $this->urx = \max($ax, $bx);
@@ -91,8 +88,7 @@ class Rectangle
      *
      * @return float|int
      */
-    public function getWidth()
-    {
+    public function getWidth() {
         return $this->urx - $this->llx;
     }
 
@@ -101,8 +97,7 @@ class Rectangle
      *
      * @return float|int
      */
-    public function getHeight()
-    {
+    public function getHeight() {
         return $this->ury - $this->lly;
     }
 
@@ -111,8 +106,7 @@ class Rectangle
      *
      * @return float|int
      */
-    public function getLlx()
-    {
+    public function getLlx() {
         return $this->llx;
     }
 
@@ -121,8 +115,7 @@ class Rectangle
      *
      * @return float|int
      */
-    public function getLly()
-    {
+    public function getLly() {
         return $this->lly;
     }
 
@@ -131,8 +124,7 @@ class Rectangle
      *
      * @return float|int
      */
-    public function getUrx()
-    {
+    public function getUrx() {
         return $this->urx;
     }
 
@@ -141,8 +133,7 @@ class Rectangle
      *
      * @return float|int
      */
-    public function getUry()
-    {
+    public function getUry() {
         return $this->ury;
     }
 
@@ -151,8 +142,7 @@ class Rectangle
      *
      * @return array
      */
-    public function toArray()
-    {
+    public function toArray() {
         return [
             $this->llx,
             $this->lly,
@@ -166,8 +156,7 @@ class Rectangle
      *
      * @return PdfArray
      */
-    public function toPdfArray()
-    {
+    public function toPdfArray() {
         $array = new PdfArray();
         $array->value[] = PdfNumeric::create($this->llx);
         $array->value[] = PdfNumeric::create($this->lly);

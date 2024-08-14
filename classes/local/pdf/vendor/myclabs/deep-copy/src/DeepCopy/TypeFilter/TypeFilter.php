@@ -2,8 +2,7 @@
 
 namespace DeepCopy\TypeFilter;
 
-interface TypeFilter
-{
+interface TypeFilter {
     /**
      * Applies the filter to the object.
      *

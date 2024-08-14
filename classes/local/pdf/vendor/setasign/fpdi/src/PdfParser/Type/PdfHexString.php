@@ -15,16 +15,15 @@ use setasign\Fpdi\PdfParser\StreamReader;
 /**
  * Class representing a hexadecimal encoded PDF string object
  */
-class PdfHexString extends PdfType
-{
+class PdfHexString extends PdfType {
     /**
      * Parses a hexadecimal string object from the stream reader.
      *
      * @param StreamReader $streamReader
+     *
      * @return false|self
      */
-    public static function parse(StreamReader $streamReader)
-    {
+    public static function parse(StreamReader $streamReader) {
         $bufferOffset = $streamReader->getOffset();
 
         while (true) {
@@ -53,10 +52,10 @@ class PdfHexString extends PdfType
      * Helper method to create an instance.
      *
      * @param string $string The hex encoded string.
+     *
      * @return self
      */
-    public static function create($string)
-    {
+    public static function create($string) {
         $v = new self();
         $v->value = $string;
 
@@ -67,11 +66,11 @@ class PdfHexString extends PdfType
      * Ensures that the passed value is a PdfHexString instance.
      *
      * @param mixed $hexString
+     *
      * @return self
      * @throws PdfTypeException
      */
-    public static function ensure($hexString)
-    {
+    public static function ensure($hexString) {
         return PdfType::ensureType(self::class, $hexString, 'Hex string value expected.');
     }
 }

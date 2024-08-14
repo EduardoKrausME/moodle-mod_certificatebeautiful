@@ -13,17 +13,16 @@ namespace setasign\Fpdi\PdfParser\Filter;
 /**
  * Class for handling ASCII base-85 encoded data
  */
-class Ascii85 implements FilterInterface
-{
+class Ascii85 implements FilterInterface {
     /**
      * Decode ASCII85 encoded string.
      *
      * @param string $data The input string
+     *
      * @return string
      * @throws Ascii85Exception
      */
-    public function decode($data)
-    {
+    public function decode($data) {
         $out = '';
         $state = 0;
         $chn = null;
