@@ -142,32 +142,32 @@ class replace_tags {
                 $this->page->htmldata);
         }
 
-        $this->page->htmldata = help_base::replace($this->page->htmldata, "SITE", site::get_data());
+        $this->page->htmldata = help_base::replace($this->page->htmldata, site::CLASS_NAME, site::get_data());
 
-        $data = certificate_issue::get_data($this->certificatebeautiful, $this->certificatebeautifulissue);
-        $this->page->htmldata = help_base::replace($this->page->htmldata, certificate_issue::CLASS_NAME, $data);
-        $this->page->htmldata = certificate_issue::custom_replace($this->page->htmldata, $data);
+        $certificateissuedata = certificate_issue::get_data($this->certificatebeautiful, $this->certificatebeautifulissue);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, certificate_issue::CLASS_NAME, $certificateissuedata);
+        $this->page->htmldata = certificate_issue::custom_replace($this->page->htmldata, $certificateissuedata);
 
-        $data = user_profile::get_data($this->user);
-        $this->page->htmldata = help_base::replace($this->page->htmldata, user_profile::CLASS_NAME, $data);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, user_profile::CLASS_NAME,
+            user_profile::get_data($this->user));
 
-        $data = course::get_data($this->course);
-        $this->page->htmldata = help_base::replace($this->page->htmldata, course::CLASS_NAME, $data);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, course::CLASS_NAME,
+            course::get_data($this->course));
 
-        $data = grade::get_data($this->course, $this->user);
-        $this->page->htmldata = help_base::replace($this->page->htmldata, grade::CLASS_NAME, $data);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, grade::CLASS_NAME,
+            grade::get_data($this->course, $this->user));
 
-        $data = course_categories::get_data($this->course);
-        $this->page->htmldata = help_base::replace($this->page->htmldata, course_categories::CLASS_NAME, $data);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, course_categories::CLASS_NAME,
+            course_categories::get_data($this->course));
 
-        $data = user::get_data($this->user);
-        $this->page->htmldata = help_base::replace($this->page->htmldata, user::CLASS_NAME, $data);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, user::CLASS_NAME,
+            user::get_data($this->user));
 
-        $data = teachers::get_data($this->course);
-        $this->page->htmldata = help_base::replace($this->page->htmldata, teachers::CLASS_NAME, $data);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, teachers::CLASS_NAME,
+            teachers::get_data($this->course));
 
-        $data = enrolments::get_data($this->course, $this->user);
-        $this->page->htmldata = help_base::replace($this->page->htmldata, enrolments::CLASS_NAME, $data);
+        $this->page->htmldata = help_base::replace($this->page->htmldata, enrolments::CLASS_NAME,
+            enrolments::get_data($this->course, $this->user));
 
         $this->page->htmldata = functions::replace($this->page->htmldata, $this->user);
     }
