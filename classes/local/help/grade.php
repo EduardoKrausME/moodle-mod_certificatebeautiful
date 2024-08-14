@@ -154,7 +154,7 @@ class grade extends help_base {
             $item = new grade_item();
             $itemproperties = reset($gradeitem->items);
             foreach ($itemproperties as $key => $value) {
-                $item->$key = $value;
+                @$item->$key = $value;
             }
             $grade = $item->grades[$user->id]->grade;
             $item->gradetype = GRADE_TYPE_VALUE;
