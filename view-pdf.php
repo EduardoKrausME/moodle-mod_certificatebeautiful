@@ -103,10 +103,9 @@ if ($storedfile) {
 } else {
     require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/pdf/page_pdf.php");
     $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
-    $contentpdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $USER, $SITE);
+    $contentpdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $USER, $course);
 
     $fs->create_file_from_string($filerecord, $contentpdf);
-
     header('Content-Length: ' . strlen($contentpdf));
     echo $contentpdf;
 }
