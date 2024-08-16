@@ -51,10 +51,8 @@ class user_profile extends help_base {
         if ($userinfofields) {
             foreach ($userinfofields as $userinfofield) {
                 $itens[] = [
-                    [
-                        'key' => $userinfofield->shortname,
-                        'label' => $userinfofield->name,
-                    ],
+                    'key' => $userinfofield->shortname,
+                    'label' => $userinfofield->name,
                 ];
             }
         }
