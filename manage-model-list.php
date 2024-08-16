@@ -48,9 +48,24 @@ echo $OUTPUT->render_from_template('mod_certificatebeautiful/heading-addnew', [
     "text" => get_string('add_new_model', 'certificatebeautiful'),
 ]);
 
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/model/table_list.php");
-$table = new table_list('certificatebeautiful_model');
-$table->define_baseurl("/mod/certificatebeautiful/manage-model-list.php");
-$table->out(40, true);
+
+$models = $DB->get_records('certificatebeautiful_model');
+$data = ["pages" => [], "class-root" => "d-flex flex-wrap certificate-flex-gap"];
+foreach ($models as $model) {
+
+    $pages_info = json_decode($model->pages_info, true);
+
+    $htmldata = "{$pages_info[0]['htmldata']}<style>{$pages_info[0]['cssdata']}</style>";
+    $htmldata = str_replace("[data-gjs-type=wrapper]", ".body-{$model->id}", $htmldata);
+    $htmldata = "<div class='body-{$model->id}'>{$htmldata}</div>";
+
+    $data["pages"][] = [
+        "title" => $model->name,
+        "pagina" => $htmldata,
+        "addpage_title" => get_string('select_model', 'certificatebeautiful'),
+        "addpage_href" => "manage-model.php?id={$model->id}",
+    ];
+}
+echo $OUTPUT->render_from_template('mod_certificatebeautiful/list-certificate', $data);
 
 echo $OUTPUT->footer();

@@ -81,25 +81,24 @@ switch ($action) {
 
         echo $OUTPUT->header();
 
+        $models = $DB->get_records('certificatebeautiful_model');
         $data = ["pages" => [], "class-root" => "d-flex flex-wrap certificate-flex-gap"];
+        foreach ($models as $model) {
 
-        $modelfiles = glob("{$CFG->dirroot}/mod/certificatebeautiful/_editor/_model/*/index.html");
-        foreach ($modelfiles as $modelfile) {
+            $pages_info = json_decode($model->pages_info, true);
 
-            $model = pathinfo(pathinfo($modelfile, PATHINFO_DIRNAME), PATHINFO_BASENAME);
-            $htmldata = \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model);
-
-            $htmldata = str_replace("[data-gjs-type=wrapper]", ".body-{$model}", $htmldata);
-            $htmldata = "<div class='body-{$model}'>{$htmldata}</div>";
+            $htmldata = "{$pages_info[0]['htmldata']}<style>{$pages_info[0]['cssdata']}</style>";
+            $htmldata = str_replace("[data-gjs-type=wrapper]", ".body-{$model->id}", $htmldata);
+            $htmldata = "<div class='body-{$model->id}'>{$htmldata}</div>";
 
             $data["pages"][] = [
-                "title" => get_string($model, 'certificatebeautiful'),
+                "title" => $model->name,
                 "pagina" => $htmldata,
                 "addpage_title" => get_string('using_this_page', 'certificatebeautiful'),
-                "addpage_href" => "?id={$id}&page={$page}&action=changue&model={$model}",
+                "addpage_href" => "manage-model.php?id={$model->id}",
             ];
         }
-        echo $OUTPUT->render_from_template('mod_certificatebeautiful/list-pages', $data);
+        echo $OUTPUT->render_from_template('mod_certificatebeautiful/list-certificate', $data);
 
         echo $OUTPUT->footer();
         break;
