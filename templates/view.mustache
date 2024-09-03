@@ -1,3 +1,30 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+
+{{!
+    @template mod_certificatebeautiful/view
+
+    Example context (json):
+    {
+      "pdf-url_base": "https://example.com/certificate?user=123",
+      "pdf-viewer-url": "https://example.com/viewer?file=certificate123.pdf",
+    }
+}}
+
 <div class="text-center mb-3">
     <a href="{{pdf-url_base}}&action=view" class="btn btn-info"
        target="_blank">{{#str}}view_my_certificate,certificatebeautiful{{/str}}</a>
