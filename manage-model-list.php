@@ -33,6 +33,7 @@ $context = context_system::instance();
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php');
 $PAGE->set_title(get_string('list_model', 'certificatebeautiful'));
+$PAGE->requires->css("mod/certificatebeautiful/assets/style.css");
 
 require_login();
 require_capability('mod/certificatebeautiful:addinstance', $context);

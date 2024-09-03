@@ -32,7 +32,7 @@
     }
 }}
 
-<div class="{{{class-root}}}">
+<div class="list-certificate {{{class-root}}}">
     {{#pages}}
         <fieldset>
             <legend>{{{title}}}</legend>
@@ -49,32 +49,3 @@
         </fieldset>
     {{/pages}}
 </div>
-
-<style>
-    fieldset {
-        border: 1px solid #dee2e6;
-        margin: 2px;
-        padding: 0 10px 14px;
-    }
-    fieldset legend {
-        float: none;
-        margin: 0 17px;
-        width: auto;
-        padding: 4px;
-        font-size: 17px;
-    }
-    .certificate-page-root {
-        border: 4px dashed #31468c;
-        margin: 11px auto;
-        padding: 2px;
-    }
-    .certificate-page-root .certificate-page {
-        padding: 10px;
-        position: relative;
-        zoom: .35;
-    }
-    .certificate-flex-gap {
-        gap: 10px
-    }
-</style>
-

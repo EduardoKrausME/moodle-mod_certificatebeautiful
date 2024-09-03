@@ -79,6 +79,7 @@ switch ($action) {
     case 'changemodel':
         $PAGE->navbar->add(get_string('edit_page', 'certificatebeautiful'));
         $PAGE->navbar->add(get_string('select_model', 'certificatebeautiful'));
+        $PAGE->requires->css("mod/certificatebeautiful/assets/style.css");
 
         echo $OUTPUT->header();
 
@@ -178,6 +179,7 @@ switch ($action) {
         break;
 
     default:
+        $PAGE->requires->css("mod/certificatebeautiful/assets/style.css");
         $PAGE->navbar->add(get_string('edit_page', 'certificatebeautiful'));
         echo $OUTPUT->header();
 
