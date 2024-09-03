@@ -24,16 +24,14 @@
 
 /**
  * Perform the post-install procedures.
+ *
  * @throws coding_exception
  * @throws dml_exception
  */
 function xmldb_certificatebeautiful_install() {
-    global $DB, $CFG;
-
-    require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/model/get_template_file.php");
+    global $DB;
 
     foreach (certificatebeautiful_list_all_models() as $model) {
-
         $pagesinfo = [
             [
                 "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model['key']),
