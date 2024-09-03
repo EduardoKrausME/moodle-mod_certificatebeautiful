@@ -53,9 +53,9 @@ $models = $DB->get_records('certificatebeautiful_model');
 $data = ["pages" => [], "class-root" => "d-flex flex-wrap certificate-flex-gap"];
 foreach ($models as $model) {
 
-    $pages_info = json_decode($model->pages_info, true);
+    $pagesinfo = json_decode($model->pages_info, true);
 
-    $htmldata = "{$pages_info[0]['htmldata']}<style>{$pages_info[0]['cssdata']}</style>";
+    $htmldata = "{$pagesinfo[0]['htmldata']}<style>{$pagesinfo[0]['cssdata']}</style>";
     $htmldata = str_replace("[data-gjs-type=wrapper]", ".body-{$model->id}", $htmldata);
     $htmldata = "<div class='body-{$model->id}'>{$htmldata}</div>";
 
