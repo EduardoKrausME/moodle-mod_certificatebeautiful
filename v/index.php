@@ -26,11 +26,11 @@ require_once("../../../config.php");
 require_once($CFG->dirroot . '/lib/adminlib.php');
 global $PAGE, $USER, $CFG;
 
-$PAGE->set_context(null);
+$context = context_system::instance();
+$PAGE->set_context($context);
 
 $code = optional_param('code', false, PARAM_TEXT);
 
-$context = context_system::instance();
 $PAGE->set_url('/mod/certificatebeautiful/v/', ['code' => $code]);
 $PAGE->set_title(get_string('validate_certificate_title', 'certificatebeautiful'));
 $PAGE->set_heading(format_string(get_string('validate_certificate_title', 'certificatebeautiful')));
