@@ -24,7 +24,7 @@
 
 namespace mod_certificatebeautiful\local\model;
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/formslib.php");
 
 /**

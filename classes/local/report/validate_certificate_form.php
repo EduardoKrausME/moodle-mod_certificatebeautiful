@@ -14,7 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-
 /**
  * Class validate_certificate_form
  *
@@ -25,7 +24,7 @@
 
 namespace mod_certificatebeautiful\local\report;
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/formslib.php");
 
 /**

@@ -27,7 +27,7 @@ namespace mod_certificatebeautiful\local\report;
 use html_writer;
 use moodle_url;
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/tablelib.php");
 
 /**

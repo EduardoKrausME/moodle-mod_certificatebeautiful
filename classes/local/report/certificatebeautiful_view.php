@@ -28,7 +28,7 @@ use html_writer;
 use mod_certificatebeautiful\local\vo\certificatebeautiful;
 use moodle_url;
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/tablelib.php");
 
 /**

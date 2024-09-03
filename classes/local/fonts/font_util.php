@@ -24,7 +24,7 @@
 
 namespace mod_certificatebeautiful\local\fonts;
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/fonts/font_attributes.php");
 
 /**

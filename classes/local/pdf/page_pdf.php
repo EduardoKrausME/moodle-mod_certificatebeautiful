@@ -176,18 +176,18 @@ class page_pdf {
 
             // Coloca a imagem como WATERMARK da página.
             $mpdf->Image(
-                $image,  // $file
-                0, // $x
-                0, // $y
-                0, // $w
-                0, // $h
-                '', // $type
-                '', // $link
-                true, // $paint
-                true, // $constrain
-                true, // $watermark
-                true, // $shownoimg
-                true // $allowvector
+                $image,  // Value of $file.
+                0, // Value of $x.
+                0, // Value of $y.
+                0, // Value of $w.
+                0, // Value of $h.
+                '', // Value of $type.
+                '', // Value of $link.
+                true, // Value of $paint.
+                true, // Value of $constrain.
+                true, // Value of $watermark.
+                true, // Value of $shownoimg.
+                true // Value of $allowvector.
             );
         }
     }
