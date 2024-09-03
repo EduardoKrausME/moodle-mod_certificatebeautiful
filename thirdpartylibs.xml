@@ -379,13 +379,6 @@
         <licenseversion></licenseversion>
     </library>
     <library>
-        <location>classes/local/help/vendor</location>
-        <name>QR Code</name>
-        <version>5.0.1</version>
-        <license>MIT</license>
-        <licenseversion></licenseversion>
-    </library>
-    <library>
         <location>classes/local/pdf/vendor</location>
         <name>mPDF</name>
         <version>^8</version>
