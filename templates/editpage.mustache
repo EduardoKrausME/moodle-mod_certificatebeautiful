@@ -1,12 +1,19 @@
 <div>
     {{#str}}edit_page_instruction,certificatebeautiful{{/str}}
-    <p><a href="{{url-setting}}" target="_blank">{{#str}}edit_signature_certificate,certificatebeautiful{{/str}}</a>.</p>
+    <p>
+        <a href="{{url-setting}}" target="_blank">{{#str}}edit_signature_certificate,certificatebeautiful{{/str}}</a>
+    </p>
 </div>
 
 <div class="d-flex flex-row-reverse">
     <a href="{{url-changemodel}}" class="btn btn-primary mb-3 iconlarge float-right">
         {{#pix}}t/add, core{{/pix}}
         {{#str}}select_model_preview,certificatebeautiful{{/str}}
+    </a>
+    &nbsp;&nbsp;&nbsp;
+    <a href="{{url-changeupload}}" class="btn btn-success mb-3 iconlarge float-right">
+        {{#pix}}t/add, core{{/pix}}
+        {{#str}}select_background_preview,certificatebeautiful{{/str}}
     </a>
 </div>
 

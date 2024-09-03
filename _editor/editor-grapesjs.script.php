@@ -386,7 +386,8 @@
                          </form>`,
         }
     ]);
-    editor.on('update', function() {
+
+    function updateForm() {
         var html = editor.getHtml();
         html = html.split(/<body.*?>/).join('');
         html = html.split('</body>').join('');
@@ -404,7 +405,8 @@
         $("#testpdf-htmldata").val(html);
         $("#testpdf-cssdata").val(css);
         $("#form-testpdf").show(300);
-    });
+    };
+    editor.on('update', updateForm);
 
     // A block for the custom component
     editor.BlockManager.add('qr-code', {
@@ -516,7 +518,7 @@
             '<div class="gjs-sm-sector-title"><span class="icon-settings fa fa-cog"></span> <span class="gjs-sm-sector-label"><?php echo get_string('grapsjs-settings', 'certificatebeautiful') ?></span></div>' +
             '<div class="gjs-sm-properties" style="display: none;"></div></div>');
         var traitsProps = traitsSector.find('.gjs-sm-properties');
-        traitsProps.append($('.gjs-trt-traits'));
+        // traitsProps.append($('.gjs-trt-traits'));
         $('.gjs-sm-sectors').before(traitsSector);
         traitsSector.find('.gjs-sm-sector-title').on('click', function() {
             var traitStyle = traitsProps.get(0).style;
@@ -531,6 +533,8 @@
         // Open block manager
         var openBlocksBtn = editor.Panels.getButton('views', 'open-blocks');
         openBlocksBtn && openBlocksBtn.set('active', 1);
+
+        updateForm();
     });
 
 </script>

@@ -22,6 +22,8 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\form\changue_cert_info;
+
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/model/get_template_file.php");
@@ -52,12 +54,11 @@ $PAGE->navbar->add(get_string('new_model', 'certificatebeautiful'), "manage-mode
 
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
-if (sesskey() == optional_param('sesskey', false, PARAM_RAW)) {
+$cssdata = optional_param("cssdata", false, PARAM_RAW);
+$htmldata = optional_param("htmldata", false, PARAM_RAW);
+if ($cssdata && $htmldata && sesskey() == optional_param('sesskey', false, PARAM_RAW)) {
 
-    $cssdata = required_param("cssdata", PARAM_RAW);
     $cssdata = preg_replace('/\*(\s+)?\{.*?\}|body(\s+)?\{.*?\}/', '', $cssdata);
-
-    $htmldata = required_param("htmldata", PARAM_RAW);
     $htmldata = preg_replace('/<body>(.*)<\/body>/', '$1', $htmldata);
 
     $certificatebeautifulmodel->pages_info_object[$page] = [
@@ -85,9 +86,9 @@ switch ($action) {
         $data = ["pages" => [], "class-root" => "d-flex flex-wrap certificate-flex-gap"];
         foreach ($models as $model) {
 
-            $pages_info = json_decode($model->pages_info, true);
+            $pagesinfo = json_decode($model->pages_info, true);
 
-            $htmldata = "{$pages_info[0]['htmldata']}<style>{$pages_info[0]['cssdata']}</style>";
+            $htmldata = "{$pagesinfo[0]['htmldata']}<style>{$pagesinfo[0]['cssdata']}</style>";
             $htmldata = str_replace("[data-gjs-type=wrapper]", ".body-{$model->id}", $htmldata);
             $htmldata = "<div class='body-{$model->id}'>{$htmldata}</div>";
 
@@ -122,12 +123,67 @@ switch ($action) {
         redirect("manage-model-editpage.php?id={$id}&page={$page}");
         break;
 
+    case 'changeupload':
+        $PAGE->navbar->add(get_string('edit_page', 'certificatebeautiful'));
+        $PAGE->navbar->add(get_string('select_model', 'certificatebeautiful'));
+
+        echo $OUTPUT->header();
+
+        $model = $DB->get_record("certificatebeautiful_model", ["id" => $id]);
+        $model->pages_info_object = json_decode($model->pages_info);
+
+        preg_match('/\[data-gjs-type=wrapper\](\s+)?\{.*?height(\s+)?:(\s+)?(?<height>\d+)px;/s',
+            $model->pages_info_object[$page]->cssdata, $outputheight);
+        preg_match('/\[data-gjs-type=wrapper\](\s+)?\{.*?width(\s+)?:(\s+)?(?<width>\d+)px;/s',
+            $model->pages_info_object[$page]->cssdata, $outputwidth);
+
+        $info = new changue_cert_info(null, [
+            "id" => $id,
+            "page" => $page,
+            "action" => $action,
+            "height" => $outputheight["height"],
+            "width" => $outputwidth["width"],
+        ]);
+
+        if ($info->is_cancelled()) {
+            redirect("manage-model-editpage.php?id={$id}&page={$page}");
+        } else if ($data = $info->get_data()) {
+
+            $file = $DB->get_record_select("files", "itemid = :itemid AND filename LIKE '__%'", ["itemid" => $data->background]);
+            if ($file) {
+                $a1 = substr($file->contenthash, 0, 2);
+                $a2 = substr($file->contenthash, 2, 2);
+                $sourcefile = "{$CFG->dataroot}/filedir/{$a1}/{$a2}/{$file->contenthash}";
+
+                $filecontents = file_get_contents($sourcefile);
+                $base64 = base64_encode($filecontents);
+                $mimetype = mime_content_type($sourcefile);
+                $dataurl = 'data:' . $mimetype . ';base64,' . $base64;
+
+                $model->pages_info_object[$page]->cssdata = preg_replace(
+                    '/(\[data-gjs-type=wrapper\](\s+)?\{.*?)background(-image)?:url\((.*?)\);/',
+                    "\$1background-image:url({$dataurl});",
+                    $model->pages_info_object[$page]->cssdata);
+
+                $model->pages_info = json_encode($model->pages_info_object, JSON_PRETTY_PRINT);
+                $DB->update_record("certificatebeautiful_model", $model);
+
+                redirect("manage-model-editpage.php?id={$id}&page={$page}");
+            }
+        }
+
+        $info->display();
+
+        echo $OUTPUT->footer();
+        break;
+
     default:
         $PAGE->navbar->add(get_string('edit_page', 'certificatebeautiful'));
         echo $OUTPUT->header();
 
         $data = [
             "url-changemodel" => "?id={$id}&page={$page}&action=changemodel",
+            "url-changeupload" => "?id={$id}&page={$page}&action=changeupload",
             "url-setting" => "{$CFG->wwwroot}/admin/settings.php?section=modsettingcertificatebeautiful",
             "iframe-url" => "{$CFG->wwwroot}/mod/certificatebeautiful/_editor/index.php?id={$id}&page={$page}",
             "form_components" => \mod_certificatebeautiful\local\help\help_base::get_form_components(),
