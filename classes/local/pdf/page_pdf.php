@@ -73,6 +73,7 @@ class page_pdf {
      * @param certificatebeautiful_model $certificatebeautifulmodel
      * @param $user
      * @param $course
+     *
      * @return string
      * @throws MpdfException
      * @throws \coding_exception
@@ -108,7 +109,7 @@ class page_pdf {
                 array_merge(
                     (new FontVariables())->getDefaults()['fontdata'],
                     $fontlist["fonts"],
-                ),
+                    ),
         ]);
         $mpdf->autoPageBreak = false;
 
@@ -174,7 +175,20 @@ class page_pdf {
             $image = str_replace("\"", "", $image);
 
             // Coloca a imagem como WATERMARK da página.
-            $mpdf->Image($image, 0, 0, 0, 0, '', '', true, false, true);
+            $mpdf->Image(
+                $image,  // $file
+                0, // $x
+                0, // $y
+                0, // $w
+                0, // $h
+                '', // $type
+                '', // $link
+                true, // $paint
+                true, // $constrain
+                true, // $watermark
+                true, // $shownoimg
+                true // $allowvector
+            );
         }
     }
 }
