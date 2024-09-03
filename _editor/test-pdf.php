@@ -28,6 +28,8 @@ ob_start();
 
 global $PAGE, $USER, $CFG;
 
+$PAGE->set_context(context_system::instance());
+
 require_login();
 $context = context_system::instance();
 require_capability('mod/certificatebeautiful:addinstance', $context);
@@ -35,6 +37,14 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
 $id = optional_param('id', false, PARAM_INT);
 $htmldata = optional_param('htmldata', false, PARAM_RAW);
 $cssdata = optional_param('cssdata', false, PARAM_RAW);
+
+if ($temp = optional_param("temp", false, PARAM_TEXT)) {
+    $temp = preg_replace('/[^0-9a-z]/', '', $temp);
+    $file = "{$CFG->dataroot}/temp/{$temp}.pdf";
+    echo file_get_contents($file);
+    @unlink($file);
+    die();
+}
 
 if ($htmldata && $cssdata) {
     require_sesskey();
@@ -111,13 +121,14 @@ $certificatebeautifulissie = (object)[
     'name' => "teste",
     "code" => "CODE-EX"
 ];
-$user   = $DB->get_record_sql("SELECT * FROM {user}   WHERE id = 2 ORDER BY RAND() LIMIT 1");
+$user = $DB->get_record_sql("SELECT * FROM {user}   WHERE id = 2 ORDER BY RAND() LIMIT 1");
 $course = $DB->get_record_sql("SELECT * FROM {course} WHERE id = 13 ORDER BY RAND() LIMIT 1");
 
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/pdf/page_pdf.php");
 $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
 $pdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissie, $certificatebeautifulmodel, $user, $course);
 
-ob_clean();
-header('Content-Type: application/pdf');
-echo $pdf;
+$temp = uniqid();
+file_put_contents("{$CFG->dataroot}/temp/{$temp}.pdf", $pdf);
+
+$urlgetpdf = urlencode("{$CFG->wwwroot}/mod/certificatebeautiful/_editor/test-pdf.php?temp={$temp}");
+header("Location: {$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html?file={$urlgetpdf}");
