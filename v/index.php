@@ -26,8 +26,6 @@ require_once("../../../config.php");
 require_once($CFG->dirroot . '/lib/adminlib.php');
 global $PAGE, $USER, $CFG;
 
-// admin_externalpage_setup();
-
 $code = optional_param('code', false, PARAM_TEXT);
 
 $PAGE->set_url('/mod/certificatebeautiful/v/', ['code' => $code]);
