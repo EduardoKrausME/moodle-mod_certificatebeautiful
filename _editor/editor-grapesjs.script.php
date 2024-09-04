@@ -418,7 +418,7 @@
                    draggable="false"
                    data-gjs-copyable="false"
                    style="position:absolute;top:0;left:0;width:100px;">
-                  <img src="img/qr-code.svg" width="100%"
+                  <img src="<?php echo $CFG->wwwroot ?>/mod/certificatebeautiful/_editor/img/qr-code.svg" width="100%"
                        data-gjs-selectable="false"
                        data-gjs-highlightable="false"
                        data-gjs-hoverable="false"
