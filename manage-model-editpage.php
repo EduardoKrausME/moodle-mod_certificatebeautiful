@@ -50,7 +50,9 @@ $PAGE->set_title("{$certificatebeautifulmodel->name} - {$title}");
 $PAGE->set_heading("{$certificatebeautifulmodel->name} - {$title}");
 
 $PAGE->navbar->add(get_string('list_model', 'certificatebeautiful'), "manage-model-list.php");
-$PAGE->navbar->add(get_string('new_model', 'certificatebeautiful'), "manage-model.php?id={$certificatebeautifulmodel->id}");
+if (!$id) {
+    $PAGE->navbar->add(get_string('new_model', 'certificatebeautiful'), "manage-model.php?id={$certificatebeautifulmodel->id}");
+}
 
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
@@ -79,7 +81,7 @@ switch ($action) {
     case 'changemodel':
         $PAGE->navbar->add(get_string('edit_page', 'certificatebeautiful'));
         $PAGE->navbar->add(get_string('select_model', 'certificatebeautiful'));
-        $PAGE->requires->css("mod/certificatebeautiful/assets/style.css");
+        $PAGE->requires->css("/mod/certificatebeautiful/assets/style.css");
 
         echo $OUTPUT->header();
 
@@ -179,7 +181,7 @@ switch ($action) {
         break;
 
     default:
-        $PAGE->requires->css("mod/certificatebeautiful/assets/style.css");
+        $PAGE->requires->css("/mod/certificatebeautiful/assets/style.css");
         $PAGE->navbar->add(get_string('edit_page', 'certificatebeautiful'));
         echo $OUTPUT->header();
 
