@@ -185,7 +185,6 @@ class help_base {
             foreach ($class::table_structure() as $structure) {
                 if (isset($structure['label'])) {
                     $label = $structure['label'];
-                    $label = str_replace("'", "\\'", $label);
 
                     if (strpos($structure['key'], "}")) {
                         $key = $structure['key'];
