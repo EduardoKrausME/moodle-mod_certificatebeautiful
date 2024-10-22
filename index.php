@@ -1,5 +1,5 @@
 <?php
-// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,76 +15,79 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Display information about all the mod_certificatebeautiful modules in the requested course.
+ * index file
  *
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2024 Eduardo kraus (http://eduardokraus.com)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once('../../config.php');
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/lib.php");
+require_once(dirname(dirname(dirname(__FILE__))) . "/config.php");
+require_once(dirname(__FILE__) . "/lib.php");
 
-$id = required_param('id', PARAM_INT);
+$id = required_param("id", PARAM_INT); // Course.
 
-$course = $DB->get_record('course', ['id' => $id], '*', MUST_EXIST);
-
-$coursecontext = context_course::instance($course->id);
-
-$event = \mod_certificatebeautiful\event\course_module_instance_list_viewed::create(['context' => $coursecontext]);
-$event->add_record_snapshot('course', $course);
-$event->trigger();
-
-$PAGE->set_context($coursecontext);
-$PAGE->set_url('/mod/certificate/index.php', ['id' => $id]);
-$PAGE->set_title(format_string($course->fullname));
-$PAGE->set_heading(format_string($course->fullname));
+$course = $DB->get_record("course", ["id" => $id], "*", MUST_EXIST);
 
 require_course_login($course);
-require_capability('mod/certificatebeautiful:view', $coursecontext);
+
+$params = [
+    "context" => context_course::instance($course->id),
+];
+$event = \mod_certificatebeautiful\event\course_module_instance_list_viewed::create($params);
+$event->add_record_snapshot("course", $course);
+$event->trigger();
+
+$strname = get_string("modulenameplural", "mod_certificatebeautiful");
+$PAGE->set_url("/mod/certificatebeautiful/index.php", ["id" => $id]);
+$PAGE->navbar->add($strname);
+$PAGE->set_title("$course->shortname: $strname");
+$PAGE->set_heading($course->fullname);
+$PAGE->set_pagelayout("incourse");
 
 echo $OUTPUT->header();
+$usesections = course_format_uses_sections($course->format);
 
-$modulenameplural = get_string('modulenameplural', 'certificatebeautiful');
-echo $OUTPUT->heading($modulenameplural);
+if ($usesections) {
+    $sortorder = "cw.section ASC";
+} else {
+    $sortorder = "m.timemodified DESC";
+}
 
-$certificates = get_all_instances_in_course('certificatebeautiful', $course);
-
-if (empty($certificates)) {
-    notice(get_string('thereareno', 'moodle', $modulenameplural), new moodle_url('/course/view.php', ['id' => $course->id]));
+if (!$certificatebeautifuls = get_all_instances_in_course("certificatebeautiful", $course)) {
+    notice(get_string("thereareno", "moodle", get_string("modulenameplural", "mod_certificatebeautiful")));
     exit;
 }
 
 $table = new html_table();
-$table->attributes['class'] = 'generaltable mod_index';
 
-$align = ['center', 'left'];
-if ($course->format == 'weeks') {
-    $table->head = [get_string('week'), get_string('name')];
-    $table->align = ['center', 'left'];
-} else if ($course->format == 'topics') {
-    $table->head = [get_string('topic'), get_string('name')];
-    $table->align = ['center', 'left'];
-} else {
-    $table->head = [get_string('name')];
-    $table->align = ['left'];
+$table->head = [get_string("sectionname", "format_" . $course->format), get_string("name")];
+$table->align = ["center", "left", "left"];
+
+$showreport = false;
+if (has_capability("mod/certificatebeautiful:viewreport", context_system::instance())) {
+    $table->head[] = get_string("report", "mod_certificatebeautiful");
+    $table->align[] = "left";
+    $showreport = true;
 }
 
-foreach ($certificates as $certificate) {
-    $attributes = [];
-    if (!$certificate->visible) {
-        $attributes['class'] = 'dimmed';
+foreach ($certificatebeautifuls as $certificatebeautiful) {
+    $tt = "&nbsp;";
+    if ($certificatebeautiful->section) {
+        $tt = get_section_name($course, $certificatebeautiful->section);
     }
-    $link = html_writer::link(
-        new moodle_url('/mod/certificatebeautiful/view.php', ['id' => $certificate->coursemodule]),
-        format_string($certificate->name, true),
-        $attributes);
 
-    if ($course->format == 'weeks' || $course->format == 'topics') {
-        $table->data[] = [$certificate->section, $link];
-    } else {
-        $table->data[] = [$link];
+    $data = [
+        $tt,
+        html_writer::link("view.php?id=" . $certificatebeautiful->coursemodule, format_string($certificatebeautiful->name)),
+    ];
+
+    if ($showreport) {
+        $data[] = html_writer::link("report.php?id={$certificatebeautiful->coursemodule}",
+            get_string("report_title", "mod_certificatebeautiful"));
     }
+
+    $table->data[] = $data;
 }
 
 echo html_writer::table($table);
