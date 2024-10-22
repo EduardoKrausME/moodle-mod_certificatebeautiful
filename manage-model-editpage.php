@@ -135,38 +135,27 @@ switch ($action) {
         $model = $DB->get_record("certificatebeautiful_model", ["id" => $id]);
         $model->pages_info_object = json_decode($model->pages_info);
 
-        preg_match('/\[data-gjs-type=wrapper\](\s+)?\{.*?height(\s+)?:(\s+)?(?<height>\d+)px;/s',
-            $model->pages_info_object[$page]->cssdata, $outputheight);
-        preg_match('/\[data-gjs-type=wrapper\](\s+)?\{.*?width(\s+)?:(\s+)?(?<width>\d+)px;/s',
-            $model->pages_info_object[$page]->cssdata, $outputwidth);
-
         $info = new changue_cert_info(null, [
             "id" => $id,
             "page" => $page,
             "action" => $action,
-            "height" => $outputheight["height"],
-            "width" => $outputwidth["width"],
         ]);
 
         if ($info->is_cancelled()) {
             redirect("manage-model-editpage.php?id={$id}&page={$page}");
         } else if ($data = $info->get_data()) {
 
-            $file = $DB->get_record_select("files", "itemid = :itemid AND filename LIKE '__%'", ["itemid" => $data->background]);
+            $fs = get_file_storage();
+            $contextuser = context_user::instance($USER->id);
+            $files = $fs->get_area_files($contextuser->id, "user", "draft", $data->background, "filesize DESC");
+            /** @var stored_file $file */
+            $file = reset($files);
             if ($file) {
-                $a1 = substr($file->contenthash, 0, 2);
-                $a2 = substr($file->contenthash, 2, 2);
-                $sourcefile = "{$CFG->dataroot}/filedir/{$a1}/{$a2}/{$file->contenthash}";
-
-                $filecontents = file_get_contents($sourcefile);
+                $filecontents = $file->get_content();
                 $base64 = base64_encode($filecontents);
-                $mimetype = mime_content_type($sourcefile);
-                $dataurl = 'data:' . $mimetype . ';base64,' . $base64;
+                $dataurl = "data:{$file->get_mimetype()};base64,{$base64}";
 
-                $model->pages_info_object[$page]->cssdata = preg_replace(
-                    '/(\[data-gjs-type=wrapper\](\s+)?\{.*?)background(-image)?:url\((.*?)\);/',
-                    "\$1background-image:url({$dataurl});",
-                    $model->pages_info_object[$page]->cssdata);
+                $model->pages_info_object[$page]->cssdata .= "\n[data-gjs-type=wrapper]{background-image:url({$dataurl})}";
 
                 $model->pages_info = json_encode($model->pages_info_object, JSON_PRETTY_PRINT);
                 $DB->update_record("certificatebeautiful_model", $model);

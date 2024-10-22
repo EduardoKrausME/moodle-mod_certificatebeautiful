@@ -128,7 +128,7 @@ $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
 $pdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissie, $certificatebeautifulmodel, $user, $course);
 
 $temp = uniqid();
-file_put_contents("{$CFG->dataroot}/temp/{$temp}.pdf", $pdf);
+file_put_contents("{$CFG->tempdir}/{$temp}.pdf", $pdf);
 
 $urlgetpdf = urlencode("{$CFG->wwwroot}/mod/certificatebeautiful/_editor/test-pdf.php?temp={$temp}");
 header("Location: {$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html?file={$urlgetpdf}");

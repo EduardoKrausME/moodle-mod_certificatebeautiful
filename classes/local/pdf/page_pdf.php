@@ -25,7 +25,6 @@
 namespace mod_certificatebeautiful\local\pdf;
 
 use mod_certificatebeautiful\local\fonts\font_util;
-use mod_certificatebeautiful\local\pdf\asign\pdf_asign;
 use mod_certificatebeautiful\local\vo\certificatebeautiful;
 use mod_certificatebeautiful\local\vo\certificatebeautiful_issue;
 use mod_certificatebeautiful\local\vo\certificatebeautiful_model;
