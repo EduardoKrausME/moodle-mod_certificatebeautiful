@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * phpcs:disable moodle.Files.RequireLogin.Missing
+ *
  * Validate certificate instance.
  *
  * @package     mod_certificatebeautiful
