@@ -48,6 +48,7 @@ $string['certificate_description_help'] = 'Certificate description text. It can 
 $string['certificatebeautiful-page_empty'] = 'Empty';
 $string['certificatebeautiful:addinstance'] = 'Add instance';
 $string['certificatebeautiful:view'] = 'Allow the user to view the Beautiful certificate';
+$string['certificatebeautiful:viewreport']='View Beautiful certificate reports';
 $string['certpresented'] = 'This certificate is proudly presented to';
 $string['certsignature'] = 'Director';
 $string['certtitle'] = 'Certificate';
