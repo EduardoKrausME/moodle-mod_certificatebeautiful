@@ -32,12 +32,12 @@ $context = context_system::instance();
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/reports.php', ['course' => $courseid]);
 $PAGE->set_title("{$course->shortname}: " . get_string('reports'));
-$PAGE->set_heading($course->fullname . ": " . get_string('modulename', 'certificatebeautiful'));
+$PAGE->set_heading("{$course->fullname}: " . get_string('modulename', 'certificatebeautiful'));
+$PAGE->add_body_class("certificatebeautiful-pages");
 
 require_course_login($course);
 require_capability('mod/certificatebeautiful:viewreport', $context);
 
-$PAGE->requires->css('/mod/certificatebeautiful/assets/style.css');
 echo $OUTPUT->header();
 
 $title = get_string('reports') . ": " . get_string('modulename', 'certificatebeautiful');

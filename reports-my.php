@@ -36,11 +36,11 @@ $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/reports.php', ['user' => $userid]);
 $PAGE->set_title(fullname($user) . " " . get_string('reports'));
 $PAGE->set_heading(get_string('from_certificates', 'certificatebeautiful', fullname($user)));
+$PAGE->add_body_class("certificatebeautiful-pages");
 
 require_login();
 require_capability('mod/certificatebeautiful:view', $context);
 
-$PAGE->requires->css('/mod/certificatebeautiful/assets/style.css');
 echo $OUTPUT->header();
 
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/report/certificatebeautiful_view_user.php");

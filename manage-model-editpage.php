@@ -37,6 +37,7 @@ $action = optional_param('action', '', PARAM_TEXT);
 $context = context_system::instance();
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php', ['id' => $id]);
+$PAGE->add_body_class("certificatebeautiful-pages");
 
 require_login();
 require_capability('mod/certificatebeautiful:addinstance', $context);
@@ -81,7 +82,6 @@ switch ($action) {
     case 'changemodel':
         $PAGE->navbar->add(get_string('edit_page', 'certificatebeautiful'));
         $PAGE->navbar->add(get_string('select_model', 'certificatebeautiful'));
-        $PAGE->requires->css("/mod/certificatebeautiful/assets/style.css");
 
         echo $OUTPUT->header();
 
@@ -170,7 +170,6 @@ switch ($action) {
         break;
 
     default:
-        $PAGE->requires->css("/mod/certificatebeautiful/assets/style.css");
         $PAGE->navbar->add(get_string('edit_page', 'certificatebeautiful'));
         echo $OUTPUT->header();
 
