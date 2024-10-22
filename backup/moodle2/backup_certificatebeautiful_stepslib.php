@@ -41,7 +41,7 @@ class backup_certificatebeautiful_activity_structure_step extends backup_activit
      */
     protected function define_structure() {
         // Course certificate.
-        $fields = ['name', 'timecreated', 'timemodified', 'intro', 'introformat', 'template', 'expires'];
+        $fields = ['name', 'description', 'timecreated', 'timemodified', 'intro', 'introformat', 'template', 'expires'];
         $certificatebeautiful = new backup_nested_element('certificatebeautiful', ['id'], $fields);
 
         // Issues.
