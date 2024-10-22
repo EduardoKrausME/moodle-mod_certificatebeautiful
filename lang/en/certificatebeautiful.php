@@ -47,6 +47,7 @@ $string['certificate_description'] = 'Describe the certificate';
 $string['certificate_description_help'] = 'Certificate description text. It can contain simple HTML such as &lt;b&gt;, &lt;i&gt;, &lt;u&gt; and color styles, but be cautious as the <a href="https://mpdf.github.io/" target="_blank">PDF converter has limitations</a>.';
 $string['certificatebeautiful-page_empty'] = 'Empty';
 $string['certificatebeautiful:addinstance'] = 'Add instance';
+$string['certificatebeautiful:view'] = 'Allow the user to view the Beautiful certificate';
 $string['certpresented'] = 'This certificate is proudly presented to';
 $string['certsignature'] = 'Director';
 $string['certtitle'] = 'Certificate';
