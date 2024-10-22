@@ -182,16 +182,17 @@ class certificatebeautiful_view extends \table_sql {
                              u.id AS user_id, u.email, u.firstnamephonetic, u.lastnamephonetic,
                              u.middlename, u.alternatename, u.firstname, u.lastname
                         FROM {certificatebeautiful_issue} cbi
-                        JOIN {user}                   u ON u.id = cbi.userid
+                        JOIN {user}                         u ON u.id = cbi.userid
                         JOIN {certificatebeautiful}        cb ON cb.id = cbi.certificatebeautifulid
                        WHERE cbi.cmid = :cmid
                              {$where}
                     ORDER BY {$order}";
 
         if ($pagesize != -1) {
-            $countsql = "SELECT COUNT(code) as c
-                           FROM {certificatebeautiful_issue}
-                          WHERE cmid = :cmid {$where}";
+            $countsql = "SELECT COUNT(cbi.code) as c
+                           FROM {certificatebeautiful_issue} cbi
+                           JOIN {user}                         u ON u.id = cbi.userid
+                          WHERE cbi.cmid = :cmid {$where}";
             $total = $DB->get_field_sql($countsql, $params);
             $this->pagesize($pagesize, $total);
         } else {

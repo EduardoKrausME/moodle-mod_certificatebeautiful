@@ -91,6 +91,7 @@ class certificatebeautiful_view_user extends \table_sql {
     /**
      * Fullname is treated as a special columname in tablelib and should always
      * be treated the same as the fullname of a user.
+     *
      * @uses $this->useridfield if the userid field is not expected to be id
      * then you need to override $this->useridfield to point at the correct
      * field for the user id.
@@ -186,9 +187,10 @@ class certificatebeautiful_view_user extends \table_sql {
                     ORDER BY {$order}";
 
         if ($pagesize != -1) {
-            $countsql = "SELECT COUNT(code) as c
-                           FROM {certificatebeautiful_issue}
-                          WHERE userid = :userid {$where}";
+            $countsql = "SELECT COUNT(cbi.code) as c
+                           FROM {certificatebeautiful_issue} cbi
+                           JOIN {user}                         u ON u.id = cbi.userid
+                          WHERE cbi.userid = :userid {$where}";
             $total = $DB->get_field_sql($countsql, $params);
             $this->pagesize($pagesize, $total);
         } else {
