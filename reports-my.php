@@ -34,7 +34,7 @@ $user = $DB->get_record('user', ['id' => $userid], '*', MUST_EXIST);
 
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/reports.php', ['user' => $userid]);
-$PAGE->set_title(fullname($user) . get_string('reports'));
+$PAGE->set_title(fullname($user) . " " . get_string('reports'));
 $PAGE->set_heading(get_string('from_certificates', 'certificatebeautiful', fullname($user)));
 
 require_login();
