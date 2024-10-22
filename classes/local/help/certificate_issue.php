@@ -25,8 +25,6 @@
 namespace mod_certificatebeautiful\local\help;
 
 use mod_certificatebeautiful\local\help\util\qrcode;
-use mod_certificatebeautiful\local\vo\certificatebeautiful;
-use mod_certificatebeautiful\local\vo\certificatebeautiful_issue;
 
 /**
  * Class certificate_issue
@@ -85,11 +83,9 @@ class certificate_issue extends help_base {
      * @return mixed
      */
     public static function custom_replace($html, $certificatebeautifulissue) {
-        global $CFG;
-
         if (strpos($html, "img/qr-code.svg")) {
 
-            $pngfile = $CFG->tempdir . "/" . uniqid() . ".png";
+            $pngfile = make_temp_directory('certificatebeautiful') . "/" . uniqid() . ".png";
 
             $options = [
                 'wq' => 0,

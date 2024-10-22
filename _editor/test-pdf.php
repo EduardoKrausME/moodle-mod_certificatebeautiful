@@ -127,8 +127,9 @@ $course = $DB->get_record_sql("SELECT * FROM {course} WHERE id = 13 ORDER BY RAN
 $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
 $pdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissie, $certificatebeautifulmodel, $user, $course);
 
-$temp = uniqid();
-file_put_contents("{$CFG->tempdir}/{$temp}.pdf", $pdf);
+$tempfilename = uniqid();
+$tempdir = make_temp_directory('certificatebeautiful');
+file_put_contents("{$tempdir}/{$tempfilename}.pdf", $pdf);
 
 $urlgetpdf = urlencode("{$CFG->wwwroot}/mod/certificatebeautiful/_editor/test-pdf.php?temp={$temp}");
 header("Location: {$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html?file={$urlgetpdf}");
