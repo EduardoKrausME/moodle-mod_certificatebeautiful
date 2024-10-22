@@ -25,8 +25,8 @@
       "mod_certificatebeautiful/list-certificate": {
         "certificates": [
           {
-            "name": "Certificado 1",
-            "link": "https://example.com/certificado1"
+            "add-new-page": true,
+            "add-new-page-link": "https://example.com/certificado1"
           }
         ]
       }
@@ -46,8 +46,7 @@
             {{#add-new-page}}
                 <div class="mt-4">
                     <a href="{{{add-new-page-link}}}"
-                       name="add-new"
-                       class="btn btn-info pt-1 pb-1">
+                       class="btn btn-info add-new pt-1 pb-1">
                         {{#str}}add_new_page, certificatebeautiful{{/str}}</a>
                 </div>
             {{/add-new-page}}
