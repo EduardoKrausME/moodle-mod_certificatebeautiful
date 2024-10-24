@@ -129,10 +129,8 @@ class provider implements
         self::recordset_loop_and_export($recordset, 'cmid', [],
             function ($carry, $record) use ($user, $instanceidstocmids) {
                 $carry[] = [
-                    'timecreated' => transform::datetime($record->timecreated),
-                    'meetingid' => $record->meetingid,
-                    'log' => $record->log,
-                    'meta' => $record->meta,
+                    'timecreated' => userdate($record->timecreated),
+                    'code' => $record->code,
                 ];
                 return $carry;
             },
