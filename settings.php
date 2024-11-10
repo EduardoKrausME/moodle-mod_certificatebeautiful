@@ -60,9 +60,11 @@ if ($ADMIN->fulltree) {
         get_string('config_signature_typography_desc', 'certificatebeautiful'), 'Aerotis', $options);
     $settings->add($setting);
 
+    $defaultsetting = substr($USER->lastname, 0, 10);
     $setting = new admin_setting_configtext_with_maxlength('certificatebeautiful/config_signature_text',
         get_string('config_signature_text', 'certificatebeautiful'),
-        get_string('config_signature_text_desc', 'certificatebeautiful'), substr($USER->lastname, 0, 10), PARAM_TEXT, 10);
+        get_string('config_signature_text_desc', 'certificatebeautiful'),
+        $defaultsetting, PARAM_TEXT, null, 10);
     $settings->add($setting);
 
     $setting = new admin_setting_configcolourpicker('certificatebeautiful/config_signature_color',
