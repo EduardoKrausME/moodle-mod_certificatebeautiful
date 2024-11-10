@@ -1,43 +1,43 @@
-**Plugin Beautiful certificate para o Moodle**
+**Beautiful certificate plugin for Moodle**
 
-## Visão Geral
+## Overview
 
-O plugin Beautiful certificate para o Moodle aprimora a experiência de criação de certificados, proporcionando um design suave e esteticamente agradável para certificados personalizados. Este plugin é projetado para enriquecer o apelo visual e profissional dos designs de certificados, oferecendo uma interface intuitiva para facilitar o uso.
+The Beautiful certificate plugin for Moodle improves the certificate creation experience, providing a smooth and aesthetically pleasing design for personalized certificates. This plugin is designed to enrich the visual and professional appeal of certificate designs, offering an intuitive interface for ease of use.
 
-## Recursos
+## Resources
 
-- **Certificados Padrão:**
-  - Certificado de Apreciação
-  - Certificado Elegante
-  - Certificado Moderno
-  - Certificado Simples
-  - Certificado Vintage
-  - Certificado Dourado
-  - Certificado Resumo
+- **Standard certificates:**
+  - Certificate of Appreciation
+  - Elegant Certificate
+  - Modern Flat Certificate
+  - Simple Certificate
+  - Vintage Certificate
+  - Golden Certificate
+  - Certificate Summary
 
-- **Opções de Configuração:**
-  - Curso do Aluno
-  - Categoria do Curso
-  - Data de Matrícula
-  - Funções de Data
-  - Notas
-  - Dados do Moodle
-  - Dados do Professor
-  - Dados do Aluno
-  - Perfil do Aluno
+- **Configuration Options:**
+  - Student's course
+  - Course category
+  - Enrolment data
+  - Data functions
+  - Notes
+  - Moodle Data
+  - Teacher data
+  - Student Data
+  - Student Profile
 
-- **Exportar para PDF:**
-  - O plugin permite a exportação de certificados em formato PDF.
+- **Export pfor PDF:**
+  - The plugin allows the export of certificates in PDF format.
 
-## Instalação
+## Installation
 
-1. Baixe o plugin Beautiful certificate.
-2. Instale o plugin em sua instância do Moodle seguindo o processo de instalação padrão.
-3. Adicione aos cursos que deseja entregar o certificado.
+1. Download Beautiful certificate plugin.
+2. Install the plugin on your Moodle instance following the standard installation process..
+3. Add to the courses where you want to deliver a certificate.
 
-## Contribuição
+## Contributing
 
-Sinta-se à vontade para contribuir para o desenvolvimento do plugin Beautiful certificate, enviando problemas ou solicitações de pull no [repositório do GitHub](https://github.com/EduardoKrausME/moodle-mod_certificatebeautiful).
+Please feel free to contribute to the development of the Beautiful certificate plugin, sending problems or pull requests. [repositório do GitHub](https://github.com/EduardoKrausME/moodle-mod_certificatebeautiful).
 
 ## Licença
 
