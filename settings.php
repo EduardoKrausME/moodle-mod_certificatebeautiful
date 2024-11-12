@@ -49,7 +49,6 @@ if ($ADMIN->fulltree) {
         get_string('config_signature_heading_desc', 'certificatebeautiful', count($options)) .
         "<div class='d-flex'>{$imagens}</div>"));
 
-
     $setting = new admin_setting_configcheckbox('certificatebeautiful/config_signature_enable',
         get_string('config_signature_enable', 'certificatebeautiful'),
         get_string('config_signature_enable_desc', 'certificatebeautiful'), 1);
