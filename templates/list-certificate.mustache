@@ -37,7 +37,7 @@
         <fieldset>
             <legend>{{{title}}}</legend>
             <div class="certificate-page-root mb-3">
-                <div class="certificate-page">
+                <div class="certificate-page {{#zoom}}certificate-page-zoom{{/zoom}}">
                     {{{pagina}}}
                 </div>
             </div>
@@ -45,6 +45,11 @@
                 <a href="{{{addpage_href}}}" class="btn btn-success pt-1 pb-1">
                     {{{addpage_title}}}
                 </a>
+                {{#delete_href}}
+                    <a href="{{{delete_href}}}" class="btn btn-danger pt-1 pb-1">
+                        {{#str}}delete-page,certificatebeautiful{{/str}}
+                    </a>
+                {{/delete_href}}
             </div>
         </fieldset>
     {{/pages}}

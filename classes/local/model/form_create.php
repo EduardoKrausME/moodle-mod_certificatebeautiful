@@ -77,6 +77,8 @@ class form_create extends \moodleform {
                     "pagina" => $htmldata,
                     "addpage_title" => get_string("edit_this_page", "certificatebeautiful"),
                     "addpage_href" => "manage-model-editpage.php?id={$certificatebeautifulmodel->id}&page={$key}",
+                    "zoom" => false,
+                    "delete_href" => $key ? "manage-model.php?id={$certificatebeautifulmodel->id}&page={$key}&action=delete" : "",
                 ];
             }
 

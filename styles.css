@@ -1,36 +1,52 @@
-.certificatebeautiful-pages .certificatebeautiful-report-extra-width {
+.certificatebeautiful-pages .certificatebeautiful-report-extra-width,
+.path-mod-certificatebeautiful .certificatebeautiful-report-extra-width,
+.path-mod-certificatebeautiful-manage-model .certificatebeautiful-report-extra-width {
   width: 40px;
 }
-.certificatebeautiful-pages .certificatebeautiful-report-btn-small {
+.certificatebeautiful-pages .certificatebeautiful-report-btn-small,
+.path-mod-certificatebeautiful .certificatebeautiful-report-btn-small,
+.path-mod-certificatebeautiful-manage-model .certificatebeautiful-report-btn-small {
   padding: 5px 7px;
   border-radius: 6px;
   border: none;
   min-width: 61px;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens {
+.certificatebeautiful-pages .structuresitens .structuresitens,
+.path-mod-certificatebeautiful .structuresitens .structuresitens,
+.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens {
   height: 130px;
   overflow: hidden;
   position: relative;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens fieldset {
+.certificatebeautiful-pages .structuresitens .structuresitens fieldset,
+.path-mod-certificatebeautiful .structuresitens .structuresitens fieldset,
+.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens fieldset {
   border: 1px solid #c8c8c8;
   padding-inline-start: 0.75em;
   border-radius: 5px;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens legend {
+.certificatebeautiful-pages .structuresitens .structuresitens legend,
+.path-mod-certificatebeautiful .structuresitens .structuresitens legend,
+.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens legend {
   float: initial;
   width: auto;
   margin-bottom: 5px;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens table {
+.certificatebeautiful-pages .structuresitens .structuresitens table,
+.path-mod-certificatebeautiful .structuresitens .structuresitens table,
+.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens table {
   width: 100%;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens table th {
+.certificatebeautiful-pages .structuresitens .structuresitens table th,
+.path-mod-certificatebeautiful .structuresitens .structuresitens table th,
+.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens table th {
   white-space: nowrap;
   width: 10px;
   position: relative;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens table th span {
+.certificatebeautiful-pages .structuresitens .structuresitens table th span,
+.path-mod-certificatebeautiful .structuresitens .structuresitens table th span,
+.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens table th span {
   position: absolute;
   top: -15px;
   left: 0;
@@ -55,12 +71,16 @@
     background: #ddd;
   }
 }
-.certificatebeautiful-pages .structuresitens .structuresitens table th span.delete {
+.certificatebeautiful-pages .structuresitens .structuresitens table th span.delete,
+.path-mod-certificatebeautiful .structuresitens .structuresitens table th span.delete,
+.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens table th span.delete {
   top: -40px;
   opacity: 0;
   background: #ddd;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens .read-more {
+.certificatebeautiful-pages .structuresitens .structuresitens .read-more,
+.path-mod-certificatebeautiful .structuresitens .structuresitens .read-more,
+.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens .read-more {
   width: 100% !important;
   position: absolute;
   bottom: 0;
@@ -71,40 +91,60 @@
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.831372549) 50%, #fff 100%);
   padding: 14px;
 }
-.certificatebeautiful-pages .editpage .certificate-editor {
+.certificatebeautiful-pages .editpage .certificate-editor,
+.path-mod-certificatebeautiful .editpage .certificate-editor,
+.path-mod-certificatebeautiful-manage-model .editpage .certificate-editor {
   width: 100%;
   height: 720px;
   min-width: 1190px;
 }
-.certificatebeautiful-pages .editpage .read-more {
+.certificatebeautiful-pages .editpage .read-more,
+.path-mod-certificatebeautiful .editpage .read-more,
+.path-mod-certificatebeautiful-manage-model .editpage .read-more {
   display: none !important;
 }
-.certificatebeautiful-pages .editpage .structuresitens {
+.certificatebeautiful-pages .editpage .structuresitens,
+.path-mod-certificatebeautiful .editpage .structuresitens,
+.path-mod-certificatebeautiful-manage-model .editpage .structuresitens {
   height: auto !important;
 }
-.certificatebeautiful-pages .list-certificate fieldset {
+.certificatebeautiful-pages .list-certificate fieldset,
+.path-mod-certificatebeautiful .list-certificate fieldset,
+.path-mod-certificatebeautiful-manage-model .list-certificate fieldset {
   border: 1px solid #dee2e6;
   margin: 2px;
   padding: 0 10px 14px;
 }
-.certificatebeautiful-pages .list-certificate fieldset legend {
+.certificatebeautiful-pages .list-certificate fieldset legend,
+.path-mod-certificatebeautiful .list-certificate fieldset legend,
+.path-mod-certificatebeautiful-manage-model .list-certificate fieldset legend {
   float: none;
   margin: 0 17px;
   width: auto;
   padding: 4px;
   font-size: 17px;
 }
-.certificatebeautiful-pages .list-certificate .certificate-page-root {
+.certificatebeautiful-pages .list-certificate .certificate-page-root,
+.path-mod-certificatebeautiful .list-certificate .certificate-page-root,
+.path-mod-certificatebeautiful-manage-model .list-certificate .certificate-page-root {
   border: 4px dashed #31468c;
   margin: 11px auto;
   padding: 2px;
 }
-.certificatebeautiful-pages .list-certificate .certificate-page-root .certificate-page {
+.certificatebeautiful-pages .list-certificate .certificate-page-root .certificate-page,
+.path-mod-certificatebeautiful .list-certificate .certificate-page-root .certificate-page,
+.path-mod-certificatebeautiful-manage-model .list-certificate .certificate-page-root .certificate-page {
   padding: 10px;
   position: relative;
+}
+.certificatebeautiful-pages .list-certificate .certificate-page-root .certificate-page.certificate-page-zoom,
+.path-mod-certificatebeautiful .list-certificate .certificate-page-root .certificate-page.certificate-page-zoom,
+.path-mod-certificatebeautiful-manage-model .list-certificate .certificate-page-root .certificate-page.certificate-page-zoom {
   zoom: 0.35;
 }
-.certificatebeautiful-pages .list-certificate .certificate-flex-gap {
+.certificatebeautiful-pages .list-certificate .certificate-flex-gap,
+.path-mod-certificatebeautiful .list-certificate .certificate-flex-gap,
+.path-mod-certificatebeautiful-manage-model .list-certificate .certificate-flex-gap {
   gap: 10px;
 }
 

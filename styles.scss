@@ -1,4 +1,6 @@
-.certificatebeautiful-pages {
+.certificatebeautiful-pages,
+.path-mod-certificatebeautiful,
+.path-mod-certificatebeautiful-manage-model {
     .certificatebeautiful-report-extra-width {
         width: 40px;
     }
@@ -110,7 +112,9 @@
         .certificate-page-root .certificate-page {
             padding: 10px;
             position: relative;
-            zoom: .35;
+            &.certificate-page-zoom {
+                zoom: .35;
+            }
         }
         .certificate-flex-gap {
             gap: 10px

@@ -102,6 +102,7 @@ switch ($action) {
                 "pagina" => $htmldata,
                 "addpage_title" => get_string("using_this_page", "certificatebeautiful"),
                 "addpage_href" => "manage-model-editpage.php?id={$id}&page={$page}&model={$model["key"]}&action=changue",
+                "zoom" => true,
             ];
         }
         echo $OUTPUT->render_from_template("mod_certificatebeautiful/list-certificate", $data);

@@ -61,8 +61,21 @@ if ($id > 0) {
 }
 
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
-if (optional_param("add-new", false, PARAM_RAW)) {
-    $certificatebeautifulmodel->pages_info_object[] = form_create_page::empty_page();
+
+switch (optional_param("action", false, PARAM_TEXT)) {
+    case "delete":
+        $page = required_param("page", PARAM_INT);
+        if ($page) {
+            unset($certificatebeautifulmodel->pages_info_object[$page]);
+            $certificatebeautifulmodel->pages_info_object = array_values($certificatebeautifulmodel->pages_info_object);
+
+            $certificatebeautifulmodel->pages_info = json_encode($certificatebeautifulmodel->pages_info_object, JSON_PRETTY_PRINT);
+            $DB->update_record("certificatebeautiful_model", $certificatebeautifulmodel);
+
+            redirect("manage-model.php?id={$certificatebeautifulmodel->id}");
+        }
+
+        break;
 }
 if (count($certificatebeautifulmodel->pages_info_object) == 0) {
     $certificatebeautifulmodel->pages_info_object = [form_create_page::empty_page()];
