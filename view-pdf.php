@@ -16,6 +16,7 @@
 
 /**
  * view PDF file
+ *
  * @package     mod_certificatebeautiful
  * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -31,21 +32,17 @@ ob_start();
 
 global $PAGE, $USER, $CFG;
 
-$code = required_param('code', PARAM_TEXT);
-$action = required_param('action', PARAM_TEXT);
+$code = required_param("code", PARAM_TEXT);
+$action = required_param("action", PARAM_TEXT);
 
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_issue $certificatebeautifulissue */
-$certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', ['code' => $code], '*', MUST_EXIST);
+$certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", ["code" => $code], '*', MUST_EXIST);
 
-$cm = get_coursemodule_from_id('certificatebeautiful', $certificatebeautifulissue->cmid, 0, false, MUST_EXIST);
-$course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
+$cm = get_coursemodule_from_id("certificatebeautiful", $certificatebeautifulissue->cmid, 0, false, MUST_EXIST);
+$course = $DB->get_record("course", ["id" => $cm->course], '*', MUST_EXIST);
 
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
-$certificatebeautiful = $DB->get_record('certificatebeautiful', ['id' => $cm->instance], '*', MUST_EXIST);
-
-/** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $certificatebeautifulmodel */
-$certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id' => $certificatebeautiful->model], "*", MUST_EXIST);
-$certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
+$certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], '*', MUST_EXIST);
 
 $context = context_module::instance($cm->id);
 
@@ -56,7 +53,7 @@ $username = fullname($USER);
 $name = "{$certificatebeautiful->name} - {$username}.pdf";
 
 switch ($action) {
-    case 'view':
+    case "view":
         header('Content-Type: application/pdf');
         header('Content-disposition: inline; filename="' . $name . '"');
         header('Cache-Control: public, must-revalidate, max-age=0');
@@ -64,7 +61,7 @@ switch ($action) {
         header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
         header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
         break;
-    case 'download':
+    case "download":
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="' . $name . '"');
         header('Cache-Control: public, must-revalidate, max-age=0');
@@ -82,7 +79,7 @@ switch ($action) {
 
 $fs = get_file_storage();
 $filerecord = (object)[
-    "component" => 'mod_certificatebeautiful',
+    "component" => "mod_certificatebeautiful",
     "contextid" => $context->id,
     "userid" => $USER->id,
     "filearea" => "certificate",
@@ -101,6 +98,10 @@ if ($storedfile) {
     header('Content-Length: ' . strlen($content));
     echo $content;
 } else {
+    /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $certificatebeautifulmodel */
+    $certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model", ["id" => $certificatebeautiful->model], "*", MUST_EXIST);
+    $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
+
     $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
     $contentpdf = $pagepdf->create_pdf(
         $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $USER, $course);
