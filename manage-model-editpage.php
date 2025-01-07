@@ -24,45 +24,46 @@
 
 use mod_certificatebeautiful\form\changue_cert_info;
 
-require_once('../../config.php');
+require_once("../../config.php");
 require_once("{$CFG->libdir}/tablelib.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/model/get_template_file.php");
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/lib.php");
 
 global $PAGE, $USER, $CFG;
 
-$id = required_param('id', PARAM_INT);
-$page = required_param('page', PARAM_INT);
-$action = optional_param('action', '', PARAM_TEXT);
+$id = required_param("id", PARAM_INT);
+$page = required_param("page", PARAM_INT);
+$action = optional_param("action", "", PARAM_TEXT);
 
 $context = context_system::instance();
 $PAGE->set_context($context);
-$PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php', ['id' => $id]);
+$PAGE->set_url("/mod/certificatebeautiful/manage-model-list.php", ["id" => $id, "page" => $page, "action" => $action]);
 $PAGE->add_body_class("certificatebeautiful-pages");
 
 require_login();
-require_capability('mod/certificatebeautiful:addinstance', $context);
+require_capability("mod/certificatebeautiful:addinstance", $context);
 
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $certificatebeautifulmodel */
-$certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id' => $id], "*", MUST_EXIST);
+$certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
-$title = get_string('model_page_name', 'certificatebeautiful', $page + 1);
+$title = get_string("model_page_name", "certificatebeautiful", $page + 1);
 $PAGE->set_title("{$certificatebeautifulmodel->name} - {$title}");
 $PAGE->set_heading("{$certificatebeautifulmodel->name} - {$title}");
 
-$PAGE->navbar->add(get_string('list_model', 'certificatebeautiful'), "manage-model-list.php");
+$PAGE->navbar->add(get_string("list_model", "certificatebeautiful"), "manage-model-list.php");
 if (!$id) {
-    $PAGE->navbar->add(get_string('new_model', 'certificatebeautiful'), "manage-model.php?id={$certificatebeautifulmodel->id}");
+    $PAGE->navbar->add(get_string("new_model", "certificatebeautiful"), "manage-model.php?id={$certificatebeautifulmodel->id}");
 }
 
-$certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
+$certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info, true);
 
 $cssdata = optional_param("cssdata", false, PARAM_RAW);
 $htmldata = optional_param("htmldata", false, PARAM_RAW);
-if ($cssdata && $htmldata && sesskey() == optional_param('sesskey', false, PARAM_RAW)) {
+if ($cssdata && $htmldata && sesskey() == optional_param("sesskey", false, PARAM_RAW)) {
 
-    $cssdata = preg_replace('/\*(\s+)?\{.*?\}|body(\s+)?\{.*?\}/', '', $cssdata);
-    $htmldata = preg_replace('/<body>(.*)<\/body>/', '$1', $htmldata);
+    $cssdata = preg_replace('/\*(\s+)?\{.*?\}|body(\s+)?\{.*?\}/', "", $cssdata);
+    $htmldata = preg_replace('/<body>(.*)<\/body>/', "$1", $htmldata);
 
     $certificatebeautifulmodel->pages_info_object[$page] = [
         "htmldata" => $htmldata,
@@ -79,36 +80,38 @@ if ($cssdata && $htmldata && sesskey() == optional_param('sesskey', false, PARAM
 }
 
 switch ($action) {
-    case 'changemodel':
-        $PAGE->navbar->add(get_string('edit_page', 'certificatebeautiful'));
-        $PAGE->navbar->add(get_string('select_model', 'certificatebeautiful'));
+    case "changemodel":
+        $PAGE->navbar->add(get_string("edit_page", "certificatebeautiful"));
+        $PAGE->navbar->add(get_string("select_model", "certificatebeautiful"));
 
         echo $OUTPUT->header();
 
-        $models = $DB->get_records('certificatebeautiful_model');
+        $models = certificatebeautiful_list_all_models();
+
         $data = ["pages" => [], "class-root" => "d-flex flex-wrap certificate-flex-gap"];
         foreach ($models as $model) {
 
-            $pagesinfo = json_decode($model->pages_info, true);
+            $unique = uniqid();
 
-            $htmldata = "{$pagesinfo[0]['htmldata']}<style>{$pagesinfo[0]['cssdata']}</style>";
-            $htmldata = str_replace("[data-gjs-type=wrapper]", ".body-{$model->id}", $htmldata);
-            $htmldata = "<div class='body-{$model->id}'>{$htmldata}</div>";
+            $htmldata = file_get_contents(__DIR__ . "/_editor/_model/{$model["key"]}/index.html");
+            $htmldata = str_replace("[data-gjs-type=wrapper]", ".body-{$unique}", $htmldata);
+            $htmldata = "<div class='body-{$unique}'>{$htmldata}</div>";
 
             $data["pages"][] = [
-                "title" => $model->name,
+                "title" => $model["name"],
                 "pagina" => $htmldata,
-                "addpage_title" => get_string('using_this_page', 'certificatebeautiful'),
-                "addpage_href" => "manage-model.php?id={$model->id}",
+                "addpage_title" => get_string("using_this_page", "certificatebeautiful"),
+                "addpage_href" => "manage-model-editpage.php?id={$id}&page={$page}&model={$model["key"]}&action=changue",
             ];
         }
-        echo $OUTPUT->render_from_template('mod_certificatebeautiful/list-certificate', $data);
+        echo $OUTPUT->render_from_template("mod_certificatebeautiful/list-certificate", $data);
 
         echo $OUTPUT->footer();
         break;
 
-    case 'changue':
-        $model = optional_param('model', '', PARAM_TEXT);
+    case "changue":
+        $model = required_param("model", PARAM_TEXT);
+        $page = required_param("page", PARAM_INT);
 
         $htmldata = \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model);
 
@@ -116,6 +119,7 @@ switch ($action) {
             "htmldata" => $htmldata,
             "cssdata" => "",
         ];
+
 
         $data = (object)[
             "id" => $certificatebeautifulmodel->id,
@@ -126,9 +130,9 @@ switch ($action) {
         redirect("manage-model-editpage.php?id={$id}&page={$page}");
         break;
 
-    case 'changeupload':
-        $PAGE->navbar->add(get_string('edit_page', 'certificatebeautiful'));
-        $PAGE->navbar->add(get_string('select_model', 'certificatebeautiful'));
+    case "changeupload":
+        $PAGE->navbar->add(get_string("edit_page", "certificatebeautiful"));
+        $PAGE->navbar->add(get_string("select_model", "certificatebeautiful"));
 
         echo $OUTPUT->header();
 
@@ -170,7 +174,7 @@ switch ($action) {
         break;
 
     default:
-        $PAGE->navbar->add(get_string('edit_page', 'certificatebeautiful'));
+        $PAGE->navbar->add(get_string("edit_page", "certificatebeautiful"));
         echo $OUTPUT->header();
 
         $data = [
@@ -180,7 +184,7 @@ switch ($action) {
             "iframe-url" => "{$CFG->wwwroot}/mod/certificatebeautiful/_editor/index.php?id={$id}&page={$page}",
             "form_components" => \mod_certificatebeautiful\local\help\help_base::get_form_components(),
         ];
-        echo $OUTPUT->render_from_template('mod_certificatebeautiful/editpage', $data);
+        echo $OUTPUT->render_from_template("mod_certificatebeautiful/editpage", $data);
 
         echo $OUTPUT->footer();
 }
