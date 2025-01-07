@@ -47,9 +47,9 @@ class teachers extends help_base {
      */
     public static function table_structure() {
         return [
-            ['key' => 'teacher1', 'label' => get_string('help_teachers_teacher1', 'certificatebeautiful')],
-            ['key' => 'teacher2', 'label' => get_string('help_teachers_teacher2', 'certificatebeautiful')],
-            ['key' => 'teacherall', 'label' => get_string('help_teachers_teacherall', 'certificatebeautiful')],
+            ["key" => "teacher1", "label" => get_string("help_teachers_teacher1", "certificatebeautiful")],
+            ["key" => "teacher2", "label" => get_string("help_teachers_teacher2", "certificatebeautiful")],
+            ["key" => "teacherall", "label" => get_string("help_teachers_teacherall", "certificatebeautiful")],
         ];
     }
 
@@ -66,19 +66,19 @@ class teachers extends help_base {
         $teachers = self::get_teachers($course);
 
         $data = [
-            'teacher1' => '',
-            'teacher2' => '',
-            'teacherall' => '',
+            "teacher1" => '',
+            "teacher2" => '',
+            "teacherall" => '',
         ];
 
         if (isset($teachers[0])) {
-            $data['teacher1'] = $teachers[0];
-            $data['teacher2'] = $teachers[0];
+            $data["teacher1"] = $teachers[0];
+            $data["teacher2"] = $teachers[0];
             if (isset($teachers[1])) {
-                $data['teacher2'] = "{$teachers[0]}<br>{$teachers[1]}";
+                $data["teacher2"] = "{$teachers[0]}<br>{$teachers[1]}";
             }
 
-            $data['teacherall'] = implode("<br>", $teachers);
+            $data["teacherall"] = implode("<br>", $teachers);
         }
 
         return $data;
@@ -106,7 +106,7 @@ class teachers extends help_base {
         $teachers = [];
         foreach ($roleids as $roleid) {
             $roleid = (int)$roleid;
-            $role = $DB->get_record('role', ['id' => $roleid]);
+            $role = $DB->get_record("role", ["id" => $roleid]);
             $users = get_role_users($roleid, $context, true);
             if ($users) {
                 foreach ($users as $teacher) {

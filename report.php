@@ -26,29 +26,29 @@ require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/report/certificatebeautiful_view.php");
 
-$id = optional_param('id', 0, PARAM_INT);
+$id = optional_param("id", 0, PARAM_INT);
 
-$cm = get_coursemodule_from_id('certificatebeautiful', $id, 0, false, MUST_EXIST);
-$course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
-$certificatebeautiful = $DB->get_record('certificatebeautiful', ['id' => $cm->instance], '*', MUST_EXIST);
+$cm = get_coursemodule_from_id("certificatebeautiful", $id, 0, false, MUST_EXIST);
+$course = $DB->get_record("course", ["id" => $cm->course], '*', MUST_EXIST);
+$certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], '*', MUST_EXIST);
 
 $context = context_module::instance($cm->id);
 
 require_course_login($course, true, $cm);
 require_capability('mod/certificatebeautiful:viewreport', $context);
 
-if (optional_param('action', false, PARAM_TEXT) == 'delete') {
+if (optional_param("action", false, PARAM_TEXT) == "delete") {
     require_sesskey();
-    $issueid = required_param('issueid', PARAM_INT);
+    $issueid = required_param("issueid", PARAM_INT);
 
     /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_issue $certificatebeautifulissue */
-    $certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', ['id' => $issueid]);
+    $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", ["id" => $issueid]);
 
-    $DB->delete_records('certificatebeautiful_issue', ['id' => $issueid]);
+    $DB->delete_records("certificatebeautiful_issue", ["id" => $issueid]);
 
     $fs = get_file_storage();
     $filerecord = (object)[
-        "component" => 'mod_certificatebeautiful',
+        "component" => "mod_certificatebeautiful",
         "contextid" => $context->id,
         "filearea" => "certificate",
         "filepath" => '/',
@@ -62,7 +62,7 @@ if (optional_param('action', false, PARAM_TEXT) == 'delete') {
         $filerecord->filepath, $filerecord->filename);
 
     redirect(new moodle_url("/mod/certificatebeautiful/report.php", ["id" => $id]),
-        get_string('report_deleted_certificate', 'certificatebeautiful'));
+        get_string("report_deleted_certificate", "certificatebeautiful"));
 }
 
 $table = new \mod_certificatebeautiful\local\report\certificatebeautiful_view(
@@ -70,14 +70,14 @@ $table = new \mod_certificatebeautiful\local\report\certificatebeautiful_view(
 
 if (!$table->is_downloading()) {
     $PAGE->set_context($context);
-    $PAGE->set_url('/mod/certificatebeautiful/report.php', ['id' => $cm->id]);
+    $PAGE->set_url('/mod/certificatebeautiful/report.php', ["id" => $cm->id]);
     $PAGE->set_title("{$course->shortname}: {$certificatebeautiful->name}");
     $PAGE->set_heading($course->fullname);
     $PAGE->add_body_class("certificatebeautiful-pages");
     echo $OUTPUT->header();
 
-    $title = get_string('report_filename', 'certificatebeautiful');
-    echo $OUTPUT->heading($title, 2, 'main', 'certificatebeautifulheading');
+    $title = get_string("report_filename", "certificatebeautiful");
+    echo $OUTPUT->heading($title, 2, "main", "certificatebeautifulheading");
 }
 
 $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/report.php?id={$cm->id}");

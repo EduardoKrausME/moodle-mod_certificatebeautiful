@@ -47,12 +47,12 @@ class user_profile extends help_base {
 
         $itens = [];
 
-        $userinfofields = $DB->get_records('user_info_field');
+        $userinfofields = $DB->get_records("user_info_field");
         if ($userinfofields) {
             foreach ($userinfofields as $userinfofield) {
                 $itens[] = [
-                    'key' => $userinfofield->shortname,
-                    'label' => $userinfofield->name,
+                    "key" => $userinfofield->shortname,
+                    "label" => $userinfofield->name,
                 ];
             }
         }
@@ -72,18 +72,18 @@ class user_profile extends help_base {
     public static function get_data($user) {
         global $CFG, $DB;
 
-        $userinfofields = $DB->get_records('user_info_field');
+        $userinfofields = $DB->get_records("user_info_field");
         if ($userinfofields) {
             $data = [];
             foreach ($userinfofields as $userinfofield) {
                 require_once("{$CFG->dirroot}/user/profile/field/{$userinfofield->datatype}/field.class.php");
-                $newfield = 'profile_field_' . $userinfofield->datatype;
+                $newfield = "profile_field_" . $userinfofield->datatype;
 
                 /** @var \profile_field_base $formfield */
                 $formfield = new $newfield($userinfofield->id, $user->id);
                 if ($formfield->is_visible() && !$formfield->is_empty()) {
-                    if ($userinfofield->datatype == 'checkbox') {
-                        $data[$userinfofield->shortname] = $formfield->data == 1 ? get_string('yes') : get_string('no');
+                    if ($userinfofield->datatype == "checkbox") {
+                        $data[$userinfofield->shortname] = $formfield->data == 1 ? get_string("yes") : get_string("no");
                     } else {
                         $data[$userinfofield->shortname] = $formfield->display_data();
                     }

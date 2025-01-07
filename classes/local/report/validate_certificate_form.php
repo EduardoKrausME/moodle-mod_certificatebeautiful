@@ -45,9 +45,9 @@ class validate_certificate_form extends \moodleform {
      * @param bool $editable
      * @param null $ajaxformdata
      */
-    public function __construct($action = null, $customdata = null, $method = 'post', $target = '',
+    public function __construct($action = null, $customdata = null, $method = "post", $target = '',
                                 $attributes = null, $editable = true, $ajaxformdata = null) {
-        parent::__construct($action, $customdata, 'post', '', ['class' => 'bg-light m-3 p-3']);
+        parent::__construct($action, $customdata, "post", '', ["class" => 'bg-light m-3 p-3']);
     }
 
     /**
@@ -56,10 +56,10 @@ class validate_certificate_form extends \moodleform {
      * @throws \coding_exception
      */
     public function definition() {
-        $this->_form->addElement('text', 'code', get_string('validate_certificate_code', 'certificatebeautiful'));
-        $this->_form->addRule('code', null, 'required', null, 'client');
-        $this->_form->setType('code', PARAM_TEXT);
+        $this->_form->addElement("text", "code", get_string("validate_certificate_code", "certificatebeautiful"));
+        $this->_form->addRule("code", null, "required", null, "client");
+        $this->_form->setType("code", PARAM_TEXT);
 
-        $this->_form->addElement('submit', 'verify', get_string('validate_certificate_submit', 'certificatebeautiful'));
+        $this->_form->addElement("submit", "verify", get_string("validate_certificate_submit", "certificatebeautiful"));
     }
 }

@@ -73,7 +73,7 @@ class qrcode {
      */
     public function __construct($data, $options = []) {
         $defaults = [
-            's' => 'qrl',
+            "s" => "qrl",
         ];
 
         if (!is_array($options)) {
@@ -107,16 +107,16 @@ class qrcode {
         $image = imagecreatetruecolor($width, $height);
         imagesavealpha($image, true);
 
-        $bgcolor = (isset($this->options['bc']) ? $this->options['bc'] : 'FFFFFF');
+        $bgcolor = (isset($this->options["bc"]) ? $this->options["bc"] : "FFFFFF");
         $bgcolor = $this->allocate_color($image, $bgcolor);
         imagefill($image, 0, 0, $bgcolor);
 
-        $fgcolor = (isset($this->options['fc']) ? $this->options['fc'] : '000000');
+        $fgcolor = (isset($this->options["fc"]) ? $this->options["fc"] : "000000");
         $fgcolor = $this->allocate_color($image, $fgcolor);
 
         $colors = [$bgcolor, $fgcolor];
 
-        $density = (isset($this->options['md']) ? (float)$this->options['md'] : 1);
+        $density = (isset($this->options["md"]) ? (float)$this->options["md"] : 1);
         list($width, $height) = $this->calculate_size($code, $widths);
         if ($width && $height) {
             $scale = min($w / $width, $h / $height);
@@ -129,10 +129,10 @@ class qrcode {
             $y = floor($y + $h / 2);
         }
 
-        $x += $code['q'][3] * $widths[0] * $scale;
-        $y += $code['q'][0] * $widths[0] * $scale;
+        $x += $code["q"][3] * $widths[0] * $scale;
+        $y += $code["q"][0] * $widths[0] * $scale;
         $wh = $widths[1] * $scale;
-        foreach ($code['b'] as $by => $row) {
+        foreach ($code["b"] as $by => $row) {
             $y1 = $y + $by * $wh;
             foreach ($row as $bx => $color) {
                 $x1 = $x + $bx * $wh;
@@ -161,27 +161,27 @@ class qrcode {
     private function encode_and_calculate_size($data, $options) {
         $code = $this->dispatch_encode($data, $options);
         $widths = [
-            (isset($options['wq']) ? (int)$options['wq'] : 1),
-            (isset($options['wm']) ? (int)$options['wm'] : 1),
+            (isset($options["wq"]) ? (int)$options["wq"] : 1),
+            (isset($options["wm"]) ? (int)$options["wm"] : 1),
         ];
 
         $size = $this->calculate_size($code, $widths);
         $dscale = 4;
-        $scale = (isset($options['sf']) ? (float)$options['sf'] : $dscale);
-        $scalex = (isset($options['sx']) ? (float)$options['sx'] : $scale);
-        $scaley = (isset($options['sy']) ? (float)$options['sy'] : $scale);
+        $scale = (isset($options["sf"]) ? (float)$options["sf"] : $dscale);
+        $scalex = (isset($options["sx"]) ? (float)$options["sx"] : $scale);
+        $scaley = (isset($options["sy"]) ? (float)$options["sy"] : $scale);
         $dpadding = 0;
-        $padding = (isset($options['p']) ? (int)$options['p'] : $dpadding);
-        $vert = (isset($options['pv']) ? (int)$options['pv'] : $padding);
-        $horiz = (isset($options['ph']) ? (int)$options['ph'] : $padding);
-        $top = (isset($options['pt']) ? (int)$options['pt'] : $vert);
-        $left = (isset($options['pl']) ? (int)$options['pl'] : $horiz);
-        $right = (isset($options['pr']) ? (int)$options['pr'] : $horiz);
-        $bottom = (isset($options['pb']) ? (int)$options['pb'] : $vert);
+        $padding = (isset($options["p"]) ? (int)$options["p"] : $dpadding);
+        $vert = (isset($options["pv"]) ? (int)$options["pv"] : $padding);
+        $horiz = (isset($options["ph"]) ? (int)$options["ph"] : $padding);
+        $top = (isset($options["pt"]) ? (int)$options["pt"] : $vert);
+        $left = (isset($options["pl"]) ? (int)$options["pl"] : $horiz);
+        $right = (isset($options["pr"]) ? (int)$options["pr"] : $horiz);
+        $bottom = (isset($options["pb"]) ? (int)$options["pb"] : $vert);
         $dwidth = ceil($size[0] * $scalex) + $left + $right;
         $dheight = ceil($size[1] * $scaley) + $top + $bottom;
-        $iwidth = (isset($options['w']) ? (int)$options['w'] : $dwidth);
-        $iheight = (isset($options['h']) ? (int)$options['h'] : $dheight);
+        $iwidth = (isset($options["w"]) ? (int)$options["w"] : $dwidth);
+        $iheight = (isset($options["h"]) ? (int)$options["h"] : $dheight);
         $swidth = $iwidth - $left - $right;
         $sheight = $iheight - $top - $bottom;
 
@@ -216,14 +216,14 @@ class qrcode {
      * @return array|null
      */
     private function dispatch_encode($data, $options) {
-        switch (strtolower(preg_replace('/[^A-Za-z0-9]/', '', $options['s']))) {
-            case 'qrl':
+        switch (strtolower(preg_replace('/[^A-Za-z0-9]/', '', $options["s"]))) {
+            case "qrl":
                 return $this->qr_encode($data, 0);
-            case 'qrm':
+            case "qrm":
                 return $this->qr_encode($data, 1);
-            case 'qrq':
+            case "qrq":
                 return $this->qr_encode($data, 2);
-            case 'qrh':
+            case "qrh":
                 return $this->qr_encode($data, 3);
             default:
                 return $this->qr_encode($data, 0);
@@ -242,14 +242,14 @@ class qrcode {
      */
     private function calculate_size($code, $widths) {
         $width = (
-            $code['q'][3] * $widths[0] +
-            $code['s'][0] * $widths[1] +
-            $code['q'][1] * $widths[0]
+            $code["q"][3] * $widths[0] +
+            $code["s"][0] * $widths[1] +
+            $code["q"][1] * $widths[0]
         );
         $height = (
-            $code['q'][0] * $widths[0] +
-            $code['s'][1] * $widths[1] +
-            $code['q'][2] * $widths[0]
+            $code["q"][0] * $widths[0] +
+            $code["s"][1] * $widths[1] +
+            $code["q"][2] * $widths[0]
         );
         return [$width, $height];
     }
@@ -271,9 +271,9 @@ class qrcode {
         list($mask, $mtx) = $this->qr_apply_best_mask($mtx, $size);
         $mtx = $this->qr_finalize_matrix($mtx, $size, $ecl, $mask, $vers);
         return [
-            'q' => [4, 4, 4, 4],
-            's' => [$size, $size],
-            'b' => $mtx,
+            "q" => [4, 4, 4, 4],
+            "s" => [$size, $size],
+            "b" => $mtx,
         ];
     }
 

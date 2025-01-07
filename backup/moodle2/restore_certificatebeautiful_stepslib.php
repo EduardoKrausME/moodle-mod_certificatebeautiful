@@ -38,11 +38,11 @@ class restore_certificatebeautiful_activity_structure_step extends restore_activ
      */
     protected function define_structure(): array {
         $paths = [];
-        $paths[] = new restore_path_element('certificatebeautiful', '/activity/certificatebeautiful');
+        $paths[] = new restore_path_element("certificatebeautiful", '/activity/certificatebeautiful');
 
         // Check if we want the issues as well.
-        if ($this->get_setting_value('userinfo')) {
-            $paths[] = new restore_path_element('tool_certificate_issue', '/activity/certificatebeautiful/issues/issue');
+        if ($this->get_setting_value("userinfo")) {
+            $paths[] = new restore_path_element("tool_certificate_issue", '/activity/certificatebeautiful/issues/issue');
         }
 
         return $this->prepare_activity_structure($paths);
@@ -60,7 +60,7 @@ class restore_certificatebeautiful_activity_structure_step extends restore_activ
         $data = (object) $data;
         $data->course = $this->get_courseid();
         // Insert the record.
-        $newitemid = $DB->insert_record('certificatebeautiful', $data);
+        $newitemid = $DB->insert_record("certificatebeautiful", $data);
         // Immediately after inserting "activity" record, call this.
         $this->apply_activity_instance($newitemid);
     }
@@ -76,23 +76,23 @@ class restore_certificatebeautiful_activity_structure_step extends restore_activ
     protected function process_tool_certificate_issue($data) {
         global $DB;
 
-        if (!$DB->get_manager()->table_exists('certificatebeautiful_issue')) {
+        if (!$DB->get_manager()->table_exists("certificatebeautiful_issue")) {
             throw new \dml_exception('certificatebeautiful_issue table does not exists');
         }
-        if (!$DB->get_manager()->table_exists('certificatebeautiful_model')) {
+        if (!$DB->get_manager()->table_exists("certificatebeautiful_model")) {
             throw new \dml_exception('certificatebeautiful_model table does not exists');
         }
         $data = (object) $data;
 
-        $codefound = $DB->record_exists('certificatebeautiful_issue', ['code' => $data->code]);
-        $templatefound = $DB->record_exists('certificatebeautiful_model', ['id' => $data->templateid]);
+        $codefound = $DB->record_exists("certificatebeautiful_issue", ["code" => $data->code]);
+        $templatefound = $DB->record_exists("certificatebeautiful_model", ["id" => $data->templateid]);
 
         if ($this->task->is_samesite() && $templatefound && !$codefound) {
             $oldid = $data->id;
             $data->courseid = $this->get_courseid();
-            $data->userid = $this->get_mappingid('user', $data->userid);
-            $newitemid = $DB->insert_record('certificatebeautiful_issue', $data);
-            $this->set_mapping('tool_certificate_issue', $oldid, $newitemid, true, $this->task->get_old_system_contextid());
+            $data->userid = $this->get_mappingid("user", $data->userid);
+            $newitemid = $DB->insert_record("certificatebeautiful_issue", $data);
+            $this->set_mapping("tool_certificate_issue", $oldid, $newitemid, true, $this->task->get_old_system_contextid());
         }
     }
 
@@ -100,7 +100,7 @@ class restore_certificatebeautiful_activity_structure_step extends restore_activ
      * Defines post-execution actions.
      */
     protected function after_execute(): void {
-        $this->add_related_files('mod_certificatebeautiful', 'intro', null);
-        $this->add_related_files('tool_certificate', 'issues', 'tool_certificate_issue', $this->task->get_old_system_contextid());
+        $this->add_related_files("mod_certificatebeautiful", "intro", null);
+        $this->add_related_files("tool_certificate", "issues", "tool_certificate_issue", $this->task->get_old_system_contextid());
     }
 }

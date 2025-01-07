@@ -49,8 +49,8 @@ class provider implements
      * @return collection A listing of user data stored through this system.
      */
     public static function get_metadata(collection $collection): collection {
-        $collection->add_database_table('certificatebeautiful_issue', [
-            'userid' => 'privacy:metadata:certificatebeautiful_issue:userid',
+        $collection->add_database_table("certificatebeautiful_issue", [
+            "userid" => 'privacy:metadata:certificatebeautiful_issue:userid',
         ], 'privacy:metadata:certificatebeautiful_issue');
 
         return $collection;
@@ -82,9 +82,9 @@ class provider implements
                  WHERE issue.userid = :userid";
 
         $params = [
-            'modname' => 'certificatebeautiful',
-            'contextlevel' => CONTEXT_MODULE,
-            'userid' => $userid,
+            "modname" => "certificatebeautiful",
+            "contextlevel" => CONTEXT_MODULE,
+            "userid" => $userid,
         ];
         $contextlist = new contextlist();
         $contextlist->add_from_sql($sql, $params);
@@ -119,25 +119,25 @@ class provider implements
         $instanceids = array_keys($instanceidstocmids);
 
         list($insql, $inparams) = $DB->get_in_or_equal($instanceids, SQL_PARAMS_NAMED);
-        $params = array_merge($inparams, ['userid' => $user->id]);
+        $params = array_merge($inparams, ["userid" => $user->id]);
         $recordset = $DB->get_recordset_select(
-            'certificatebeautiful_issue',
+            "certificatebeautiful_issue",
             "cmid $insql AND userid = :userid",
             $params,
             'timecreated, id'
         );
-        self::recordset_loop_and_export($recordset, 'cmid', [],
+        self::recordset_loop_and_export($recordset, "cmid", [],
             function ($carry, $record) use ($user, $instanceidstocmids) {
                 $carry[] = [
-                    'timecreated' => userdate($record->timecreated),
-                    'code' => $record->code,
+                    "timecreated" => userdate($record->timecreated),
+                    "code" => $record->code,
                 ];
                 return $carry;
             },
             function ($instanceid, $data) use ($user, $instanceidstocmids) {
                 $context = \context_module::instance($instanceidstocmids[$instanceid]);
                 $contextdata = helper::get_context_data($context, $user);
-                $finaldata = (object)array_merge((array)$contextdata, ['logs' => $data]);
+                $finaldata = (object)array_merge((array)$contextdata, ["logs" => $data]);
                 helper::export_context_files($context, $user);
                 writer::with_context($context)->export_data([], $finaldata);
             }
@@ -158,8 +158,8 @@ class provider implements
             return;
         }
 
-        $instanceid = $DB->get_field('course_modules', 'instance', ['id' => $context->instanceid], MUST_EXIST);
-        $DB->delete_records('certificatebeautiful_issue', ['cmid' => $instanceid]);
+        $instanceid = $DB->get_field("course_modules", "instance", ["id" => $context->instanceid], MUST_EXIST);
+        $DB->delete_records("certificatebeautiful_issue", ["cmid" => $instanceid]);
     }
 
     /**
@@ -180,8 +180,8 @@ class provider implements
             if (!$context instanceof \context_module) {
                 return;
             }
-            $instanceid = $DB->get_field('course_modules', 'instance', ['id' => $context->instanceid], MUST_EXIST);
-            $DB->delete_records('certificatebeautiful_issue', ['cmid' => $instanceid, 'userid' => $userid]);
+            $instanceid = $DB->get_field("course_modules", "instance", ["id" => $context->instanceid], MUST_EXIST);
+            $DB->delete_records("certificatebeautiful_issue", ["cmid" => $instanceid, "userid" => $userid]);
         }
     }
 
@@ -258,7 +258,7 @@ class provider implements
         }
 
         $params = [
-            'instanceid' => $context->instanceid,
+            "instanceid" => $context->instanceid,
         ];
 
         $sql = "SELECT issue.userid
@@ -266,7 +266,7 @@ class provider implements
                   JOIN {certificatebeautiful_issue} issue ON issue.cmid = cm.id
                  WHERE cm.id = :instanceid";
 
-        $userlist->add_from_sql('userid', $sql, $params);
+        $userlist->add_from_sql("userid", $sql, $params);
     }
 
     /**
@@ -281,12 +281,12 @@ class provider implements
         global $DB;
 
         $context = $userlist->get_context();
-        $cm = $DB->get_record('course_modules', ['id' => $context->instanceid]);
+        $cm = $DB->get_record("course_modules", ["id" => $context->instanceid]);
 
         list($userinsql, $userinparams) = $DB->get_in_or_equal($userlist->get_userids(), SQL_PARAMS_NAMED);
-        $params = array_merge(['cmid' => $cm->instance], $userinparams);
+        $params = array_merge(["cmid" => $cm->instance], $userinparams);
         $sql = "cmid = :cmid AND userid {$userinsql}";
 
-        $DB->delete_records_select('certificatebeautiful_issue', $sql, $params);
+        $DB->delete_records_select("certificatebeautiful_issue", $sql, $params);
     }
 }

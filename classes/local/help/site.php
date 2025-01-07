@@ -45,9 +45,9 @@ class site extends help_base {
      */
     public static function table_structure() {
         return [
-            ['key' => 'fullname', 'label' => get_string('help_site_fullname', 'certificatebeautiful')],
-            ['key' => 'shortname', 'label' => get_string('help_site_shortname', 'certificatebeautiful')],
-            ['key' => 'summary', 'label' => get_string('help_site_summary', 'certificatebeautiful')],
+            ["key" => "fullname", "label" => get_string("help_site_fullname", "certificatebeautiful")],
+            ["key" => "shortname", "label" => get_string("help_site_shortname", "certificatebeautiful")],
+            ["key" => "summary", "label" => get_string("help_site_summary", "certificatebeautiful")],
         ];
     }
 

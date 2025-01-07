@@ -76,7 +76,7 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
     }
 
     if (!isset($pageinfo->htmldata)) {
-        $pageinfo->htmldata = '<div>' . get_string('certificatebeautiful-page_empty', 'certificatebeautiful') . '</div>';
+        $pageinfo->htmldata = '<div>' . get_string('certificatebeautiful-page_empty', "certificatebeautiful") . '</div>';
     }
     if (!isset($pageinfo->cssdata)) {
         $pageinfo->cssdata = "

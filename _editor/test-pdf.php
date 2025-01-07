@@ -20,7 +20,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once('../../../config.php');
+require_once("../../../config.php");
 require_once("{$CFG->libdir}/tablelib.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/lib.php");
 
@@ -32,25 +32,26 @@ $PAGE->set_context(context_system::instance());
 
 require_login();
 $context = context_system::instance();
-require_capability('mod/certificatebeautiful:addinstance', $context);
+require_capability("mod/certificatebeautiful:addinstance", $context);
 
-$id = optional_param('id', false, PARAM_INT);
-$htmldata = optional_param('htmldata', false, PARAM_RAW);
-$cssdata = optional_param('cssdata', false, PARAM_RAW);
+$id = optional_param("id", false, PARAM_INT);
+$htmldata = optional_param("htmldata", false, PARAM_RAW);
+$cssdata = optional_param("cssdata", false, PARAM_RAW);
 
 if ($temp = optional_param("temp", false, PARAM_TEXT)) {
-    $temp = preg_replace('/[^0-9a-z]/', '', $temp);
-    $file = "{$CFG->dataroot}/temp/{$temp}.pdf";
+    $temp = preg_replace('/[^0-9a-z]/', "", $temp);
+    $tempdir = make_temp_directory("certificatebeautiful");
+    $file = "{$tempdir}/{$temp}.pdf";
     echo file_get_contents($file);
     @unlink($file);
-    die();
+    die;
 }
 
 if ($htmldata && $cssdata) {
     require_sesskey();
     $certificatebeautifulmodel = (object)[
         "id" => $id,
-        "name" => 'name',
+        "name" => "name",
         "pages_info_object" => [
             (object)[
                 "htmldata" => $htmldata,
@@ -70,12 +71,12 @@ if ($htmldata && $cssdata) {
     } else if ($id == -2) {
         $certificatebeautifulmodel = (object)[
             "id" => $id,
-            "name" => 'all',
+            "name" => "all",
             "pages_info_object" => []
         ];
         foreach (certificatebeautiful_list_all_models() as $key => $model) {
             $certificatebeautifulmodel->pages_info_object[] = (object)[
-                "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model['key']),
+                "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model["key"]),
                 "cssdata" => ""
             ];
         }
@@ -83,10 +84,10 @@ if ($htmldata && $cssdata) {
         if ($id == -1) {
             $certificatebeautifulmodel = (object)[
                 "id" => $id,
-                "name" => 'sumary-secound-page',
+                "name" => "sumary-secound-page",
                 "pages_info_object" => [
                     (object)[
-                        "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file('sumary-secound-page'),
+                        "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
                         "cssdata" => ""
                     ]
                 ]
@@ -97,10 +98,10 @@ if ($htmldata && $cssdata) {
 
             $certificatebeautifulmodel = (object)[
                 "id" => $id,
-                "name" => $model['key'],
+                "name" => $model["key"],
                 "pages_info_object" => [
                     (object)[
-                        "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model['key']),
+                        "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model["key"]),
                         "cssdata" => ""
                     ],
                     (object)[
@@ -114,11 +115,11 @@ if ($htmldata && $cssdata) {
 }
 
 $certificatebeautiful = (object)[
-    'name' => "teste",
-    "description" => get_string('default-description', 'certificatebeautiful')
+    "name" => "teste",
+    "description" => get_string("default-description", "certificatebeautiful")
 ];
 $certificatebeautifulissie = (object)[
-    'name' => "teste",
+    "name" => "teste",
     "code" => "CODE-EX"
 ];
 $user = $DB->get_record_sql("SELECT * FROM {user}   WHERE id = 2 ORDER BY RAND() LIMIT 1");
@@ -128,8 +129,8 @@ $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
 $pdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissie, $certificatebeautifulmodel, $user, $course);
 
 $tempfilename = uniqid();
-$tempdir = make_temp_directory('certificatebeautiful');
+$tempdir = make_temp_directory("certificatebeautiful");
 file_put_contents("{$tempdir}/{$tempfilename}.pdf", $pdf);
 
-$urlgetpdf = urlencode("{$CFG->wwwroot}/mod/certificatebeautiful/_editor/test-pdf.php?temp={$temp}");
+$urlgetpdf = urlencode("{$CFG->wwwroot}/mod/certificatebeautiful/_editor/test-pdf.php?temp={$tempfilename}");
 header("Location: {$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html?file={$urlgetpdf}");

@@ -75,9 +75,7 @@ class page_pdf {
      *
      * @return string
      * @throws MpdfException
-     * @throws \coding_exception
-     * @throws \dml_exception
-     * @throws \moodle_exception
+     * @throws \Exception
      */
     public function create_pdf($certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $user, $course) {
         global $COURSE, $CFG;
@@ -88,34 +86,34 @@ class page_pdf {
         // 841,89 px X  595,28 px
         $proporcao = .85;
         $mpdf = new Mpdf([
-            'mode' => '',
-            'format' => [210 * $proporcao, 297 * $proporcao],
-            'tempDir' => "{$CFG->dataroot}/temp/mpdf",
-            'margin_left' => 0,
-            'margin_right' => 0,
-            'margin_top' => 0,
-            'margin_bottom' => 0,
-            'margin_header' => 0,
-            'margin_footer' => 0,
-            'orientation' => 'L',
-            'fontDir' =>
+            "mode" => '',
+            "format" => [210 * $proporcao, 297 * $proporcao],
+            "tempDir" => "{$CFG->dataroot}/temp/mpdf",
+            "margin_left" => 0,
+            "margin_right" => 0,
+            "margin_top" => 0,
+            "margin_bottom" => 0,
+            "margin_header" => 0,
+            "margin_footer" => 0,
+            "orientation" => "L",
+            "fontDir" =>
                 array_merge(
-                    (new ConfigVariables())->getDefaults()['fontDir'],
+                    (new ConfigVariables())->getDefaults()["fontDir"],
                     $fontlist["path"]
                 ),
-            'default_font' => 'Arial',
-            'fontdata' =>
+            "default_font" => "Arial",
+            "fontdata" =>
                 array_merge(
-                    (new FontVariables())->getDefaults()['fontdata'],
+                    (new FontVariables())->getDefaults()["fontdata"],
                     $fontlist["fonts"],
                     ),
         ]);
         $mpdf->autoPageBreak = false;
 
         $mpdf->SetAuthor($COURSE->fullname);
-        $mpdf->SetCreator(get_string('modulename', 'certificatebeautiful') . ' - Model: ' . $certificatebeautifulmodel->name);
+        $mpdf->SetCreator(get_string("modulename", "certificatebeautiful") . ' - Model: ' . $certificatebeautifulmodel->name);
         $mpdf->SetTitle($certificatebeautiful->name);
-        $mpdf->SetSubject(get_string('create_at_certificate', 'certificatebeautiful', fullname($user)));
+        $mpdf->SetSubject(get_string("create_at_certificate", "certificatebeautiful", fullname($user)));
 
         foreach ($certificatebeautifulmodel->pages_info_object as $page) {
             $mpdf->AddPageByArray([]);

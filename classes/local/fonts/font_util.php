@@ -58,12 +58,12 @@ class font_util {
             $fontname = $ttfinfo->get_font_name();
             $fontfamily = $ttfinfo->get_font_family();
 
-            $fonts["fonts"][$fontnameid]['R'] = $path['basename'];
-            $fonts["fonts"][$fontnameid]['I'] = $path['basename'];
-            $fonts["fonts"][$fontnameid]['B'] = $path['basename'];
-            $fonts["fonts"][$fontnameid]['BI'] = $path['basename'];
+            $fonts["fonts"][$fontnameid]["R"] = $path["basename"];
+            $fonts["fonts"][$fontnameid]["I"] = $path["basename"];
+            $fonts["fonts"][$fontnameid]["B"] = $path["basename"];
+            $fonts["fonts"][$fontnameid]["BI"] = $path["basename"];
 
-            $fonts["path"][$path['dirname']] = $path['dirname'];
+            $fonts["path"][$path["dirname"]] = $path["dirname"];
 
             $fonturl = str_replace($CFG->dirroot, $CFG->wwwroot, $fontfile);
             $fonts["css"] .= "

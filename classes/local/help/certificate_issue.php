@@ -46,11 +46,11 @@ class certificate_issue extends help_base {
      */
     public static function table_structure() {
         return [
-            ['key' => 'name', 'label' => get_string('help_certificate_issue_name', 'certificatebeautiful')],
-            ['key' => 'description', 'label' => get_string('help_certificate_issue_description', 'certificatebeautiful')],
-            ['key' => 'timecreated', 'label' => get_string('help_certificate_issue_timecreated', 'certificatebeautiful')],
-            ['key' => 'code', 'label' => get_string('help_certificate_issue_code', 'certificatebeautiful')],
-            ['key' => 'url', 'label' => get_string('help_certificate_issue_url', 'certificatebeautiful')],
+            ["key" => "name", "label" => get_string("help_certificate_issue_name", "certificatebeautiful")],
+            ["key" => "description", "label" => get_string("help_certificate_issue_description", "certificatebeautiful")],
+            ["key" => "timecreated", "label" => get_string("help_certificate_issue_timecreated", "certificatebeautiful")],
+            ["key" => "code", "label" => get_string("help_certificate_issue_code", "certificatebeautiful")],
+            ["key" => "url", "label" => get_string("help_certificate_issue_url", "certificatebeautiful")],
         ];
     }
 
@@ -85,15 +85,15 @@ class certificate_issue extends help_base {
     public static function custom_replace($html, $certificatebeautifulissue) {
         if (strpos($html, "img/qr-code.svg")) {
 
-            $pngfile = make_temp_directory('certificatebeautiful') . "/" . uniqid() . ".png";
+            $pngfile = make_temp_directory("certificatebeautiful") . "/" . uniqid() . ".png";
 
             $options = [
-                'wq' => 0,
-                'w' => 500,
-                'h' => 500,
-                'p' => 0,
+                "wq" => 0,
+                "w" => 500,
+                "h" => 500,
+                "p" => 0,
             ];
-            $generator = new qrcode($certificatebeautifulissue['url'], $options);
+            $generator = new qrcode($certificatebeautifulissue["url"], $options);
             $image = $generator->render_image();
             imagepng($image, $pngfile);
 

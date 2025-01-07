@@ -205,7 +205,7 @@ function get_lang_string($item, $component) {
         styleManager    : {
             sectors : [
                 {
-                    name       : '<?php echo get_lang_string("grapsjs-general", 'certificatebeautiful') ?>',
+                    name       : '<?php echo get_lang_string("grapsjs-general", "certificatebeautiful") ?>',
                     properties : [
                         'display',
                         {extend : 'position', type : 'select'},
@@ -216,7 +216,7 @@ function get_lang_string($item, $component) {
                     ],
                 },
                 {
-                    name       : '<?php echo get_lang_string("grapsjs-dimensions", 'certificatebeautiful') ?>',
+                    name       : '<?php echo get_lang_string("grapsjs-dimensions", "certificatebeautiful") ?>',
                     open       : false,
                     properties : [
                         'width',
@@ -230,7 +230,7 @@ function get_lang_string($item, $component) {
                     ],
                 },
                 {
-                    name       : '<?php echo get_lang_string("grapsjs-tipografia", 'certificatebeautiful') ?>',
+                    name       : '<?php echo get_lang_string("grapsjs-tipografia", "certificatebeautiful") ?>',
                     open       : false,
                     properties : [
                         {
@@ -280,14 +280,14 @@ function get_lang_string($item, $component) {
                     ]
                 },
                 {
-                    name       : '<?php echo get_lang_string("grapsjs-stylemanager-properties-background", 'certificatebeautiful') ?>',
+                    name       : '<?php echo get_lang_string("grapsjs-stylemanager-properties-background", "certificatebeautiful") ?>',
                     open       : false,
                     properties : [
                         'background',
                     ],
                 },
                 {
-                    name       : '<?php echo get_lang_string("grapsjs-decoration", 'certificatebeautiful') ?>',
+                    name       : '<?php echo get_lang_string("grapsjs-decoration", "certificatebeautiful") ?>',
                     open       : false,
                     properties : [
                         'opacity',
@@ -327,8 +327,8 @@ function get_lang_string($item, $component) {
                 'containerId' : '#gjs'
             },
             'grapesjs-preset-webpage'   : {
-                modalImportTitle   : '<?php echo get_lang_string("grapsjs-edit_code", 'certificatebeautiful') ?>',
-                modalImportLabel   : '<div style="margin-bottom: 10px; font-size: 13px;"><?php echo get_lang_string("grapsjs-edit_code_paste_here_html", 'certificatebeautiful') ?></div>',
+                modalImportTitle   : '<?php echo get_lang_string("grapsjs-edit_code", "certificatebeautiful") ?>',
+                modalImportLabel   : '<div style="margin-bottom: 10px; font-size: 13px;"><?php echo get_lang_string("grapsjs-edit_code_paste_here_html", "certificatebeautiful") ?></div>',
                 modalImportContent : function(editor) {
                     var html = editor.getHtml();
                     html = html.split(/<body.*?>/).join('');
@@ -351,170 +351,170 @@ function get_lang_string($item, $component) {
             messages       : {
                 en : {
                     assetManager    : {
-                        addButton   : "<?php echo get_lang_string('grapsjs-assetmanager-addbutton', 'certificatebeautiful') ?>",
-                        modalTitle  : "<?php echo get_lang_string('grapsjs-assetmanager-modaltitle', 'certificatebeautiful') ?>",
-                        uploadTitle : "<?php echo get_lang_string('grapsjs-assetmanager-uploadtitle', 'certificatebeautiful') ?>"
+                        addButton   : "<?php echo get_lang_string('grapsjs-assetmanager-addbutton', "certificatebeautiful") ?>",
+                        modalTitle  : "<?php echo get_lang_string('grapsjs-assetmanager-modaltitle', "certificatebeautiful") ?>",
+                        uploadTitle : "<?php echo get_lang_string('grapsjs-assetmanager-uploadtitle', "certificatebeautiful") ?>"
                     },
                     domComponents   : {
                         names : {
-                            ""      : "<?php echo get_lang_string('grapsjs-domcomponents-names-', 'certificatebeautiful') ?>",
-                            wrapper : "<?php echo get_lang_string('grapsjs-domcomponents-names-wrapper', 'certificatebeautiful') ?>",
-                            text    : "<?php echo get_lang_string('grapsjs-domcomponents-names-text', 'certificatebeautiful') ?>",
-                            comment : "<?php echo get_lang_string('grapsjs-domcomponents-names-comment', 'certificatebeautiful') ?>",
-                            image   : "<?php echo get_lang_string('grapsjs-domcomponents-names-image', 'certificatebeautiful') ?>",
-                            video   : "<?php echo get_lang_string('grapsjs-domcomponents-names-video', 'certificatebeautiful') ?>",
-                            label   : "<?php echo get_lang_string('grapsjs-domcomponents-names-label', 'certificatebeautiful') ?>",
-                            link    : "<?php echo get_lang_string('grapsjs-domcomponents-names-link', 'certificatebeautiful') ?>",
-                            map     : "<?php echo get_lang_string('grapsjs-domcomponents-names-map', 'certificatebeautiful') ?>",
-                            tfoot   : "<?php echo get_lang_string('grapsjs-domcomponents-names-tfoot', 'certificatebeautiful') ?>",
-                            tbody   : "<?php echo get_lang_string('grapsjs-domcomponents-names-tbody', 'certificatebeautiful') ?>",
-                            thead   : "<?php echo get_lang_string('grapsjs-domcomponents-names-thead', 'certificatebeautiful') ?>",
-                            table   : "<?php echo get_lang_string('grapsjs-domcomponents-names-table', 'certificatebeautiful') ?>",
-                            row     : "<?php echo get_lang_string('grapsjs-domcomponents-names-row', 'certificatebeautiful') ?>",
-                            cell    : "<?php echo get_lang_string('grapsjs-domcomponents-names-cell', 'certificatebeautiful') ?>",
-                            section : "<?php echo get_lang_string('grapsjs-domcomponents-names-section', 'certificatebeautiful') ?>",
-                            body    : "<?php echo get_lang_string('grapsjs-domcomponents-names-wrapper', 'certificatebeautiful') ?>"
+                            ""      : "<?php echo get_lang_string('grapsjs-domcomponents-names-', "certificatebeautiful") ?>",
+                            wrapper : "<?php echo get_lang_string('grapsjs-domcomponents-names-wrapper', "certificatebeautiful") ?>",
+                            text    : "<?php echo get_lang_string('grapsjs-domcomponents-names-text', "certificatebeautiful") ?>",
+                            comment : "<?php echo get_lang_string('grapsjs-domcomponents-names-comment', "certificatebeautiful") ?>",
+                            image   : "<?php echo get_lang_string('grapsjs-domcomponents-names-image', "certificatebeautiful") ?>",
+                            video   : "<?php echo get_lang_string('grapsjs-domcomponents-names-video', "certificatebeautiful") ?>",
+                            label   : "<?php echo get_lang_string('grapsjs-domcomponents-names-label', "certificatebeautiful") ?>",
+                            link    : "<?php echo get_lang_string('grapsjs-domcomponents-names-link', "certificatebeautiful") ?>",
+                            map     : "<?php echo get_lang_string('grapsjs-domcomponents-names-map', "certificatebeautiful") ?>",
+                            tfoot   : "<?php echo get_lang_string('grapsjs-domcomponents-names-tfoot', "certificatebeautiful") ?>",
+                            tbody   : "<?php echo get_lang_string('grapsjs-domcomponents-names-tbody', "certificatebeautiful") ?>",
+                            thead   : "<?php echo get_lang_string('grapsjs-domcomponents-names-thead', "certificatebeautiful") ?>",
+                            table   : "<?php echo get_lang_string('grapsjs-domcomponents-names-table', "certificatebeautiful") ?>",
+                            row     : "<?php echo get_lang_string('grapsjs-domcomponents-names-row', "certificatebeautiful") ?>",
+                            cell    : "<?php echo get_lang_string('grapsjs-domcomponents-names-cell', "certificatebeautiful") ?>",
+                            section : "<?php echo get_lang_string('grapsjs-domcomponents-names-section', "certificatebeautiful") ?>",
+                            body    : "<?php echo get_lang_string('grapsjs-domcomponents-names-wrapper', "certificatebeautiful") ?>"
                         }
                     },
                     deviceManager   : {
-                        device  : "<?php echo get_lang_string('grapsjs-devicemanager-device', 'certificatebeautiful') ?>",
+                        device  : "<?php echo get_lang_string('grapsjs-devicemanager-device', "certificatebeautiful") ?>",
                         devices : {
-                            desktop         : "<?php echo get_lang_string('grapsjs-devicemanager-devices-desktop', 'certificatebeautiful') ?>",
-                            tablet          : "<?php echo get_lang_string('grapsjs-devicemanager-devices-tablet', 'certificatebeautiful') ?>",
-                            mobileLandscape : "<?php echo get_lang_string('grapsjs-devicemanager-devices-mobilelandscape', 'certificatebeautiful') ?>",
-                            mobilePortrait  : "<?php echo get_lang_string('grapsjs-devicemanager-devices-mobileportrait', 'certificatebeautiful') ?>"
+                            desktop         : "<?php echo get_lang_string('grapsjs-devicemanager-devices-desktop', "certificatebeautiful") ?>",
+                            tablet          : "<?php echo get_lang_string('grapsjs-devicemanager-devices-tablet', "certificatebeautiful") ?>",
+                            mobileLandscape : "<?php echo get_lang_string('grapsjs-devicemanager-devices-mobilelandscape', "certificatebeautiful") ?>",
+                            mobilePortrait  : "<?php echo get_lang_string('grapsjs-devicemanager-devices-mobileportrait', "certificatebeautiful") ?>"
                         }
                     },
                     panels          : {
                         buttons : {
                             titles : {
-                                preview           : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-preview', 'certificatebeautiful') ?>",
-                                fullscreen        : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-fullscreen', 'certificatebeautiful') ?>",
-                                "sw-visibility"   : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-sw-visibility', 'certificatebeautiful') ?>",
-                                "export-template" : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-export-template', 'certificatebeautiful') ?>",
-                                "open-sm"         : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-open-sm', 'certificatebeautiful') ?>",
-                                "open-tm"         : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-open-tm', 'certificatebeautiful') ?>",
-                                "open-layers"     : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-open-layers', 'certificatebeautiful') ?>",
-                                "open-blocks"     : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-open-blocks', 'certificatebeautiful') ?>"
+                                preview           : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-preview', "certificatebeautiful") ?>",
+                                fullscreen        : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-fullscreen', "certificatebeautiful") ?>",
+                                "sw-visibility"   : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-sw-visibility', "certificatebeautiful") ?>",
+                                "export-template" : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-export-template', "certificatebeautiful") ?>",
+                                "open-sm"         : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-open-sm', "certificatebeautiful") ?>",
+                                "open-tm"         : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-open-tm', "certificatebeautiful") ?>",
+                                "open-layers"     : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-open-layers', "certificatebeautiful") ?>",
+                                "open-blocks"     : "<?php echo get_lang_string('grapsjs-panels-buttons-titles-open-blocks', "certificatebeautiful") ?>"
                             }
                         }
                     },
                     selectorManager : {
-                        label      : "<?php echo get_lang_string('grapsjs-selectormanager-label', 'certificatebeautiful') ?>",
-                        selected   : "<?php echo get_lang_string('grapsjs-selectormanager-selected', 'certificatebeautiful') ?>",
-                        emptyState : "<?php echo get_lang_string('grapsjs-selectormanager-emptystate', 'certificatebeautiful') ?>",
+                        label      : "<?php echo get_lang_string('grapsjs-selectormanager-label', "certificatebeautiful") ?>",
+                        selected   : "<?php echo get_lang_string('grapsjs-selectormanager-selected', "certificatebeautiful") ?>",
+                        emptyState : "<?php echo get_lang_string('grapsjs-selectormanager-emptystate', "certificatebeautiful") ?>",
                         states     : {
-                            hover             : "<?php echo get_lang_string('grapsjs-selectormanager-states-hover', 'certificatebeautiful') ?>",
-                            active            : "<?php echo get_lang_string('grapsjs-selectormanager-states-active', 'certificatebeautiful') ?>",
-                            "nth-of-type(2n)" : "<?php echo get_lang_string('grapsjs-selectormanager-states-nth-of-type-2n', 'certificatebeautiful') ?>"
+                            hover             : "<?php echo get_lang_string('grapsjs-selectormanager-states-hover', "certificatebeautiful") ?>",
+                            active            : "<?php echo get_lang_string('grapsjs-selectormanager-states-active', "certificatebeautiful") ?>",
+                            "nth-of-type(2n)" : "<?php echo get_lang_string('grapsjs-selectormanager-states-nth-of-type-2n', "certificatebeautiful") ?>"
                         }
                     },
                     styleManager    : {
-                        empty      : "<?php echo get_lang_string('grapsjs-stylemanager-empty', 'certificatebeautiful') ?>",
-                        layer      : "<?php echo get_lang_string('grapsjs-stylemanager-layer', 'certificatebeautiful') ?>",
-                        fileButton : "<?php echo get_lang_string('grapsjs-stylemanager-filebutton', 'certificatebeautiful') ?>",
+                        empty      : "<?php echo get_lang_string('grapsjs-stylemanager-empty', "certificatebeautiful") ?>",
+                        layer      : "<?php echo get_lang_string('grapsjs-stylemanager-layer', "certificatebeautiful") ?>",
+                        fileButton : "<?php echo get_lang_string('grapsjs-stylemanager-filebutton', "certificatebeautiful") ?>",
                         sectors    : {
-                            general     : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-general', 'certificatebeautiful') ?>",
-                            layout      : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-layout', 'certificatebeautiful') ?>",
-                            typography  : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-typography', 'certificatebeautiful') ?>",
-                            decorations : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-decorations', 'certificatebeautiful') ?>",
-                            extra       : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-extra', 'certificatebeautiful') ?>",
-                            flex        : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-flex', 'certificatebeautiful') ?>",
-                            dimension   : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-dimension', 'certificatebeautiful') ?>"
+                            general     : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-general', "certificatebeautiful") ?>",
+                            layout      : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-layout', "certificatebeautiful") ?>",
+                            typography  : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-typography', "certificatebeautiful") ?>",
+                            decorations : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-decorations', "certificatebeautiful") ?>",
+                            extra       : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-extra', "certificatebeautiful") ?>",
+                            flex        : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-flex', "certificatebeautiful") ?>",
+                            dimension   : "<?php echo get_lang_string('grapsjs-stylemanager-sectors-dimension', "certificatebeautiful") ?>"
                         },
                         properties : {
-                            float                        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-float', 'certificatebeautiful') ?>",
-                            display                      : "<?php echo get_lang_string('grapsjs-stylemanager-properties-display', 'certificatebeautiful') ?>",
-                            position                     : "<?php echo get_lang_string('grapsjs-stylemanager-properties-position', 'certificatebeautiful') ?>",
-                            top                          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-top', 'certificatebeautiful') ?>",
-                            right                        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-right', 'certificatebeautiful') ?>",
-                            left                         : "<?php echo get_lang_string('grapsjs-stylemanager-properties-left', 'certificatebeautiful') ?>",
-                            bottom                       : "<?php echo get_lang_string('grapsjs-stylemanager-properties-bottom', 'certificatebeautiful') ?>",
-                            width                        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-width', 'certificatebeautiful') ?>",
-                            height                       : "<?php echo get_lang_string('grapsjs-stylemanager-properties-height', 'certificatebeautiful') ?>",
-                            "max-width"                  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-max-width', 'certificatebeautiful') ?>",
-                            "max-height"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-max-height', 'certificatebeautiful') ?>",
-                            margin                       : "<?php echo get_lang_string('grapsjs-stylemanager-properties-margin', 'certificatebeautiful') ?>",
-                            "margin-top"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-margin-top', 'certificatebeautiful') ?>",
-                            "margin-right"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-margin-right', 'certificatebeautiful') ?>",
-                            "margin-left"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-margin-left', 'certificatebeautiful') ?>",
-                            "margin-bottom"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-margin-bottom', 'certificatebeautiful') ?>",
-                            padding                      : "<?php echo get_lang_string('grapsjs-stylemanager-properties-padding', 'certificatebeautiful') ?>",
-                            "padding-top"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-padding-top', 'certificatebeautiful') ?>",
-                            "padding-left"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-padding-left', 'certificatebeautiful') ?>",
-                            "padding-right"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-padding-right', 'certificatebeautiful') ?>",
-                            "padding-bottom"             : "<?php echo get_lang_string('grapsjs-stylemanager-properties-padding-bottom', 'certificatebeautiful') ?>",
-                            "font-family"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-font-family', 'certificatebeautiful') ?>",
-                            "font-size"                  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-font-size', 'certificatebeautiful') ?>",
-                            "font-weight"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-font-weight', 'certificatebeautiful') ?>",
-                            "letter-spacing"             : "<?php echo get_lang_string('grapsjs-stylemanager-properties-letter-spacing', 'certificatebeautiful') ?>",
-                            color                        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-color', 'certificatebeautiful') ?>",
-                            "line-height"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-line-height', 'certificatebeautiful') ?>",
-                            "text-align"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-align', 'certificatebeautiful') ?>",
-                            "text-shadow"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-shadow', 'certificatebeautiful') ?>",
-                            "text-shadow-h"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-shadow-h', 'certificatebeautiful') ?>",
-                            "text-shadow-v"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-shadow-v', 'certificatebeautiful') ?>",
-                            "text-shadow-blur"           : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-shadow-blur', 'certificatebeautiful') ?>",
-                            "text-shadow-color"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-shadow-color', 'certificatebeautiful') ?>",
-                            "border-top-left"            : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-top-left', 'certificatebeautiful') ?>",
-                            "border-top-right"           : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-top-right', 'certificatebeautiful') ?>",
-                            "border-bottom-left"         : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-bottom-left', 'certificatebeautiful') ?>",
-                            "border-bottom-right"        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-bottom-right', 'certificatebeautiful') ?>",
-                            "border-radius-top-left"     : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-radius-top-left', 'certificatebeautiful') ?>",
-                            "border-radius-top-right"    : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-radius-top-right', 'certificatebeautiful') ?>",
-                            "border-radius-bottom-left"  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-radius-bottom-left', 'certificatebeautiful') ?>",
-                            "border-radius-bottom-right" : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-radius-bottom-right', 'certificatebeautiful') ?>",
-                            "border-radius"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-radius', 'certificatebeautiful') ?>",
-                            border                       : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border', 'certificatebeautiful') ?>",
-                            "border-width"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-width', 'certificatebeautiful') ?>",
-                            "border-style"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-style', 'certificatebeautiful') ?>",
-                            "border-color"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-color', 'certificatebeautiful') ?>",
-                            "box-shadow"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow', 'certificatebeautiful') ?>",
-                            "box-shadow-h"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-h', 'certificatebeautiful') ?>",
-                            "box-shadow-v"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-v', 'certificatebeautiful') ?>",
-                            "box-shadow-blur"            : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-blur', 'certificatebeautiful') ?>",
-                            "box-shadow-spread"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-spread', 'certificatebeautiful') ?>",
-                            "box-shadow-color"           : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-color', 'certificatebeautiful') ?>",
-                            "box-shadow-type"            : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-type', 'certificatebeautiful') ?>",
-                            background                   : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background', 'certificatebeautiful') ?>",
-                            "background-color"           : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-color', 'certificatebeautiful') ?>",
-                            "background-image"           : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-image', 'certificatebeautiful') ?>",
-                            "background-repeat"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-repeat', 'certificatebeautiful') ?>",
-                            "background-position"        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-position', 'certificatebeautiful') ?>",
-                            "background-attachment"      : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-attachment', 'certificatebeautiful') ?>",
-                            "background-size"            : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-size', 'certificatebeautiful') ?>",
-                            transition                   : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transition', 'certificatebeautiful') ?>",
-                            "transition-property"        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transition-property', 'certificatebeautiful') ?>",
-                            "transition-duration"        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transition-duration', 'certificatebeautiful') ?>",
-                            "transition-timing-function" : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transition-timing-function', 'certificatebeautiful') ?>",
-                            perspective                  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-perspective', 'certificatebeautiful') ?>",
-                            transform                    : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform', 'certificatebeautiful') ?>",
-                            "transform-rotate-x"         : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-rotate-x', 'certificatebeautiful') ?>",
-                            "transform-rotate-y"         : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-rotate-y', 'certificatebeautiful') ?>",
-                            "transform-rotate-z"         : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-rotate-z', 'certificatebeautiful') ?>",
-                            "transform-scale-x"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-scale-x', 'certificatebeautiful') ?>",
-                            "transform-scale-y"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-scale-y', 'certificatebeautiful') ?>",
-                            "transform-scale-z"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-scale-z', 'certificatebeautiful') ?>",
-                            "flex-direction"             : "<?php echo get_lang_string('grapsjs-stylemanager-properties-flex-direction', 'certificatebeautiful') ?>",
-                            "flex-wrap"                  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-flex-wrap', 'certificatebeautiful') ?>",
-                            "justify-content"            : "<?php echo get_lang_string('grapsjs-stylemanager-properties-justify-content', 'certificatebeautiful') ?>",
-                            "align-items"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-align-items', 'certificatebeautiful') ?>",
-                            "align-content"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-align-content', 'certificatebeautiful') ?>",
-                            order                        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-order', 'certificatebeautiful') ?>",
-                            "flex-basis"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-flex-basis', 'certificatebeautiful') ?>",
-                            "flex-grow"                  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-flex-grow', 'certificatebeautiful') ?>",
-                            "flex-shrink"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-flex-shrink', 'certificatebeautiful') ?>",
-                            "align-self"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-align-self', 'certificatebeautiful') ?>"
+                            float                        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-float', "certificatebeautiful") ?>",
+                            display                      : "<?php echo get_lang_string('grapsjs-stylemanager-properties-display', "certificatebeautiful") ?>",
+                            position                     : "<?php echo get_lang_string('grapsjs-stylemanager-properties-position', "certificatebeautiful") ?>",
+                            top                          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-top', "certificatebeautiful") ?>",
+                            right                        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-right', "certificatebeautiful") ?>",
+                            left                         : "<?php echo get_lang_string('grapsjs-stylemanager-properties-left', "certificatebeautiful") ?>",
+                            bottom                       : "<?php echo get_lang_string('grapsjs-stylemanager-properties-bottom', "certificatebeautiful") ?>",
+                            width                        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-width', "certificatebeautiful") ?>",
+                            height                       : "<?php echo get_lang_string('grapsjs-stylemanager-properties-height', "certificatebeautiful") ?>",
+                            "max-width"                  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-max-width', "certificatebeautiful") ?>",
+                            "max-height"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-max-height', "certificatebeautiful") ?>",
+                            margin                       : "<?php echo get_lang_string('grapsjs-stylemanager-properties-margin', "certificatebeautiful") ?>",
+                            "margin-top"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-margin-top', "certificatebeautiful") ?>",
+                            "margin-right"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-margin-right', "certificatebeautiful") ?>",
+                            "margin-left"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-margin-left', "certificatebeautiful") ?>",
+                            "margin-bottom"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-margin-bottom', "certificatebeautiful") ?>",
+                            padding                      : "<?php echo get_lang_string('grapsjs-stylemanager-properties-padding', "certificatebeautiful") ?>",
+                            "padding-top"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-padding-top', "certificatebeautiful") ?>",
+                            "padding-left"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-padding-left', "certificatebeautiful") ?>",
+                            "padding-right"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-padding-right', "certificatebeautiful") ?>",
+                            "padding-bottom"             : "<?php echo get_lang_string('grapsjs-stylemanager-properties-padding-bottom', "certificatebeautiful") ?>",
+                            "font-family"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-font-family', "certificatebeautiful") ?>",
+                            "font-size"                  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-font-size', "certificatebeautiful") ?>",
+                            "font-weight"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-font-weight', "certificatebeautiful") ?>",
+                            "letter-spacing"             : "<?php echo get_lang_string('grapsjs-stylemanager-properties-letter-spacing', "certificatebeautiful") ?>",
+                            color                        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-color', "certificatebeautiful") ?>",
+                            "line-height"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-line-height', "certificatebeautiful") ?>",
+                            "text-align"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-align', "certificatebeautiful") ?>",
+                            "text-shadow"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-shadow', "certificatebeautiful") ?>",
+                            "text-shadow-h"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-shadow-h', "certificatebeautiful") ?>",
+                            "text-shadow-v"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-shadow-v', "certificatebeautiful") ?>",
+                            "text-shadow-blur"           : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-shadow-blur', "certificatebeautiful") ?>",
+                            "text-shadow-color"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-text-shadow-color', "certificatebeautiful") ?>",
+                            "border-top-left"            : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-top-left', "certificatebeautiful") ?>",
+                            "border-top-right"           : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-top-right', "certificatebeautiful") ?>",
+                            "border-bottom-left"         : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-bottom-left', "certificatebeautiful") ?>",
+                            "border-bottom-right"        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-bottom-right', "certificatebeautiful") ?>",
+                            "border-radius-top-left"     : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-radius-top-left', "certificatebeautiful") ?>",
+                            "border-radius-top-right"    : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-radius-top-right', "certificatebeautiful") ?>",
+                            "border-radius-bottom-left"  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-radius-bottom-left', "certificatebeautiful") ?>",
+                            "border-radius-bottom-right" : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-radius-bottom-right', "certificatebeautiful") ?>",
+                            "border-radius"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-radius', "certificatebeautiful") ?>",
+                            border                       : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border', "certificatebeautiful") ?>",
+                            "border-width"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-width', "certificatebeautiful") ?>",
+                            "border-style"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-style', "certificatebeautiful") ?>",
+                            "border-color"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-border-color', "certificatebeautiful") ?>",
+                            "box-shadow"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow', "certificatebeautiful") ?>",
+                            "box-shadow-h"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-h', "certificatebeautiful") ?>",
+                            "box-shadow-v"               : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-v', "certificatebeautiful") ?>",
+                            "box-shadow-blur"            : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-blur', "certificatebeautiful") ?>",
+                            "box-shadow-spread"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-spread', "certificatebeautiful") ?>",
+                            "box-shadow-color"           : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-color', "certificatebeautiful") ?>",
+                            "box-shadow-type"            : "<?php echo get_lang_string('grapsjs-stylemanager-properties-box-shadow-type', "certificatebeautiful") ?>",
+                            background                   : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background', "certificatebeautiful") ?>",
+                            "background-color"           : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-color', "certificatebeautiful") ?>",
+                            "background-image"           : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-image', "certificatebeautiful") ?>",
+                            "background-repeat"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-repeat', "certificatebeautiful") ?>",
+                            "background-position"        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-position', "certificatebeautiful") ?>",
+                            "background-attachment"      : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-attachment', "certificatebeautiful") ?>",
+                            "background-size"            : "<?php echo get_lang_string('grapsjs-stylemanager-properties-background-size', "certificatebeautiful") ?>",
+                            transition                   : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transition', "certificatebeautiful") ?>",
+                            "transition-property"        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transition-property', "certificatebeautiful") ?>",
+                            "transition-duration"        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transition-duration', "certificatebeautiful") ?>",
+                            "transition-timing-function" : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transition-timing-function', "certificatebeautiful") ?>",
+                            perspective                  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-perspective', "certificatebeautiful") ?>",
+                            transform                    : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform', "certificatebeautiful") ?>",
+                            "transform-rotate-x"         : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-rotate-x', "certificatebeautiful") ?>",
+                            "transform-rotate-y"         : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-rotate-y', "certificatebeautiful") ?>",
+                            "transform-rotate-z"         : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-rotate-z', "certificatebeautiful") ?>",
+                            "transform-scale-x"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-scale-x', "certificatebeautiful") ?>",
+                            "transform-scale-y"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-scale-y', "certificatebeautiful") ?>",
+                            "transform-scale-z"          : "<?php echo get_lang_string('grapsjs-stylemanager-properties-transform-scale-z', "certificatebeautiful") ?>",
+                            "flex-direction"             : "<?php echo get_lang_string('grapsjs-stylemanager-properties-flex-direction', "certificatebeautiful") ?>",
+                            "flex-wrap"                  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-flex-wrap', "certificatebeautiful") ?>",
+                            "justify-content"            : "<?php echo get_lang_string('grapsjs-stylemanager-properties-justify-content', "certificatebeautiful") ?>",
+                            "align-items"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-align-items', "certificatebeautiful") ?>",
+                            "align-content"              : "<?php echo get_lang_string('grapsjs-stylemanager-properties-align-content', "certificatebeautiful") ?>",
+                            order                        : "<?php echo get_lang_string('grapsjs-stylemanager-properties-order', "certificatebeautiful") ?>",
+                            "flex-basis"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-flex-basis', "certificatebeautiful") ?>",
+                            "flex-grow"                  : "<?php echo get_lang_string('grapsjs-stylemanager-properties-flex-grow', "certificatebeautiful") ?>",
+                            "flex-shrink"                : "<?php echo get_lang_string('grapsjs-stylemanager-properties-flex-shrink', "certificatebeautiful") ?>",
+                            "align-self"                 : "<?php echo get_lang_string('grapsjs-stylemanager-properties-align-self', "certificatebeautiful") ?>"
                         }
                     },
                     traitManager    : {
-                        empty  : "<?php echo get_lang_string('grapsjs-traitmanager-empty', 'certificatebeautiful') ?>",
-                        label  : "<?php echo get_lang_string('grapsjs-traitmanager-label', 'certificatebeautiful') ?>",
+                        empty  : "<?php echo get_lang_string('grapsjs-traitmanager-empty', "certificatebeautiful") ?>",
+                        label  : "<?php echo get_lang_string('grapsjs-traitmanager-label', "certificatebeautiful") ?>",
                         traits : {
                             options : {
                                 target : {
-                                    false  : "<?php echo get_lang_string('grapsjs-traitmanager-traits-options-target-false', 'certificatebeautiful') ?>",
-                                    _blank : "<?php echo get_lang_string('grapsjs-traitmanager-traits-options-target-_blank', 'certificatebeautiful') ?>"
+                                    false  : "<?php echo get_lang_string('grapsjs-traitmanager-traits-options-target-false', "certificatebeautiful") ?>",
+                                    _blank : "<?php echo get_lang_string('grapsjs-traitmanager-traits-options-target-_blank', "certificatebeautiful") ?>"
                                 }
                             }
                         }
@@ -536,7 +536,7 @@ function get_lang_string($item, $component) {
                              <input type="hidden" name="cssdata" id="form-cssdata">
                              <button type="submit" class="btn-salvar gjs-pn-btn gjs-pn-active gjs-four-color">
                                  <i class='fa fa-save'></i>&nbsp;
-                                 <?php echo get_lang_string('grapsjs-certificate_page_save', 'certificatebeautiful') ?>
+                                 <?php echo get_lang_string('grapsjs-certificate_page_save', "certificatebeautiful") ?>
                             </button>
                          </form>
                          <form id="form-testpdf" method="post" target="testpdf" style="display:none;"
@@ -546,7 +546,7 @@ function get_lang_string($item, $component) {
                              <input type="hidden" name="cssdata" id="testpdf-cssdata">
                              <button type="submit" class="btn-salvar gjs-pn-btn gjs-pn-active gjs-four-color">
                                  <i class='fa fa-file-pdf-o'></i>&nbsp;
-                                 <?php echo get_lang_string('grapsjs-certificate_page_test', 'certificatebeautiful') ?>
+                                 <?php echo get_lang_string('grapsjs-certificate_page_test', "certificatebeautiful") ?>
                             </button>
                          </form>`,
         }
@@ -610,7 +610,7 @@ function get_lang_string($item, $component) {
 
     // Update canvas-clear command
     editor.Commands.add('canvas-clear', function() {
-        if (confirm("<?php echo get_lang_string('grapsjs-certificate_confirm_clear', 'certificatebeautiful') ?>")) {
+        if (confirm("<?php echo get_lang_string('grapsjs-certificate_confirm_clear', "certificatebeautiful") ?>")) {
             editor.runCommand('core:canvas-clear');
             setTimeout(function() {
                 localStorage.clear()
@@ -635,19 +635,19 @@ function get_lang_string($item, $component) {
 
     // Add and beautify tooltips
     [
-        ['sw-visibility', '<?php echo get_lang_string('grapsjs-show_border', 'certificatebeautiful') ?>'],
-        ['preview', '<?php echo get_lang_string('grapsjs-preview', 'certificatebeautiful') ?>'],
-        ['fullscreen', '<?php echo get_lang_string('grapsjs-fullscreen', 'certificatebeautiful') ?>'],
-        ['undo', '<?php echo get_lang_string('grapsjs-undo', 'certificatebeautiful') ?>'],
-        ['redo', '<?php echo get_lang_string('grapsjs-redo', 'certificatebeautiful') ?>'],
-        ['canvas-clear', '<?php echo get_lang_string('grapsjs-clear', 'certificatebeautiful') ?>']
+        ['sw-visibility', '<?php echo get_lang_string('grapsjs-show_border', "certificatebeautiful") ?>'],
+        ['preview', '<?php echo get_lang_string('grapsjs-preview', "certificatebeautiful") ?>'],
+        ['fullscreen', '<?php echo get_lang_string('grapsjs-fullscreen', "certificatebeautiful") ?>'],
+        ['undo', '<?php echo get_lang_string('grapsjs-undo', "certificatebeautiful") ?>'],
+        ['redo', '<?php echo get_lang_string('grapsjs-redo', "certificatebeautiful") ?>'],
+        ['canvas-clear', '<?php echo get_lang_string('grapsjs-clear', "certificatebeautiful") ?>']
     ].forEach(function(item) {
         pn.getButton('options', item[0]).set('attributes', {title : item[1], 'data-tooltip-pos' : 'bottom'});
     });
     [
-        ['open-sm', '<?php echo get_lang_string('grapsjs-open_sm', 'certificatebeautiful') ?>'],
-        ['open-layers', '<?php echo get_lang_string('grapsjs-open_layers', 'certificatebeautiful') ?>'],
-        ['open-blocks', '<?php echo get_lang_string('grapsjs-open_block', 'certificatebeautiful') ?>']
+        ['open-sm', '<?php echo get_lang_string('grapsjs-open_sm', "certificatebeautiful") ?>'],
+        ['open-layers', '<?php echo get_lang_string('grapsjs-open_layers', "certificatebeautiful") ?>'],
+        ['open-blocks', '<?php echo get_lang_string('grapsjs-open_block', "certificatebeautiful") ?>']
     ].forEach(function(item) {
         pn.getButton('views', item[0]).set('attributes', {title : item[1], 'data-tooltip-pos' : 'bottom'});
     });
@@ -680,7 +680,7 @@ function get_lang_string($item, $component) {
 
         // Add Settings Sector
         var traitsSector = $('<div class="gjs-sm-sector no-select">' +
-            '<div class="gjs-sm-sector-title"><span class="icon-settings fa fa-cog"></span> <span class="gjs-sm-sector-label"><?php echo get_lang_string('grapsjs-settings', 'certificatebeautiful') ?></span></div>' +
+            '<div class="gjs-sm-sector-title"><span class="icon-settings fa fa-cog"></span> <span class="gjs-sm-sector-label"><?php echo get_lang_string('grapsjs-settings', "certificatebeautiful") ?></span></div>' +
             '<div class="gjs-sm-properties" style="display: none;"></div></div>');
         var traitsProps = traitsSector.find('.gjs-sm-properties');
         // traitsProps.append($('.gjs-trt-traits'));

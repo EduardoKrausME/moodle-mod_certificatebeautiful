@@ -45,11 +45,11 @@ class course_categories extends help_base {
      */
     public static function table_structure() {
         return [
-            ['key' => 'id', 'label' => get_string('help_course_categories_id', 'certificatebeautiful')],
-            ['key' => 'name', 'label' => get_string('help_course_categories_name', 'certificatebeautiful')],
-            ['key' => 'idnumber', 'label' => get_string('help_course_categories_idnumber', 'certificatebeautiful')],
-            ['key' => 'description', 'label' => get_string('help_course_categories_description', 'certificatebeautiful')],
-            ['key' => 'timemodified', 'label' => get_string('help_course_categories_timemodified', 'certificatebeautiful')],
+            ["key" => "id", "label" => get_string("help_course_categories_id", "certificatebeautiful")],
+            ["key" => "name", "label" => get_string("help_course_categories_name", "certificatebeautiful")],
+            ["key" => "idnumber", "label" => get_string("help_course_categories_idnumber", "certificatebeautiful")],
+            ["key" => "description", "label" => get_string("help_course_categories_description", "certificatebeautiful")],
+            ["key" => "timemodified", "label" => get_string("help_course_categories_timemodified", "certificatebeautiful")],
         ];
     }
 
@@ -65,7 +65,7 @@ class course_categories extends help_base {
     public static function get_data($course) {
         global $DB;
 
-        $coursecategories = $DB->get_record('course_categories', ['id' => $course->category]);
+        $coursecategories = $DB->get_record("course_categories", ["id" => $course->category]);
 
         return self::base_get_data(self::table_structure(), $coursecategories);
     }

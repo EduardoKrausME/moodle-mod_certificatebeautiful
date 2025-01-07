@@ -47,7 +47,7 @@ class issue {
         global $DB;
 
         /** @var certificatebeautiful_issue $certificatebeautifulissue */
-        $certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', ["userid" => $user->id, "cmid" => $cm->id]);
+        $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", ["userid" => $user->id, "cmid" => $cm->id]);
         if (!$certificatebeautifulissue) {
             $certificatebeautifulissue = (object)[
                 "userid" => $user->id,
@@ -58,7 +58,7 @@ class issue {
                 "timecreated" => time(),
                 "timemodified" => time(),
             ];
-            $certificatebeautifulissue->id = $DB->insert_record('certificatebeautiful_issue', $certificatebeautifulissue);
+            $certificatebeautifulissue->id = $DB->insert_record("certificatebeautiful_issue", $certificatebeautifulissue);
         }
 
         return $certificatebeautifulissue;

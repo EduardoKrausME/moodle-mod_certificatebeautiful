@@ -34,7 +34,7 @@ function xmldb_certificatebeautiful_install() {
     foreach (certificatebeautiful_list_all_models() as $model) {
         $pagesinfo = [
             [
-                "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model['key']),
+                "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model["key"]),
                 "cssdata" => "",
             ], [
                 "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
@@ -43,11 +43,11 @@ function xmldb_certificatebeautiful_install() {
         ];
 
         $certificatebeautifulmodel = (object)[
-            "name" => $model['name'],
+            "name" => $model["name"],
             "pages_info" => json_encode($pagesinfo, JSON_PRETTY_PRINT),
             "timecreated" => time(),
             "timemodified" => time(),
         ];
-        $DB->insert_record('certificatebeautiful_model', $certificatebeautifulmodel);
+        $DB->insert_record("certificatebeautiful_model", $certificatebeautifulmodel);
     }
 }

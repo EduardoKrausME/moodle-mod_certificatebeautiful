@@ -46,8 +46,8 @@ class enrolments extends help_base {
     public static function table_structure() {
         return [
             [
-                'key' => 'timestart',
-                'label' => get_string('help_enrolments_timestart', 'certificatebeautiful'),
+                "key" => "timestart",
+                "label" => get_string("help_enrolments_timestart", "certificatebeautiful"),
             ],
         ];
     }
@@ -70,10 +70,10 @@ class enrolments extends help_base {
                  WHERE e.status   = 0
                    AND ue.userid  = :userid
                    AND e.courseid = :courseid";
-        $params = ['userid' => $user->id, 'courseid' => $course->id];
+        $params = ["userid" => $user->id, "courseid" => $course->id];
 
         return [
-            'timestart' => $DB->get_field_sql($sql, $params),
+            "timestart" => $DB->get_field_sql($sql, $params),
         ];
     }
 }

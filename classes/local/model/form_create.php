@@ -47,14 +47,14 @@ class form_create extends \moodleform {
 
         $mform = $this->_form;
         /** @var certificatebeautiful_model $certificatebeautifulmodel */
-        $certificatebeautifulmodel = $this->_customdata['certificatebeautiful_model'];
+        $certificatebeautifulmodel = $this->_customdata["certificatebeautiful_model"];
 
-        $mform->addElement('hidden', 'id');
-        $mform->setType('id', PARAM_INT);
+        $mform->addElement("hidden", "id");
+        $mform->setType("id", PARAM_INT);
 
-        $mform->addElement('text', 'name', get_string('model_name', 'certificatebeautiful'), 'maxlength="254" size="50"');
-        $mform->addRule('name', get_string('model_name_missing', 'certificatebeautiful'), 'required', null, 'client');
-        $mform->setType('name', PARAM_TEXT);
+        $mform->addElement("text", "name", get_string("model_name", "certificatebeautiful"), 'maxlength="254" size="50"');
+        $mform->addRule("name", get_string("model_name_missing", "certificatebeautiful"), "required", null, "client");
+        $mform->setType("name", PARAM_TEXT);
 
         if ($certificatebeautifulmodel->id > 0) {
             $pageid = 1;
@@ -73,9 +73,9 @@ class form_create extends \moodleform {
                 $htmldata = "<div class='body-{$key}'>{$htmldata}</div>";
 
                 $data["pages"][] = [
-                    "title" => get_string('model_page_name', 'certificatebeautiful', $pageid++),
+                    "title" => get_string("model_page_name", "certificatebeautiful", $pageid++),
                     "pagina" => $htmldata,
-                    "addpage_title" => get_string('edit_this_page', 'certificatebeautiful'),
+                    "addpage_title" => get_string("edit_this_page", "certificatebeautiful"),
                     "addpage_href" => "manage-model-editpage.php?id={$certificatebeautifulmodel->id}&page={$key}",
                 ];
             }
@@ -86,13 +86,13 @@ class form_create extends \moodleform {
 
             $mform->addElement("html", $OUTPUT->render_from_template('mod_certificatebeautiful/formgroup_create-page', $data));
 
-            $this->add_action_buttons(true, get_string('save_model', 'certificatebeautiful'));
+            $this->add_action_buttons(true, get_string("save_model", "certificatebeautiful"));
         } else {
-            $message = get_string('create_after_model', 'certificatebeautiful');
+            $message = get_string("create_after_model", "certificatebeautiful");
             $mform->addElement("html",
-                $PAGE->get_renderer('core')->render(new notification($message, notification::NOTIFY_WARNING)));
+                $PAGE->get_renderer("core")->render(new notification($message, notification::NOTIFY_WARNING)));
 
-            $this->add_action_buttons(true, get_string('create_model', 'certificatebeautiful'));
+            $this->add_action_buttons(true, get_string("create_model", "certificatebeautiful"));
         }
 
         $this->set_data($certificatebeautifulmodel);

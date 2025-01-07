@@ -32,38 +32,38 @@ global $PAGE, $USER, $CFG;
 $context = context_system::instance();
 $PAGE->set_context($context);
 $PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php');
-$PAGE->set_title(get_string('list_model', 'certificatebeautiful'));
+$PAGE->set_title(get_string("list_model", "certificatebeautiful"));
 $PAGE->add_body_class("certificatebeautiful-pages");
 
 require_login();
 require_capability('mod/certificatebeautiful:addinstance', $context);
 
-$PAGE->set_heading(format_string(get_string('list_model', 'certificatebeautiful')));
+$PAGE->set_heading(format_string(get_string("list_model", "certificatebeautiful")));
 
-$PAGE->navbar->add(get_string('list_model', 'certificatebeautiful'), $PAGE->url);
+$PAGE->navbar->add(get_string("list_model", "certificatebeautiful"), $PAGE->url);
 
 echo $OUTPUT->header();
 
 echo $OUTPUT->render_from_template('mod_certificatebeautiful/heading-addnew', [
     "url" => "manage-model.php?id=-1",
-    "text" => get_string('add_new_model', 'certificatebeautiful'),
+    "text" => get_string("add_new_model", "certificatebeautiful"),
 ]);
 
 
-$models = $DB->get_records('certificatebeautiful_model');
+$models = $DB->get_records("certificatebeautiful_model");
 $data = ["pages" => [], "class-root" => "d-flex flex-wrap certificate-flex-gap"];
 foreach ($models as $model) {
 
     $pagesinfo = json_decode($model->pages_info, true);
 
-    $htmldata = "{$pagesinfo[0]['htmldata']}<style>{$pagesinfo[0]['cssdata']}</style>";
+    $htmldata = "{$pagesinfo[0]["htmldata"]}<style>{$pagesinfo[0]["cssdata"]}</style>";
     $htmldata = str_replace("[data-gjs-type=wrapper]", ".body-{$model->id}", $htmldata);
     $htmldata = "<div class='body-{$model->id}'>{$htmldata}</div>";
 
     $data["pages"][] = [
         "title" => $model->name,
         "pagina" => $htmldata,
-        "addpage_title" => get_string('select_model', 'certificatebeautiful'),
+        "addpage_title" => get_string("select_model", "certificatebeautiful"),
         "addpage_href" => "manage-model.php?id={$model->id}",
     ];
 }

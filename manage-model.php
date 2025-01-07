@@ -32,32 +32,32 @@ require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/model/form_
 
 global $PAGE, $USER, $CFG;
 
-$id = required_param('id', PARAM_INT);
+$id = required_param("id", PARAM_INT);
 
 $context = context_system::instance();
 $PAGE->set_context($context);
-$PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php', ['id' => $id]);
+$PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php', ["id" => $id]);
 
 require_login();
 require_capability('mod/certificatebeautiful:addinstance', $context);
 
 if ($id > 0) {
     /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $certificatebeautifulmodel */
-    $certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id' => $id], "*", MUST_EXIST);
+    $certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
 
     $PAGE->set_title($certificatebeautifulmodel->name);
     $PAGE->set_heading(format_string($certificatebeautifulmodel->name));
 
-    $PAGE->navbar->add(get_string('list_model', 'certificatebeautiful'), "manage-model-list.php");
+    $PAGE->navbar->add(get_string("list_model", "certificatebeautiful"), "manage-model-list.php");
     $PAGE->navbar->add($certificatebeautifulmodel->name, $PAGE->url);
 } else {
     $certificatebeautifulmodel = (object)["id" => -1, "name" => "", "pages_info" => "[]"];
 
-    $PAGE->set_title(get_string('new_model', 'certificatebeautiful'));
-    $PAGE->set_heading(format_string(get_string('new_model', 'certificatebeautiful')));
+    $PAGE->set_title(get_string("new_model", "certificatebeautiful"));
+    $PAGE->set_heading(format_string(get_string("new_model", "certificatebeautiful")));
 
-    $PAGE->navbar->add(get_string('list_model', 'certificatebeautiful'), "manage-model-list.php");
-    $PAGE->navbar->add(get_string('new_model', 'certificatebeautiful'), $PAGE->url);
+    $PAGE->navbar->add(get_string("list_model", "certificatebeautiful"), "manage-model-list.php");
+    $PAGE->navbar->add(get_string("new_model", "certificatebeautiful"), $PAGE->url);
 }
 
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);

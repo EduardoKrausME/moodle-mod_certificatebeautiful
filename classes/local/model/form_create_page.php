@@ -43,7 +43,7 @@ class form_create_page extends \moodleform {
     public static function empty_page() {
 
         return (object)[
-            "htmldata" => '<div>' . get_string('certificatebeautiful-page_empty', 'certificatebeautiful') . '</div>',
+            "htmldata" => '<div>' . get_string('certificatebeautiful-page_empty', "certificatebeautiful") . '</div>',
             "cssdata" => "
                 [data-gjs-type=wrapper] {
                     background-image: url(/mod/certificatebeautiful/_editor/img/vazio.jpg);

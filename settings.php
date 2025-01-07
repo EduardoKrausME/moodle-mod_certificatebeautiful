@@ -44,31 +44,31 @@ if ($ADMIN->fulltree) {
             </div>";
     }
 
-    $settings->add(new admin_setting_heading('certificatebeautiful_method_heading',
-        get_string('config_signature_heading', 'certificatebeautiful'),
-        get_string('config_signature_heading_desc', 'certificatebeautiful', count($options)) .
+    $settings->add(new admin_setting_heading("certificatebeautiful_method_heading",
+        get_string("config_signature_heading", "certificatebeautiful"),
+        get_string("config_signature_heading_desc", "certificatebeautiful", count($options)) .
         "<div class='d-flex'>{$imagens}</div>"));
 
     $setting = new admin_setting_configcheckbox('certificatebeautiful/config_signature_enable',
-        get_string('config_signature_enable', 'certificatebeautiful'),
-        get_string('config_signature_enable_desc', 'certificatebeautiful'), 1);
+        get_string("config_signature_enable", "certificatebeautiful"),
+        get_string("config_signature_enable_desc", "certificatebeautiful"), 1);
     $settings->add($setting);
 
     $setting = new admin_setting_configselect('certificatebeautiful/config_signature_typography',
-        get_string('config_signature_typography', 'certificatebeautiful'),
-        get_string('config_signature_typography_desc', 'certificatebeautiful'), 'Aerotis', $options);
+        get_string("config_signature_typography", "certificatebeautiful"),
+        get_string("config_signature_typography_desc", "certificatebeautiful"), "Aerotis", $options);
     $settings->add($setting);
 
     $defaultsetting = substr($USER->lastname, 0, 10);
     $setting = new admin_setting_configtext_with_maxlength('certificatebeautiful/config_signature_text',
-        get_string('config_signature_text', 'certificatebeautiful'),
-        get_string('config_signature_text_desc', 'certificatebeautiful'),
+        get_string("config_signature_text", "certificatebeautiful"),
+        get_string("config_signature_text_desc", "certificatebeautiful"),
         $defaultsetting, PARAM_TEXT, null, 10);
     $settings->add($setting);
 
     $setting = new admin_setting_configcolourpicker('certificatebeautiful/config_signature_color',
-        get_string('config_signature_color', 'certificatebeautiful'),
-        get_string('config_signature_color_desc', 'certificatebeautiful'), "#324a55");
+        get_string("config_signature_color", "certificatebeautiful"),
+        get_string("config_signature_color_desc", "certificatebeautiful"), "#324a55");
     $settings->add($setting);
 
 }

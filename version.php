@@ -28,4 +28,4 @@ $plugin->version = 2024110800;
 $plugin->release = '2.1.17';
 $plugin->requires = 2021041900;
 $plugin->maturity = MATURITY_STABLE;
-$plugin->component = 'mod_certificatebeautiful';
+$plugin->component = "mod_certificatebeautiful";

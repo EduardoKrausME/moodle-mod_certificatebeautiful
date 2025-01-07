@@ -49,7 +49,7 @@ class restore_certificatebeautiful_activity_task extends restore_activity_task {
      */
     protected function define_my_steps(): void {
         $this->add_step(new restore_certificatebeautiful_activity_structure_step(
-                'certificatebeautiful_structure',
+                "certificatebeautiful_structure",
                 'certificatebeautiful.xml')
         );
     }
@@ -63,7 +63,7 @@ class restore_certificatebeautiful_activity_task extends restore_activity_task {
         $contents = [];
 
         // Define the contents.
-        $contents[] = new restore_decode_content('certificatebeautiful', ['intro'], 'certificatebeautiful');
+        $contents[] = new restore_decode_content("certificatebeautiful", ["intro"], "certificatebeautiful");
 
         return $contents;
     }
@@ -77,9 +77,9 @@ class restore_certificatebeautiful_activity_task extends restore_activity_task {
         $rules = [];
 
         $rules[] = new restore_decode_rule(
-            'CERTIFICATEBEAUTIFULVIEWBYID', '/mod/certificatebeautiful/view.php?id=$1', 'course_module');
+            "CERTIFICATEBEAUTIFULVIEWBYID", '/mod/certificatebeautiful/view.php?id=$1', "course_module");
         $rules[] = new restore_decode_rule(
-            'CERTIFICATEBEAUTIFULINDEX', '/mod/certificatebeautiful/index.php?id=$1', 'course');
+            "CERTIFICATEBEAUTIFULINDEX", '/mod/certificatebeautiful/index.php?id=$1', "course");
 
         return $rules;
     }
@@ -95,7 +95,7 @@ class restore_certificatebeautiful_activity_task extends restore_activity_task {
         $rules = [];
 
         // Define the rules.
-        $rules[] = new restore_log_rule('certificatebeautiful', 'view all', 'index.php?id={course}', null);
+        $rules[] = new restore_log_rule("certificatebeautiful", 'view all', 'index.php?id={course}', null);
 
         return $rules;
     }

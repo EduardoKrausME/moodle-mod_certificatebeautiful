@@ -47,8 +47,8 @@ class grade extends help_base {
      */
     public static function table_structure() {
         return [
-            ['key' => 'finalgrade', 'label' => get_string('help_grade_finalgrade', 'certificatebeautiful')],
-            ['key' => 'table', 'label' => get_string('help_grade_table', 'certificatebeautiful')],
+            ["key" => "finalgrade", "label" => get_string("help_grade_finalgrade", "certificatebeautiful")],
+            ["key" => "table", "label" => get_string("help_grade_table", "certificatebeautiful")],
         ];
     }
 
@@ -62,8 +62,8 @@ class grade extends help_base {
      */
     public static function get_data($course, $user) {
         return [
-            'finalgrade' => self::get_grade($course, $user),
-            'table' => self::get_table_grade($course, $user),
+            "finalgrade" => self::get_grade($course, $user),
+            "table" => self::get_table_grade($course, $user),
         ];
     }
 
@@ -101,7 +101,7 @@ class grade extends help_base {
      */
     private static function get_table_grade($course, $user) {
 
-        $items = grade_item::fetch_all(['courseid' => $course->id]);
+        $items = grade_item::fetch_all(["courseid" => $course->id]);
         if (empty($items)) {
             return '';
         }
@@ -119,7 +119,7 @@ class grade extends help_base {
         $retval = '<table>';
         foreach ($items as $id => $item) {
             // Do not include grades for course itens.
-            if ($item->itemtype != 'mod') {
+            if ($item->itemtype != "mod") {
                 continue;
             }
             $cm = get_coursemodule_from_instance($item->itemmodule, $item->iteminstance);
@@ -148,8 +148,8 @@ class grade extends help_base {
     private static function get_mod_grade($cm, $course, $user) {
         global $DB;
 
-        $module = $DB->get_record('modules', ['id' => $cm->module]);
-        $gradeitem = grade_get_grades($course->id, 'mod', $module->name, $cm->instance, $user->id);
+        $module = $DB->get_record("modules", ["id" => $cm->module]);
+        $gradeitem = grade_get_grades($course->id, "mod", $module->name, $cm->instance, $user->id);
         if ($gradeitem) {
             $item = new grade_item();
             $itemproperties = reset($gradeitem->items);

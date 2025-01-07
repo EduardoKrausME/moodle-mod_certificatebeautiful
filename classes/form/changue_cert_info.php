@@ -47,40 +47,40 @@ class changue_cert_info extends moodleform {
         $editoroptions = null;
         $filemanageroptions = null;
 
-        $mform->addElement('hidden', 'id', null);
-        $mform->setType('id', PARAM_ALPHANUM);
-        $mform->setConstant('id', $this->_customdata['id']);
+        $mform->addElement("hidden", "id", null);
+        $mform->setType("id", PARAM_ALPHANUM);
+        $mform->setConstant("id", $this->_customdata["id"]);
 
-        $mform->addElement('hidden', 'page', null);
-        $mform->setType('page', PARAM_ALPHANUM);
-        $mform->setConstant('page', $this->_customdata['page']);
+        $mform->addElement("hidden", "page", null);
+        $mform->setType("page", PARAM_ALPHANUM);
+        $mform->setConstant("page", $this->_customdata["page"]);
 
-        $mform->addElement('hidden', 'action', null);
-        $mform->setType('action', PARAM_ALPHANUM);
-        $mform->setConstant('action', $this->_customdata['action']);
+        $mform->addElement("hidden", "action", null);
+        $mform->setType("action", PARAM_ALPHANUM);
+        $mform->setConstant("action", $this->_customdata["action"]);
 
-        $mform->addElement('header', 'general', get_string('general', 'form'));
+        $mform->addElement("header", "general", get_string("general", "form"));
 
         $html = '<div class="alert alert-warning">' .
-            get_string('select_background_image_info', 'mod_certificatebeautiful') . '</div>';
-        $mform->addElement('html', $html);
+            get_string("select_background_image_info", "mod_certificatebeautiful") . '</div>';
+        $mform->addElement("html", $html);
 
         $options = [
-            'maxfiles' => 1,
-            'subdirs' => 0,
-            'accepted_types' => ['.jpg', '.png'],
+            "maxfiles" => 1,
+            "subdirs" => 0,
+            "accepted_types" => ['.jpg', '.png'],
         ];
-        $mform->addElement('filemanager', 'background', get_string('select_background_image', 'mod_certificatebeautiful'),
+        $mform->addElement("filemanager", "background", get_string("select_background_image", "mod_certificatebeautiful"),
             null, $options);
 
         $buttonarray = [];
-        $buttonarray[] = &$mform->createElement('submit', 'saveandreturn', get_string('savechangesandreturn'),
-            ['class' => 'form-submit']);
-        $buttonarray[] = &$mform->createElement('cancel');
+        $buttonarray[] = &$mform->createElement("submit", "saveandreturn", get_string("savechangesandreturn"),
+            ["class" => 'form-submit']);
+        $buttonarray[] = &$mform->createElement("cancel");
 
-        $grp = $mform->addGroup($buttonarray, 'buttonar', get_string('formactions', 'core_form'), [' '], false);
+        $grp = $mform->addGroup($buttonarray, "buttonar", get_string("formactions", "core_form"), [' '], false);
         $grp->setHiddenLabel(true);
-        $mform->closeHeaderBefore('buttonar');
+        $mform->closeHeaderBefore("buttonar");
 
         $this->set_data([]);
     }

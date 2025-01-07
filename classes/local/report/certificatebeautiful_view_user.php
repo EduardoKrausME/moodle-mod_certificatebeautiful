@@ -58,33 +58,33 @@ class certificatebeautiful_view_user extends \table_sql {
         $this->is_downloadable(true);
         $this->show_download_buttons_at([TABLE_P_BOTTOM]);
 
-        $download = optional_param('download', null, PARAM_ALPHA);
+        $download = optional_param("download", null, PARAM_ALPHA);
         if ($download) {
             raise_memory_limit(MEMORY_EXTRA);
-            $filename = get_string('report_filename', 'certificatebeautiful');
+            $filename = get_string("report_filename", "certificatebeautiful");
             $this->is_downloading($download, $filename, fullname($user));
         }
 
         $columns = [
-            'fullname',
-            'email',
-            'code',
-            'timecreated',
+            "fullname",
+            "email",
+            "code",
+            "timecreated",
         ];
         $headers = [
-            get_string('report_usernome', 'certificatebeautiful'),
-            get_string('report_useremail', 'certificatebeautiful'),
-            get_string('report_code', 'certificatebeautiful'),
-            get_string('report_timecreated', 'certificatebeautiful'),
+            get_string("report_usernome", "certificatebeautiful"),
+            get_string("report_useremail", "certificatebeautiful"),
+            get_string("report_code", "certificatebeautiful"),
+            get_string("report_timecreated", "certificatebeautiful"),
         ];
 
         if (!$this->is_downloading()) {
-            $columns[] = 'extra';
+            $columns[] = "extra";
             $headers[] = '';
         }
 
         $this->define_columns($columns);
-        $this->column_class('extra', 'certificatebeautiful-report-extra-width');
+        $this->column_class("extra", 'certificatebeautiful-report-extra-width');
         $this->define_headers($headers);
     }
 
@@ -113,12 +113,12 @@ class certificatebeautiful_view_user extends \table_sql {
         }
 
         if ($COURSE->id == SITEID) {
-            $profileurl = new moodle_url('/user/profile.php', ['id' => $linha->user_id]);
+            $profileurl = new moodle_url('/user/profile.php', ["id" => $linha->user_id]);
         } else {
             $profileurl = new moodle_url('/user/view.php',
-                ['id' => $linha->user_id, 'course' => $COURSE->id]);
+                ["id" => $linha->user_id, "course" => $COURSE->id]);
         }
-        return html_writer::link($profileurl, $name, ['target' => '_blank']);
+        return html_writer::link($profileurl, $name, ["target" => "_blank"]);
     }
 
     /**
@@ -144,7 +144,7 @@ class certificatebeautiful_view_user extends \table_sql {
     public function col_extra($linha) {
         global $OUTPUT;
 
-        $urloptions = ['code' => $linha->code, 'action' => 'view'];
+        $urloptions = ["code" => $linha->code, "action" => "view"];
 
         $data = [
             "uniqid" => uniqid(),

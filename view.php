@@ -27,18 +27,18 @@ require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/issue.php")
 
 global $PAGE, $USER, $CFG;
 
-$id = required_param('id', PARAM_INT);
+$id = required_param("id", PARAM_INT);
 
-$cm = get_coursemodule_from_id('certificatebeautiful', $id, 0, false, MUST_EXIST);
-$course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
+$cm = get_coursemodule_from_id("certificatebeautiful", $id, 0, false, MUST_EXIST);
+$course = $DB->get_record("course", ["id" => $cm->course], '*', MUST_EXIST);
 
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
-$certificatebeautiful = $DB->get_record('certificatebeautiful', ['id' => $cm->instance], '*', MUST_EXIST);
+$certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], '*', MUST_EXIST);
 
 $context = context_module::instance($cm->id);
 
 $PAGE->set_context($context);
-$PAGE->set_url('/mod/certificatebeautiful/view.php', ['id' => $id]);
+$PAGE->set_url('/mod/certificatebeautiful/view.php', ["id" => $id]);
 $PAGE->set_title($course->shortname . ': ' . $certificatebeautiful->name);
 $PAGE->set_heading(format_string($course->fullname));
 
@@ -46,14 +46,14 @@ require_course_login($course, true, $cm);
 require_capability('mod/certificatebeautiful:view', $context);
 
 $event = \mod_certificatebeautiful\event\certificatebeautiful_course_module_viewed::create([
-    'objectid' => $PAGE->cm->instance,
-    'context' => $PAGE->context,
+    "objectid" => $PAGE->cm->instance,
+    "context" => $PAGE->context,
 ]);
-$event->add_record_snapshot('course', $PAGE->course);
+$event->add_record_snapshot("course", $PAGE->course);
 $event->add_record_snapshot($PAGE->cm->modname, $certificatebeautiful);
 $event->trigger();
 
-// Update 'viewed' state if required by completion system.
+// Update "viewed" state if required by completion system.
 $completion = new completion_info($course);
 $completion->set_module_viewed($cm);
 
@@ -61,8 +61,8 @@ echo $OUTPUT->header();
 
 if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
 
-    $title = get_string('report_filename', 'certificatebeautiful');
-    echo $OUTPUT->heading($title, 2, 'main', 'certificatebeautifulheading');
+    $title = get_string("report_filename", "certificatebeautiful");
+    echo $OUTPUT->heading($title, 2, "main", "certificatebeautifulheading");
 
     $table = new \mod_certificatebeautiful\local\report\certificatebeautiful_view(
         "certificatebeautiful_report", $cm->id, $certificatebeautiful);
@@ -76,7 +76,7 @@ if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
     $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?code={$certificatebeautifulissue->code}";
 
     $data = [
-        'issueid' => $certificatebeautifulissue->id,
+        "issueid" => $certificatebeautifulissue->id,
         'pdf-viewer-url' => "{$viewerurl}?file=" . urlencode("{$urlbase}&action=view"),
         'pdf-url_base' => $urlbase,
     ];

@@ -105,7 +105,7 @@ class font_attributes {
      */
     private function return_value($instring) {
         if (ord($instring) == 0) {
-            if (function_exists('mb_convert_encoding')) {
+            if (function_exists("mb_convert_encoding")) {
                 return mb_convert_encoding($instring, "UTF-8", "UTF-16");
             } else {
                 return str_replace(chr(00), '', $instring);
@@ -283,7 +283,7 @@ class font_attributes {
         for ($t = 0; $t < $unumoftables; $t++) {
             $tttabledirectory = fread($fonthandle, 16);
             $sztag = substr($tttabledirectory, 0, 4);
-            if (strtolower($sztag) == 'name') {
+            if (strtolower($sztag) == "name") {
                 $uoffset = $this->u_long(substr($tttabledirectory, 8, 4));
                 $nametablefound = true;
                 break;

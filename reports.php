@@ -25,14 +25,14 @@
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
 
-$courseid = optional_param('course', 0, PARAM_INT);
-$course = $DB->get_record('course', ['id' => $courseid], '*', MUST_EXIST);
+$courseid = optional_param("course", 0, PARAM_INT);
+$course = $DB->get_record("course", ["id" => $courseid], '*', MUST_EXIST);
 
 $context = context_system::instance();
 $PAGE->set_context($context);
-$PAGE->set_url('/mod/certificatebeautiful/reports.php', ['course' => $courseid]);
-$PAGE->set_title("{$course->shortname}: " . get_string('reports'));
-$PAGE->set_heading("{$course->fullname}: " . get_string('modulename', 'certificatebeautiful'));
+$PAGE->set_url('/mod/certificatebeautiful/reports.php', ["course" => $courseid]);
+$PAGE->set_title("{$course->shortname}: " . get_string("reports"));
+$PAGE->set_heading("{$course->fullname}: " . get_string("modulename", "certificatebeautiful"));
 $PAGE->add_body_class("certificatebeautiful-pages");
 
 require_course_login($course);
@@ -40,8 +40,8 @@ require_capability('mod/certificatebeautiful:viewreport', $context);
 
 echo $OUTPUT->header();
 
-$title = get_string('reports') . ": " . get_string('modulename', 'certificatebeautiful');
-echo $OUTPUT->heading($title, 2, 'main', 'certificatebeautifulheading');
+$title = get_string("reports") . ": " . get_string("modulename", "certificatebeautiful");
+echo $OUTPUT->heading($title, 2, "main", "certificatebeautifulheading");
 
 $sql = "SELECT cm.*, cb.name
           FROM {course_modules} cm
@@ -59,6 +59,6 @@ foreach ($certificatebeautifuls as $certificatebeautiful) {
     ];
 }
 
-echo $OUTPUT->render_from_template('core/report_link_page', ['node' => $reportnode]);
+echo $OUTPUT->render_from_template('core/report_link_page', ["node" => $reportnode]);
 
 echo $OUTPUT->footer();

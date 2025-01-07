@@ -28,37 +28,37 @@ require_once("../../../config.php");
 require_once($CFG->dirroot . '/lib/adminlib.php');
 global $PAGE, $USER, $CFG;
 
-$code = optional_param('code', false, PARAM_TEXT);
+$code = optional_param("code", false, PARAM_TEXT);
 
-$PAGE->set_url('/mod/certificatebeautiful/v/', ['code' => $code]);
-$PAGE->set_title(get_string('validate_certificate_title', 'certificatebeautiful'));
-$PAGE->set_heading(format_string(get_string('validate_certificate_title', 'certificatebeautiful')));
+$PAGE->set_url('/mod/certificatebeautiful/v/', ["code" => $code]);
+$PAGE->set_title(get_string("validate_certificate_title", "certificatebeautiful"));
+$PAGE->set_heading(format_string(get_string("validate_certificate_title", "certificatebeautiful")));
 $PAGE->set_context(\context_system::instance());
 
 echo $OUTPUT->header();
 
 if ($code) {
-    $certificatebeautifulissue = $DB->get_record('certificatebeautiful_issue', ["code" => $code]);
+    $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", ["code" => $code]);
     if ($certificatebeautifulissue) {
         $data = [
-            'code' => $certificatebeautifulissue->code,
-            'urlcode' => "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$certificatebeautifulissue->code}",
-            'date' => userdate($certificatebeautifulissue->timecreated),
+            "code" => $certificatebeautifulissue->code,
+            "urlcode" => "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$certificatebeautifulissue->code}",
+            "date" => userdate($certificatebeautifulissue->timecreated),
         ];
 
         $namefields = implode(",", \core_user\fields::get_name_fields());
-        if ($user = $DB->get_record('user', ['id' => $certificatebeautifulissue->userid], $namefields)) {
-            $data['username'] = fullname($user);
+        if ($user = $DB->get_record("user", ["id" => $certificatebeautifulissue->userid], $namefields)) {
+            $data["username"] = fullname($user);
         }
 
-        $cm = get_coursemodule_from_id('certificatebeautiful', $certificatebeautifulissue->cmid);
+        $cm = get_coursemodule_from_id("certificatebeautiful", $certificatebeautifulissue->cmid);
         if ($cm) {
-            $data['name'] = $cm->name;
-            $data['course'] = $DB->get_field('course', 'fullname', ['id' => $cm->course]);
+            $data["name"] = $cm->name;
+            $data["course"] = $DB->get_field("course", "fullname", ["id" => $cm->course]);
         }
     } else {
         $data = [
-            'message' => get_string('validate_certificate_notfound', 'certificatebeautiful'),
+            "message" => get_string("validate_certificate_notfound", "certificatebeautiful"),
         ];
         $code = false;
     }

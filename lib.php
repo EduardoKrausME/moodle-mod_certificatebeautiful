@@ -80,10 +80,10 @@ function certificatebeautiful_add_instance(stdClass $data, $mform = null): int {
     $data->timecreated = time();
     $cmid = $data->coursemodule;
 
-    $data->id = $DB->insert_record('certificatebeautiful', $data);
+    $data->id = $DB->insert_record("certificatebeautiful", $data);
 
     // We need to use context now, so we need to make sure all needed info is already in db.
-    $DB->set_field('course_modules', 'instance', $data->id, ['id' => $cmid]);
+    $DB->set_field("course_modules", "instance", $data->id, ["id" => $cmid]);
 
     return $data->id;
 }
@@ -106,7 +106,7 @@ function certificatebeautiful_update_instance(stdClass $data, $mform = null): bo
     $data->timemodified = time();
     $data->id = $data->instance;
 
-    return $DB->update_record('certificatebeautiful', $data);
+    return $DB->update_record("certificatebeautiful", $data);
 }
 
 /**
@@ -121,14 +121,14 @@ function certificatebeautiful_update_instance(stdClass $data, $mform = null): bo
 function certificatebeautiful_delete_instance(int $id): bool {
     global $DB;
 
-    if (!$DB->record_exists('certificatebeautiful', ['id' => $id])) {
+    if (!$DB->record_exists("certificatebeautiful", ["id" => $id])) {
         return false;
     }
 
-    if (!$cm = get_coursemodule_from_instance('certificatebeautiful', $id)) {
+    if (!$cm = get_coursemodule_from_instance("certificatebeautiful", $id)) {
         return false;
     }
-    $DB->delete_records('certificatebeautiful', ['id' => $id]);
+    $DB->delete_records("certificatebeautiful", ["id" => $id]);
 
     return true;
 }
@@ -145,7 +145,7 @@ function certificatebeautiful_delete_instance(int $id): bool {
  */
 function certificatebeautiful_page_type_list($pagetype, $parentcontext, $currentcontext): array {
     $modulepagetype = [
-        'mod-certificatebeautiful-*' => get_string('page-mod-certificatebeautiful-x', 'mod_certificatebeautiful'),
+        "mod-certificatebeautiful-*" => get_string("page-mod-certificatebeautiful-x", "mod_certificatebeautiful"),
     ];
     return $modulepagetype;
 }
@@ -158,9 +158,9 @@ function certificatebeautiful_page_type_list($pagetype, $parentcontext, $current
  * @throws coding_exception
  */
 function certificatebeautiful_reset_course_form_definition($mform) {
-    $mform->addElement('header', 'certificatebeautifulheader', get_string('modulenameplural', 'certificatebeautiful'));
-    $mform->addElement('checkbox', 'archive_certificates', get_string('archivecertificates', 'certificatebeautiful'));
-    $mform->addHelpButton('archive_certificates', 'archivecertificates', 'mod_certificatebeautiful');
+    $mform->addElement("header", "certificatebeautifulheader", get_string("modulenameplural", "certificatebeautiful"));
+    $mform->addElement("checkbox", "archive_certificates", get_string("archivecertificates", "certificatebeautiful"));
+    $mform->addHelpButton("archive_certificates", "archivecertificates", "mod_certificatebeautiful");
 }
 
 /**
@@ -174,7 +174,7 @@ function mod_certificatebeautiful_cm_info_dynamic(cm_info $coursemodule) {
     // In case when user can only download their own certificate and do nothing else -
     // take them directly to their certificate (open in a new window).
     $fullurl = new moodle_url("/mod/certificatebeautiful/view.php",
-        ['id' => $coursemodule->id, 'download' => 1]);
+        ["id" => $coursemodule->id, "download" => 1]);
     $onclick = "window.open('$fullurl'); return false;";
     $coursemodule->set_on_click($onclick);
 }
@@ -196,18 +196,18 @@ function certificatebeautiful_extend_settings_navigation($settings, $certificate
     // Locally assigned roles node. Of course, both of those are controlled by capabilities.
     $keys = $certificatebeautifulnode->get_children_key_list();
     $beforekey = null;
-    $i = array_search('modedit', $keys);
+    $i = array_search("modedit", $keys);
     if ($i === false && array_key_exists(0, $keys)) {
         $beforekey = $keys[0];
     } else if (array_key_exists($i + 1, $keys)) {
         $beforekey = $keys[$i + 1];
     }
 
-    if (has_capability('moodle/course:manageactivities', $PAGE->cm->context)) {
-        $node = navigation_node::create(get_string('report', 'certificatebeautiful'),
-            new moodle_url('/mod/certificatebeautiful/report.php', ['id' => $PAGE->cm->id]),
-            navigation_node::TYPE_SETTING, null, 'mod_certificatebeautiful_report',
-            new pix_icon('i/report', ''));
+    if (has_capability("moodle/course:manageactivities", $PAGE->cm->context)) {
+        $node = navigation_node::create(get_string("report", "certificatebeautiful"),
+            new moodle_url("/mod/certificatebeautiful/report.php", ["id" => $PAGE->cm->id]),
+            navigation_node::TYPE_SETTING, null, "mod_certificatebeautiful_report",
+            new pix_icon("i/report", ""));
         $certificatebeautifulnode->add_node($node, $beforekey);
     }
 }
@@ -223,18 +223,18 @@ function certificatebeautiful_extend_settings_navigation($settings, $certificate
  * @throws moodle_exception
  */
 function certificatebeautiful_extend_navigation_course($navigation, $course, $context) {
-    if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
-        $certificatenode1 = $navigation->add(get_string('course_certificates', 'certificatebeautiful'),
+    if (has_capability("mod/certificatebeautiful:addinstance", $context)) {
+        $certificatenode1 = $navigation->add(get_string("course_certificates", "certificatebeautiful"),
             null, navigation_node::TYPE_CONTAINER, null, uniqid());
-        $url = new moodle_url('/mod/certificatebeautiful/reports.php', ['course' => $course->id]);
-        $certificatenode1->add(get_string('course_certificates', 'certificatebeautiful'), $url, navigation_node::TYPE_SETTING,
-            null, null, new pix_icon('i/report', ''));
+        $url = new moodle_url("/mod/certificatebeautiful/reports.php", ["course" => $course->id]);
+        $certificatenode1->add(get_string("course_certificates", "certificatebeautiful"), $url, navigation_node::TYPE_SETTING,
+            null, null, new pix_icon("i/report", ""));
 
-        $certificatenode2 = $navigation->add(get_string('manage_models', 'certificatebeautiful'),
-            null, navigation_node::TYPE_CONTAINER, null, 'manage_models');
-        $url = new moodle_url('/mod/certificatebeautiful/manage-model-list.php');
-        $certificatenode2->add(get_string('manage_models', 'certificatebeautiful'), $url, navigation_node::TYPE_SETTING,
-            null, null, new pix_icon('i/report', ''));
+        $certificatenode2 = $navigation->add(get_string("manage_models", "certificatebeautiful"),
+            null, navigation_node::TYPE_CONTAINER, null, "manage_models");
+        $url = new moodle_url("/mod/certificatebeautiful/manage-model-list.php");
+        $certificatenode2->add(get_string("manage_models", "certificatebeautiful"), $url, navigation_node::TYPE_SETTING,
+            null, null, new pix_icon("i/report", ""));
     }
 }
 
@@ -255,9 +255,9 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
         return;
     }
 
-    $url = new moodle_url('/mod/certificatebeautiful/reports-my.php', ['user' => $user->id]);
-    $node = new core_user\output\myprofile\node('miscellaneous', 'certificatebeautiful',
-        get_string('my_certificates', 'certificatebeautiful'), null, $url);
+    $url = new moodle_url("/mod/certificatebeautiful/reports-my.php", ["user" => $user->id]);
+    $node = new core_user\output\myprofile\node("miscellaneous", "certificatebeautiful",
+        get_string("my_certificates", "certificatebeautiful"), null, $url);
     $tree->add_node($node);
 }
 
@@ -270,50 +270,53 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
 function certificatebeautiful_list_all_models() {
     return [
         [
-            "name" => get_string('certificate-appreciation', 'certificatebeautiful'),
-            "key" => 'certificate-appreciation',
+            "name" => get_string("certificate-appreciation", "certificatebeautiful"),
+            "key" => "certificate-appreciation",
         ], [
-            "name" => get_string('certificate-details', 'certificatebeautiful'),
-            "key" => 'certificate-details',
+            "name" => get_string("certificate-details", "certificatebeautiful"),
+            "key" => "certificate-details",
         ], [
-            "name" => get_string('certificate-elegant', 'certificatebeautiful'),
-            "key" => 'certificate-elegant',
+            "name" => get_string("certificate-elegant", "certificatebeautiful"),
+            "key" => "certificate-elegant",
         ], [
-            "name" => get_string('certificate-flat-modern', 'certificatebeautiful'),
-            "key" => 'certificate-flat-modern',
+            "name" => get_string("certificate-flat-modern", "certificatebeautiful"),
+            "key" => "certificate-flat-modern",
         ], [
-            "name" => get_string('certificate-golden', 'certificatebeautiful'),
-            "key" => 'certificate-golden',
+            "name" => get_string("certificate-golden", "certificatebeautiful"),
+            "key" => "certificate-golden",
         ], [
-            "name" => get_string('certificate-gradient-golden-luxury', 'certificatebeautiful'),
-            "key" => 'certificate-gradient-golden-luxury',
+            "name" => get_string("certificate-gradient-golden-luxury", "certificatebeautiful"),
+            "key" => "certificate-gradient-golden-luxury",
         ], [
-            "name" => get_string('certificate-kids-animals', 'certificatebeautiful'),
-            "key" => 'certificate-kids-animals',
+            "name" => get_string("certificate-kids-animals", "certificatebeautiful"),
+            "key" => "certificate-kids-animals",
         ], [
-            "name" => get_string('certificate-kids-child-medical', 'certificatebeautiful'),
-            "key" => 'certificate-kids-child-medical',
+            "name" => get_string("certificate-kids-child-medical", "certificatebeautiful"),
+            "key" => "certificate-kids-child-medical",
         ], [
-            "name" => get_string('certificate-kids-gradient-modern', 'certificatebeautiful'),
-            "key" => 'certificate-kids-gradient-modern',
+            "name" => get_string("certificate-kids-gradient-modern", "certificatebeautiful"),
+            "key" => "certificate-kids-gradient-modern",
         ], [
-            "name" => get_string('certificate-kids-hand-drawn', 'certificatebeautiful'),
-            "key" => 'certificate-kids-hand-drawn',
+            "name" => get_string("certificate-kids-hand-drawn", "certificatebeautiful"),
+            "key" => "certificate-kids-hand-drawn",
         ], [
-            "name" => get_string('certificate-kids-pastel', 'certificatebeautiful'),
-            "key" => 'certificate-kids-pastel',
+            "name" => get_string("certificate-kids-pastel", "certificatebeautiful"),
+            "key" => "certificate-kids-pastel",
         ], [
-            "name" => get_string('certificate-modern', 'certificatebeautiful'),
-            "key" => 'certificate-modern',
+            "name" => get_string("certificate-modern", "certificatebeautiful"),
+            "key" => "certificate-modern",
         ], [
-            "name" => get_string('certificate-modern-2', 'certificatebeautiful'),
-            "key" => 'certificate-modern-2',
+            "name" => get_string("certificate-modern-2", "certificatebeautiful"),
+            "key" => "certificate-modern-2",
         ], [
-            "name" => get_string('certificate-simple', 'certificatebeautiful'),
-            "key" => 'certificate-simple',
+            "name" => get_string("certificate-simple", "certificatebeautiful"),
+            "key" => "certificate-simple",
         ], [
-            "name" => get_string('certificate-vintage', 'certificatebeautiful'),
-            "key" => 'certificate-vintage',
+            "name" => get_string("certificate-vintage", "certificatebeautiful"),
+            "key" => "certificate-vintage",
+        ], [
+            "name" => get_string("sumary-secound-page", "certificatebeautiful"),
+            "key" => "sumary-secound-page",
         ],
     ];
 }

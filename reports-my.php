@@ -25,17 +25,17 @@
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
 
-$userid = optional_param('user', 0, PARAM_INT);
+$userid = optional_param("user", 0, PARAM_INT);
 $context = context_system::instance();
 if (!has_capability('moodle/course:manageactivities', $context, $USER)) {
     $userid = $USER->id;
 }
-$user = $DB->get_record('user', ['id' => $userid], '*', MUST_EXIST);
+$user = $DB->get_record("user", ["id" => $userid], '*', MUST_EXIST);
 
 $PAGE->set_context($context);
-$PAGE->set_url('/mod/certificatebeautiful/reports.php', ['user' => $userid]);
-$PAGE->set_title(fullname($user) . " " . get_string('reports'));
-$PAGE->set_heading(get_string('from_certificates', 'certificatebeautiful', fullname($user)));
+$PAGE->set_url('/mod/certificatebeautiful/reports.php', ["user" => $userid]);
+$PAGE->set_title(fullname($user) . " " . get_string("reports"));
+$PAGE->set_heading(get_string("from_certificates", "certificatebeautiful", fullname($user)));
 $PAGE->add_body_class("certificatebeautiful-pages");
 
 require_login();

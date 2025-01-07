@@ -42,7 +42,7 @@ class help_base {
 
         $help = "<ul>";
         foreach ($fields as $field) {
-            $help .= "<li><strong>{$field['key']}</strong>: {$field['label']}</li>";
+            $help .= "<li><strong>{$field["key"]}</strong>: {$field["label"]}</li>";
         }
 
         $help .= "</ul>";
@@ -63,10 +63,10 @@ class help_base {
 
         $returndata = [];
         foreach ($fields as $field) {
-            if (isset($data[$field['key']])) {
-                $returndata[$field['key']] = $data[$field['key']];
+            if (isset($data[$field["key"]])) {
+                $returndata[$field["key"]] = $data[$field["key"]];
             } else {
-                $returndata[$field['key']] = "";
+                $returndata[$field["key"]] = "";
             }
         }
 
@@ -120,27 +120,27 @@ class help_base {
             /** @var course $class */
             $class = "\mod_certificatebeautiful\local\help\\" . $classname;
             $classsnameup = strtoupper($class::CLASS_NAME);
-            $classstitle = get_string("help_{$classname}__name", 'certificatebeautiful');
+            $classstitle = get_string("help_{$classname}__name", "certificatebeautiful");
 
             foreach ($class::table_structure() as $structure) {
-                $label = strip_tags($structure['label']);
+                $label = strip_tags($structure["label"]);
                 $label = str_replace("'", "\\'", $label);
 
-                if (strpos($structure['key'], "}")) {
-                    $key = $structure['key'];
+                if (strpos($structure["key"], "}")) {
+                    $key = $structure["key"];
                 } else {
-                    $key = "{\${$classsnameup}->{$structure['key']}}";
+                    $key = "{\${$classsnameup}->{$structure["key"]}}";
                 }
 
                 $components[] = "
-                    editor.BlockManager.add('{$classname}_{$structure['key']}', {
+                    editor.BlockManager.add('{$classname}_{$structure["key"]}', {
                         label    : '{$label}',
                         content  : {
                             components : `<div data-gjs-type=\"text\"
                                                draggable=\"false\"
                                                data-gjs-copyable=\"false\"
                                                data-gjs-draggable=\"false\"
-                                               data-gjs-editable=\"false\">{\${$classsnameup}->{$structure['key']}}</div>`,
+                                               data-gjs-editable=\"false\">{\${$classsnameup}->{$structure["key"]}}</div>`,
                             droppable  : ['section'],
                         },
                         media    : '{$key}',
@@ -174,7 +174,7 @@ class help_base {
             "grade",
         ];
 
-        $data = ['itens' => []];
+        $data = ["itens" => []];
         foreach ($classnames as $classname) {
 
             /** @var course $class */
@@ -183,26 +183,26 @@ class help_base {
 
             $structuresitens = [];
             foreach ($class::table_structure() as $structure) {
-                if (isset($structure['label'])) {
-                    $label = $structure['label'];
+                if (isset($structure["label"])) {
+                    $label = $structure["label"];
 
-                    if (strpos($structure['key'], "}")) {
-                        $key = $structure['key'];
+                    if (strpos($structure["key"], "}")) {
+                        $key = $structure["key"];
                     } else {
-                        $key = "{\${$classsnameup}->{$structure['key']}}";
+                        $key = "{\${$classsnameup}->{$structure["key"]}}";
                     }
 
                     $structuresitens[] = [
-                        'label' => $label,
-                        'key' => $key,
+                        "label" => $label,
+                        "key" => $key,
                     ];
                 }
             }
 
             if ($structuresitens) {
-                $data['itens'][] = [
-                    'classstitle' => get_string("help_{$classname}__name", 'certificatebeautiful'),
-                    'structuresitens' => $structuresitens,
+                $data["itens"][] = [
+                    "classstitle" => get_string("help_{$classname}__name", "certificatebeautiful"),
+                    "structuresitens" => $structuresitens,
                 ];
             }
         }

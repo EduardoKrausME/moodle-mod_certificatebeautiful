@@ -138,7 +138,7 @@ class replace_tags {
         preg_match_all('/{#s}(.*?){\/s}/', $this->page->htmldata, $strs);
         foreach ($strs[0] as $key => $str) {
             $this->page->htmldata = str_replace($strs[0][$key],
-                get_string($strs[1][$key], 'certificatebeautiful'),
+                get_string($strs[1][$key], "certificatebeautiful"),
                 $this->page->htmldata);
         }
 
@@ -180,7 +180,7 @@ class replace_tags {
     public function repace_signature() {
         global $CFG;
 
-        $config = get_config('certificatebeautiful');
+        $config = get_config("certificatebeautiful");
         if ($config->config_signature_enable && strlen($config->config_signature_text) >= 2) {
             $typography = $config->config_signature_typography;
             $color = $config->config_signature_color;
@@ -211,7 +211,7 @@ class replace_tags {
         $replacetagsreplacefonts = function ($input) {
             $fonts = font_util::mpdf_list_fonts();
 
-            foreach ($fonts['listfonts'] as $listfont) {
+            foreach ($fonts["listfonts"] as $listfont) {
                 $fontnameid = $listfont->fontnameid;
 
                 $input[0] = str_replace("{$fontnameid},", "", $input[0]);
