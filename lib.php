@@ -164,22 +164,6 @@ function certificatebeautiful_reset_course_form_definition($mform) {
 }
 
 /**
- * Callback from modinfo allowing to add attributes to individual student link
- *
- * @param cm_info $coursemodule the cm_info object for the Appointment instance
- *
- * @throws moodle_exception
- */
-function mod_certificatebeautiful_cm_info_dynamic(cm_info $coursemodule) {
-    // In case when user can only download their own certificate and do nothing else -
-    // take them directly to their certificate (open in a new window).
-    $fullurl = new moodle_url("/mod/certificatebeautiful/view.php",
-        ["id" => $coursemodule->id, "download" => 1]);
-    $onclick = "window.open('$fullurl'); return false;";
-    $coursemodule->set_on_click($onclick);
-}
-
-/**
  * certificatebeautiful_extend_settings_navigation function
  *
  * @param settings_navigation $settings
