@@ -107,7 +107,7 @@ if ($storedfile) {
     $contentpdf = $pagepdf->create_pdf(
         $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $USER, $course);
 
-    //$fs->create_file_from_string($filerecord, $contentpdf);
+    $fs->create_file_from_string($filerecord, $contentpdf);
     header('Content-Length: ' . strlen($contentpdf));
     echo $contentpdf;
 }
