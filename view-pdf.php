@@ -99,14 +99,15 @@ if ($storedfile) {
     echo $content;
 } else {
     /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $certificatebeautifulmodel */
-    $certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model", ["id" => $certificatebeautiful->model], "*", MUST_EXIST);
+    $certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model",
+        ["id" => $certificatebeautiful->model], "*", MUST_EXIST);
     $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
     $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
     $contentpdf = $pagepdf->create_pdf(
         $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $USER, $course);
 
-    $fs->create_file_from_string($filerecord, $contentpdf);
+    //$fs->create_file_from_string($filerecord, $contentpdf);
     header('Content-Length: ' . strlen($contentpdf));
     echo $contentpdf;
 }

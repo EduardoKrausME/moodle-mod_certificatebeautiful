@@ -98,7 +98,7 @@ class certificate_issue extends help_base {
             imagepng($image, $pngfile);
 
             $base64 = 'data:image/png;base64,' . base64_encode(file_get_contents($pngfile));
-            $html = preg_match_all('/(["|\']).*?img\/qr-code.svg["|\']/', "\$1{$base64}\$1", $html);
+            $html = preg_replace('/(["|\']).*?img\/qr-code.svg["|\']/', '"' . $base64 . '"', $html);
         }
 
         return $html;
