@@ -95,7 +95,6 @@ $storedfile = $fs->get_file(
     $filerecord->filearea, $filerecord->itemid,
     $filerecord->filepath, $filerecord->filename);
 
-$storedfile=false;
 if ($storedfile) {
     $content = $storedfile->get_content();
 
@@ -111,7 +110,7 @@ if ($storedfile) {
     $contentpdf = $pagepdf->create_pdf(
         $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $user, $course);
 
-    //$fs->create_file_from_string($filerecord, $contentpdf);
+    $fs->create_file_from_string($filerecord, $contentpdf);
     header('Content-Length: ' . strlen($contentpdf));
     echo $contentpdf;
 }
