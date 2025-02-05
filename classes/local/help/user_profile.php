@@ -50,10 +50,19 @@ class user_profile extends help_base {
         $userinfofields = $DB->get_records("user_info_field");
         if ($userinfofields) {
             foreach ($userinfofields as $userinfofield) {
-                $itens[] = [
-                    "key" => $userinfofield->shortname,
-                    "label" => $userinfofield->name,
-                ];
+                switch ($userinfofield->datatype) {
+                    case "text":
+                    case "textarea":
+                    case "checkbox":
+                    case "menu":
+                    case "datetime":
+                    case "url":
+                    case "database":
+                        $itens[] = [
+                            "key" => $userinfofield->shortname,
+                            "label" => $userinfofield->name,
+                        ];
+                }
             }
         }
 
@@ -82,11 +91,26 @@ class user_profile extends help_base {
                 /** @var \profile_field_base $formfield */
                 $formfield = new $newfield($userinfofield->id, $user->id);
                 if ($formfield->is_visible() && !$formfield->is_empty()) {
-                    if ($userinfofield->datatype == "checkbox") {
-                        $data[$userinfofield->shortname] = $formfield->data == 1 ? get_string("yes") : get_string("no");
-                    } else {
-                        $data[$userinfofield->shortname] = $formfield->display_data();
+
+                    $displaydata = "";
+                    switch ($userinfofield->datatype) {
+                        case "checkbox":
+                            $displaydata = $formfield->data == 1 ? get_string("yes") : get_string("no");
+                            break;
+                        case "database":
+                            $displaydata = $formfield->display_data();
+                            $displaydata = preg_replace('/style=".*?"/', '', $displaydata);
+                            break;
+                        case "text":
+                        case "textarea":
+                        case "menu":
+                        case "datetime":
+                        case "url":
+                            $displaydata = $formfield->display_data();
+                            break;
                     }
+
+                    $data[$userinfofield->shortname] = $displaydata;
                 }
             }
             return $data;
