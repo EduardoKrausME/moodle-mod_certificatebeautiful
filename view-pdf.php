@@ -30,7 +30,7 @@ require_once("{$CFG->libdir}/tablelib.php");
 
 ob_start();
 
-global $PAGE, $USER, $CFG;
+global $PAGE, $CFG;
 
 $code = required_param("code", PARAM_TEXT);
 $action = required_param("action", PARAM_TEXT);
@@ -44,12 +44,14 @@ $course = $DB->get_record("course", ["id" => $cm->course], '*', MUST_EXIST);
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], '*', MUST_EXIST);
 
+$user = $DB->get_record("user", ["id"=>$certificatebeautifulissue->userid]);
+
 $context = context_module::instance($cm->id);
 
 require_course_login($cm->course);
 require_capability('mod/certificatebeautiful:view', $context);
 
-$username = fullname($USER);
+$username = fullname($user);
 $name = "{$certificatebeautiful->name} - {$username}.pdf";
 
 switch ($action) {
@@ -81,10 +83,10 @@ $fs = get_file_storage();
 $filerecord = (object)[
     "component" => "mod_certificatebeautiful",
     "contextid" => $context->id,
-    "userid" => $USER->id,
+    "userid" => $user->id,
     "filearea" => "certificate",
     "filepath" => '/',
-    "itemid" => $USER->id,
+    "itemid" => $user->id,
     "filename" => "{$certificatebeautifulissue->code}.pdf",
 ];
 
@@ -92,6 +94,8 @@ $storedfile = $fs->get_file(
     $filerecord->contextid, $filerecord->component,
     $filerecord->filearea, $filerecord->itemid,
     $filerecord->filepath, $filerecord->filename);
+
+$storedfile=false;
 if ($storedfile) {
     $content = $storedfile->get_content();
 
@@ -105,9 +109,9 @@ if ($storedfile) {
 
     $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
     $contentpdf = $pagepdf->create_pdf(
-        $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $USER, $course);
+        $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $user, $course);
 
-    $fs->create_file_from_string($filerecord, $contentpdf);
+    //$fs->create_file_from_string($filerecord, $contentpdf);
     header('Content-Length: ' . strlen($contentpdf));
     echo $contentpdf;
 }
