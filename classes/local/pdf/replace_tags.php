@@ -64,8 +64,8 @@ class replace_tags {
     /**
      * replace_tags constructor.
      *
-     * @param string $page
-     * @param int $course
+     * @param \stdClass $page
+     * @param \stdClass $course
      * @param \stdClass $user
      * @param certificatebeautiful $certificatebeautiful
      * @param certificatebeautiful_issue $certificatebeautifulissue

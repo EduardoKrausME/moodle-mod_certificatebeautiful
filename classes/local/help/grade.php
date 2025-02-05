@@ -59,6 +59,9 @@ class grade extends help_base {
      * @param $user
      *
      * @return array
+     *
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public static function get_data($course, $user) {
         return [
@@ -98,6 +101,7 @@ class grade extends help_base {
      *
      * @return string
      * @throws \coding_exception
+     * @throws \dml_exception
      */
     private static function get_table_grade($course, $user) {
 

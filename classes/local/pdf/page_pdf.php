@@ -68,10 +68,10 @@ class page_pdf {
      * create_pdf
      *
      * @param certificatebeautiful $certificatebeautiful
-     * @param certificatebeautiful_issue $certificatebeautifulissie
+     * @param certificatebeautiful_issue $certificatebeautifulissue
      * @param certificatebeautiful_model $certificatebeautifulmodel
-     * @param $user
-     * @param $course
+     * @param \stdClass $user
+     * @param \stdClass $course
      *
      * @return string
      * @throws MpdfException
