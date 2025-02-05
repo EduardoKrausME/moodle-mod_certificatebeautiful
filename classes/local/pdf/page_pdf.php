@@ -143,7 +143,7 @@ class page_pdf {
 
             if (isset($page->cssdata[10])) {
                 $mpdf->WriteHTML($page->cssdata . $extracss, HTMLParserMode::HEADER_CSS);
-                $mpdf->WriteHTML($page->htmldata, HTMLParserMode::HTML_BODY);
+                $mpdf->WriteHTML($page->htmldata);
             } else {
                 $mpdf->WriteHTML("{$page->htmldata}\n<style>{$extracss}</style>");
             }
