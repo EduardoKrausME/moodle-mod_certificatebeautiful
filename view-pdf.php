@@ -44,7 +44,7 @@ $course = $DB->get_record("course", ["id" => $cm->course], '*', MUST_EXIST);
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], '*', MUST_EXIST);
 
-$user = $DB->get_record("user", ["id"=>$certificatebeautifulissue->userid]);
+$user = $DB->get_record("user", ["id" => $certificatebeautifulissue->userid]);
 
 $context = context_module::instance($cm->id);
 
