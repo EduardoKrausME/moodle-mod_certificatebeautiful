@@ -70,6 +70,7 @@ switch (optional_param("action", false, PARAM_TEXT)) {
             $certificatebeautifulmodel->pages_info_object = array_values($certificatebeautifulmodel->pages_info_object);
 
             $certificatebeautifulmodel->pages_info = json_encode($certificatebeautifulmodel->pages_info_object, JSON_PRETTY_PRINT);
+            $certificatebeautifulmodel->timemodified = time();
             $DB->update_record("certificatebeautiful_model", $certificatebeautifulmodel);
 
             redirect("manage-model.php?id={$certificatebeautifulmodel->id}");
@@ -85,20 +86,20 @@ $formcreate = new form_create(null, ["certificatebeautiful_model" => $certificat
 if (!$formcreate->is_cancelled() && $certificatebeautifulmodel = $formcreate->get_data()) {
 
     if ($id > 0) {
-        $data = (object)[
+        $model = (object)[
             "id" => $certificatebeautifulmodel->id,
             "name" => $certificatebeautifulmodel->name,
             "timemodified" => time(),
         ];
-        $DB->update_record("certificatebeautiful_model", $data);
+        $DB->update_record("certificatebeautiful_model", $model);
     } else {
-        $data = (object)[
+        $model = (object)[
             "name" => $certificatebeautifulmodel->name,
             "pages_info" => json_encode([form_create_page::empty_page()], JSON_PRETTY_PRINT),
             "timecreated" => time(),
             "timemodified" => time(),
         ];
-        $certificatebeautifulmodel->id = $DB->insert_record("certificatebeautiful_model", $data);
+        $certificatebeautifulmodel->id = $DB->insert_record("certificatebeautiful_model", $model);
     }
     redirect("manage-model.php?id={$certificatebeautifulmodel->id}");
 }

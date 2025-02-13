@@ -85,10 +85,14 @@ $filerecord = (object)[
     "contextid" => $context->id,
     "userid" => $user->id,
     "filearea" => "certificate",
-    "filepath" => '/',
+    "filepath" => "/",
     "itemid" => $user->id,
     "filename" => "{$certificatebeautifulissue->code}.pdf",
 ];
+
+/** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $certificatebeautifulmodel */
+$certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model",
+    ["id" => $certificatebeautiful->model], "*", MUST_EXIST);
 
 $storedfile = $fs->get_file(
     $filerecord->contextid, $filerecord->component,
@@ -96,23 +100,25 @@ $storedfile = $fs->get_file(
     $filerecord->filepath, $filerecord->filename);
 
 if ($storedfile) {
-    $content = $storedfile->get_content();
+    if ($storedfile->get_timecreated() > $certificatebeautifulmodel->timemodified) {
+        $content = $storedfile->get_content();
 
-    header('Content-Length: ' . strlen($content));
-    echo $content;
-} else {
-    /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $certificatebeautifulmodel */
-    $certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model",
-        ["id" => $certificatebeautiful->model], "*", MUST_EXIST);
-    $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
-
-    $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
-    $contentpdf = $pagepdf->create_pdf(
-        $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $user, $course);
-
-    $fs->create_file_from_string($filerecord, $contentpdf);
-    header('Content-Length: ' . strlen($contentpdf));
-    echo $contentpdf;
+        header('Content-Length: ' . strlen($content));
+        echo $content;
+        die();
+    } else {
+        $storedfile->delete();
+    }
 }
+
+$certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
+
+$pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
+$contentpdf = $pagepdf->create_pdf(
+    $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $user, $course);
+
+$fs->create_file_from_string($filerecord, $contentpdf);
+header('Content-Length: ' . strlen($contentpdf));
+echo $contentpdf;
 
 die();

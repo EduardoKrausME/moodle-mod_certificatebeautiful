@@ -70,12 +70,12 @@ if ($cssdata && $htmldata && sesskey() == optional_param("sesskey", false, PARAM
         "cssdata" => $cssdata,
     ];
 
-    $data = (object)[
+    $model = (object)[
         "id" => $certificatebeautifulmodel->id,
         "pages_info" => json_encode($certificatebeautifulmodel->pages_info_object, JSON_PRETTY_PRINT),
         "timemodified" => time(),
     ];
-    $DB->update_record("certificatebeautiful_model", $data);
+    $DB->update_record("certificatebeautiful_model", $model);
     redirect("manage-model.php?id={$id}");
 }
 
@@ -122,12 +122,12 @@ switch ($action) {
         ];
 
 
-        $data = (object)[
+        $model = (object)[
             "id" => $certificatebeautifulmodel->id,
             "pages_info" => json_encode($certificatebeautifulmodel->pages_info_object, JSON_PRETTY_PRINT),
             "timemodified" => time(),
         ];
-        $DB->update_record("certificatebeautiful_model", $data);
+        $DB->update_record("certificatebeautiful_model", $model);
         redirect("manage-model-editpage.php?id={$id}&page={$page}");
         break;
 
@@ -163,6 +163,7 @@ switch ($action) {
                 $model->pages_info_object[$page]->cssdata .= "\n[data-gjs-type=wrapper]{background-image:url({$dataurl})}";
 
                 $model->pages_info = json_encode($model->pages_info_object, JSON_PRETTY_PRINT);
+                $model->timemodified = time();
                 $DB->update_record("certificatebeautiful_model", $model);
 
                 redirect("manage-model-editpage.php?id={$id}&page={$page}");
