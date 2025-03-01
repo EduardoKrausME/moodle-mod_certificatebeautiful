@@ -122,8 +122,8 @@ $certificatebeautifulissie = (object)[
     "name" => "teste",
     "code" => "CODE-EX"
 ];
-$user = $DB->get_record_sql("SELECT * FROM {user}   WHERE id = 2 ORDER BY RAND() LIMIT 1");
-$course = $DB->get_record_sql("SELECT * FROM {course} WHERE id = 13 ORDER BY RAND() LIMIT 1");
+$user = $DB->get_record_sql("SELECT   * FROM {user}   ORDER BY RAND() LIMIT 1");
+$course = $DB->get_record_sql("SELECT * FROM {course} ORDER BY RAND() LIMIT 1");
 
 $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
 $pdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissie, $certificatebeautifulmodel, $user, $course);
