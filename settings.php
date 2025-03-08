@@ -85,6 +85,6 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configselect('certificatebeautiful/data_protect',
         get_string("config_data_protect", "certificatebeautiful"),
         get_string("config_data_protect_desc", "certificatebeautiful"),
-        "email_anonimized", $options);
+        issue::ISSUE_EMAIL_ANONIMIZED, $options);
     $settings->add($setting);
 }
