@@ -32,6 +32,34 @@ $id = required_param("id", PARAM_INT);
 $cm = get_coursemodule_from_id("certificatebeautiful", $id, 0, false, MUST_EXIST);
 $course = $DB->get_record("course", ["id" => $cm->course], '*', MUST_EXIST);
 
+if (optional_param("action", "", PARAM_TEXT) == "delete") {
+    require_sesskey();
+    $issueid = required_param("issueid", PARAM_INT);
+
+    /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_issue $certificatebeautifulissue */
+    $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", ["id" => $issueid]);
+
+    $DB->delete_records("certificatebeautiful_issue", ["id" => $issueid]);
+
+    $fs = get_file_storage();
+    $filerecord = (object)[
+        "component" => "mod_certificatebeautiful",
+        "contextid" => $context->id,
+        "filearea" => "certificate",
+        "filepath" => '/',
+        "itemid" => $certificatebeautifulissue->userid,
+        "filename" => "{$certificatebeautifulissue->code}.pdf",
+    ];
+
+    $storedfile = $fs->get_file(
+        $filerecord->contextid, $filerecord->component,
+        $filerecord->filearea, $filerecord->itemid,
+        $filerecord->filepath, $filerecord->filename);
+
+    redirect(new moodle_url("/mod/certificatebeautiful/view.php", ["id" => $id]),
+        get_string("report_deleted_certificate", "certificatebeautiful"));
+}
+
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], '*', MUST_EXIST);
 
