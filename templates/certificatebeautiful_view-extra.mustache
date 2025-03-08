@@ -27,12 +27,12 @@
 }}
 {{#download}}
     <div id="box-link-{{uniqid}}" class="text-nowrap">
-        <a href="{{{url-validate}}}" target="_blank"
-           class="btn btn-success certificatebeautiful-report-btn-small">
-            {{#str}}validate_certificate_title,certificatebeautiful{{/str}}</a>
         <a href="{{{url-view}}}" target="_blank"
            class="btn btn-success certificatebeautiful-report-btn-small">
             {{#str}}report_view_certificate,certificatebeautiful{{/str}}</a>
+        <a href="{{{url-validate}}}" target="_blank"
+           class="btn btn-info certificatebeautiful-report-btn-small">
+            {{#str}}validate_certificate_validate,certificatebeautiful{{/str}}</a>
         {{#url-delete}}
             <span id="delete-{{uniqid}}"
                   class="btn btn-danger ml-2 certificatebeautiful-report-btn-small">

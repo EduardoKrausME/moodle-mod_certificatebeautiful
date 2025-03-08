@@ -103,7 +103,6 @@ $string['help_course_lang'] = 'The language of the course.';
 $string['help_course_shortname'] = 'A short name or unique code for the course.';
 $string['help_course_startdate'] = 'The start date of the course.';
 $string['help_course_summary'] = 'The course summary defined in the course configuration';
-
 $string['help_enrolments__name'] = 'Data of the student\'s enrollment in the course';
 $string['help_enrolments_timestart'] = 'Date of the user\'s enrollment';
 $string['help_functions__name'] = 'Execute functions of the following Moodle and PHP native functions';
@@ -197,4 +196,5 @@ $string['validate_certificate_notfound'] = 'Authenticity code not found!';
 $string['validate_certificate_submit'] = 'Validate code';
 $string['validate_certificate_title'] = 'Verify certificate authenticity';
 $string['validate_certificate_user'] = 'Issued to';
+$string['validate_certificate_validate'] = 'Validate';
 $string['view_my_certificate'] = 'View my certificate in a new tab';
