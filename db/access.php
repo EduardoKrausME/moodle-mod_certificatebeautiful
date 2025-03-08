@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die;
 
 $capabilities = [
-    'mod/certificatebeautiful:view' => [
+    "mod/certificatebeautiful:view" => [
         "captype" => "read",
         "contextlevel" => CONTEXT_MODULE,
         "archetypes" => [
@@ -35,7 +35,7 @@ $capabilities = [
             "manager" => CAP_ALLOW,
         ],
     ],
-    'mod/certificatebeautiful:viewreport' => [
+    "mod/certificatebeautiful:viewreport" => [
         "captype" => "read",
         "contextlevel" => CONTEXT_MODULE,
         "archetypes" => [
@@ -44,13 +44,20 @@ $capabilities = [
             "manager" => CAP_ALLOW,
         ],
     ],
-    'mod/certificatebeautiful:addinstance' => [
+    "mod/certificatebeautiful:addinstance" => [
         "captype" => "write",
         "contextlevel" => CONTEXT_COURSE,
         "archetypes" => [
             "manager" => CAP_ALLOW,
             "editingteacher" => CAP_ALLOW,
         ],
-        "clonepermissionsfrom" => 'moodle/course:manageactivities',
+        "clonepermissionsfrom" => "moodle/course:manageactivities",
+    ],
+    "mod/certificatebeautiful:delete" => [
+        "captype" => "write",
+        "contextlevel" => CONTEXT_COURSE,
+        "archetypes" => [
+            "manager" => CAP_ALLOW,
+        ],
     ],
 ];

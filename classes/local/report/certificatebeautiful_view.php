@@ -180,19 +180,22 @@ class certificatebeautiful_view extends \table_sql {
         if ($row->timecreated) {
             $paramsvalidate = ["code" => $row->code];
             $paramsview = ["code" => $row->code, "action" => "view"];
-            $paramsdelete = [
-                "id" => $this->cmid,
-                "issueid" => $issueid,
-                "action" => "delete",
-                "sesskey" => sesskey(),
-            ];
             $data = [
                 "download" => true,
                 "uniqid" => uniqid(),
                 "url-validate" => (new moodle_url("/mod/certificatebeautiful/v/", $paramsvalidate))->out(),
                 "url-view" => (new moodle_url("/mod/certificatebeautiful/view-pdf.php", $paramsview))->out(),
-                "url-delete" => (new moodle_url("/mod/certificatebeautiful/report.php", $paramsdelete))->out(),
             ];
+
+            if (has_capability("mod/certificatebeautiful:addinstance", \context_system::instance())) {
+                $paramsdelete = [
+                    "id" => $this->cmid,
+                    "issueid" => $issueid,
+                    "action" => "delete",
+                    "sesskey" => sesskey(),
+                ];
+                $data["url-delete"] = (new moodle_url("/mod/certificatebeautiful/report.php", $paramsdelete))->out();
+            }
         } else {
             $paramscreate = [
                 "userid" => $row->userid,
