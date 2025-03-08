@@ -68,9 +68,7 @@ if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
         "certificatebeautiful_report", $cm->id, $certificatebeautiful);
     $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/report.php?id={$cm->id}");
     $table->out(40, true);
-
 } else {
-
     $certificatebeautifulissue = \mod_certificatebeautiful\local\issue::get($USER, $certificatebeautiful, $cm);
     $viewerurl = "{$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html";
     $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?code={$certificatebeautifulissue->code}";

@@ -33,6 +33,16 @@ use mod_certificatebeautiful\local\vo\certificatebeautiful_issue;
  * @package mod_certificatebeautiful\local
  */
 class issue {
+
+    /** @var string */
+    const ISSUE_HIDDEN = "hidden";
+    /** @var string */
+    const ISSUE_ADMINS_ONLY = "admins_only";
+    /** @var string */
+    const ISSUE_NAME_VISIBLE = "name_visible";
+    /** @var string */
+    const ISSUE_EMAIL_ANONIMIZED = "email_anonimized";
+
     /**
      * Function get
      *

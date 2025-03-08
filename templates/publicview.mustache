@@ -47,6 +47,12 @@
                 <td>{{{username}}}</td>
             </tr>
         {{/username}}
+        {{#useremail}}
+            <tr>
+                <th>{{#str}}email{{/str}}</th>
+                <td>{{{useremail}}}</td>
+            </tr>
+        {{/useremail}}
         {{#name}}
             <tr>
                 <th>{{#str}}validate_certificate_name,certificatebeautiful{{/str}}</th>

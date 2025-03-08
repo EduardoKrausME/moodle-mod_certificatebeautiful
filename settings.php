@@ -22,6 +22,8 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\local\issue;
+
 defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
@@ -46,17 +48,19 @@ if ($ADMIN->fulltree) {
 
     $settings->add(new admin_setting_heading("certificatebeautiful_method_heading",
         get_string("config_signature_heading", "certificatebeautiful"),
-        get_string("config_signature_heading_desc", "certificatebeautiful", count($options)) .
-        "<div class='d-flex'>{$imagens}</div>"));
+        get_string("config_signature_heading_desc", "certificatebeautiful",
+            count($options)) . "<div class='d-flex'>{$imagens}</div>"));
 
     $setting = new admin_setting_configcheckbox('certificatebeautiful/config_signature_enable',
         get_string("config_signature_enable", "certificatebeautiful"),
-        get_string("config_signature_enable_desc", "certificatebeautiful"), 1);
+        get_string("config_signature_enable_desc", "certificatebeautiful"),
+        1);
     $settings->add($setting);
 
     $setting = new admin_setting_configselect('certificatebeautiful/config_signature_typography',
         get_string("config_signature_typography", "certificatebeautiful"),
-        get_string("config_signature_typography_desc", "certificatebeautiful"), "Aerotis", $options);
+        get_string("config_signature_typography_desc", "certificatebeautiful"),
+        "Aerotis", $options);
     $settings->add($setting);
 
     $defaultsetting = substr($USER->lastname, 0, 10);
@@ -68,7 +72,19 @@ if ($ADMIN->fulltree) {
 
     $setting = new admin_setting_configcolourpicker('certificatebeautiful/config_signature_color',
         get_string("config_signature_color", "certificatebeautiful"),
-        get_string("config_signature_color_desc", "certificatebeautiful"), "#324a55");
+        get_string("config_signature_color_desc", "certificatebeautiful"),
+        "#324a55");
     $settings->add($setting);
 
+    $options = [
+        issue::ISSUE_HIDDEN => get_string("config_data_protect_hidden", "certificatebeautiful"),
+        issue::ISSUE_ADMINS_ONLY => get_string("config_data_protect_admins_only", "certificatebeautiful"),
+        issue::ISSUE_NAME_VISIBLE => get_string("config_data_protect_name_visible", "certificatebeautiful"),
+        issue::ISSUE_EMAIL_ANONIMIZED => get_string("config_data_protect_email_anonimized", "certificatebeautiful"),
+    ];
+    $setting = new admin_setting_configselect('certificatebeautiful/data_protect',
+        get_string("config_data_protect", "certificatebeautiful"),
+        get_string("config_data_protect_desc", "certificatebeautiful"),
+        "email_anonimized", $options);
+    $settings->add($setting);
 }

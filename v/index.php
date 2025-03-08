@@ -24,6 +24,8 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\local\issue;
+
 require_once("../../../config.php");
 require_once($CFG->dirroot . '/lib/adminlib.php');
 global $PAGE, $CFG;
@@ -31,9 +33,9 @@ global $PAGE, $CFG;
 $code = optional_param("code", false, PARAM_TEXT);
 
 $PAGE->set_url('/mod/certificatebeautiful/v/', ["code" => $code]);
+$PAGE->set_context(\context_system::instance());
 $PAGE->set_title(get_string("validate_certificate_title", "certificatebeautiful"));
 $PAGE->set_heading(format_string(get_string("validate_certificate_title", "certificatebeautiful")));
-$PAGE->set_context(\context_system::instance());
 
 echo $OUTPUT->header();
 
@@ -47,8 +49,40 @@ if ($code) {
         ];
 
         $namefields = implode(",", \core_user\fields::get_name_fields());
-        if ($user = $DB->get_record("user", ["id" => $certificatebeautifulissue->userid], $namefields)) {
-            $data["username"] = fullname($user);
+        if ($user = $DB->get_record("user", ["id" => $certificatebeautifulissue->userid], "{$namefields},email")) {
+
+            $config = get_config("certificatebeautiful");
+            switch ($config->data_protect) {
+                case issue::ISSUE_HIDDEN:
+                    $data["username"] = false;
+                    $data["useremail"] = false;
+                    break;
+                case issue::ISSUE_ADMINS_ONLY:
+                    if (has_capability('moodle/site:config', context_system::instance())) {
+                        $data["username"] = fullname($user);
+                        $data["useremail"] = $user->email;
+                    } else {
+                        $data["username"] = false;
+                        $data["useremail"] = false;
+                    }
+                    break;
+                case issue::ISSUE_NAME_VISIBLE:
+                    $data["username"] = fullname($user);
+                    $data["useremail"] = false;
+                    break;
+                case issue::ISSUE_EMAIL_ANONIMIZED:
+                    $data["username"] = fullname($user);
+
+                    list($name, $domain) = explode("@", $user->email);
+                    $name = substr($name, 0, 4);
+                    $domain = substr($domain, 3);
+                    $data["useremail"] = "{$name}****@****{$domain}";
+                    break;
+                default:
+                    echo "Invalid option";
+            }
+
+
         }
 
         $cm = get_coursemodule_from_id("certificatebeautiful", $certificatebeautifulissue->cmid);

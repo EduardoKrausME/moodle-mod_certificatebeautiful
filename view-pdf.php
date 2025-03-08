@@ -22,8 +22,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use mod_certificatebeautiful\local\model\form_create;
-use mod_certificatebeautiful\local\model\form_create_page;
+use mod_certificatebeautiful\local\issue;
 
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
@@ -34,6 +33,21 @@ global $PAGE, $CFG;
 
 $code = required_param("code", PARAM_TEXT);
 $action = required_param("action", PARAM_TEXT);
+
+if ($action == "createadmin") {
+    $userid = required_param("userid", PARAM_INT);
+    $user = $DB->get_record("user", ["id" => $userid], '*', MUST_EXIST);
+
+    $cmid = required_param("cmid", PARAM_INT);
+    $cm = get_coursemodule_from_id("certificatebeautiful", $cmid, 0, false, MUST_EXIST);
+
+    /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
+    $certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], '*', MUST_EXIST);
+
+    $issue = issue::get($user, $certificatebeautiful, $cm);
+    $paramsview = ["code" => $issue->code, "action" => "view"];
+    redirect(new moodle_url('/mod/certificatebeautiful/view-pdf.php?', $paramsview));
+}
 
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_issue $certificatebeautifulissue */
 $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", ["code" => $code], '*', MUST_EXIST);
@@ -55,6 +69,8 @@ $username = fullname($user);
 $name = "{$certificatebeautiful->name} - {$username}.pdf";
 
 switch ($action) {
+    case "createadmin":
+        require_capability('mod/certificatebeautiful:addinstance', $context);
     case "view":
         header('Content-Type: application/pdf');
         header('Content-disposition: inline; filename="' . $name . '"');

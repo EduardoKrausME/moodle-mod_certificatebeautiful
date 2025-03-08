@@ -82,22 +82,23 @@ class certificatebeautiful_view extends \table_sql {
 
         if (!$this->is_downloading()) {
             $columns[] = "extra";
-            $headers[] = '';
+            $headers[] = "";
         }
 
         $this->define_columns($columns);
-        $this->column_class("extra", 'certificatebeautiful-report-extra-width');
+        $this->column_class("extra", "certificatebeautiful-report-extra-width");
         $this->define_headers($headers);
     }
 
     /**
      * Fullname is treated as a special columname in tablelib and should always
      * be treated the same as the fullname of a user.
+     *
      * @uses $this->useridfield if the userid field is not expected to be id
      * then you need to override $this->useridfield to point at the correct
      * field for the user id.
      *
-     * @param object $linha the data from the db containing all fields from the
+     * @param object $row   the data from the db containing all fields from the
      *                      users table necessary to construct the full name of the user in
      *                      current language.
      *
@@ -105,55 +106,106 @@ class certificatebeautiful_view extends \table_sql {
      *
      * @throws \moodle_exception
      */
-    public function col_fullname($linha) {
+    public function col_fullname($row) {
         global $COURSE;
 
-        $name = fullname($linha);
+        $name = fullname($row);
         if ($this->download) {
             return $name;
         }
 
         if ($COURSE->id == SITEID) {
-            $profileurl = new moodle_url('/user/profile.php', ["id" => $linha->user_id]);
+            $profileurl = new moodle_url("/user/profile.php", ["id" => $row->userid]);
         } else {
-            $profileurl = new moodle_url('/user/view.php',
-                ["id" => $linha->user_id, "course" => $COURSE->id]);
+            $profileurl = new moodle_url("/user/view.php",
+                ["id" => $row->userid, "course" => $COURSE->id]);
         }
         return html_writer::link($profileurl, $name, ["target" => "_blank"]);
     }
 
     /**
+     * Function col_code
+     *
+     * @param $row
+     *
+     * @return mixed
+     * @throws \dml_exception
+     */
+    public function col_code(&$row) {
+        global $DB;
+
+        $row->code = $DB->get_field("certificatebeautiful_issue", "code", ["userid" => $row->userid, "cmid" => $this->cmid]);
+        if ($row->code) {
+            return $row->code;
+        } else {
+            return "--";
+        }
+    }
+
+    /**
      * col_timecreated
      *
-     * @param $linha
+     * @param $row
      *
      * @return string
+     * @throws \dml_exception
      */
-    public function col_timecreated($linha) {
-        return userdate($linha->timecreated);
+    public function col_timecreated(&$row) {
+        global $DB;
+
+        $row->timecreated = $DB->get_field("certificatebeautiful_issue", "timecreated",
+            ["userid" => $row->userid, "cmid" => $this->cmid]);
+        if ($row->timecreated) {
+            return userdate($row->timecreated);
+        } else {
+            return "--";
+        }
     }
 
     /**
      * col_extra
      *
-     * @param $linha
+     * @param $row
      *
      * @return string
      *
      * @throws \moodle_exception
      */
-    public function col_extra($linha) {
-        global $OUTPUT;
+    public function col_extra($row) {
+        global $DB, $OUTPUT;
 
-        $urloptions = ["id" => $linha->cmid, "issueid" => $linha->issueid, "action" => "delete", "sesskey" => sesskey()];
+        $issueid = $DB->get_field("certificatebeautiful_issue", "timecreated",
+            ["userid" => $row->userid, "cmid" => $this->cmid]);
 
-        $data = [
-            "uniqid" => uniqid(),
-            "url-view" => (new moodle_url('/mod/certificatebeautiful/view-pdf.php?',
-                ["code" => $linha->code, "action" => "view"]))->out(),
-            "url-delete" => (new moodle_url('/mod/certificatebeautiful/report.php?', $urloptions))->out(),
-        ];
-        return $OUTPUT->render_from_template('mod_certificatebeautiful/certificatebeautiful_view-extra', $data);
+        if ($row->timecreated) {
+            $paramsvalidate = ["code" => $row->code];
+            $paramsview = ["code" => $row->code, "action" => "view"];
+            $paramsdelete = [
+                "id" => $this->cmid,
+                "issueid" => $issueid,
+                "action" => "delete",
+                "sesskey" => sesskey(),
+            ];
+            $data = [
+                "download" => true,
+                "uniqid" => uniqid(),
+                "url-validate" => (new moodle_url("/mod/certificatebeautiful/v/", $paramsvalidate))->out(),
+                "url-view" => (new moodle_url("/mod/certificatebeautiful/view-pdf.php", $paramsview))->out(),
+                "url-delete" => (new moodle_url("/mod/certificatebeautiful/report.php", $paramsdelete))->out(),
+            ];
+        } else {
+            $paramscreate = [
+                "userid" => $row->userid,
+                "action" => "createadmin",
+                "cmid" => $this->cmid,
+                "code" => "createadmin",
+            ];
+            $data = [
+                "create" => true,
+                "url-create" => (new moodle_url("/mod/certificatebeautiful/view-pdf.php", $paramscreate))->out(),
+            ];
+        }
+        return $OUTPUT->render_from_template("mod_certificatebeautiful/certificatebeautiful_view-extra", $data);
     }
 
     /**
@@ -178,13 +230,12 @@ class certificatebeautiful_view extends \table_sql {
             $order = "u.firstname";
         }
 
-        $this->sql = "SELECT cbi.id AS issueid, cbi.cmid, cbi.code, cbi.timecreated,
-                             u.id AS user_id, u.email, u.firstnamephonetic, u.lastnamephonetic,
+        $this->sql = "SELECT DISTINCT u.id AS userid, u.email, u.firstnamephonetic, u.lastnamephonetic,
                              u.middlename, u.alternatename, u.firstname, u.lastname
-                        FROM {certificatebeautiful_issue} cbi
-                        JOIN {user}                         u ON u.id = cbi.userid
-                        JOIN {certificatebeautiful}        cb ON cb.id = cbi.certificatebeautifulid
-                       WHERE cbi.cmid = :cmid
+                        FROM {course}           c
+                        JOIN {enrol}            e ON e.courseid = c.id
+                        JOIN {user_enrolments} ue ON ue.enrolid = e.id
+                        JOIN {user}             u ON ue.userid  = u.id
                              {$where}
                     ORDER BY {$order}";
 
