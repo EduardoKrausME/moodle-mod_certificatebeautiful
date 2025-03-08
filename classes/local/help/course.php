@@ -50,6 +50,8 @@ class course extends help_base {
             ["key" => "fullname", "label" => get_string("help_course_fullname", "certificatebeautiful")],
             ["key" => "shortname", "label" => get_string("help_course_shortname", "certificatebeautiful")],
             ["key" => "summary", "label" => get_string("help_course_summary", "certificatebeautiful")],
+            ["key" => "sections", "label" => get_string("help_course_sections", "certificatebeautiful")],
+            ["key" => "sections_modules", "label" => get_string("help_course_sections_modules", "certificatebeautiful")],
             ["key" => "startdate", "label" => get_string("help_course_startdate", "certificatebeautiful")],
             ["key" => "enddate", "label" => get_string("help_course_enddate", "certificatebeautiful")],
             ["key" => "lang", "label" => get_string("help_course_lang", "certificatebeautiful")],
@@ -63,8 +65,112 @@ class course extends help_base {
      *
      * @return array
      * @throws \coding_exception
+     * @throws \dml_exception
      */
     public static function get_data($course) {
-        return self::base_get_data(self::table_structure(), $course);
+        $data = self::base_get_data(self::table_structure(), $course);
+
+        $data["sections"] = self::sections($course);
+        $data["sections_modules"] = self::sections_modules($course);
+
+        return $data;
+    }
+
+    /**
+     * Function sections
+     *
+     * @param $course
+     *
+     * @return string
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
+    private static function sections($course) {
+        global $DB;
+
+        $sections = $DB->get_records("course_sections", ["course" => $course->id], "section ASC");
+
+        $return = "";
+        foreach ($sections as $section) {
+            if (isset($section->name[2])) {
+                $return .= "<h3>{$section->name}</h3>";
+            } else if ($section->section == 0) {
+                if (get_string_manager()->string_exists("section0name", "format_{$course->format}")) {
+                    $section->name = get_string("section0name", "format_{$course->format}");
+                } else {
+                    $section->name = get_string("section0name", "format_topics");
+                }
+                $return .= "<h3>{$section->name}</h3>";
+
+            }
+        }
+
+        return $return;
+    }
+
+    /**
+     * Function sections_modules
+     *
+     * @param $course
+     *
+     * @return string
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
+    private static function sections_modules($course) {
+        global $DB;
+
+        $sections = $DB->get_records("course_sections", ["course" => $course->id], "section ASC");
+
+        $return = "";
+        foreach ($sections as $section) {
+
+            if (!isset($section->name[1])) {
+                if ($section->section == 0) {
+                    if (get_string_manager()->string_exists("section0name", "format_{$course->format}")) {
+                        $section->name = get_string("section0name", "format_{$course->format}");
+                    } else {
+                        $section->name = get_string("section0name", "format_topics");
+                    }
+                } else {
+                    if (get_string_manager()->string_exists("sectionname", "format_{$course->format}")) {
+                        $section->name = get_string("sectionname", "format_{$course->format}") . " {$section->section}";
+                    } else {
+                        $section->name = get_string("sectionname", "format_topics") . " {$section->section}";
+                    }
+                }
+            }
+
+            if (isset($section->sequence[1])) {
+
+                $sql = "
+                    SELECT cm.*, m.name AS modulename
+                      FROM {course_modules} cm
+                      JOIN {modules}         m ON m.id = cm.module
+                     WHERE cm.id     IN ({$section->sequence})
+                       AND m.name    != 'label'
+                       AND cm.visible = 1";
+                if ($DB->get_dbfamily() == 'mysql') {
+                    $sql .= "
+                  ORDER BY FIELD(cm.id, {$section->sequence})";
+                }
+                $modules = $DB->get_records_sql($sql);
+
+                $returnsections = "";
+                foreach ($modules as $module) {
+                    try {
+                        $instance = $DB->get_record($module->modulename, ["id" => $module->instance], "name");
+                        if ($instance) {
+                            $returnsections .= "<li>{$instance->name}</li>";
+                        }
+                    } catch (\dml_exception $e) { // phpcs:disable
+                    }
+                }
+
+                $return .= "<h3>{$section->name}</h3><ul>{$returnsections}</ul>";
+            }
+        }
+
+        return $return;
     }
 }
