@@ -73,7 +73,7 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
                         "cssdata" => "",
                     ], [
                         "htmldata" =>
-                            \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
+                            \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page2"),
                         "cssdata" => "",
                     ],
                 ];

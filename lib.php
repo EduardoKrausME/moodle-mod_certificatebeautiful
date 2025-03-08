@@ -301,6 +301,9 @@ function certificatebeautiful_list_all_models() {
         ], [
             "name" => get_string("sumary-secound-page", "certificatebeautiful"),
             "key" => "sumary-secound-page",
+        ], [
+            "name" => get_string("sumary-secound-page2", "certificatebeautiful"),
+            "key" => "sumary-secound-page2",
         ],
     ];
 }

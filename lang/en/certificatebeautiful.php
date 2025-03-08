@@ -190,6 +190,7 @@ $string['select_the_model'] = 'Select the model';
 $string['subtititle'] = 'Of completion';
 $string['sumary'] = 'Summary';
 $string['sumary-secound-page'] = 'Summary Certificate';
+$string['sumary-secound-page2'] = 'List of course sections and modules';
 $string['using_this_page'] = 'Use this template';
 $string['validate_certificate_code'] = 'Authenticity code';
 $string['validate_certificate_course'] = 'Certificate course';

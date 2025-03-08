@@ -37,7 +37,7 @@ function xmldb_certificatebeautiful_install() {
                 "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model["key"]),
                 "cssdata" => "",
             ], [
-                "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
+                "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page2"),
                 "cssdata" => "",
             ],
         ];
