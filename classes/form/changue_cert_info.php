@@ -78,8 +78,7 @@ class changue_cert_info extends moodleform {
             ["class" => 'form-submit']);
         $buttonarray[] = &$mform->createElement("cancel");
 
-        $grp = $mform->addGroup($buttonarray, "buttonar", get_string("formactions", "core_form"), [' '], false);
-        $grp->setHiddenLabel(true);
+        $mform->addGroup($buttonarray, "buttonar", "", [' '], false);
         $mform->closeHeaderBefore("buttonar");
 
         $this->set_data([]);
