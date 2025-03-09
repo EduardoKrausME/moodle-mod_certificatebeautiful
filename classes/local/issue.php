@@ -56,21 +56,21 @@ class issue {
     public static function get($user, $certificatebeautiful, $cm) {
         global $DB;
 
-        /** @var certificatebeautiful_issue $certificatebeautifulissue */
-        $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", ["userid" => $user->id, "cmid" => $cm->id]);
-        if (!$certificatebeautifulissue) {
-            $certificatebeautifulissue = (object)[
+        /** @var certificatebeautiful_issue $issue */
+        $issue = $DB->get_record("certificatebeautiful_issue", ["userid" => $user->id, "cmid" => $cm->id]);
+        if (!$issue) {
+            $issue = (object)[
                 "userid" => $user->id,
                 "cmid" => $cm->id,
                 "certificatebeautifulid" => $certificatebeautiful->id,
-                "code" => substr(strtoupper("c" . uniqid()), 0, 10),
+                "code" => substr(strtoupper(md5("{$cm->id}-{$user->id}-{$certificatebeautiful->id}")), 0, 10),
                 "version" => $certificatebeautiful->timemodified,
                 "timecreated" => time(),
                 "timemodified" => time(),
             ];
-            $certificatebeautifulissue->id = $DB->insert_record("certificatebeautiful_issue", $certificatebeautifulissue);
+            $issue->id = $DB->insert_record("certificatebeautiful_issue", $issue);
         }
 
-        return $certificatebeautifulissue;
+        return $issue;
     }
 }
