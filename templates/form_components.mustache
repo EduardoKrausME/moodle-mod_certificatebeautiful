@@ -56,12 +56,12 @@
 </div>
 
 {{#js}}
-    require(['jquery'], function($) {
+    require(["jquery"], function($) {
         $(".structuresitens .read-more").show(200).click(function() {
             event.preventDefault();
 
-            $('.structuresitens').css({height: 'auto'});
-            $('.structuresitens .read-more').hide();
+            $(".structuresitens").css({height: "auto"});
+            $(".structuresitens .read-more").hide();
             return false;
         });
 
@@ -69,7 +69,7 @@
             var $element = $(event.target);
             var id = "animate-" + Math.random().toString(16).slice(2);
 
-            $element.attr('id', id);
+            $element.attr("id", id);
             copyToClipboard(id);
         });
 

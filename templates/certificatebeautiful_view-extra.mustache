@@ -54,7 +54,7 @@
         </div>
     {{/url-delete}}
     {{#js}}
-        require(['jquery'], function($) {
+        require(["jquery"], function($) {
             $("#delete-{{uniqid}}").click(function() {
                 $("#box-confirm-{{uniqid}}").show(200);
                 $("#box-link-{{uniqid}}").hide(200);
