@@ -255,54 +255,71 @@ function certificatebeautiful_list_all_models() {
     return [
         [
             "name" => get_string("certificate-appreciation", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-appreciation",
         ], [
             "name" => get_string("certificate-details", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-details",
         ], [
             "name" => get_string("certificate-elegant", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-elegant",
         ], [
             "name" => get_string("certificate-flat-modern", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-flat-modern",
         ], [
             "name" => get_string("certificate-golden", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-golden",
         ], [
             "name" => get_string("certificate-gradient-golden-luxury", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-gradient-golden-luxury",
         ], [
             "name" => get_string("certificate-kids-animals", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-kids-animals",
         ], [
             "name" => get_string("certificate-kids-child-medical", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-kids-child-medical",
         ], [
             "name" => get_string("certificate-kids-gradient-modern", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-kids-gradient-modern",
         ], [
             "name" => get_string("certificate-kids-hand-drawn", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-kids-hand-drawn",
         ], [
             "name" => get_string("certificate-kids-pastel", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-kids-pastel",
         ], [
             "name" => get_string("certificate-modern", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-modern",
         ], [
             "name" => get_string("certificate-modern-2", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-modern-2",
         ], [
             "name" => get_string("certificate-simple", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-simple",
         ], [
             "name" => get_string("certificate-vintage", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "certificate-vintage",
         ], [
             "name" => get_string("sumary-secound-page", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "sumary-secound-page",
         ], [
             "name" => get_string("sumary-secound-page2", "certificatebeautiful"),
+            "orientation" => "L",
             "key" => "sumary-secound-page2",
         ],
     ];

@@ -24,42 +24,55 @@
 
 namespace mod_certificatebeautiful\local\model;
 
-defined('MOODLE_INTERNAL') || die;
-require_once("{$CFG->libdir}/formslib.php");
+use mod_certificatebeautiful\local\vo\certificatebeautiful_model;
 
 /**
  * Class form_create_page
  *
  * @package mod_certificatebeautiful\local\model
  */
-class form_create_page extends \moodleform {
+class form_create_page {
 
     /**
      * Function empty_page
      *
+     * @param certificatebeautiful_model $model
+     *
      * @return object
      * @throws \coding_exception
      */
-    public static function empty_page() {
+    public static function empty_page($model) {
+        global $CFG;
 
-        return (object)[
-            "htmldata" => '<div>' . get_string('certificatebeautiful-page_empty', "certificatebeautiful") . '</div>',
-            "cssdata" => "
-                [data-gjs-type=wrapper] {
-                    background-image: url(/mod/certificatebeautiful/_editor/img/vazio.jpg);
-                    position: relative;
-                    height: 673px;
-                    width: 955px;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    background-size: cover;
-                }",
-        ];
-    }
-
-    /**
-     * Form definition. Abstract method - always override!
-     */
-    protected function definition() {
+        $page_empty = get_string("certificatebeautiful-page_empty", "certificatebeautiful");
+        if ($model->orientation == "L") {
+            return (object)[
+                "htmldata" => "<div>{$page_empty}</div>",
+                "cssdata" => "
+                    [data-gjs-type=wrapper] {
+                        background-image: url({$CFG->wwwroot}/mod/certificatebeautiful/_editor/img/vazio.jpg);
+                        position: relative;
+                        height: 673px;
+                        width: 955px;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                    }",
+            ];
+        } else {
+            return (object)[
+                "htmldata" => "<div>{$page_empty}</div>",
+                "cssdata" => "
+                    [data-gjs-type=wrapper] {
+                        background-image: url({$CFG->wwwroot}/mod/certificatebeautiful/_editor/img/vazio-p.jpg);
+                        position: relative;
+                        height: 955px;
+                        width: 673px;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                    }",
+            ];
+        }
     }
 }

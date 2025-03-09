@@ -84,10 +84,9 @@ class page_pdf {
 
         // 297 mm    X  210 mm
         // 841,89 px X  595,28 px
-        $proporcao = .85;
         $mpdf = new Mpdf([
             "mode" => '',
-            "format" => [210 * $proporcao, 297 * $proporcao],
+            "orientation" => $certificatebeautifulmodel->orientation,
             "tempDir" => "{$CFG->dataroot}/temp/mpdf",
             "margin_left" => 0,
             "margin_right" => 0,
@@ -95,18 +94,15 @@ class page_pdf {
             "margin_bottom" => 0,
             "margin_header" => 0,
             "margin_footer" => 0,
-            "orientation" => "L",
-            "fontDir" =>
-                array_merge(
-                    (new ConfigVariables())->getDefaults()["fontDir"],
-                    $fontlist["path"]
-                ),
+            "fontDir" => array_merge(
+                (new ConfigVariables())->getDefaults()["fontDir"],
+                $fontlist["path"]
+            ),
             "default_font" => "Arial",
-            "fontdata" =>
-                array_merge(
-                    (new FontVariables())->getDefaults()["fontdata"],
-                    $fontlist["fonts"],
-                    ),
+            "fontdata" => array_merge(
+                (new FontVariables())->getDefaults()["fontdata"],
+                $fontlist["fonts"]
+            ),
         ]);
         $mpdf->autoPageBreak = false;
 
@@ -169,7 +165,7 @@ class page_pdf {
             $image = str_replace("'", "", $image);
             $image = str_replace("\"", "", $image);
 
-            // Coloca a imagem como WATERMARK da página.
+            // Sets the image as the page's WATERMARK.
             $mpdf->Image(
                 $image,  // Value of $file.
                 0, // Value of $x.

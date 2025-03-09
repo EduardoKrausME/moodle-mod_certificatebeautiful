@@ -62,7 +62,7 @@ class form_create extends \moodleform {
             $pagesinfo = $certificatebeautifulmodel->pages_info_object;
             foreach ($pagesinfo as $key => $page) {
                 if (!isset($page->htmldata)) {
-                    $page->htmldata = form_create_page::empty_page();
+                    $page->htmldata = form_create_page::empty_page($certificatebeautifulmodel);
                 }
                 if (!isset($page->cssdata)) {
                     $page->cssdata = "";
@@ -90,6 +90,14 @@ class form_create extends \moodleform {
 
             $this->add_action_buttons(true, get_string("save_model", "certificatebeautiful"));
         } else {
+
+            $options = [
+                "L" => get_string("model_orientation_l", "certificatebeautiful"),
+                "P" => get_string("model_orientation_p", "certificatebeautiful"),
+            ];
+            $mform->addElement("select", "orientation", get_string("model_orientation", "certificatebeautiful"), $options);
+            $mform->setType("orientation", PARAM_TEXT);
+
             $message = get_string("create_after_model", "certificatebeautiful");
             $mform->addElement("html",
                 $PAGE->get_renderer("core")->render(new notification($message, notification::NOTIFY_WARNING)));

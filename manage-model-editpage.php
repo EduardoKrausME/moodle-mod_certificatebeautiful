@@ -22,6 +22,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use core\output\notification;
 use mod_certificatebeautiful\form\changue_cert_info;
 
 require_once("../../config.php");
@@ -88,8 +89,20 @@ switch ($action) {
 
         $models = certificatebeautiful_list_all_models();
 
+        if ($certificatebeautifulmodel->orientation == "L") {
+            $orientation = get_string("model_orientation_l", "certificatebeautiful");
+        } else {
+            $orientation = get_string("model_orientation_p", "certificatebeautiful");
+        }
+        $message = get_string("only_format", "certificatebeautiful", $orientation);
+        echo $PAGE->get_renderer('core')->render(new notification($message, notification::NOTIFY_WARNING));
+
         $data = ["pages" => [], "class-root" => "d-flex flex-wrap certificate-flex-gap"];
         foreach ($models as $model) {
+
+            if ($model["orientation"] != $certificatebeautifulmodel->orientation) {
+                continue;
+            }
 
             $unique = uniqid();
 

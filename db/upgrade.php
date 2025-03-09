@@ -91,5 +91,18 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2024021402, "certificatebeautiful");
     }
 
+    if ($oldversion < 2025030901) {
+        $table = new xmldb_table("certificatebeautiful_model");
+        $field = new xmldb_field("orientation", XMLDB_TYPE_CHAR, 1, null, null, null, null, "name");
+
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        $DB->execute("UPDATE {certificatebeautiful_model} SET orientation = 'L'");
+
+        upgrade_mod_savepoint(true, 2025030901, "certificatebeautiful");
+    }
+
     return true;
 }

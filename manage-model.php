@@ -50,8 +50,13 @@ if ($id > 0) {
 
     $PAGE->navbar->add(get_string("list_model", "certificatebeautiful"), "manage-model-list.php");
     $PAGE->navbar->add($certificatebeautifulmodel->name, $PAGE->url);
+
+    $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
+    if (count($certificatebeautifulmodel->pages_info_object) == 0) {
+        $certificatebeautifulmodel->pages_info_object = [form_create_page::empty_page($certificatebeautifulmodel)];
+    }
 } else {
-    $certificatebeautifulmodel = (object)["id" => -1, "name" => "", "pages_info" => "[]"];
+    $certificatebeautifulmodel = (object)["id" => -1, "name" => "", "pages_info" => "[]", "orientation" => "L"];
 
     $PAGE->set_title(get_string("new_model", "certificatebeautiful"));
     $PAGE->set_heading(format_string(get_string("new_model", "certificatebeautiful")));
@@ -59,8 +64,6 @@ if ($id > 0) {
     $PAGE->navbar->add(get_string("list_model", "certificatebeautiful"), "manage-model-list.php");
     $PAGE->navbar->add(get_string("new_model", "certificatebeautiful"), $PAGE->url);
 }
-
-$certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
 switch (optional_param("action", false, PARAM_TEXT)) {
     case "delete":
@@ -78,9 +81,6 @@ switch (optional_param("action", false, PARAM_TEXT)) {
 
         break;
 }
-if (count($certificatebeautifulmodel->pages_info_object) == 0) {
-    $certificatebeautifulmodel->pages_info_object = [form_create_page::empty_page()];
-}
 
 $formcreate = new form_create(null, ["certificatebeautiful_model" => $certificatebeautifulmodel]);
 if (!$formcreate->is_cancelled() && $certificatebeautifulmodel = $formcreate->get_data()) {
@@ -89,13 +89,15 @@ if (!$formcreate->is_cancelled() && $certificatebeautifulmodel = $formcreate->ge
         $model = (object)[
             "id" => $certificatebeautifulmodel->id,
             "name" => $certificatebeautifulmodel->name,
+            "orientation" => $certificatebeautifulmodel->orientation,
             "timemodified" => time(),
         ];
         $DB->update_record("certificatebeautiful_model", $model);
     } else {
         $model = (object)[
             "name" => $certificatebeautifulmodel->name,
-            "pages_info" => json_encode([form_create_page::empty_page()], JSON_PRETTY_PRINT),
+            "orientation" => $certificatebeautifulmodel->orientation,
+            "pages_info" => json_encode([form_create_page::empty_page($certificatebeautifulmodel)], JSON_PRETTY_PRINT),
             "timecreated" => time(),
             "timemodified" => time(),
         ];

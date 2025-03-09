@@ -76,19 +76,9 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
     }
 
     if (!isset($pageinfo->htmldata)) {
-        $pageinfo->htmldata = '<div>' . get_string('certificatebeautiful-page_empty', "certificatebeautiful") . '</div>';
-    }
-    if (!isset($pageinfo->cssdata)) {
-        $pageinfo->cssdata = "
-                [data-gjs-type=wrapper] {
-                    background-image: url(/mod/certificatebeautiful/_editor/img/vazio.jpg);
-                    position: relative;
-                    height: 673px;
-                    width: 955px;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    background-size: cover;
-                }";
+        $empty = \mod_certificatebeautiful\local\model\form_create_page::empty_page($certificatebeautifulmodel);
+        $pageinfo->htmldata = $empty->htmldata;
+        $pageinfo->cssdata = $empty->cssdata;
     }
 
     $pageinfo->htmldata = str_replace('<tbody', '<tbody data-gjs-selectable="false" data-gjs-highlightable="false" data-gjs-hoverable="false"', $pageinfo->htmldata);
