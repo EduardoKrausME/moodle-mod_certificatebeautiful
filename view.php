@@ -22,7 +22,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once('../../config.php');
+require_once("../../config.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/issue.php");
 
 global $PAGE, $USER, $CFG;
@@ -30,14 +30,13 @@ global $PAGE, $USER, $CFG;
 $id = required_param("id", PARAM_INT);
 
 $cm = get_coursemodule_from_id("certificatebeautiful", $id, 0, false, MUST_EXIST);
-$course = $DB->get_record("course", ["id" => $cm->course], '*', MUST_EXIST);
+$course = $DB->get_record("course", ["id" => $cm->course], "*", MUST_EXIST);
 
 if (optional_param("action", "", PARAM_TEXT) == "delete") {
     require_sesskey();
     $issueid = required_param("issueid", PARAM_INT);
-
-    /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_issue $certificatebeautifulissue */
-    $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", ["id" => $issueid]);
+    $userid = required_param("userid", PARAM_INT);
+    $issuecode = required_param("issuecode", PARAM_TEXT);
 
     $DB->delete_records("certificatebeautiful_issue", ["id" => $issueid]);
 
@@ -46,9 +45,9 @@ if (optional_param("action", "", PARAM_TEXT) == "delete") {
         "component" => "mod_certificatebeautiful",
         "contextid" => $context->id,
         "filearea" => "certificate",
-        "filepath" => '/',
-        "itemid" => $certificatebeautifulissue->userid,
-        "filename" => "{$certificatebeautifulissue->code}.pdf",
+        "filepath" => "/",
+        "itemid" => $userid,
+        "filename" => "{$issuecode}.pdf",
     ];
 
     $storedfile = $fs->get_file(
@@ -61,17 +60,17 @@ if (optional_param("action", "", PARAM_TEXT) == "delete") {
 }
 
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
-$certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], '*', MUST_EXIST);
+$certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], "*", MUST_EXIST);
 
 $context = context_module::instance($cm->id);
 
 $PAGE->set_context($context);
-$PAGE->set_url('/mod/certificatebeautiful/view.php', ["id" => $id]);
-$PAGE->set_title($course->shortname . ': ' . $certificatebeautiful->name);
+$PAGE->set_url("/mod/certificatebeautiful/view.php", ["id" => $id]);
+$PAGE->set_title($course->shortname . ": " . $certificatebeautiful->name);
 $PAGE->set_heading(format_string($course->fullname));
 
 require_course_login($course, true, $cm);
-require_capability('mod/certificatebeautiful:view', $context);
+require_capability("mod/certificatebeautiful:view", $context);
 
 $event = \mod_certificatebeautiful\event\certificatebeautiful_course_module_viewed::create([
     "objectid" => $PAGE->cm->instance,
@@ -87,7 +86,7 @@ $completion->set_module_viewed($cm);
 
 echo $OUTPUT->header();
 
-if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
+if (has_capability("mod/certificatebeautiful:addinstance", $context)) {
 
     $title = get_string("report_filename", "certificatebeautiful");
     echo $OUTPUT->heading($title, 2, "main", "certificatebeautifulheading");
@@ -103,10 +102,10 @@ if (has_capability('mod/certificatebeautiful:addinstance', $context)) {
 
     $data = [
         "issueid" => $certificatebeautifulissue->id,
-        'pdf-viewer-url' => "{$viewerurl}?file=" . urlencode("{$urlbase}&action=view"),
-        'pdf-url_base' => $urlbase,
+        "pdf-viewer-url" => "{$viewerurl}?file=" . urlencode("{$urlbase}&action=view"),
+        "pdf-url_base" => $urlbase,
     ];
-    echo $OUTPUT->render_from_template('mod_certificatebeautiful/view', $data);
+    echo $OUTPUT->render_from_template("mod_certificatebeautiful/view", $data);
 }
 
 echo $OUTPUT->footer();

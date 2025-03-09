@@ -26,6 +26,7 @@ namespace mod_certificatebeautiful\local\report;
 
 use html_writer;
 use mod_certificatebeautiful\local\vo\certificatebeautiful;
+use mod_certificatebeautiful\local\vo\certificatebeautiful_issue;
 use moodle_url;
 
 defined('MOODLE_INTERNAL') || die;
@@ -174,7 +175,8 @@ class certificatebeautiful_view extends \table_sql {
     public function col_extra($row) {
         global $DB, $OUTPUT;
 
-        $issueid = $DB->get_field("certificatebeautiful_issue", "timecreated",
+        /** @var certificatebeautiful_issue $issue */
+        $issue = $DB->get_record("certificatebeautiful_issue",
             ["userid" => $row->userid, "cmid" => $this->cmid]);
 
         if ($row->timecreated) {
@@ -190,11 +192,13 @@ class certificatebeautiful_view extends \table_sql {
             if (has_capability("mod/certificatebeautiful:addinstance", \context_system::instance())) {
                 $paramsdelete = [
                     "id" => $this->cmid,
-                    "issueid" => $issueid,
+                    "issueid" => $issue->id,
+                    "issuecode" => $issue->code,
+                    "userid" => $issue->userid,
                     "action" => "delete",
                     "sesskey" => sesskey(),
                 ];
-                $data["url-delete"] = (new moodle_url("/mod/certificatebeautiful/report.php", $paramsdelete))->out();
+                $data["url-delete"] = (new moodle_url("/mod/certificatebeautiful/view.php", $paramsdelete))->out();
             }
         } else {
             $paramscreate = [
