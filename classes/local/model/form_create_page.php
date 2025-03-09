@@ -44,10 +44,10 @@ class form_create_page {
     public static function empty_page($model) {
         global $CFG;
 
-        $page_empty = get_string("certificatebeautiful-page_empty", "certificatebeautiful");
+        $pageempty = get_string("certificatebeautiful-page_empty", "certificatebeautiful");
         if ($model->orientation == "L") {
             return (object)[
-                "htmldata" => "<div>{$page_empty}</div>",
+                "htmldata" => "<div>{$pageempty}</div>",
                 "cssdata" => "
                     [data-gjs-type=wrapper] {
                         background-image: url({$CFG->wwwroot}/mod/certificatebeautiful/_editor/img/vazio.jpg);
@@ -61,7 +61,7 @@ class form_create_page {
             ];
         } else {
             return (object)[
-                "htmldata" => "<div>{$page_empty}</div>",
+                "htmldata" => "<div>{$pageempty}</div>",
                 "cssdata" => "
                     [data-gjs-type=wrapper] {
                         background-image: url({$CFG->wwwroot}/mod/certificatebeautiful/_editor/img/vazio-p.jpg);
