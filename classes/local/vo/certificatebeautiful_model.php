@@ -38,7 +38,19 @@ class certificatebeautiful_model extends \stdClass {
     public $name;
 
     /** @var string */
-    public $pagesinfo;
+    public $orientation;
+
+    /**
+     * phpcs:disable
+     * @var string
+     */
+    public $pages_info;
+
+    /**
+     * phpcs:disable
+     * @var string
+     */
+    public $model_key;
 
     /** @var int */
     public $timecreated;
