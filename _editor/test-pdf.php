@@ -47,16 +47,17 @@ if ($temp = optional_param("temp", false, PARAM_TEXT)) {
     die;
 }
 
+if($id) {
+    /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $model */
+    $model = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
+}
+
 if ($htmldata && $cssdata) {
     require_sesskey();
-    $certificatebeautifulmodel = (object)[
-        "id" => $id,
-        "name" => "name",
-        "pages_info_object" => [
-            (object)[
-                "htmldata" => $htmldata,
-                "cssdata" => $cssdata
-            ]
+    $model->pages_info_object = [
+        (object)[
+            "htmldata" => $htmldata,
+            "cssdata" => $cssdata
         ]
     ];
 } else {
@@ -69,55 +70,48 @@ if ($htmldata && $cssdata) {
 
         die();
     } else if ($id == -2) {
-        $certificatebeautifulmodel = (object)[
-            "id" => $id,
-            "name" => "all",
-            "pages_info_object" => []
-        ];
+        $model->pages_info_object = [];
         foreach (certificatebeautiful_list_all_models() as $key => $model) {
-            $certificatebeautifulmodel->pages_info_object[] = (object)[
+            $model->pages_info_object[] = (object)[
                 "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model["key"]),
                 "cssdata" => ""
             ];
         }
     } else {
         if ($id == -1) {
-            $certificatebeautifulmodel = (object)[
-                "id" => $id,
-                "name" => "sumary-secound-page",
-                "pages_info_object" => [
-                    (object)[
-                        "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
-                        "cssdata" => ""
-                    ]
+            $model->name = "sumary-secound-page";
+            $model->pages_info_object = [
+                (object)[
+                    "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
+                    "cssdata" => ""
                 ]
             ];
         } else {
             $models = certificatebeautiful_list_all_models();
             $model = $models[$id];
 
-            $certificatebeautifulmodel = (object)[
-                "id" => $id,
-                "name" => $model["key"],
-                "pages_info_object" => [
-                    (object)[
-                        "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model["key"]),
-                        "cssdata" => ""
-                    ],
-                    (object)[
-                        "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
-                        "cssdata" => ""
-                    ]
+            $model->name = $model["key"];
+            $model->pages_info_object = [
+                (object)[
+                    "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model["key"]),
+                    "cssdata" => ""
+                ],
+                (object)[
+                    "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
+                    "cssdata" => ""
                 ]
             ];
         }
     }
 }
 
+/** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = (object)[
     "name" => "teste",
     "description" => get_string("default-description", "certificatebeautiful")
 ];
+
+/** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_issue $certificatebeautifulissie */
 $certificatebeautifulissie = (object)[
     "name" => "teste",
     "code" => "CODE-EX"
@@ -134,7 +128,7 @@ $user = $DB->get_record_sql("SELECT   * FROM {user}   WHERE id >= 2 {$order} LIM
 $course = $DB->get_record_sql("SELECT * FROM {course} WHERE id > 1  {$order} LIMIT 1");
 
 $pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
-$pdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissie, $certificatebeautifulmodel, $user, $course);
+$pdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissie, $model, $user, $course);
 
 $tempfilename = uniqid();
 $tempdir = make_temp_directory("certificatebeautiful");
