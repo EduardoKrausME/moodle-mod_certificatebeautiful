@@ -48,7 +48,7 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
             $dbman->add_field($table, $field);
         }
 
-        $description = get_string('default-description', "certificatebeautiful");
+        $description = get_string("default-description", "certificatebeautiful");
         $DB->execute("UPDATE {certificatebeautiful} SET description = '{$description}'");
 
         upgrade_mod_savepoint(true, 2024021200, "certificatebeautiful");
