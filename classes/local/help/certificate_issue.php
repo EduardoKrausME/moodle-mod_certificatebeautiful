@@ -50,6 +50,7 @@ class certificate_issue extends help_base {
             ["key" => "description", "label" => get_string("help_certificate_issue_description", "certificatebeautiful")],
             ["key" => "timecreated", "label" => get_string("help_certificate_issue_timecreated", "certificatebeautiful")],
             ["key" => "code", "label" => get_string("help_certificate_issue_code", "certificatebeautiful")],
+            ["key" => "codelink", "label" => get_string("help_certificate_issue_codelink", "certificatebeautiful")],
             ["key" => "url", "label" => get_string("help_certificate_issue_url", "certificatebeautiful")],
         ];
     }
@@ -58,31 +59,31 @@ class certificate_issue extends help_base {
      * Function get_data
      *
      * @param $certificatebeautiful
-     * @param $certificatebeautifulissue
+     * @param $issue
      *
      * @return array
      * @throws \coding_exception
      */
-    public static function get_data($certificatebeautiful, $certificatebeautifulissue) {
+    public static function get_data($certificatebeautiful, $issue) {
         global $CFG;
 
-        $certificatebeautifulissue->description = trim($certificatebeautiful->description);
-        $certificatebeautifulissue->description = str_replace("\n", "<br>", $certificatebeautiful->description);
+        $issue->description = trim($certificatebeautiful->description);
+        $issue->description = str_replace("\n", "<br>", $certificatebeautiful->description);
+        $issue->url = "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$issue->code}";
+        $issue->codelink = "<a href=\"{$issue->url}\">{$issue->code}</a>";
 
-        $certificatebeautifulissue->url = "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$certificatebeautifulissue->code}";
-
-        return self::base_get_data(self::table_structure(), $certificatebeautifulissue);
+        return self::base_get_data(self::table_structure(), $issue);
     }
 
     /**
      * Function custom_replace
      *
      * @param $html
-     * @param $certificatebeautifulissue
+     * @param $issue
      *
      * @return mixed
      */
-    public static function custom_replace($html, $certificatebeautifulissue) {
+    public static function custom_replace($html, $issue) {
         if (strpos($html, "img/qr-code.svg")) {
 
             $pngfile = make_temp_directory("certificatebeautiful") . "/" . uniqid() . ".png";
@@ -93,7 +94,7 @@ class certificate_issue extends help_base {
                 "h" => 500,
                 "p" => 0,
             ];
-            $generator = new qrcode($certificatebeautifulissue["url"], $options);
+            $generator = new qrcode($issue["url"], $options);
             $image = $generator->render_image();
             imagepng($image, $pngfile);
 

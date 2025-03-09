@@ -85,6 +85,7 @@ $string['from_certificates'] = 'Certificates from student {$a}';
 $string['help_base_title'] = 'Available keys to replace in the certificate:';
 $string['help_certificate_issue__name'] = 'Certificate data';
 $string['help_certificate_issue_code'] = 'Unique code of the certificate.';
+$string['help_certificate_issue_codelink'] = 'Unique code of the certificate with link.';
 $string['help_certificate_issue_description'] = 'Certificate description';
 $string['help_certificate_issue_name'] = 'Certificate name';
 $string['help_certificate_issue_timecreated'] = 'Certificate creation date.';
