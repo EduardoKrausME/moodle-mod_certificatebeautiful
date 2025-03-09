@@ -38,11 +38,11 @@ class restore_certificatebeautiful_activity_structure_step extends restore_activ
      */
     protected function define_structure(): array {
         $paths = [];
-        $paths[] = new restore_path_element("certificatebeautiful", '/activity/certificatebeautiful');
+        $paths[] = new restore_path_element("certificatebeautiful", "/activity/certificatebeautiful");
 
         // Check if we want the issues as well.
         if ($this->get_setting_value("userinfo")) {
-            $paths[] = new restore_path_element("tool_certificate_issue", '/activity/certificatebeautiful/issues/issue');
+            $paths[] = new restore_path_element("tool_certificate_issue", "/activity/certificatebeautiful/issues/issue");
         }
 
         return $this->prepare_activity_structure($paths);
@@ -77,10 +77,10 @@ class restore_certificatebeautiful_activity_structure_step extends restore_activ
         global $DB;
 
         if (!$DB->get_manager()->table_exists("certificatebeautiful_issue")) {
-            throw new \dml_exception('certificatebeautiful_issue table does not exists');
+            throw new \dml_exception("certificatebeautiful_issue table does not exists");
         }
         if (!$DB->get_manager()->table_exists("certificatebeautiful_model")) {
-            throw new \dml_exception('certificatebeautiful_model table does not exists');
+            throw new \dml_exception("certificatebeautiful_model table does not exists");
         }
         $data = (object) $data;
 

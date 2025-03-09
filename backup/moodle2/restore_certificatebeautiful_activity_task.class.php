@@ -50,7 +50,7 @@ class restore_certificatebeautiful_activity_task extends restore_activity_task {
     protected function define_my_steps(): void {
         $this->add_step(new restore_certificatebeautiful_activity_structure_step(
                 "certificatebeautiful_structure",
-                'certificatebeautiful.xml')
+                "certificatebeautiful.xml")
         );
     }
 
@@ -95,7 +95,7 @@ class restore_certificatebeautiful_activity_task extends restore_activity_task {
         $rules = [];
 
         // Define the rules.
-        $rules[] = new restore_log_rule("certificatebeautiful", 'view all', 'index.php?id={course}', null);
+        $rules[] = new restore_log_rule("certificatebeautiful", "view all", "index.php?id={course}", null);
 
         return $rules;
     }

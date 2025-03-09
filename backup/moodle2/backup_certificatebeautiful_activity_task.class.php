@@ -48,7 +48,7 @@ class backup_certificatebeautiful_activity_task extends backup_activity_task {
     protected function define_my_steps() {
         $this->add_step(new backup_certificatebeautiful_activity_structure_step(
                 "certificatebeautiful_structure",
-                'certificatebeautiful.xml')
+                "certificatebeautiful.xml")
         );
     }
 
