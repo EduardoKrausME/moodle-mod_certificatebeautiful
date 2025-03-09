@@ -66,12 +66,12 @@ class certificate_issue extends help_base {
     public static function get_data($certificatebeautiful, $certificatebeautifulissue) {
         global $CFG;
 
-        $certificatebeautiful->description = trim($certificatebeautiful->description);
-        $certificatebeautiful->description = str_replace("\n", "<br>", $certificatebeautiful->description);
+        $certificatebeautifulissue->description = trim($certificatebeautiful->description);
+        $certificatebeautifulissue->description = str_replace("\n", "<br>", $certificatebeautiful->description);
 
-        $certificatebeautiful->url = "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$certificatebeautifulissue->code}";
+        $certificatebeautifulissue->url = "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$certificatebeautifulissue->code}";
 
-        return self::base_get_data(self::table_structure(), $certificatebeautiful);
+        return self::base_get_data(self::table_structure(), $certificatebeautifulissue);
     }
 
     /**
