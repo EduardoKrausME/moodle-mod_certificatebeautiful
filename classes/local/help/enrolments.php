@@ -69,7 +69,8 @@ class enrolments extends help_base {
                   JOIN {enrol}            e ON e.id = ue.enrolid
                  WHERE e.status   = 0
                    AND ue.userid  = :userid
-                   AND e.courseid = :courseid";
+                   AND e.courseid = :courseid
+                 LIMIT 1";
         $params = ["userid" => $user->id, "courseid" => $course->id];
 
         return [
