@@ -55,7 +55,7 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
     require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/fonts/font_util.php");
     $fontList = \mod_certificatebeautiful\local\fonts\font_util::mpdf_list_fonts();
 
-    echo "<style>{$fontList['css']}</style>"
+    echo "<style>{$fontList["css"]}</style>"
     ?>
 </head>
 <body>
@@ -63,10 +63,10 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
 <div id="gjs" style="height:0; overflow:hidden">
     <?php
 
-    $id = required_param('id', PARAM_INT);
-    $page = required_param('page', PARAM_INT);
+    $id = required_param("id", PARAM_INT);
+    $page = required_param("page", PARAM_INT);
 
-    $certificatebeautifulmodel = $DB->get_record('certificatebeautiful_model', ['id' => $id], "*", MUST_EXIST);
+    $certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
     $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
     if (isset($certificatebeautifulmodel->pages_info_object[$page])) {

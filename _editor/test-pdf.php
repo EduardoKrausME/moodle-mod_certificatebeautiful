@@ -63,7 +63,7 @@ if ($htmldata && $cssdata) {
 } else {
     if ($id === false) {
         foreach (certificatebeautiful_list_all_models() as $key => $model) {
-            echo "<p><a href='?id={$key}'>{$model['key']}</a></p>";
+            echo "<p><a href='?id={$key}'>{$model["key"]}</a></p>";
         }
 
         echo "<h4><a href='?id=-2'>Abrir todos os certificados</a></p>";
@@ -118,9 +118,9 @@ $certificatebeautifulissie = (object)[
 ];
 
 $order = "";
-if ($DB->get_dbfamily() == 'mysql') {
+if ($DB->get_dbfamily() == "mysql") {
     $order = "ORDER BY RAND()";
-} else if ($DB->get_dbfamily() === 'postgres') {
+} else if ($DB->get_dbfamily() === "postgres") {
     $order = "ORDER BY RANDOM()";
 }
 
