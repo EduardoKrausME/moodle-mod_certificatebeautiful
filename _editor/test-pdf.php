@@ -47,7 +47,7 @@ if ($temp = optional_param("temp", false, PARAM_TEXT)) {
     die;
 }
 
-if($id) {
+if ($id) {
     /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $model */
     $model = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
 }
@@ -114,7 +114,8 @@ $certificatebeautiful = (object)[
 /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_issue $certificatebeautifulissie */
 $certificatebeautifulissie = (object)[
     "name" => "teste",
-    "code" => "CODE-EX"
+    "code" => "CODE-EX",
+    "timecreated" => time(),
 ];
 
 $order = "";

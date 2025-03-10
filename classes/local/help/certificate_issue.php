@@ -72,6 +72,8 @@ class certificate_issue extends help_base {
         $issue->url = "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$issue->code}";
         $issue->codelink = "<a href=\"{$issue->url}\">{$issue->code}</a>";
 
+        $issue->timecreated = userdate($issue->timecreated);
+
         return self::base_get_data(self::table_structure(), $issue);
     }
 
