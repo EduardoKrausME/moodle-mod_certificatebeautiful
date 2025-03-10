@@ -11483,7 +11483,11 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface {
     public function GetFullPath(&$path, $basepath = '') {
         global $CFG;
 
-        $path = str_replace($CFG->wwwroot, $CFG->dirroot, $path);
+        $extensionsimg = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg'];
+        $extension = strtolower(pathinfo(parse_url($path, PHP_URL_PATH), PATHINFO_EXTENSION));
+        if (in_array($extension, $extensionsimg)) {
+            $path = str_replace($CFG->wwwroot, $CFG->dirroot, $path);
+        }
 
         // @todo make return, remove reference
 
