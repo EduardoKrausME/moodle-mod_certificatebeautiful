@@ -48,7 +48,7 @@ class page_pdf {
     public function __construct() {
         global $CFG;
 
-        require_once(__DIR__ . '/vendor/autoload.php');
+        require_once(__DIR__ . "/vendor/autoload.php");
         require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/fonts/font_util.php");
         require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/pdf/replace_tags.php");
 
@@ -84,8 +84,10 @@ class page_pdf {
 
         // 297 mm    X  210 mm
         // 841,89 px X  595,28 px
+        $proporcao = .85;
         $mpdf = new Mpdf([
-            "mode" => '',
+            "mode" => "",
+            "format" => [210 * $proporcao, 297 * $proporcao],
             "orientation" => $certificatebeautifulmodel->orientation,
             "tempDir" => "{$CFG->dataroot}/temp/mpdf",
             "margin_left" => 0,
@@ -107,7 +109,7 @@ class page_pdf {
         $mpdf->autoPageBreak = false;
 
         $mpdf->SetAuthor($COURSE->fullname);
-        $mpdf->SetCreator(get_string("modulename", "certificatebeautiful") . ' - Model: ' . $certificatebeautifulmodel->name);
+        $mpdf->SetCreator(get_string("modulename", "certificatebeautiful") . " - Model: " . $certificatebeautifulmodel->name);
         $mpdf->SetTitle($certificatebeautiful->name);
         $mpdf->SetSubject(get_string("create_at_certificate", "certificatebeautiful", fullname($user)));
 
@@ -172,8 +174,8 @@ class page_pdf {
                 0, // Value of $y.
                 0, // Value of $w.
                 0, // Value of $h.
-                '', // Value of $type.
-                '', // Value of $link.
+                "", // Value of $type.
+                "", // Value of $link.
                 true, // Value of $paint.
                 true, // Value of $constrain.
                 true, // Value of $watermark.
