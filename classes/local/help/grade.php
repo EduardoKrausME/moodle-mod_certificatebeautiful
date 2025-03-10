@@ -107,7 +107,7 @@ class grade extends help_base {
 
         $items = grade_item::fetch_all(["courseid" => $course->id]);
         if (empty($items)) {
-            return '';
+            return "";
         }
 
         // Sorting grade itens by sortorder.
@@ -120,7 +120,7 @@ class grade extends help_base {
             return ($asortorder < $bsortorder) ? -1 : 1;
         });
 
-        $retval = '<table>';
+        $retval = "<table>";
         foreach ($items as $id => $item) {
             // Do not include grades for course itens.
             if ($item->itemtype != "mod") {
@@ -135,7 +135,7 @@ class grade extends help_base {
                         <td>{$usergrade}</td>
                     </tr>";
         }
-        $retval .= '</table>';
+        $retval .= "</table>";
         return $retval;
     }
 

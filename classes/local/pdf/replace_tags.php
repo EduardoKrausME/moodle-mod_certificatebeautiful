@@ -89,7 +89,7 @@ class replace_tags {
         $html = preg_replace_callback('/\{.*?\$.*?}/', function ($matches) {
             $data = $matches[0];
             $data = strip_tags($data);
-            $data = preg_replace('/\s+/', '', $data);
+            $data = preg_replace('/\s+/', "", $data);
             return $data;
         }, $html);
 
@@ -97,7 +97,7 @@ class replace_tags {
         $html = preg_replace_callback('/\{.*?\{.*?}.*?}/', function ($matches) {
             $data = $matches[0];
             $data = strip_tags($data);
-            $data = preg_replace('/\s+/', '', $data);
+            $data = preg_replace('/\s+/', "", $data);
             return $data;
         }, $html);
 
@@ -131,9 +131,9 @@ class replace_tags {
      */
     public function repace_html() {
 
-        $this->page->htmldata = str_replace('-&gt;', "->", $this->page->htmldata);
-        $this->page->htmldata = str_replace('time()', time(), $this->page->htmldata);
-        $this->page->htmldata = str_replace('now()', time(), $this->page->htmldata);
+        $this->page->htmldata = str_replace("-&gt;", "->", $this->page->htmldata);
+        $this->page->htmldata = str_replace("time()", time(), $this->page->htmldata);
+        $this->page->htmldata = str_replace("now()", time(), $this->page->htmldata);
 
         preg_match_all('/{#s}(.*?){\/s}/', $this->page->htmldata, $strs);
         foreach ($strs[0] as $key => $str) {
@@ -186,7 +186,7 @@ class replace_tags {
             $color = $config->config_signature_color;
 
             $text = $config->config_signature_text;
-            $text = preg_replace('/[^A-Za-z]/', '', $text);
+            $text = preg_replace('/[^A-Za-z]/', "", $text);
             $text = substr($text, 0, 10);
             $text = ucfirst(strtolower($text));
 

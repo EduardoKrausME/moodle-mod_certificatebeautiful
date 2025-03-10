@@ -99,7 +99,7 @@ class user_profile extends help_base {
                             break;
                         case "database":
                             $displaydata = $formfield->display_data();
-                            $displaydata = preg_replace('/style=".*?"/', '', $displaydata);
+                            $displaydata = preg_replace('/style=".*?"/', "", $displaydata);
                             break;
                         case "text":
                         case "textarea":

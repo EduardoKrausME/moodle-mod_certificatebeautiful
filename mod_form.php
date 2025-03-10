@@ -47,7 +47,7 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
 
         $mform->addElement("text", "name", get_string("name"), ["size" => "64"]);
         $mform->addRule("name", null, "required", null, "client");
-        $mform->addRule("name", get_string("maximumchars", '', 255), "maxlength", 255, "client");
+        $mform->addRule("name", get_string("maximumchars", "", 255), "maxlength", 255, "client");
         if (!empty($CFG->formatstringstriptags)) {
             $mform->setType("name", PARAM_TEXT);
         } else {
@@ -61,14 +61,14 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
         $mform->setDefault("description", get_string('default-description', "certificatebeautiful"));
         $mform->addHelpButton("description", "certificate_description", "certificatebeautiful");
 
-        $mform->addElement("static", "manage_models", '', help_base::get_form_components());
+        $mform->addElement("static", "manage_models", "", help_base::get_form_components());
 
         $mform->addElement("select", "model", get_string("select_the_model", "certificatebeautiful"), models::list_all());
 
         $text = get_string("manage_models", "certificatebeautiful");
         $link = "<a class='btn btn-success' href='{$CFG->wwwroot}/mod/certificatebeautiful/manage-model-list.php'
                     target='_blank'>{$text}</a>";
-        $mform->addElement("static", "manage_models", '', $link);
+        $mform->addElement("static", "manage_models", "", $link);
 
         // Add standard elements.
         $this->standard_coursemodule_elements();

@@ -45,9 +45,9 @@ class validate_certificate_form extends \moodleform {
      * @param bool $editable
      * @param null $ajaxformdata
      */
-    public function __construct($action = null, $customdata = null, $method = "post", $target = '',
+    public function __construct($action = null, $customdata = null, $method = "post", $target = "",
                                 $attributes = null, $editable = true, $ajaxformdata = null) {
-        parent::__construct($action, $customdata, "post", '', ["class" => 'bg-light m-3 p-3']);
+        parent::__construct($action, $customdata, "post", "", ["class" => 'bg-light m-3 p-3']);
     }
 
     /**

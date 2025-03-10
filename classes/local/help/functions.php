@@ -46,15 +46,15 @@ class functions {
     public static function table_structure() {
         return [
             [
-                "key" => '{{date(xxx)}}',
+                "key" => "{{date(xxx)}}",
                 "label" => get_string("help_functions_date", "certificatebeautiful"),
             ],
             [
-                "key" => '{{userdate(xx,yy)}}',
+                "key" => "{{userdate(xx,yy)}}",
                 "label" => get_string("help_functions_userdate", "certificatebeautiful"),
             ],
             [
-                "key" => '{{time()}}',
+                "key" => "{{time()}}",
                 "label" => get_string("help_functions_time", "certificatebeautiful"),
             ],
         ];
@@ -79,8 +79,8 @@ class functions {
                 if (strpos($matches["parameters"], ",")) {
                     preg_match('/(?<p1>.*?[,\)])(?<p2>.*?[,\)])?(?<p3>.*?[,\)])?/', $matches["parameters"], $functions);
                     foreach ($functions as $key => $function) {
-                        $function = str_replace(',', '', $function);
-                        $function = str_replace(')', '', $function);
+                        $function = str_replace(",", "", $function);
+                        $function = str_replace(")", "", $function);
                         $functions[$key] = trim($function);
                     }
                 } else {

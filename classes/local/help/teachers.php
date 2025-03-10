@@ -66,9 +66,9 @@ class teachers extends help_base {
         $teachers = self::get_teachers($course);
 
         $data = [
-            "teacher1" => '',
-            "teacher2" => '',
-            "teacherall" => '',
+            "teacher1" => "",
+            "teacher2" => "",
+            "teacherall" => "",
         ];
 
         if (isset($teachers[0])) {

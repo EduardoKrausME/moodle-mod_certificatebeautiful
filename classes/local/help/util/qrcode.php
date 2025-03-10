@@ -197,7 +197,7 @@ class qrcode {
      * @return int
      */
     private function allocate_color($image, $color) {
-        $color = preg_replace('/[^0-9A-Fa-f]/', '', $color);
+        $color = preg_replace('/[^0-9A-Fa-f]/', "", $color);
         $r = hexdec(substr($color, 0, 2));
         $g = hexdec(substr($color, 2, 2));
         $b = hexdec(substr($color, 4, 2));
@@ -216,7 +216,7 @@ class qrcode {
      * @return array|null
      */
     private function dispatch_encode($data, $options) {
-        switch (strtolower(preg_replace('/[^A-Za-z0-9]/', '', $options["s"]))) {
+        switch (strtolower(preg_replace('/[^A-Za-z0-9]/', "", $options["s"]))) {
             case "qrl":
                 return $this->qr_encode($data, 0);
             case "qrm":

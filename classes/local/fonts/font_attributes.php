@@ -108,7 +108,7 @@ class font_attributes {
             if (function_exists("mb_convert_encoding")) {
                 return mb_convert_encoding($instring, "UTF-8", "UTF-16");
             } else {
-                return str_replace(chr(00), '', $instring);
+                return str_replace(chr(00), "", $instring);
             }
         } else {
             return $instring;
@@ -317,7 +317,7 @@ class font_attributes {
                     fseek($fonthandle, $uoffset + $ustringoffset + $ustorageoffset, SEEK_SET);
                     $testvalue = fread($fonthandle, $ustringlength);
 
-                    if (trim($testvalue) > '') {
+                    if (trim($testvalue) > "") {
                         switch ($unameid) {
                             case 0  :
                                 if ($this->_copyright == null) {
@@ -388,9 +388,9 @@ class font_attributes {
      *
      * @throws Exception
      */
-    public function __construct($filename = '') {
+    public function __construct($filename = "") {
 
-        if ($filename == '') {
+        if ($filename == "") {
             throw new Exception('Font File has not been specified');
         }
 

@@ -80,7 +80,7 @@ class certificatebeautiful_view_user extends \table_sql {
 
         if (!$this->is_downloading()) {
             $columns[] = "extra";
-            $headers[] = '';
+            $headers[] = "";
         }
 
         $this->define_columns($columns);
