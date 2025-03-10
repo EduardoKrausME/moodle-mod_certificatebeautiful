@@ -187,7 +187,10 @@ $string['report_view_certificate'] = 'View';
 $string['save_model'] = 'Save model';
 $string['select_a_model'] = 'Select a model';
 $string['select_background_image'] = 'Select the new background image for the certificate';
-$string['select_background_image_info'] = 'Please replace the certificate background with the image below. The original image has dimensions of 1684×1190 pixels, which corresponds to 21x29.7 centimeters, equivalent to the size of an A4 page.<br>Ensure that the image is adjusted in the final certificate while maintaining these proportions to avoid distortion or pixelation.';
+$string['select_background_image_info2'] = '<div class="alert alert-warning">
+<p>Please upload a new image to replace the certificate background.</p>
+<p>The certificate is in <strong>{$a->orientation}</strong> format, and the image must have dimensions of <strong>{$a->size} pixels</strong>, corresponding to <strong>{$a->sizecm} cm</strong>. Make sure to maintain these proportions to avoid distortion or pixelation.</p>
+</div>';
 $string['select_background_preview'] = 'Change the certificate background image';
 $string['select_model'] = 'See this model';
 $string['select_model_preview'] = 'Select a pre-existing template to update the design of this page';

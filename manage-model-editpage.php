@@ -95,7 +95,7 @@ switch ($action) {
             $orientation = get_string("model_orientation_p", "certificatebeautiful");
         }
         $message = get_string("only_format", "certificatebeautiful", $orientation);
-        echo $PAGE->get_renderer('core')->render(new notification($message, notification::NOTIFY_WARNING));
+        echo $PAGE->get_renderer("core")->render(new notification($message, notification::NOTIFY_WARNING));
 
         $data = ["pages" => [], "class-root" => "d-flex flex-wrap certificate-flex-gap"];
         foreach ($models as $model) {
@@ -157,6 +157,7 @@ switch ($action) {
             "id" => $id,
             "page" => $page,
             "action" => $action,
+            "orientation" => $certificatebeautifulmodel->orientation,
         ]);
 
         if ($info->is_cancelled()) {
