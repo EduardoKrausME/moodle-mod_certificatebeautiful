@@ -89,7 +89,6 @@ if (!$formcreate->is_cancelled() && $certificatebeautifulmodel = $formcreate->ge
         $model = (object)[
             "id" => $certificatebeautifulmodel->id,
             "name" => $certificatebeautifulmodel->name,
-            "orientation" => $certificatebeautifulmodel->orientation,
             "timemodified" => time(),
         ];
         $DB->update_record("certificatebeautiful_model", $model);
