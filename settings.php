@@ -22,7 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use mod_certificatebeautiful\issue;
+use mod_certificatebeautiful\local\issue;
+use mod_certificatebeautiful\plugininfo\certificatebeautifuldatainfo;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -87,4 +88,15 @@ if ($ADMIN->fulltree) {
         get_string("config_data_protect_desc", "certificatebeautiful"),
         issue::ISSUE_EMAIL_ANONIMIZED, $options);
     $settings->add($setting);
+
+    $plugins = certificatebeautifuldatainfo::get_enabled_plugins();
+
+    foreach ($plugins as $plugin) {
+        if (file_exists(__DIR__ . "/plugins_datainfo/{$plugin}/settings.php")) {
+            $settings->add(new admin_setting_heading("{$plugin}_heading",
+                get_string("pluginname", "certificatebeautifuldatainfo_icsf"), ""));
+
+            require_once(__DIR__ . "/plugins_datainfo/{$plugin}/settings.php");
+        }
+    }
 }
