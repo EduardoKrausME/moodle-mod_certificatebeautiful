@@ -17,9 +17,9 @@
 /**
  * Install script for mod_certificatebeautiful.
  *
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
@@ -34,10 +34,10 @@ function xmldb_certificatebeautiful_install() {
     foreach (certificatebeautiful_list_all_models() as $model) {
         $pagesinfo = [
             [
-                "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model["key"]),
+                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model["key"]),
                 "cssdata" => "",
             ], [
-                "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page2"),
+                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page2"),
                 "cssdata" => "",
             ],
         ];

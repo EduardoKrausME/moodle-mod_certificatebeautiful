@@ -17,14 +17,14 @@
 /**
  * Report for certificatebeautiful.
  *
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/report/certificatebeautiful_view.php");
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/report/certificatebeautiful_view.php");
 
 $id = optional_param("id", 0, PARAM_INT);
 
@@ -37,7 +37,7 @@ $context = context_module::instance($cm->id);
 require_course_login($course, true, $cm);
 require_capability('mod/certificatebeautiful:viewreport', $context);
 
-$table = new \mod_certificatebeautiful\local\report\certificatebeautiful_view(
+$table = new \mod_certificatebeautiful\report\certificatebeautiful_view(
     "certificatebeautiful_report", $cm->id, $certificatebeautiful);
 
 if (!$table->is_downloading()) {

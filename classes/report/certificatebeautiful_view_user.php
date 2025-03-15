@@ -1,5 +1,5 @@
 <?php
-// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,12 +17,12 @@
 /**
  * Class certificatebeautiful_view_user
  *
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace mod_certificatebeautiful\local\report;
+namespace mod_certificatebeautiful\report;
 
 use html_writer;
 use moodle_url;
@@ -33,7 +33,7 @@ require_once("{$CFG->libdir}/tablelib.php");
 /**
  * Class certificatebeautiful_view_user
  *
- * @package mod_certificatebeautiful\local\report
+ * @package mod_certificatebeautiful\report
  */
 class certificatebeautiful_view_user extends \table_sql {
 

@@ -17,9 +17,9 @@
 /**
  * Report for certificatebeautiful.
  *
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once('../../config.php');
@@ -43,8 +43,8 @@ require_capability('mod/certificatebeautiful:view', $context);
 
 echo $OUTPUT->header();
 
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/report/certificatebeautiful_view_user.php");
-$table = new \mod_certificatebeautiful\local\report\certificatebeautiful_view_user("certificatebeautiful_view_user", $user);
+require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/report/certificatebeautiful_view_user.php");
+$table = new \mod_certificatebeautiful\report\certificatebeautiful_view_user("certificatebeautiful_view_user", $user);
 $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/reports-my.php?user={$user->id}");
 $table->out(40, true);
 

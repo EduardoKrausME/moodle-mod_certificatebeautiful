@@ -379,7 +379,7 @@
         <licenseversion></licenseversion>
     </library>
     <library>
-        <location>classes/local/pdf/vendor</location>
+        <location>classes/pdf/vendor</location>
         <name>mPDF</name>
         <version>^8</version>
         <license>GPL-2.0-only</license>

@@ -1,5 +1,5 @@
 <?php
-// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,43 +15,37 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class certificatebeautiful
+ * Class certificatebeautiful_issue
  *
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace mod_certificatebeautiful\local\vo;
+namespace mod_certificatebeautiful\vo;
 
 /**
- * Class certificatebeautiful
+ * Class certificatebeautiful_issue
  *
- * @package mod_certificatebeautiful\local\vo
+ * @package mod_certificatebeautiful\vo
  */
-class certificatebeautiful extends \stdClass {
+class certificatebeautiful_issue extends \stdClass {
 
     /** @var int */
     public $id;
 
     /** @var int */
-    public $course;
-
-    /** @var string */
-    public $name;
-
-    /** @var string */
-    public $intro;
+    public $userid;
 
     /** @var int */
-    public $introformat;
+    public $cmid;
+
+    /** @var string */
+    public $code;
 
     /** @var int */
-    public $model;
+    public $version;
 
     /** @var int */
     public $timecreated;
-
-    /** @var int */
-    public $timemodified;
 }
