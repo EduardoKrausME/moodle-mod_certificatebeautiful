@@ -24,5 +24,5 @@
 
 $string['finalgrade'] = 'Student\'s final grade';
 $string['pluginname'] = 'Student\'s grade in the course';
-$string['privacy:metadata'] = 'The plugin grade does not store any personal data.';
+$string['privacy:metadata'] = 'The plugin does not store any personal data.';
 $string['table'] = 'Table with the student\'s grades';

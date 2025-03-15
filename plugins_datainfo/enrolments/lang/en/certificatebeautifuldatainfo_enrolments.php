@@ -23,5 +23,5 @@
  */
 
 $string['pluginname'] = 'Data of the student\'s enrollment in the course';
-$string['privacy:metadata'] = 'The plugin enrolments does not store any personal data.';
+$string['privacy:metadata'] = 'The plugin does not store any personal data.';
 $string['timestart'] = 'Date of the user\'s enrollment';

@@ -23,4 +23,4 @@
  */
 
 $string['pluginname'] = 'User profile data';
-$string['privacy:metadata'] = 'The plugin userprofile does not store any personal data.';
+$string['privacy:metadata'] = 'The plugin does not store any personal data.';

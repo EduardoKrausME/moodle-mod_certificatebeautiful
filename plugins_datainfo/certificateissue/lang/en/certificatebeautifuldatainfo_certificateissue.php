@@ -27,6 +27,6 @@ $string['codelink'] = 'Unique code of the certificate with link.';
 $string['description'] = 'Certificate description';
 $string['name'] = 'Certificate name';
 $string['pluginname'] = 'Certificate data';
-$string['privacy:metadata'] = 'The plugin certificateissue does not store any personal data.';
+$string['privacy:metadata'] = 'The "Certificate data" plugin does not store any personal data.';
 $string['timecreated'] = 'Certificate creation date.';
 $string['url'] = 'Certificate validation URL';

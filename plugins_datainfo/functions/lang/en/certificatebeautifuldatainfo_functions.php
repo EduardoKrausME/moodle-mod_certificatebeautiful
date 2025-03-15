@@ -24,6 +24,6 @@
 
 $string['date'] = 'PHP <a href="https://php.net/date" target="_blank">date()</a> function';
 $string['pluginname'] = 'Execute functions of the following Moodle and PHP native functions';
-$string['privacy:metadata'] = 'The plugin functions does not store any personal data.';
+$string['privacy:metadata'] = 'The plugin does not store any personal data.';
 $string['time'] = 'PHP <a href="https://php.net/time" target="_blank">time()</a> function';
 $string['userdate'] = 'Moodle <a href="https://moodledev.io/docs/apis/subsystems/time" target="_blank">userdate()</a> function';

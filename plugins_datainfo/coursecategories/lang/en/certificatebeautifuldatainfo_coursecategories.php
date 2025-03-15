@@ -27,5 +27,5 @@ $string['id'] = 'Unique identifier of the course category.';
 $string['idnumber'] = 'Unique identification number of the course category.';
 $string['name'] = 'Name of the course category.';
 $string['pluginname'] = 'Data of the course category for which the certificate is being generated';
-$string['privacy:metadata'] = 'The plugin coursecategories does not store any personal data.';
+$string['privacy:metadata'] = 'The "course categories" plugin does not store any personal data.';
 $string['timemodified'] = 'Timestamp of the last modification to the course category.';

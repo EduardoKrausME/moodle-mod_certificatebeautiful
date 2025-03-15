@@ -23,7 +23,7 @@
  */
 
 $string['pluginname'] = 'Teachers of the course';
-$string['privacy:metadata'] = 'The plugin teachers does not store any personal data.';
+$string['privacy:metadata'] = 'The plugin does not store any personal data.';
 $string['teacher1'] = 'Only the first teacher';
 $string['teacher2'] = 'Only the first two teachers';
 $string['teacherall'] = 'All teachers';

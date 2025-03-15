@@ -24,6 +24,6 @@
 
 $string['fullname'] = 'The full name of Moodle.';
 $string['pluginname'] = 'Data of the Moodle instance for which the certificate is being generated';
-$string['privacy:metadata'] = 'The plugin site does not store any personal data.';
+$string['privacy:metadata'] = 'The plugin does not store any personal data.';
 $string['shortname'] = 'A short name for Moodle.';
 $string['summary'] = 'A brief summary or description of Moodle.';
