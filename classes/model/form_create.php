@@ -1,5 +1,5 @@
 <?php
-// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,15 +17,15 @@
 /**
  * Class form_create
  *
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace mod_certificatebeautiful\local\model;
+namespace mod_certificatebeautiful\model;
 
 use core\output\notification;
-use mod_certificatebeautiful\local\vo\certificatebeautiful_model;
+use mod_certificatebeautiful\vo\certificatebeautiful_model;
 
 defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/formslib.php");
@@ -33,7 +33,7 @@ require_once("{$CFG->libdir}/formslib.php");
 /**
  * Class form_create
  *
- * @package mod_certificatebeautiful\local\model
+ * @package mod_certificatebeautiful\model
  */
 class form_create extends \moodleform {
 
