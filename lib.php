@@ -256,7 +256,7 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
               JOIN mdl_course                     course ON course.id = cert.course
              WHERE issue.userid = :userid";
         }
-        $certificates = $DB->get_records_sql($sql, ["userid" => $user->id, "courseid" => $course->id]);
+        $certificates = $DB->get_records_sql($sql, ["userid" => $user->id]);
 
         if ($certificates) {
             foreach ($certificates as $certificate) {
