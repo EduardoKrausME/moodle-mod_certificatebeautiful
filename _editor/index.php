@@ -17,9 +17,9 @@
 /**
  * Editor for certificatebeautiful.
  *
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once('../../../config.php');
@@ -52,8 +52,8 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
     <script src="js/plugins/grapesjs-style-border.js"></script>
 
     <?php
-    require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/local/fonts/font_util.php");
-    $fontList = \mod_certificatebeautiful\local\fonts\font_util::mpdf_list_fonts();
+    require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/fonts/font_util.php");
+    $fontList = \mod_certificatebeautiful\fonts\font_util::mpdf_list_fonts();
 
     echo "<style>{$fontList["css"]}</style>"
     ?>
@@ -76,7 +76,7 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
     }
 
     if (!isset($pageinfo->htmldata)) {
-        $empty = \mod_certificatebeautiful\local\model\form_create_page::empty_page($certificatebeautifulmodel);
+        $empty = \mod_certificatebeautiful\model\form_create_page::empty_page($certificatebeautifulmodel);
         $pageinfo->htmldata = $empty->htmldata;
         $pageinfo->cssdata = $empty->cssdata;
     }

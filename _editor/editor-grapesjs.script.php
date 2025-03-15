@@ -17,9 +17,9 @@
 /**
  * Editor for certificatebeautiful.
  *
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 $languser = $CFG->lang;
@@ -1648,7 +1648,7 @@ function get_lang_string($item) {
         component.set("resizable", true);
     });
 
-    <?php echo \mod_certificatebeautiful\local\help\help_base::get_editor_components(); ?>
+    <?php echo \mod_certificatebeautiful\datainfo\help_base::get_editor_components(); ?>
 
     var pn = editor.Panels;
 

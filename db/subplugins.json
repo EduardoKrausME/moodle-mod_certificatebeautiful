@@ -1,0 +1,8 @@
+{
+  "subplugintypes": {
+    "certificatebeautifuldatainfo": "extension"
+  },
+  "plugintypes": {
+    "certificatebeautifuldatainfo": "mod\/certificatebeautiful\/plugins_datainfo"
+  }
+}

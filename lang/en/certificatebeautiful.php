@@ -1,5 +1,5 @@
 <?php
-// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 /**
  * Lang en file
  *
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
@@ -83,76 +83,6 @@ $string['edit_signature_certificate'] = 'Customize your certificate signature he
 $string['edit_this_page'] = 'Edit this certificate page';
 $string['from_certificates'] = 'Certificates from student {$a}';
 $string['help_base_title'] = 'Available keys to replace in the certificate:';
-$string['help_certificate_issue__name'] = 'Certificate data';
-$string['help_certificate_issue_code'] = 'Unique code of the certificate.';
-$string['help_certificate_issue_codelink'] = 'Unique code of the certificate with link.';
-$string['help_certificate_issue_description'] = 'Certificate description';
-$string['help_certificate_issue_name'] = 'Certificate name';
-$string['help_certificate_issue_timecreated'] = 'Certificate creation date.';
-$string['help_certificate_issue_url'] = 'Certificate validation URL';
-$string['help_course__name'] = 'Data of the course for which the certificate is being generated';
-$string['help_course_categories__name'] = 'Data of the course category for which the certificate is being generated';
-$string['help_course_categories_description'] = 'Description of the course category.';
-$string['help_course_categories_id'] = 'Unique identifier of the course category.';
-$string['help_course_categories_idnumber'] = 'Unique identification number of the course category.';
-$string['help_course_categories_name'] = 'Name of the course category.';
-$string['help_course_categories_timemodified'] = 'Timestamp of the last modification to the course category.';
-$string['help_course_category'] = 'The identifier of the category to which the course belongs.';
-$string['help_course_enddate'] = 'The end date of the course.';
-$string['help_course_fullname'] = 'The full name of the course.';
-$string['help_course_id'] = 'A unique identifier for each course.';
-$string['help_course_lang'] = 'The language of the course.';
-$string['help_course_sections'] = 'List of course sections (custom Named Sessions only)';
-$string['help_course_sections_modules'] = 'List of course sections and modules';
-$string['help_course_shortname'] = 'A short name or unique code for the course.';
-$string['help_course_startdate'] = 'The start date of the course.';
-$string['help_course_summary'] = 'The course summary defined in the course configuration';
-$string['help_enrolments__name'] = 'Data of the student\'s enrollment in the course';
-$string['help_enrolments_timestart'] = 'Date of the user\'s enrollment';
-$string['help_functions__name'] = 'Execute functions of the following Moodle and PHP native functions';
-$string['help_functions_date'] = 'PHP <a href="https://php.net/date" target="_blank">date()</a> function';
-$string['help_functions_time'] = 'PHP <a href="https://php.net/time" target="_blank">time()</a> function';
-$string['help_functions_userdate'] = 'Moodle <a href="https://moodledev.io/docs/apis/subsystems/time" target="_blank">userdate()</a> function';
-$string['help_grade__name'] = 'Student\'s grade in the course';
-$string['help_grade_finalgrade'] = 'Student\'s final grade';
-$string['help_grade_table'] = 'Table with the student\'s grades';
-$string['help_site__name'] = 'Data of the Moodle instance for which the certificate is being generated';
-$string['help_site_fullname'] = 'The full name of Moodle.';
-$string['help_site_shortname'] = 'A short name for Moodle.';
-$string['help_site_summary'] = 'A brief summary or description of Moodle.';
-$string['help_teachers__name'] = 'Teachers of the course';
-$string['help_teachers_teacher1'] = 'Only the first teacher';
-$string['help_teachers_teacher2'] = 'Only the first two teachers';
-$string['help_teachers_teacherall'] = 'All teachers';
-$string['help_user__name'] = 'User data';
-$string['help_user_address'] = 'User\'s address.';
-$string['help_user_alternatename'] = 'User\'s alternative name.';
-$string['help_user_calendartype'] = 'User\'s preferred calendar type.';
-$string['help_user_city'] = 'User\'s city.';
-$string['help_user_country'] = 'User\'s country code.';
-$string['help_user_currentlogin'] = 'Timestamp of the user\'s current login.';
-$string['help_user_department'] = 'User\'s department.';
-$string['help_user_description'] = 'User\'s description.';
-$string['help_user_email'] = 'User\'s email address.';
-$string['help_user_firstaccess'] = 'Timestamp of the user\'s first access.';
-$string['help_user_firstname'] = 'User\'s first name.';
-$string['help_user_fullname'] = 'User\'s full name, generated by the fullname() function.';
-$string['help_user_id'] = 'Unique identifier for each user.';
-$string['help_user_idnumber'] = 'User\'s identification number.';
-$string['help_user_institution'] = 'User\'s institution.';
-$string['help_user_lang'] = 'User\'s preferred language.';
-$string['help_user_lastaccess'] = 'Timestamp of the user\'s last access.';
-$string['help_user_lastip'] = 'IP address of the user\'s last access.';
-$string['help_user_lastlogin'] = 'Timestamp of the user\'s last login.';
-$string['help_user_lastname'] = 'User\'s last name.';
-$string['help_user_middlename'] = 'User\'s middle name.';
-$string['help_user_phone1'] = 'User\'s primary phone number.';
-$string['help_user_phone2'] = 'User\'s secondary phone number.';
-$string['help_user_profile__name'] = 'User profile data';
-$string['help_user_timecreated'] = 'Timestamp of the user account creation.';
-$string['help_user_timemodified'] = 'Timestamp of the last modification to the user account.';
-$string['help_user_timezone'] = 'User\'s preferred timezone.';
-$string['help_user_username'] = 'User\'s username.';
 $string['list_model'] = 'List of models';
 $string['manage_models'] = 'Manage certificate models';
 $string['model_name'] = 'Model name';
@@ -195,6 +125,7 @@ $string['select_background_preview'] = 'Change the certificate background image'
 $string['select_model'] = 'See this model';
 $string['select_model_preview'] = 'Select a pre-existing template to update the design of this page';
 $string['select_the_model'] = 'Select the model';
+$string['subplugintype_certificatebeautifuldatainfo_plural'] = 'Data subplugin of Certificate Beautiful';
 $string['subtititle'] = 'Of completion';
 $string['sumary'] = 'Summary';
 $string['sumary-secound-page'] = 'Summary Certificate';

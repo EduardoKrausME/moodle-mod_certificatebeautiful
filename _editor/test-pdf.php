@@ -1,5 +1,5 @@
 <?php
-// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once("../../../config.php");
@@ -48,7 +48,7 @@ if ($temp = optional_param("temp", false, PARAM_TEXT)) {
 }
 
 if ($id) {
-    /** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_model $model */
+    /** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $model */
     $model = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
 }
 
@@ -73,7 +73,7 @@ if ($htmldata && $cssdata) {
         $model->pages_info_object = [];
         foreach (certificatebeautiful_list_all_models() as $key => $model) {
             $model->pages_info_object[] = (object)[
-                "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model["key"]),
+                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model["key"]),
                 "cssdata" => ""
             ];
         }
@@ -82,7 +82,7 @@ if ($htmldata && $cssdata) {
             $model->name = "sumary-secound-page";
             $model->pages_info_object = [
                 (object)[
-                    "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
+                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page"),
                     "cssdata" => ""
                 ]
             ];
@@ -93,11 +93,11 @@ if ($htmldata && $cssdata) {
             $model->name = $model["key"];
             $model->pages_info_object = [
                 (object)[
-                    "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file($model["key"]),
+                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model["key"]),
                     "cssdata" => ""
                 ],
                 (object)[
-                    "htmldata" => \mod_certificatebeautiful\local\model\get_template_file::load_template_file("sumary-secound-page"),
+                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page"),
                     "cssdata" => ""
                 ]
             ];
@@ -105,13 +105,13 @@ if ($htmldata && $cssdata) {
     }
 }
 
-/** @var \mod_certificatebeautiful\local\vo\certificatebeautiful $certificatebeautiful */
+/** @var \mod_certificatebeautiful\vo\certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = (object)[
     "name" => "teste",
     "description" => get_string("default-description", "certificatebeautiful")
 ];
 
-/** @var \mod_certificatebeautiful\local\vo\certificatebeautiful_issue $certificatebeautifulissie */
+/** @var \mod_certificatebeautiful\vo\certificatebeautiful_issue $certificatebeautifulissie */
 $certificatebeautifulissie = (object)[
     "name" => "teste",
     "code" => "CODE-EX",
@@ -128,12 +128,13 @@ if ($DB->get_dbfamily() == "mysql") {
 $user = $DB->get_record_sql("SELECT   * FROM {user}   WHERE id >= 2 {$order} LIMIT 1");
 $course = $DB->get_record_sql("SELECT * FROM {course} WHERE id > 1  {$order} LIMIT 1");
 
-$pagepdf = new \mod_certificatebeautiful\local\pdf\page_pdf();
+$pagepdf = new \mod_certificatebeautiful\pdf\page_pdf();
 $pdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissie, $model, $user, $course);
 
 $tempfilename = uniqid();
 $tempdir = make_temp_directory("certificatebeautiful");
 file_put_contents("{$tempdir}/{$tempfilename}.pdf", $pdf);
 
+////echo "<a href=\"{$CFG->wwwroot}/mod/certificatebeautiful/_editor/test-pdf.php?temp={$tempfilename}\" target=aaaa>aaaa</a>";
 $urlgetpdf = urlencode("{$CFG->wwwroot}/mod/certificatebeautiful/_editor/test-pdf.php?temp={$tempfilename}");
 header("Location: {$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html?file={$urlgetpdf}");
