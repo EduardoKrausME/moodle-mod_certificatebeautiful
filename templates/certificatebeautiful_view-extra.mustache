@@ -71,7 +71,8 @@
 {{#create}}
     <div class="text-nowrap">
         <a href="{{{url-create}}}" target="_blank"
-           class="btn btn-primary certificatebeautiful-report-btn-small">
+           class="btn btn-primary certificatebeautiful-report-btn-small"
+           onclick="setTimeout(function(){location.reload()},1000)">
             {{#str}}report_create_certificate,certificatebeautiful{{/str}}</a>
     </div>
 {{/create}}
