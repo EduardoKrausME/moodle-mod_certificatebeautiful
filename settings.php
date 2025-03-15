@@ -22,7 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use mod_certificatebeautiful\local\issue;
+use mod_certificatebeautiful\issue;
 use mod_certificatebeautiful\plugininfo\certificatebeautifuldatainfo;
 
 defined('MOODLE_INTERNAL') || die;
