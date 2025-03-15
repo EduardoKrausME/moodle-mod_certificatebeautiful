@@ -1,5 +1,5 @@
 <?php
-// This file is part of the mod_certificatebeautiful plugin for Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 /**
  * Library of interface functions and constants.
  *
- * @package     mod_certificatebeautiful
- * @copyright   2024 Eduardo Kraus https://eduardokraus.com/
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_certificatebeautiful
+ * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
@@ -233,16 +233,53 @@ function certificatebeautiful_extend_navigation_course($navigation, $course, $co
  * @return void
  * @throws coding_exception
  * @throws moodle_exception
+ * @throws \core\exception\moodle_exception
  */
 function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tree $tree, $user, $iscurrentuser, $course) {
-    if (isguestuser($user)) {
-        return;
+    global $DB;
+
+    $addnodes = [];
+    if ($iscurrentuser || is_siteadmin()) {
+        if ($course) {
+            $sql = "
+            SELECT issue.id, issue.code, issue.timecreated, issue.cmid, cert.name, cert.course, course.fullname
+              FROM mdl_certificatebeautiful_issue issue
+              JOIN mdl_certificatebeautiful       cert   ON cert.id   = issue.certificatebeautifulid
+              JOIN mdl_course                     course ON course.id = cert.course
+             WHERE issue.userid = :userid
+               AND cert.course  = :courseid";
+        } else {
+            $sql = "
+            SELECT issue.id, issue.code, issue.timecreated, issue.cmid, cert.name, cert.course, course.fullname
+              FROM mdl_certificatebeautiful_issue issue
+              JOIN mdl_certificatebeautiful       cert  ON issue.certificatebeautifulid = cert.id
+              JOIN mdl_course                     course ON course.id = cert.course
+             WHERE issue.userid = :userid";
+        }
+        $certificates = $DB->get_records_sql($sql, ["userid" => $user->id, "courseid" => $course->id]);
+
+        if ($certificates) {
+            foreach ($certificates as $certificate) {
+                $url = new moodle_url("/mod/certificatebeautiful/view.php", ["id" => $certificate->cmid]);
+                $logoutlink = html_writer::link($url, $certificate->name);
+
+                $addnodes[] = new core_user\output\myprofile\node("certificates", "certificates-{$certificate->cmid}",
+                    $certificate->fullname, null, null, $logoutlink);
+            }
+        }
     }
 
-    $url = new moodle_url("/mod/certificatebeautiful/reports-my.php", ["user" => $user->id]);
-    $node = new core_user\output\myprofile\node("miscellaneous", "certificatebeautiful",
-        get_string("my_certificates", "certificatebeautiful"), null, $url);
-    $tree->add_node($node);
+    // Add nodes, if any.
+    if (!empty($addnodes)) {
+        $myname = get_string("my_certificates", "certificatebeautiful");
+        $mobilecat = new core_user\output\myprofile\category("certificates", $myname, "contact");
+        $tree->add_category($mobilecat);
+
+        foreach ($addnodes as $node) {
+            $tree->add_node($node);
+        }
+    }
+
 }
 
 /**
@@ -324,3 +361,4 @@ function certificatebeautiful_list_all_models() {
         ],
     ];
 }
+
