@@ -248,6 +248,7 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
               JOIN mdl_course                     course ON course.id = cert.course
              WHERE issue.userid = :userid
                AND cert.course  = :courseid";
+            $params = ["userid" => $user->id, "courseid" => $course->id];
         } else {
             $sql = "
             SELECT issue.id, issue.code, issue.timecreated, issue.cmid, cert.name, cert.course, course.fullname
@@ -255,8 +256,9 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
               JOIN mdl_certificatebeautiful       cert  ON issue.certificatebeautifulid = cert.id
               JOIN mdl_course                     course ON course.id = cert.course
              WHERE issue.userid = :userid";
+            $params = ["userid" => $user->id];
         }
-        $certificates = $DB->get_records_sql($sql, ["userid" => $user->id]);
+        $certificates = $DB->get_records_sql($sql, $params);
 
         if ($certificates) {
             foreach ($certificates as $certificate) {
