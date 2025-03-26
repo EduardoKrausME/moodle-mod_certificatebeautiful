@@ -130,6 +130,8 @@ function certificatebeautiful_delete_instance(int $id): bool {
     }
     $DB->delete_records("certificatebeautiful", ["id" => $id]);
 
+    $DB->delete_records("certificatebeautiful_issue", ["certificatebeautifulid" => $id]);
+
     return true;
 }
 
