@@ -85,6 +85,7 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
     $pageinfo->htmldata = str_replace('<tr', '<tr data-gjs-selectable="false" data-gjs-highlightable="false" data-gjs-hoverable="false"', $pageinfo->htmldata);
 
     echo "{$pageinfo->htmldata}<style>{$pageinfo->cssdata}</style>";
+    echo "<style>[data-gjs-type=wrapper] > div * {position: initial !important;top: initial !important;left: initial !important;right: initial !important;bottom: initial !important;}</style>"
     ?>
 </div>
 
