@@ -53,6 +53,7 @@ class certificateissue extends help_base {
             ["key" => "code", "label" => get_string("code", "certificatebeautifuldatainfo_certificateissue")],
             ["key" => "codelink", "label" => get_string("codelink", "certificatebeautifuldatainfo_certificateissue")],
             ["key" => "url", "label" => get_string("url", "certificatebeautifuldatainfo_certificateissue")],
+            ["key" => "page", "label" => get_string("page", "certificatebeautifuldatainfo_certificateissue")],
         ];
     }
 
@@ -71,6 +72,7 @@ class certificateissue extends help_base {
         $issue->description = trim($certificatebeautiful->description);
         $issue->description = str_replace("\n", "<br>", $certificatebeautiful->description);
         $issue->url = "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$issue->code}";
+        $issue->page = "{$CFG->wwwroot}/mod/certificatebeautiful/v/";
         $issue->codelink = "<a href=\"{$issue->url}\">{$issue->code}</a>";
 
         $issue->timecreated = userdate($issue->timecreated);
