@@ -141,7 +141,6 @@ class replace_tags {
         foreach ($plugins as $plugin) {
             switch ($plugin) {
                 case "functions":
-                    $this->page->htmldata = functions::replace($this->page->htmldata, $this->user);
                     break;
                 case "certificateissue":
                     $certificateissuedata = certificateissue::get_data(
@@ -156,6 +155,14 @@ class replace_tags {
                     $class = "\certificatebeautifuldatainfo_{$plugin}\\datainfo\\{$plugin}";
                     $this->page->htmldata = help_base::replace(
                         $this->page->htmldata, $class::CLASS_NAME, $class::get_data($this->course, $this->user));
+                    break;
+            }
+        }
+
+        foreach ($plugins as $plugin) {
+            switch ($plugin) {
+                case "functions":
+                    $this->page->htmldata = functions::replace($this->page->htmldata, $this->user);
                     break;
             }
         }
