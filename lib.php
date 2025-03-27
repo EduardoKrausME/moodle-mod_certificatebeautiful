@@ -265,10 +265,10 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
         if ($certificates) {
             foreach ($certificates as $certificate) {
                 $url = new moodle_url("/mod/certificatebeautiful/view.php", ["id" => $certificate->cmid]);
-                $logoutlink = html_writer::link($url, $certificate->name);
+                $link = html_writer::link($url, $certificate->name);
 
                 $addnodes[] = new core_user\output\myprofile\node("certificates", "certificates-{$certificate->cmid}",
-                    $certificate->fullname, null, null, $logoutlink);
+                    $certificate->fullname, null, null, $link);
             }
         }
     }
