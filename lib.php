@@ -245,18 +245,18 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
         if ($course) {
             $sql = "
             SELECT issue.id, issue.code, issue.timecreated, issue.cmid, cert.name, cert.course, course.fullname
-              FROM mdl_certificatebeautiful_issue issue
-              JOIN mdl_certificatebeautiful       cert   ON cert.id   = issue.certificatebeautifulid
-              JOIN mdl_course                     course ON course.id = cert.course
+              FROM {certificatebeautiful_issue} issue
+              JOIN {certificatebeautiful}       cert   ON cert.id   = issue.certificatebeautifulid
+              JOIN {course}                     course ON course.id = cert.course
              WHERE issue.userid = :userid
                AND cert.course  = :courseid";
             $params = ["userid" => $user->id, "courseid" => $course->id];
         } else {
             $sql = "
             SELECT issue.id, issue.code, issue.timecreated, issue.cmid, cert.name, cert.course, course.fullname
-              FROM mdl_certificatebeautiful_issue issue
-              JOIN mdl_certificatebeautiful       cert  ON issue.certificatebeautifulid = cert.id
-              JOIN mdl_course                     course ON course.id = cert.course
+              FROM {certificatebeautiful_issue} issue
+              JOIN {certificatebeautiful}       cert  ON issue.certificatebeautifulid = cert.id
+              JOIN {course}                     course ON course.id = cert.course
              WHERE issue.userid = :userid";
             $params = ["userid" => $user->id];
         }
