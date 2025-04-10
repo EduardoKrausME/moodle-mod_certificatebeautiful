@@ -155,6 +155,11 @@ class replace_tags {
                     $class = "\certificatebeautifuldatainfo_{$plugin}\\datainfo\\{$plugin}";
                     $this->page->htmldata = help_base::replace(
                         $this->page->htmldata, $class::CLASS_NAME, $class::get_data($this->course, $this->user));
+
+                    if (method_exists($class, "process_html")) {
+                        $this->page->htmldata = $class::process_html($this->page->htmldata, $this->course, $this->user);
+                    }
+
                     break;
             }
         }

@@ -119,20 +119,20 @@ class page_pdf {
                     padding : 0;
                 }";
 
-            // Muda o CSS do body para que não interfira na página.
-            $this->get_background_page($page, $mpdf);
-
             $replacetags = new replace_tags($page, $course, $user, $certificatebeautiful, $certificatebeautifulissue);
             $replacetags->repace_html();
             $replacetags->repace_css();
             $replacetags->repace_signature();
             $page = $replacetags->out_page();
 
+            // Muda o CSS do body para que não interfira na página.
+            $this->get_background_page($page, $mpdf);
+
             if (isset($page->cssdata[10])) {
-                $mpdf->WriteHTML($page->cssdata . $extracss, HTMLParserMode::HEADER_CSS);
+                $mpdf->WriteHTML("{$page->cssdata}{$extracss}", HTMLParserMode::HEADER_CSS);
                 $mpdf->WriteHTML($page->htmldata);
             } else {
-                $mpdf->WriteHTML("{$page->htmldata}\n<style>{$extracss}</style>");
+                $mpdf->WriteHTML("<style>{$extracss}</style>\n{$page->htmldata}");
             }
         }
 
@@ -148,29 +148,42 @@ class page_pdf {
      * @param Mpdf $mpdf
      */
     private function get_background_page($page, Mpdf $mpdf) {
-        preg_match('/\[data-gjs-type="?wrapper"?\].*?}/s', $page->htmldata . $page->cssdata, $cssroot);
+        preg_match_all('/\[data-gjs-type="?wrapper"?\].*?}/s', $page->cssdata .  $page->htmldata, $cssroot);
 
-        preg_match('/background.*url\((.*?)\)/', $cssroot[0], $background);
-        if (isset($background[1])) {
-            $image = $background[1];
-            $image = str_replace("'", "", $image);
-            $image = str_replace("\"", "", $image);
+        $blockcss = false;
+        if (isset($cssroot[0][3]) && strpos($cssroot[0][3], "background-image")) {
+            $blockcss = $cssroot[0][3];
+        } else if (isset($cssroot[0][2]) && strpos($cssroot[0][2], "background-image")) {
+            $blockcss = $cssroot[0][2];
+        } else if (isset($cssroot[0][1]) && strpos($cssroot[0][1], "background-image")) {
+            $blockcss = $cssroot[0][1];
+        } else if (isset($cssroot[0][0]) && strpos($cssroot[0][0], "background-image")) {
+            $blockcss = $cssroot[0][0];
+        }
 
-            // Sets the image as the page's WATERMARK.
-            $mpdf->Image(
-                $image,  // Value of $file.
-                0, // Value of $x.
-                0, // Value of $y.
-                0, // Value of $w.
-                0, // Value of $h.
-                "", // Value of $type.
-                "", // Value of $link.
-                true, // Value of $paint.
-                true, // Value of $constrain.
-                true, // Value of $watermark.
-                true, // Value of $shownoimg.
-                true // Value of $allowvector.
-            );
+        if ($blockcss) {
+            preg_match('/background.*url\((.*?)\)/', $blockcss, $background);
+            if (isset($background[1])) {
+                $image = $background[1];
+                $image = str_replace("'", "", $image);
+                $image = str_replace("\"", "", $image);
+
+                // Sets the image as the page's WATERMARK.
+                $mpdf->Image(
+                    $image,  // Value of $file.
+                    0, // Value of $x.
+                    0, // Value of $y.
+                    0, // Value of $w.
+                    0, // Value of $h.
+                    "", // Value of $type.
+                    "", // Value of $link.
+                    true, // Value of $paint.
+                    true, // Value of $constrain.
+                    true, // Value of $watermark.
+                    true, // Value of $shownoimg.
+                    true // Value of $allowvector.
+                );
+            }
         }
     }
 }
