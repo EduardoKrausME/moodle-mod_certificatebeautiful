@@ -125,6 +125,7 @@ $string['select_background_preview'] = 'Change the certificate background image'
 $string['select_model'] = 'See this model';
 $string['select_model_preview'] = 'Select a pre-existing template to update the design of this page';
 $string['select_the_model'] = 'Select the model';
+$string['subplugintype_certificatebeautifuldatainfo'] = 'Subplugin of Certificate Beautiful';
 $string['subplugintype_certificatebeautifuldatainfo_plural'] = 'Data subplugin of Certificate Beautiful';
 $string['subtititle'] = 'Of completion';
 $string['sumary'] = 'Summary';
