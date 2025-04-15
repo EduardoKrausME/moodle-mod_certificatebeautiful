@@ -119,10 +119,13 @@ echo $contentpdf;
  * @param string $action
  * @param context $context
  * @param string $name
+ *
+ * @throws Exception
  */
 function certificatebeautiful_show_header($action, $context, $name) {
     switch ($action) {
         case "createadmin":
+            require_login();
             require_capability('mod/certificatebeautiful:addinstance', $context);
             break;
         case "view":
