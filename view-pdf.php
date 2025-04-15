@@ -113,6 +113,13 @@ certificatebeautiful_show_header($action, $context, $name);
 header('Content-Length: ' . strlen($contentpdf));
 echo $contentpdf;
 
+/**
+ * Function certificatebeautiful_show_header
+ *
+ * @param string $action
+ * @param context $context
+ * @param string $name
+ */
 function certificatebeautiful_show_header($action, $context, $name) {
     switch ($action) {
         case "createadmin":
