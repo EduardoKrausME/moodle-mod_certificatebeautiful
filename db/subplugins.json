@@ -3,6 +3,6 @@
     "certificatebeautifuldatainfo": "extension"
   },
   "plugintypes": {
-    "certificatebeautifuldatainfo": "mod\/certificatebeautiful\/plugins_datainfo"
+    "certificatebeautifuldatainfo": "mod/certificatebeautiful/plugins_datainfo"
   }
 }
