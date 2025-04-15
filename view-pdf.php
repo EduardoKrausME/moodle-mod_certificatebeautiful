@@ -68,33 +68,6 @@ require_capability('mod/certificatebeautiful:view', $context);
 $username = fullname($user);
 $name = "{$certificatebeautiful->name} - {$username}.pdf";
 
-switch ($action) {
-    case "createadmin":
-        require_capability('mod/certificatebeautiful:addinstance', $context);
-    case "view":
-        header('Content-Type: application/pdf');
-        header('Content-disposition: inline; filename="' . $name . '"');
-        header('Cache-Control: public, must-revalidate, max-age=0');
-        header('Pragma: public');
-        header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-        break;
-    case "download":
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment; filename="' . $name . '"');
-        header('Cache-Control: public, must-revalidate, max-age=0');
-        header('Pragma: public');
-        header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-
-        header('Content-Description: File Transfer');
-        header('Content-Transfer-Encoding: binary');
-        break;
-
-    default:
-        die("OPS.....");
-}
-
 $fs = get_file_storage();
 $filerecord = (object)[
     "component" => "mod_certificatebeautiful",
@@ -119,6 +92,7 @@ if ($storedfile) {
     if ($storedfile->get_timecreated() > $certificatebeautifulmodel->timemodified) {
         $content = $storedfile->get_content();
 
+        certificatebeautiful_show_header($action, $context, $name);
         header('Content-Length: ' . strlen($content));
         echo $content;
         die();
@@ -134,7 +108,39 @@ $contentpdf = $pagepdf->create_pdf(
     $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $user, $course);
 
 $fs->create_file_from_string($filerecord, $contentpdf);
+
+certificatebeautiful_show_header($action, $context, $name);
 header('Content-Length: ' . strlen($contentpdf));
 echo $contentpdf;
+
+function certificatebeautiful_show_header($action, $context, $name) {
+    switch ($action) {
+        case "createadmin":
+            require_capability('mod/certificatebeautiful:addinstance', $context);
+            break;
+        case "view":
+            header('Content-Type: application/pdf');
+            header('Content-disposition: inline; filename="' . $name . '"');
+            header('Cache-Control: public, must-revalidate, max-age=0');
+            header('Pragma: public');
+            header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+            break;
+        case "download":
+            header('Content-Type: application/pdf');
+            header('Content-Disposition: attachment; filename="' . $name . '"');
+            header('Cache-Control: public, must-revalidate, max-age=0');
+            header('Pragma: public');
+            header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+
+            header('Content-Description: File Transfer');
+            header('Content-Transfer-Encoding: binary');
+            break;
+
+        default:
+            die("OPS.....");
+    }
+}
 
 die();
