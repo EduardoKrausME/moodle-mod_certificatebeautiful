@@ -172,8 +172,7 @@ function certificatebeautiful_reset_course_form_definition($mform) {
  * @param navigation_node $certificatebeautifulnode
  *
  * @return void
- * @throws \coding_exception
- * @throws moodle_exception
+ * @throws \Exception
  */
 function certificatebeautiful_extend_settings_navigation($settings, $certificatebeautifulnode) {
     global $PAGE;
