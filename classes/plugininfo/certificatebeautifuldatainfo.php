@@ -42,13 +42,28 @@ class certificatebeautifuldatainfo extends base {
      * Function get_enabled_plugins
      *
      * @return array|null
+     *
      * @throws coding_exception
      * @throws dml_exception
      */
     public static function get_enabled_plugins() {
-        global $DB;
+        global $DB, $CFG;
 
-        $plugins = core_plugin_manager::instance()->get_installed_plugins("certificatebeautifuldatainfo");
+        if (false && $CFG->branch < 500) {
+            $plugins = core_plugin_manager::instance()->get_installed_plugins("certificatebeautifuldatainfo");
+        } else {
+            $files = glob("{$CFG->dirroot}/mod/certificatebeautiful/plugins_datainfo/*");
+            $plugins = [];
+
+            foreach ($files as $file) {
+
+                $plugin = (object)[];
+                require_once("{$file}/version.php");
+                $pluginname = str_replace("certificatebeautifuldatainfo_", "", $plugin->component);
+                $plugins[$pluginname] = $plugin->version;
+            }
+        }
+
         if (!$plugins) {
             return [];
         }
