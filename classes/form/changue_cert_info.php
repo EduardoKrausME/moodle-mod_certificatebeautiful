@@ -64,7 +64,7 @@ class changue_cert_info extends moodleform {
         $keyname = $this->_customdata["orientation"] == "P" ? "model_orientation_p" : "model_orientation_l";
         $a = [
             "orientation" => get_string($keyname, "mod_certificatebeautiful"),
-            "size" => $this->_customdata["orientation"] == "P" ? "1684×1190" : "1190x1684",
+            "size" => $this->_customdata["orientation"] == "P" ? "1190x1684" : "1684×1190",
             "sizecm" => $this->_customdata["orientation"] == "P" ? "21x29,7" : "29,7x21",
         ];
         $html = get_string("select_background_image_info2", "mod_certificatebeautiful", $a);
