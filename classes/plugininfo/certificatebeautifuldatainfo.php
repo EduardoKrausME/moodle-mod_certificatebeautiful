@@ -59,8 +59,10 @@ class certificatebeautifuldatainfo extends base {
 
                 $plugin = (object)[];
                 require_once("{$file}/version.php");
-                $pluginname = str_replace("certificatebeautifuldatainfo_", "", $plugin->component);
-                $plugins[$pluginname] = $plugin->version;
+                if (isset($plugin->component) && isset($plugin->version)) {
+                    $pluginname = str_replace("certificatebeautifuldatainfo_", "", $plugin->component);
+                    $plugins[$pluginname] = $plugin->version;
+                }
             }
         }
 
