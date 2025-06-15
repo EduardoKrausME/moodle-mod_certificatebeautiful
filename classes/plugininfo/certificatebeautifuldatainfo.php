@@ -36,7 +36,8 @@ use dml_exception;
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class certificatebeautifuldatainfo extends base {
+class certificatebeautifuldatainfo extends base
+{
 
     /**
      * Function get_enabled_plugins
@@ -46,7 +47,8 @@ class certificatebeautifuldatainfo extends base {
      * @throws coding_exception
      * @throws dml_exception
      */
-    public static function get_enabled_plugins() {
+    public static function get_enabled_plugins()
+    {
         global $DB, $CFG;
 
         if (false && $CFG->branch < 500) {
@@ -56,11 +58,12 @@ class certificatebeautifuldatainfo extends base {
             $plugins = [];
 
             foreach ($files as $file) {
-
-                $plugin = (object)[];
-                require_once("{$file}/version.php");
-                $pluginname = str_replace("certificatebeautifuldatainfo_", "", $plugin->component);
-                $plugins[$pluginname] = $plugin->version;
+                if (isset($plugin->version)) {
+                    $plugin = (object)[];
+                    require_once("{$file}/version.php");
+                    $pluginname = str_replace("certificatebeautifuldatainfo_", "", $plugin->component);
+                    $plugins[$pluginname] = $plugin->version;
+                }
             }
         }
 
@@ -99,7 +102,8 @@ class certificatebeautifuldatainfo extends base {
      * @return bool
      * @throws dml_exception
      */
-    public static function enable_plugin(string $pluginname, int $enabled): bool {
+    public static function enable_plugin(string $pluginname, int $enabled): bool
+    {
         $haschanged = false;
 
         $plugin = "certificatebeautifuldatainfo_{$pluginname}";
@@ -123,7 +127,8 @@ class certificatebeautifuldatainfo extends base {
      *
      * @return bool
      */
-    public function is_uninstall_allowed() {
+    public function is_uninstall_allowed()
+    {
         return true;
     }
 
@@ -132,7 +137,8 @@ class certificatebeautifuldatainfo extends base {
      *
      * @return null|string
      */
-    public function get_settings_section_name() {
+    public function get_settings_section_name()
+    {
         return "{$this->type}_{$this->name}";
     }
 
@@ -143,7 +149,8 @@ class certificatebeautifuldatainfo extends base {
      * @param string $parentnodename
      * @param bool $hassiteconfig
      */
-    public function load_settings(\part_of_admin_tree $adminroot, $parentnodename, $hassiteconfig) {
+    public function load_settings(\part_of_admin_tree $adminroot, $parentnodename, $hassiteconfig)
+    {
 
         if (!$this->is_installed_and_upgraded()) {
             return;
@@ -171,7 +178,8 @@ class certificatebeautifuldatainfo extends base {
      *
      * @return bool
      */
-    public function uninstall(\progress_trace $progress) {
+    public function uninstall(\progress_trace $progress)
+    {
         return true;
     }
 }
