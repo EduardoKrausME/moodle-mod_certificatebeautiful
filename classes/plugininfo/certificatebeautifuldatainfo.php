@@ -47,25 +47,10 @@ class certificatebeautifuldatainfo extends base
      * @throws coding_exception
      * @throws dml_exception
      */
-    public static function get_enabled_plugins()
-    {
-        global $DB, $CFG;
+    public static function get_enabled_plugins() {
+        global $DB;
 
-        if (false && $CFG->branch < 500) {
-            $plugins = core_plugin_manager::instance()->get_installed_plugins("certificatebeautifuldatainfo");
-        } else {
-            $files = glob("{$CFG->dirroot}/mod/certificatebeautiful/plugins_datainfo/*");
-            $plugins = [];
-
-            foreach ($files as $file) {
-                if (isset($plugin->version)) {
-                    $plugin = (object)[];
-                    require_once("{$file}/version.php");
-                    $pluginname = str_replace("certificatebeautifuldatainfo_", "", $plugin->component);
-                    $plugins[$pluginname] = $plugin->version;
-                }
-            }
-        }
+        $plugins = core_plugin_manager::instance()->get_installed_plugins("certificatebeautifuldatainfo");
 
         if (!$plugins) {
             return [];
