@@ -57,6 +57,10 @@ if (optional_param("action", "", PARAM_TEXT) == "delete") {
         $filerecord->filearea, $filerecord->itemid,
         $filerecord->filepath, $filerecord->filename);
 
+    if ($storedfile) {
+        $storedfile->delete();
+    }
+
     redirect(new moodle_url("/mod/certificatebeautiful/view.php", ["id" => $id]),
         get_string("report_deleted_certificate", "certificatebeautiful"));
 }
