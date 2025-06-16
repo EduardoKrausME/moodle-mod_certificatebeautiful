@@ -39,10 +39,11 @@ require_once("{$CFG->libdir}/tablelib.php");
  */
 class certificatebeautiful_view extends \table_sql {
 
-    /**
-     * @var int
-     */
+    /** @var int */
     public $cmid = 0;
+
+    /** @var certificatebeautiful */
+    public $certificatebeautiful;
 
     /**
      * certificatebeautiful_view constructor.
@@ -57,6 +58,7 @@ class certificatebeautiful_view extends \table_sql {
         parent::__construct($uniqueid);
 
         $this->cmid = $cmid;
+        $this->certificatebeautiful = $certificatebeautiful;
 
         $this->is_downloadable(true);
         $this->show_download_buttons_at([TABLE_P_BOTTOM]);
@@ -226,7 +228,10 @@ class certificatebeautiful_view extends \table_sql {
     public function query_db($pagesize, $useinitialsbar = true) {
         global $DB;
 
-        $params = ["cmid" => $this->cmid];
+        $params = [
+            "cmid" => $this->cmid,
+            "courseid" => $this->certificatebeautiful->course,
+        ];
 
         $sqlwhere = $this->get_sql_where();
         $where = $sqlwhere[0] ? "AND {$sqlwhere[0]}" : "";
@@ -240,11 +245,14 @@ class certificatebeautiful_view extends \table_sql {
         $this->sql = "SELECT DISTINCT u.id AS userid, u.email, u.firstnamephonetic, u.lastnamephonetic,
                              u.middlename, u.alternatename, u.firstname, u.lastname
                         FROM {course}           c
-                        JOIN {enrol}            e ON e.courseid = c.id
-                        JOIN {user_enrolments} ue ON ue.enrolid = e.id
-                        JOIN {user}             u ON ue.userid  = u.id
+                        JOIN {enrol}            e ON (c.id = e.courseid  AND e.status = 0 )
+                        JOIN {user_enrolments} ue ON ( e.id = ue.enrolid AND ue.status = 0 )
+                        JOIN {user}             u ON ( u.id = ue.userid  AND u.deleted = 0 AND u.suspended = 0 )
+                       WHERE c.id = :courseid 
                              {$where}
                     ORDER BY {$order}";
+
+        echo $this->sql;
 
         if ($pagesize != -1) {
             $countsql = "SELECT COUNT(cbi.code) as c
