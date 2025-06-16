@@ -242,17 +242,20 @@ class certificatebeautiful_view extends \table_sql {
             $order = "u.firstname";
         }
 
-        $this->sql = "SELECT DISTINCT u.id AS userid, u.email, u.firstnamephonetic, u.lastnamephonetic,
-                             u.middlename, u.alternatename, u.firstname, u.lastname
+        $this->sql = "SELECT u.id AS userid, u.email, u.firstname, u.lastname,
+                             u.firstnamephonetic, u.lastnamephonetic, u.middlename, u.alternatename
                         FROM {course}           c
-                        JOIN {enrol}            e ON (c.id = e.courseid  AND e.status = 0 )
-                        JOIN {user_enrolments} ue ON ( e.id = ue.enrolid AND ue.status = 0 )
-                        JOIN {user}             u ON ( u.id = ue.userid  AND u.deleted = 0 AND u.suspended = 0 )
-                       WHERE c.id = :courseid
+                        JOIN {enrol}            e ON c.id = e.courseid
+                        JOIN {user_enrolments} ue ON e.id = ue.enrolid
+                        JOIN {user}             u ON u.id = ue.userid
+                       WHERE u.deleted   = 0
+                         AND u.suspended = 0
+                         AND ue.status   = 0
+                         AND e.status    = 0
+                         AND c.id        = :courseid
                              {$where}
+                    GROUP BY u.id 
                     ORDER BY {$order}";
-
-        echo $this->sql;
 
         if ($pagesize != -1) {
             $countsql = "SELECT COUNT(cbi.code) as c
