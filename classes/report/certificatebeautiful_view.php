@@ -248,7 +248,7 @@ class certificatebeautiful_view extends \table_sql {
                         JOIN {enrol}            e ON (c.id = e.courseid  AND e.status = 0 )
                         JOIN {user_enrolments} ue ON ( e.id = ue.enrolid AND ue.status = 0 )
                         JOIN {user}             u ON ( u.id = ue.userid  AND u.deleted = 0 AND u.suspended = 0 )
-                       WHERE c.id = :courseid 
+                       WHERE c.id = :courseid
                              {$where}
                     ORDER BY {$order}";
 
