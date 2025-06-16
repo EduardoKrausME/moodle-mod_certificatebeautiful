@@ -254,7 +254,7 @@ class certificatebeautiful_view extends \table_sql {
                          AND e.status    = 0
                          AND c.id        = :courseid
                              {$where}
-                    GROUP BY u.id 
+                    GROUP BY u.id
                     ORDER BY {$order}";
 
         if ($pagesize != -1) {
