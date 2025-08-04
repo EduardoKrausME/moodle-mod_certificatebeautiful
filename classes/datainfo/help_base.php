@@ -125,6 +125,11 @@ class help_base {
                     $key = "{\${$classsnameup}->{$structure["key"]}}";
                 }
 
+                $drag = "{\${$classsnameup}->{$structure["key"]}}";
+                if(isset($structure["drag"])){
+                    $drag = $structure["drag"];
+                }
+
                 $components[] = "
                     editor.BlockManager.add('{$plugin}_{$structure["key"]}', {
                         label    : '{$label}',
@@ -133,7 +138,7 @@ class help_base {
                                                draggable=\"false\"
                                                data-gjs-copyable=\"false\"
                                                data-gjs-draggable=\"false\"
-                                               data-gjs-editable=\"false\">{\${$classsnameup}->{$structure["key"]}}</div>`,
+                                               data-gjs-editable=\"false\">{$drag}</div>`,
                             droppable  : ['section'],
                         },
                         media    : '{$key}',

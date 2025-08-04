@@ -24,6 +24,9 @@
 
 namespace certificatebeautifuldatainfo_functions\datainfo;
 
+use Exception;
+use stdClass;
+
 /**
  * Class functions
  *
@@ -36,76 +39,76 @@ class functions {
      */
     const CLASS_NAME = "";
 
-
     /**
      * Function table_structure
      *
      * @return array
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function table_structure() {
         return [
             [
                 "key" => "{{date(xxx)}}",
+                "drag" => "{{date(d/m/Y)}}",
                 "label" => get_string("date", "certificatebeautifuldatainfo_functions"),
             ],
             [
                 "key" => "{{userdate(xx,yy)}}",
+                "drag" => "{{userdate(time(),strftimedate)}}",
                 "label" => get_string("userdate", "certificatebeautifuldatainfo_functions"),
             ],
             [
                 "key" => "{{time()}}",
+                "drag" => "{{time()}}",
                 "label" => get_string("time", "certificatebeautifuldatainfo_functions"),
             ],
         ];
     }
-
 
     /**
      * Function replace
      *
      * @param $html
      * @param $user
-     *
      * @return null|string|string[]
+     * @throws Exception
      */
     public static function replace($html, $user) {
-
         self::$user = $user;
 
-        $html = preg_replace_callback('/{{(?<function>userdate|date)\((?<parameters>.*?)\)}}/',
-            function ($matches) {
-
-                if (strpos($matches["parameters"], ",")) {
-                    preg_match('/(?<p1>.*?[,\)])(?<p2>.*?[,\)])?(?<p3>.*?[,\)])?/', $matches["parameters"], $functions);
-                    foreach ($functions as $key => $function) {
-                        $function = str_replace(",", "", $function);
-                        $function = str_replace(")", "", $function);
-                        $functions[$key] = trim($function);
+        $pattern = '/{{(?<function>userdate|date)\((?<parameters>.*?)\)}}/';
+        $html = preg_replace_callback($pattern, function ($matches) {
+            if (strpos($matches["parameters"], ",")) {
+                preg_match('/(?<p1>.*?[,\)])(?<p2>.*?[,\)])?(?<p3>.*?[,\)])?/', $matches["parameters"], $functions);
+                foreach ($functions as $key => $function) {
+                    $function = str_replace(",", "", $function);
+                    $function = str_replace(")", "", $function);
+                    $functions[$key] = trim($function);
+                }
+            } else {
+                $functions = ["p1" => $matches["parameters"]];
+            }
+            switch ($matches["function"]) {
+                case "userdate":
+                    if (isset($functions["p3"])) {
+                        return userdate($functions["p1"], get_string($functions["p2"], "langconfig"), $functions["p3"]);
+                    } else if (isset($functions["p2"])) {
+                        return userdate($functions["p1"], get_string($functions["p2"], "langconfig"), self::$user->timezone);
+                    } else if (isset($functions["p1"])) {
+                        return userdate($functions["p1"], get_string("strftimedate", "langconfig"), self::$user->timezone);
                     }
-                } else {
-                    $functions = ["p1" => $matches["parameters"]];
-                }
-                switch ($matches["function"]) {
-                    case "userdate":
-                        if (isset($functions["p3"])) {
-                            return userdate($functions["p1"], get_string($functions["p2"], "langconfig"), $functions["p3"]);
-                        } else if (isset($functions["p2"])) {
-                            return userdate($functions["p1"], get_string($functions["p2"], "langconfig"), self::$user->timezone);
-                        } else if (isset($functions["p1"])) {
-                            return userdate($functions["p1"], get_string("strftimedate", "langconfig"), self::$user->timezone);
-                        }
-                        break;
-                    case "date":
-                        if (isset($functions["p2"])) {
-                            return date($functions["p1"], $functions["p2"]);
-                        } else if (isset($functions["p1"])) {
-                            return date($functions["p1"]);
-                        }
-                        break;
-                }
-
-            }, $html);
+                    break;
+                case "date":
+                    if (isset($functions["p2"])) {
+                        return date($functions["p1"], $functions["p2"]);
+                    } else if (isset($functions["p1"])) {
+                        return date($functions["p1"]);
+                    }
+                    break;
+            }
+        },
+            $html
+        );
 
         return $html;
     }
@@ -113,7 +116,7 @@ class functions {
     /**
      * Var user
      *
-     * @var \stdClass
+     * @var stdClass
      */
     public static $user;
 }
