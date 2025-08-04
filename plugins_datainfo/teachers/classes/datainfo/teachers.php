@@ -39,7 +39,6 @@ class teachers extends help_base {
      */
     const CLASS_NAME = "teachers";
 
-
     /**
      * Function table_structure
      *

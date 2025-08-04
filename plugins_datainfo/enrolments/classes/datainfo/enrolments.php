@@ -38,7 +38,6 @@ class enrolments extends help_base {
      */
     const CLASS_NAME = "enrolments";
 
-
     /**
      * Function table_structure
      *

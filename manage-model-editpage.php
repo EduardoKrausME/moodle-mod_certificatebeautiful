@@ -134,7 +134,6 @@ switch ($action) {
             "cssdata" => "",
         ];
 
-
         $model = (object)[
             "id" => $certificatebeautifulmodel->id,
             "pages_info" => json_encode($certificatebeautifulmodel->pages_info_object, JSON_PRETTY_PRINT),

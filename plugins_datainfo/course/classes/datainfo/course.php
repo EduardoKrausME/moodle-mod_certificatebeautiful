@@ -38,7 +38,6 @@ class course extends help_base {
      */
     const CLASS_NAME = "course";
 
-
     /**
      * Function table_structure
      *

@@ -39,7 +39,6 @@ class grade extends help_base {
      */
     const CLASS_NAME = "grade";
 
-
     /**
      * Function table_structure
      *

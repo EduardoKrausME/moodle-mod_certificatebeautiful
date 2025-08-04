@@ -38,7 +38,6 @@ class coursecategories extends help_base {
      */
     const CLASS_NAME = "categories";
 
-
     /**
      * Function table_structure
      *

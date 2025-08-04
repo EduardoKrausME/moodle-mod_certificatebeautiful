@@ -38,7 +38,6 @@ class site extends help_base {
      */
     const CLASS_NAME = "site";
 
-
     /**
      * Function table_structure
      *
@@ -52,7 +51,6 @@ class site extends help_base {
             ["key" => "summary", "label" => get_string("summary", "certificatebeautifuldatainfo_site")],
         ];
     }
-
 
     /**
      * Function get_data

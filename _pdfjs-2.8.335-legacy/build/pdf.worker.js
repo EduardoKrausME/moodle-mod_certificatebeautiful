@@ -38,7 +38,6 @@ return /******/ (() => { // webpackBootstrap
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -812,7 +811,6 @@ if (typeof window === "undefined" && !_is_node.isNodeJS && typeof self !== "unde
 
 "use strict";
 
-
 module.exports = __w_pdfjs_require__(3);
 
 /***/ }),
@@ -821,7 +819,6 @@ module.exports = __w_pdfjs_require__(3);
 
 "use strict";
 /* module decorator */ module = __w_pdfjs_require__.nmd(module);
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -1417,7 +1414,6 @@ try {
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -2477,7 +2473,6 @@ function createObjectURL(data) {
 
 "use strict";
 
-
 var _is_node = __w_pdfjs_require__(6);
 
 if (typeof globalThis === "undefined" || !globalThis._pdfjsCompatibilityChecked) {
@@ -2582,7 +2577,6 @@ if (typeof globalThis === "undefined" || !globalThis._pdfjsCompatibilityChecked)
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -8964,7 +8958,6 @@ $({
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -9509,7 +9502,6 @@ function clearPrimitiveCaches() {
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -9883,7 +9875,6 @@ exports.NetworkPdfManager = NetworkPdfManager;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -10643,7 +10634,6 @@ exports.ChunkedStreamManager = ChunkedStreamManager;
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -11083,7 +11073,6 @@ function encodeToXmlString(str) {
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -12419,7 +12408,6 @@ exports.PDFDocument = PDFDocument;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -15316,7 +15304,6 @@ exports.ObjectLoader = ObjectLoader;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -16712,7 +16699,6 @@ exports.Linearization = Linearization;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -18030,7 +18016,6 @@ exports.NullStream = NullStream;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -18095,7 +18080,6 @@ exports.CCITTFaxStream = CCITTFaxStream;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -18794,7 +18778,6 @@ exports.CCITTFaxDecoder = CCITTFaxDecoder;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -18876,7 +18859,6 @@ exports.Jbig2Stream = Jbig2Stream;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -21096,7 +21078,6 @@ exports.Jbig2Image = Jbig2Image;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -21464,7 +21445,6 @@ exports.ArithmeticDecoder = ArithmeticDecoder;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -21570,7 +21550,6 @@ exports.JpegStream = JpegStream;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -22871,7 +22850,6 @@ exports.JpegImage = JpegImage;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -22957,7 +22935,6 @@ exports.JpxStream = JpxStream;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -25319,7 +25296,6 @@ exports.JpxImage = JpxImage;
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -27055,7 +27031,6 @@ exports.CipherTransformFactory = CipherTransformFactory;
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -28325,7 +28300,6 @@ var LabCS = function LabCSClosure() {
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -28784,7 +28758,6 @@ exports.GlobalImageCache = GlobalImageCache;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -28980,7 +28953,6 @@ exports.MetadataParser = MetadataParser;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -29656,7 +29628,6 @@ exports.SimpleXMLParser = SimpleXMLParser;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -32565,7 +32536,6 @@ var FileAttachmentAnnotation = /*#__PURE__*/function (_MarkupAnnotation14) {
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -32728,7 +32698,6 @@ function createDefaultAppearance(_ref) {
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -37192,7 +37161,6 @@ exports.EvaluatorPreprocessor = EvaluatorPreprocessor;
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -38407,7 +38375,6 @@ exports.CMapFactory = CMapFactory;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -41762,7 +41729,6 @@ var CFFFont = function CFFFontClosure() {
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -43731,7 +43697,6 @@ exports.CFFCompiler = CFFCompiler;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -43748,7 +43713,6 @@ exports.ExpertSubsetCharset = ExpertSubsetCharset;
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -52868,13 +52832,11 @@ const getDingbatsGlyphsUnicode = (0,_core_utils_js__WEBPACK_IMPORTED_MODULE_0__.
  ];
 });
 
-
 /***/ }),
 /* 156 */
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -56975,13 +56937,11 @@ function reverseIfRtl(chars) {
  return buf.join("");
 }
 
-
 /***/ }),
 /* 158 */
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -58014,7 +57974,6 @@ exports.FontRendererFactory = FontRendererFactory;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -58764,7 +58723,6 @@ exports.Type1Parser = Type1Parser;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -59734,7 +59692,6 @@ function getTilingPatternIR(operatorList, dict, color) {
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -61297,7 +61254,6 @@ exports.PostScriptCompiler = PostScriptCompiler;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -61585,7 +61541,6 @@ exports.PostScriptLexer = PostScriptLexer;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -61898,7 +61853,6 @@ function bidi(str, startLevel, vertical) {
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -64853,7 +64807,6 @@ exports.getMetrics = getMetrics;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -64991,7 +64944,6 @@ exports.MurmurHash3_64 = MurmurHash3_64;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -65667,7 +65619,6 @@ exports.OperatorList = OperatorList;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -66392,7 +66343,6 @@ exports.PDFImage = PDFImage;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -66756,7 +66706,6 @@ function incrementalUpdate(_ref) {
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -66818,7 +66767,6 @@ exports.XFAFactory = XFAFactory;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -68332,7 +68280,6 @@ exports.Option10 = Option10;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -68612,7 +68559,6 @@ function getBBox(data) {
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -68718,7 +68664,6 @@ exports.NamespaceIds = NamespaceIds;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -69341,7 +69286,6 @@ exports.Binder = Binder;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -74728,7 +74672,6 @@ exports.TemplateNamespace = TemplateNamespace;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -74916,7 +74859,6 @@ function toStyle(node) {
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -75321,7 +75263,6 @@ function createDataNode(root, container, expr) {
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -75565,7 +75506,6 @@ exports.XFAParser = XFAParser;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -75882,7 +75822,6 @@ exports.Builder = Builder;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -75924,7 +75863,6 @@ exports.NamespaceSetUp = NamespaceSetUp;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -79206,7 +79144,6 @@ exports.ConfigNamespace = ConfigNamespace;
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -79583,7 +79520,6 @@ exports.ConnectionSetNamespace = ConnectionSetNamespace;
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -79701,7 +79637,6 @@ exports.DatasetsNamespace = DatasetsNamespace;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -80324,7 +80259,6 @@ exports.LocaleSetNamespace = LocaleSetNamespace;
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -80404,7 +80338,6 @@ exports.SignatureNamespace = SignatureNamespace;
 
 "use strict";
 
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -80483,7 +80416,6 @@ exports.StylesheetNamespace = StylesheetNamespace;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -80582,7 +80514,6 @@ exports.XdpNamespace = XdpNamespace;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -80983,7 +80914,6 @@ exports.XhtmlNamespace = XhtmlNamespace;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -81023,7 +80953,6 @@ exports.UnknownNamespace = UnknownNamespace;
 /***/ ((__unused_webpack_module, exports, __w_pdfjs_require__) => {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -81577,7 +81506,6 @@ exports.MessageHandler = MessageHandler;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -81897,7 +81825,6 @@ var __webpack_exports__ = {};
 (() => {
 "use strict";
 var exports = __webpack_exports__;
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true

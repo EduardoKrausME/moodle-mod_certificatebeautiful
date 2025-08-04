@@ -115,7 +115,6 @@ class font_attributes {
         }
     }
 
-
     /**
      * Function get_copyright
      *
@@ -124,7 +123,6 @@ class font_attributes {
     public function get_copyright() {
         return $this->return_value($this->_copyright);
     }
-
 
     /**
      * Function get_font_family
@@ -157,7 +155,6 @@ class font_attributes {
         return $this->return_value($this->_fontsubfamily);
     }
 
-
     /**
      * Function get_font_identifier
      *
@@ -166,7 +163,6 @@ class font_attributes {
     public function get_font_identifier() {
         return $this->return_value($this->_fontidentifier);
     }
-
 
     /**
      * Function get_font_name
@@ -190,7 +186,6 @@ class font_attributes {
         return $font;
     }
 
-
     /**
      * Function get_font_version
      *
@@ -200,7 +195,6 @@ class font_attributes {
         return $this->return_value($this->_fontversion);
     }
 
-
     /**
      * Function get_postscript_name
      *
@@ -209,7 +203,6 @@ class font_attributes {
     public function get_postscript_name() {
         return $this->return_value($this->_postscriptname);
     }
-
 
     /**
      * Function get_trademark

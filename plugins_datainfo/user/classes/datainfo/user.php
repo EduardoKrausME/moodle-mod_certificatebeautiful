@@ -38,7 +38,6 @@ class user extends help_base {
      */
     const CLASS_NAME = "user";
 
-
     /**
      * Function table_structure
      *

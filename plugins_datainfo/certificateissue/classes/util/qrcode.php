@@ -24,7 +24,6 @@
 
 namespace certificatebeautifuldatainfo_certificateissue\util;
 
-
 /****************************************************************************\
  *
  * qrcode.php - Generate QR Codes. MIT license.
@@ -205,7 +204,6 @@ class qrcode {
     }
 
     /* - - - - DISPATCH - - - - */
-
 
     /**
      * Function dispatch_encode

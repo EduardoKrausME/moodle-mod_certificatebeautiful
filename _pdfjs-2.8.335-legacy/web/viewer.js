@@ -27,8 +27,6 @@
 /* 1 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -323,8 +321,6 @@ exports.AppOptions = AppOptions;
 /* 2 */
 /***/ ((__unused_webpack_module, exports) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -356,8 +352,6 @@ exports.viewerCompatibilityParams = viewerCompatibilityParams;
 /***/ }),
 /* 3 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -3763,8 +3757,6 @@ exports.PDFPrintServiceFactory = PDFPrintServiceFactory;
 /* 4 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-
-
 module.exports = __webpack_require__(5);
 
 /***/ }),
@@ -3772,7 +3764,6 @@ module.exports = __webpack_require__(5);
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 /* module decorator */ module = __webpack_require__.nmd(module);
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -4366,8 +4357,6 @@ try {
 /***/ }),
 /* 6 */
 /***/ ((__unused_webpack_module, exports) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -5172,8 +5161,6 @@ function apiPageModeToSidebarView(mode) {
 /* 7 */
 /***/ ((module) => {
 
-
-
 var pdfjsLib;
 
 if (typeof window !== "undefined" && window["pdfjs-dist/build/pdf"]) {
@@ -5187,8 +5174,6 @@ module.exports = pdfjsLib;
 /***/ }),
 /* 8 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -5342,8 +5327,6 @@ exports.PDFCursorTools = PDFCursorTools;
 /* 9 */
 /***/ ((__unused_webpack_module, exports) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -5489,8 +5472,6 @@ function isLeftMouseReleased(event) {
 /***/ }),
 /* 10 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -5651,8 +5632,6 @@ exports.PDFRenderingQueue = PDFRenderingQueue;
 /***/ }),
 /* 11 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -5928,8 +5907,6 @@ exports.OverlayManager = OverlayManager;
 /* 12 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -6054,8 +6031,6 @@ exports.PasswordPrompt = PasswordPrompt;
 /***/ }),
 /* 13 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -6282,8 +6257,6 @@ exports.PDFAttachmentViewer = PDFAttachmentViewer;
 /* 14 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -6461,8 +6434,6 @@ exports.BaseTreeViewer = BaseTreeViewer;
 /***/ }),
 /* 15 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -6919,8 +6890,6 @@ exports.PDFDocumentProperties = PDFDocumentProperties;
 /* 16 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -7149,8 +7118,6 @@ exports.PDFFindBar = PDFFindBar;
 /***/ }),
 /* 17 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -7974,8 +7941,6 @@ exports.PDFFindController = PDFFindController;
 /* 18 */
 /***/ ((__unused_webpack_module, exports) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -8068,8 +8033,6 @@ function getCharacterType(charCode) {
 /***/ }),
 /* 19 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -8749,8 +8712,6 @@ function isDestArraysEqual(firstDest, secondDest) {
 /* 20 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -9064,8 +9025,6 @@ exports.PDFLayerViewer = PDFLayerViewer;
 /***/ }),
 /* 21 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -9656,8 +9615,6 @@ exports.SimpleLinkService = SimpleLinkService;
 /* 22 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -10232,8 +10189,6 @@ exports.PDFOutlineViewer = PDFOutlineViewer;
 /* 23 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -10638,8 +10593,6 @@ exports.PDFPresentationMode = PDFPresentationMode;
 /***/ }),
 /* 24 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -11566,8 +11519,6 @@ exports.PDFScriptingManager = PDFScriptingManager;
 /* 25 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -11965,8 +11916,6 @@ exports.PDFSidebar = PDFSidebar;
 /* 26 */
 /***/ ((__unused_webpack_module, exports) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -12118,8 +12067,6 @@ exports.PDFSidebarResizer = PDFSidebarResizer;
 /***/ }),
 /* 27 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -12431,8 +12378,6 @@ exports.PDFThumbnailViewer = PDFThumbnailViewer;
 /***/ }),
 /* 28 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -12938,8 +12883,6 @@ exports.PDFThumbnailView = PDFThumbnailView;
 /* 29 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -13086,8 +13029,6 @@ exports.PDFViewer = PDFViewer;
 /***/ }),
 /* 30 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -14667,8 +14608,6 @@ exports.BaseViewer = BaseViewer;
 /* 31 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -14851,8 +14790,6 @@ exports.DefaultAnnotationLayerFactory = DefaultAnnotationLayerFactory;
 /* 32 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -15016,8 +14953,6 @@ exports.NullL10n = NullL10n;
 /***/ }),
 /* 33 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -15811,8 +15746,6 @@ exports.PDFPageView = PDFPageView;
 /* 34 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -16219,8 +16152,6 @@ exports.DefaultTextLayerFactory = DefaultTextLayerFactory;
 /* 35 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -16324,8 +16255,6 @@ exports.DefaultXfaLayerFactory = DefaultXfaLayerFactory;
 /***/ }),
 /* 36 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -16692,8 +16621,6 @@ exports.SecondaryToolbar = SecondaryToolbar;
 /* 37 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -16875,8 +16802,6 @@ exports.PDFSinglePageViewer = PDFSinglePageViewer;
 /***/ }),
 /* 38 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -17233,8 +17158,6 @@ exports.Toolbar = Toolbar;
 /* 39 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -17487,8 +17410,6 @@ exports.ViewHistory = ViewHistory;
 /* 40 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", ({
@@ -17646,8 +17567,6 @@ _app.PDFViewerApplication.externalServices = GenericExternalServices;
 /***/ }),
 /* 41 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -17969,8 +17888,6 @@ exports.BasePreferences = BasePreferences;
 /* 42 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -18088,8 +18005,6 @@ exports.DownloadManager = DownloadManager;
 /***/ }),
 /* 43 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -18263,8 +18178,6 @@ exports.GenericL10n = GenericL10n;
 /***/ }),
 /* 44 */
 /***/ (() => {
-
-
 
 document.webL10n = function (window, document, undefined) {
   var gL10nData = {};
@@ -19086,8 +18999,6 @@ document.webL10n = function (window, document, undefined) {
 /* 45 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-
-
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -19282,8 +19193,6 @@ exports.GenericScripting = GenericScripting;
 /***/ }),
 /* 46 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
@@ -19612,7 +19521,6 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 var exports = __webpack_exports__;
-
 
 Object.defineProperty(exports, "__esModule", ({
   value: true

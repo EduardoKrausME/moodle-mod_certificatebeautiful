@@ -81,8 +81,6 @@ if ($code) {
                 default:
                     echo "Invalid option";
             }
-
-
         }
 
         $cm = get_coursemodule_from_id("certificatebeautiful", $certificatebeautifulissue->cmid);
