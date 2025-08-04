@@ -22,8 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['date'] = 'PHP <a href="https://php.net/date" target="_blank">date()</a> function';
+$string['date'] = 'PHP date() function';
 $string['pluginname'] = 'Execute functions of the following Moodle and PHP native functions';
 $string['privacy:metadata'] = 'The plugin does not store any personal data.';
-$string['time'] = 'PHP <a href="https://php.net/time" target="_blank">time()</a> function';
-$string['userdate'] = 'Moodle <a href="https://moodledev.io/docs/apis/subsystems/time" target="_blank">userdate()</a> function';
+$string['time'] = 'PHP time() function';
+$string['userdate'] = 'Moodle userdate() function';
