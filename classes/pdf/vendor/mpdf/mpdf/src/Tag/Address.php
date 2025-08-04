@@ -2,7 +2,8 @@
 
 namespace Mpdf\Tag;
 
-class Address extends BlockTag {
+class Address extends BlockTag
+{
 
 
 }

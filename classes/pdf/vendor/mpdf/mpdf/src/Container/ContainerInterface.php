@@ -2,10 +2,11 @@
 
 namespace Mpdf\Container;
 
-interface ContainerInterface {
+interface ContainerInterface
+{
 
-    public function get($id);
+	public function get($id);
 
-    public function has($id);
+	public function has($id);
 
 }

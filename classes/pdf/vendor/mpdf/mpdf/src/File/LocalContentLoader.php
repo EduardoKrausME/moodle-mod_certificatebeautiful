@@ -2,10 +2,12 @@
 
 namespace Mpdf\File;
 
-class LocalContentLoader implements \Mpdf\File\LocalContentLoaderInterface {
+class LocalContentLoader implements \Mpdf\File\LocalContentLoaderInterface
+{
 
-    public function load($path) {
-        return file_get_contents($path);
-    }
+	public function load($path)
+	{
+		return file_get_contents($path);
+	}
 
 }

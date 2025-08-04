@@ -4,5 +4,6 @@ namespace DeepCopy\Exception;
 
 use ReflectionException;
 
-class PropertyException extends ReflectionException {
+class PropertyException extends ReflectionException
+{
 }

@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -15,7 +15,8 @@ namespace setasign\Fpdi;
  *
  * This trait adds a templating feature to FPDF and tFPDF.
  */
-trait FpdfTplTrait {
+trait FpdfTplTrait
+{
     /**
      * Data of all created templates.
      *
@@ -40,12 +41,12 @@ trait FpdfTplTrait {
     /**
      * Set the page format of the current page.
      *
-     * @param array $size         An array with two values defining the size.
+     * @param array $size An array with two values defining the size.
      * @param string $orientation "L" for landscape, "P" for portrait.
-     *
      * @throws \BadMethodCallException
      */
-    public function setPageFormat($size, $orientation) {
+    public function setPageFormat($size, $orientation)
+    {
         if ($this->currentTemplateId !== null) {
             throw new \BadMethodCallException('The page format cannot be changed when writing to a template.');
         }
@@ -88,18 +89,18 @@ trait FpdfTplTrait {
      * Give only one of the size parameters (width, height) to calculate the other one automatically in view to the
      * aspect ratio.
      *
-     * @param mixed $tpl             The template id
-     * @param array|float|int $x     The abscissa of upper-left corner. Alternatively you could use an assoc array
-     *                               with the keys "x", "y", "width", "height", "adjustPageSize".
-     * @param float|int $y           The ordinate of upper-left corner.
-     * @param float|int|null $width  The width.
+     * @param mixed $tpl The template id
+     * @param array|float|int $x The abscissa of upper-left corner. Alternatively you could use an assoc array
+     *                           with the keys "x", "y", "width", "height", "adjustPageSize".
+     * @param float|int $y The ordinate of upper-left corner.
+     * @param float|int|null $width The width.
      * @param float|int|null $height The height.
      * @param bool $adjustPageSize
-     *
      * @return array The size
      * @see FpdfTplTrait::getTemplateSize()
      */
-    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false) {
+    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false)
+    {
         if (!isset($this->templates[$tpl])) {
             throw new \InvalidArgumentException('Template does not exist!');
         }
@@ -108,7 +109,7 @@ trait FpdfTplTrait {
             unset($x['tpl']);
             \extract($x, EXTR_IF_EXISTS);
             /** @noinspection NotOptimalIfConditionsInspection */
-            /** @noinspection PhpConditionAlreadyCheckedInspection */
+            /** @phpstan-ignore function.alreadyNarrowedType  */
             if (\is_array($x)) {
                 $x = 0;
             }
@@ -143,13 +144,13 @@ trait FpdfTplTrait {
      * Give only one of the size parameters (width, height) to calculate the other one automatically in view to the
      * aspect ratio.
      *
-     * @param mixed $tpl             The template id
-     * @param float|int|null $width  The width.
+     * @param mixed $tpl The template id
+     * @param float|int|null $width The width.
      * @param float|int|null $height The height.
-     *
      * @return array|bool An array with following keys: width, height, 0 (=width), 1 (=height), orientation (L or P)
      */
-    public function getTemplateSize($tpl, $width = null, $height = null) {
+    public function getTemplateSize($tpl, $width = null, $height = null)
+    {
         if (!isset($this->templates[$tpl])) {
             return false;
         }
@@ -181,13 +182,13 @@ trait FpdfTplTrait {
     /**
      * Begins a new template.
      *
-     * @param float|int|null $width  The width of the template. If null, the current page width is used.
+     * @param float|int|null $width The width of the template. If null, the current page width is used.
      * @param float|int|null $height The height of the template. If null, the current page height is used.
-     * @param bool $groupXObject     Define the form XObject as a group XObject to support transparency (if used).
-     *
+     * @param bool $groupXObject Define the form XObject as a group XObject to support transparency (if used).
      * @return int A template identifier.
      */
-    public function beginTemplate($width = null, $height = null, $groupXObject = false) {
+    public function beginTemplate($width = null, $height = null, $groupXObject = false)
+    {
         if ($width === null) {
             $width = $this->w;
         }
@@ -252,9 +253,9 @@ trait FpdfTplTrait {
         $this->currentTemplateId = $templateId;
 
         $this->h = $height;
-        $this->hPt = $height / $this->k;
+        $this->hPt = $height * $this->k;
         $this->w = $width;
-        $this->wPt = $width / $this->k;
+        $this->wPt = $width * $this->k;
 
         $this->SetXY($this->lMargin, $this->tMargin);
         $this->SetRightMargin($this->w - $width + $this->rMargin);
@@ -267,7 +268,8 @@ trait FpdfTplTrait {
      *
      * @return bool|int|null A template identifier.
      */
-    public function endTemplate() {
+    public function endTemplate()
+    {
         if ($this->currentTemplateId === null) {
             return false;
         }
@@ -315,7 +317,8 @@ trait FpdfTplTrait {
      *
      * @return int
      */
-    protected function getNextTemplateId() {
+    protected function getNextTemplateId()
+    {
         return $this->templateId++;
     }
 
@@ -324,7 +327,8 @@ trait FpdfTplTrait {
     /**
      * @inheritdoc
      */
-    public function AddPage($orientation = '', $size = '', $rotation = 0) {
+    public function AddPage($orientation = '', $size = '', $rotation = 0)
+    {
         if ($this->currentTemplateId !== null) {
             throw new \BadMethodCallException('Pages cannot be added when writing to a template.');
         }
@@ -334,7 +338,8 @@ trait FpdfTplTrait {
     /**
      * @inheritdoc
      */
-    public function Link($x, $y, $w, $h, $link) {
+    public function Link($x, $y, $w, $h, $link)
+    {
         if ($this->currentTemplateId !== null) {
             throw new \BadMethodCallException('Links cannot be set when writing to a template.');
         }
@@ -344,7 +349,8 @@ trait FpdfTplTrait {
     /**
      * @inheritdoc
      */
-    public function SetLink($link, $y = 0, $page = -1) {
+    public function SetLink($link, $y = 0, $page = -1)
+    {
         if ($this->currentTemplateId !== null) {
             throw new \BadMethodCallException('Links cannot be set when writing to a template.');
         }
@@ -354,7 +360,8 @@ trait FpdfTplTrait {
     /**
      * @inheritdoc
      */
-    public function SetDrawColor($r, $g = null, $b = null) {
+    public function SetDrawColor($r, $g = null, $b = null)
+    {
         parent::SetDrawColor($r, $g, $b);
         if ($this->page === 0 && $this->currentTemplateId !== null) {
             $this->_out($this->DrawColor);
@@ -364,7 +371,8 @@ trait FpdfTplTrait {
     /**
      * @inheritdoc
      */
-    public function SetFillColor($r, $g = null, $b = null) {
+    public function SetFillColor($r, $g = null, $b = null)
+    {
         parent::SetFillColor($r, $g, $b);
         if ($this->page === 0 && $this->currentTemplateId !== null) {
             $this->_out($this->FillColor);
@@ -374,7 +382,8 @@ trait FpdfTplTrait {
     /**
      * @inheritdoc
      */
-    public function SetLineWidth($width) {
+    public function SetLineWidth($width)
+    {
         parent::SetLineWidth($width);
         if ($this->page === 0 && $this->currentTemplateId !== null) {
             $this->_out(\sprintf('%.2F w', $width * $this->k));
@@ -384,7 +393,8 @@ trait FpdfTplTrait {
     /**
      * @inheritdoc
      */
-    public function SetFont($family, $style = '', $size = 0) {
+    public function SetFont($family, $style = '', $size = 0)
+    {
         parent::SetFont($family, $style, $size);
         if ($this->page === 0 && $this->currentTemplateId !== null) {
             $this->_out(\sprintf('BT /F%d %.2F Tf ET', $this->CurrentFont['i'], $this->FontSizePt));
@@ -394,14 +404,16 @@ trait FpdfTplTrait {
     /**
      * @inheritdoc
      */
-    public function SetFontSize($size) {
+    public function SetFontSize($size)
+    {
         parent::SetFontSize($size);
         if ($this->page === 0 && $this->currentTemplateId !== null) {
             $this->_out(sprintf('BT /F%d %.2F Tf ET', $this->CurrentFont['i'], $this->FontSizePt));
         }
     }
 
-    protected function _putimages() {
+    protected function _putimages()
+    {
         parent::_putimages();
 
         foreach ($this->templates as $key => $template) {
@@ -438,7 +450,8 @@ trait FpdfTplTrait {
     /**
      * @inheritdoc
      */
-    protected function _putxobjectdict() {
+    protected function _putxobjectdict()
+    {
         foreach ($this->templates as $key => $template) {
             $this->_put('/' . $template['id'] . ' ' . $template['objectNumber'] . ' 0 R');
         }
@@ -449,7 +462,8 @@ trait FpdfTplTrait {
     /**
      * @inheritdoc
      */
-    public function _out($s) {
+    public function _out($s)
+    {
         if ($this->currentTemplateId !== null) {
             $this->templates[$this->currentTemplateId]['buffer'] .= $s . "\n";
         } else {

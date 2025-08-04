@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -17,7 +17,8 @@ use setasign\Fpdi\PdfParser\PdfParserException;
 /**
  * A class defining a PDF data type
  */
-class PdfType {
+class PdfType
+{
     /**
      * Resolves a PdfType value to its value.
      *
@@ -26,12 +27,12 @@ class PdfType {
      * @param PdfType $value
      * @param PdfParser $parser
      * @param bool $stopAtIndirectObject
-     *
      * @return PdfType
      * @throws CrossReferenceException
      * @throws PdfParserException
      */
-    public static function resolve(PdfType $value, PdfParser $parser, $stopAtIndirectObject = false) {
+    public static function resolve(PdfType $value, PdfParser $parser, $stopAtIndirectObject = false)
+    {
         if ($value instanceof PdfIndirectObject) {
             if ($stopAtIndirectObject === true) {
                 return $value;
@@ -53,11 +54,11 @@ class PdfType {
      * @param string $type
      * @param PdfType $value
      * @param string $errorMessage
-     *
      * @return mixed
      * @throws PdfTypeException
      */
-    protected static function ensureType($type, $value, $errorMessage) {
+    protected static function ensureType($type, $value, $errorMessage)
+    {
         if (!($value instanceof $type)) {
             throw new PdfTypeException(
                 $errorMessage,
@@ -73,12 +74,12 @@ class PdfType {
      *
      * @param PdfType $value
      * @param PdfParser $parser
-     *
      * @return PdfType
      * @throws CrossReferenceException
      * @throws PdfParserException
      */
-    public static function flatten(PdfType $value, PdfParser $parser) {
+    public static function flatten(PdfType $value, PdfParser $parser)
+    {
         if ($value instanceof PdfIndirectObjectReference) {
             return self::flatten(self::resolve($value, $parser), $parser);
         }

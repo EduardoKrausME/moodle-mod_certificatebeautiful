@@ -2,6 +2,7 @@
 
 namespace Mpdf\Container;
 
-class NotFoundException extends \Mpdf\MpdfException {
+class NotFoundException extends \Mpdf\MpdfException
+{
 
 }

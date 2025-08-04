@@ -10,7 +10,8 @@ use DeepCopy\TypeFilter\TypeFilter;
  *
  * @deprecated Will be removed in 2.0. This filter will no longer be necessary in PHP 7.1+.
  */
-class DateIntervalFilter implements TypeFilter {
+class DateIntervalFilter implements TypeFilter
+{
 
     /**
      * {@inheritdoc}
@@ -19,7 +20,8 @@ class DateIntervalFilter implements TypeFilter {
      *
      * @see http://news.php.net/php.bugs/205076
      */
-    public function apply($element) {
+    public function apply($element)
+    {
         $copy = new DateInterval('P0D');
 
         foreach ($element as $propertyName => $propertyValue) {

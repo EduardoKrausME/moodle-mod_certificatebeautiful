@@ -2,6 +2,7 @@
 
 namespace Mpdf\Http\Exception;
 
-class ForbiddenRequestException extends \Mpdf\MpdfException {
+class ForbiddenRequestException extends \Mpdf\MpdfException
+{
 
 }

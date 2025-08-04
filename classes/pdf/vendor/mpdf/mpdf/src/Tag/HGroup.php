@@ -2,7 +2,8 @@
 
 namespace Mpdf\Tag;
 
-class HGroup extends BlockTag {
+class HGroup extends BlockTag
+{
 
 
 }

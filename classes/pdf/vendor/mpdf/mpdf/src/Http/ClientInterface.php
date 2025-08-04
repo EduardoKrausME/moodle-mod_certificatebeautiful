@@ -4,8 +4,9 @@ namespace Mpdf\Http;
 
 use Psr\Http\Message\RequestInterface;
 
-interface ClientInterface {
+interface ClientInterface
+{
 
-    public function sendRequest(RequestInterface $request);
+	public function sendRequest(RequestInterface $request);
 
 }

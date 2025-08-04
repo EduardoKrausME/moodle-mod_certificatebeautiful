@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -13,7 +13,8 @@ namespace setasign\Fpdi\PdfParser\Filter;
 /**
  * Class for handling zlib/deflate encoded data
  */
-class Flate implements FilterInterface {
+class Flate implements FilterInterface
+{
     /**
      * Checks whether the zlib extension is loaded.
      *
@@ -22,7 +23,8 @@ class Flate implements FilterInterface {
      * @return boolean
      * @internal
      */
-    protected function extensionLoaded() {
+    protected function extensionLoaded()
+    {
         return \extension_loaded('zlib');
     }
 
@@ -30,11 +32,11 @@ class Flate implements FilterInterface {
      * Decodes a flate compressed string.
      *
      * @param string|false $data The input string
-     *
      * @return string
      * @throws FlateException
      */
-    public function decode($data) {
+    public function decode($data)
+    {
         if ($this->extensionLoaded()) {
             $oData = $data;
             $data = (($data !== '') ? @\gzuncompress($data) : '');

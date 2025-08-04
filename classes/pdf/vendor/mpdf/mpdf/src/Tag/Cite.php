@@ -2,7 +2,8 @@
 
 namespace Mpdf\Tag;
 
-class Cite extends InlineTag {
+class Cite extends InlineTag
+{
 
 
 }

@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -13,17 +13,18 @@ namespace setasign\Fpdi\PdfParser;
 /**
  * A stream reader class
  */
-class StreamReader {
+class StreamReader
+{
     /**
      * Creates a stream reader instance by a string value.
      *
      * @param string $content
      * @param int $maxMemory
-     *
      * @return StreamReader
      */
-    public static function createByString($content, $maxMemory = 2097152) {
-        $h = \fopen('php://temp/maxmemory:' . ((int)$maxMemory), 'r+b');
+    public static function createByString($content, $maxMemory = 2097152)
+    {
+        $h = \fopen('php://temp/maxmemory:' . ((int) $maxMemory), 'r+b');
         \fwrite($h, $content);
         \rewind($h);
 
@@ -34,10 +35,10 @@ class StreamReader {
      * Creates a stream reader instance by a filename.
      *
      * @param string $filename
-     *
      * @return StreamReader
      */
-    public static function createByFile($filename) {
+    public static function createByFile($filename)
+    {
         $h = \fopen($filename, 'rb');
         return new self($h, true);
     }
@@ -97,7 +98,8 @@ class StreamReader {
      * @param resource $stream
      * @param bool $closeStream Defines whether to close the stream resource if the instance is destructed or not.
      */
-    public function __construct($stream, $closeStream = false) {
+    public function __construct($stream, $closeStream = false)
+    {
         if (!\is_resource($stream)) {
             throw new \InvalidArgumentException(
                 'No stream given.'
@@ -125,14 +127,16 @@ class StreamReader {
     /**
      * The destructor.
      */
-    public function __destruct() {
+    public function __destruct()
+    {
         $this->cleanUp();
     }
 
     /**
      * Closes the file handle.
      */
-    public function cleanUp() {
+    public function cleanUp()
+    {
         if ($this->closeStream && is_resource($this->stream)) {
             \fclose($this->stream);
         }
@@ -142,10 +146,10 @@ class StreamReader {
      * Returns the byte length of the buffer.
      *
      * @param bool $atOffset
-     *
      * @return int
      */
-    public function getBufferLength($atOffset = false) {
+    public function getBufferLength($atOffset = false)
+    {
         if ($atOffset === false) {
             return $this->bufferLength;
         }
@@ -158,7 +162,8 @@ class StreamReader {
      *
      * @return int
      */
-    public function getPosition() {
+    public function getPosition()
+    {
         return $this->position;
     }
 
@@ -166,17 +171,17 @@ class StreamReader {
      * Returns the current buffer.
      *
      * @param bool $atOffset
-     *
      * @return string
      */
-    public function getBuffer($atOffset = true) {
+    public function getBuffer($atOffset = true)
+    {
         if ($atOffset === false) {
             return $this->buffer;
         }
 
         $string = \substr($this->buffer, $this->offset);
 
-        return (string)$string;
+        return (string) $string;
     }
 
     /**
@@ -187,11 +192,11 @@ class StreamReader {
      * If the $position parameter is set to null the value of $this->offset will be used.
      *
      * @param int|null $position
-     *
      * @return string|bool
      */
-    public function getByte($position = null) {
-        $position = (int)($position !== null ? $position : $this->offset);
+    public function getByte($position = null)
+    {
+        $position = (int) ($position !== null ? $position : $this->offset);
         if (
             $position >= $this->bufferLength
             && (!$this->increaseLength() || $position >= $this->bufferLength)
@@ -210,12 +215,12 @@ class StreamReader {
      * If the $position parameter is set to null the value of $this->offset will be used.
      *
      * @param int|null $position
-     *
      * @return string|bool
      */
-    public function readByte($position = null) {
+    public function readByte($position = null)
+    {
         if ($position !== null) {
-            $position = (int)$position;
+            $position = (int) $position;
             // check if needed bytes are available in the current buffer
             if (!($position >= $this->position && $position < $this->position + $this->bufferLength)) {
                 $this->reset($position);
@@ -247,11 +252,11 @@ class StreamReader {
      *
      * @param int $length
      * @param int|null $position
-     *
      * @return string|false
      */
-    public function readBytes($length, $position = null) {
-        $length = (int)$length;
+    public function readBytes($length, $position = null)
+    {
+        $length = (int) $length;
         if ($position !== null) {
             // check if needed bytes are available in the current buffer
             if (!($position >= $this->position && $position < $this->position + $this->bufferLength)) {
@@ -281,10 +286,10 @@ class StreamReader {
      * Read a line from the current position.
      *
      * @param int $length
-     *
      * @return string|bool
      */
-    public function readLine($length = 1024) {
+    public function readLine($length = 1024)
+    {
         if ($this->ensureContent() === false) {
             return false;
         }
@@ -319,14 +324,15 @@ class StreamReader {
      *
      * @param int $offset
      */
-    public function setOffset($offset) {
+    public function setOffset($offset)
+    {
         if ($offset > $this->bufferLength || $offset < 0) {
             throw new \OutOfRangeException(
                 \sprintf('Offset (%s) out of range (length: %s)', $offset, $this->bufferLength)
             );
         }
 
-        $this->offset = (int)$offset;
+        $this->offset = (int) $offset;
     }
 
     /**
@@ -334,7 +340,8 @@ class StreamReader {
      *
      * @return int
      */
-    public function getOffset() {
+    public function getOffset()
+    {
         return $this->offset;
     }
 
@@ -343,7 +350,8 @@ class StreamReader {
      *
      * @param int $offset
      */
-    public function addOffset($offset) {
+    public function addOffset($offset)
+    {
         $this->setOffset($this->offset + $offset);
     }
 
@@ -352,7 +360,8 @@ class StreamReader {
      *
      * @return bool
      */
-    public function ensureContent() {
+    public function ensureContent()
+    {
         while ($this->offset >= $this->bufferLength) {
             if (!$this->increaseLength()) {
                 return false;
@@ -366,7 +375,8 @@ class StreamReader {
      *
      * @return resource
      */
-    public function getStream() {
+    public function getStream()
+    {
         return $this->stream;
     }
 
@@ -375,7 +385,8 @@ class StreamReader {
      *
      * @return int
      */
-    public function getTotalLength() {
+    public function getTotalLength()
+    {
         if ($this->totalLength === null) {
             $stat = \fstat($this->stream);
             $this->totalLength = $stat['size'];
@@ -394,9 +405,10 @@ class StreamReader {
      * the file $pos will set to zero.
      *
      * @param int|null $pos Start position of the new buffer
-     * @param int $length   Length of the new buffer. Mustn't be negative
+     * @param int $length Length of the new buffer. Mustn't be negative
      */
-    public function reset($pos = 0, $length = 200) {
+    public function reset($pos = 0, $length = 200)
+    {
         if ($pos === null) {
             $pos = $this->position + $this->offset;
         } elseif ($pos < 0) {
@@ -406,16 +418,20 @@ class StreamReader {
         \fseek($this->stream, $pos);
 
         $this->position = $pos;
-        $this->buffer = $length > 0 ? \fread($this->stream, $length) : '';
-        $this->bufferLength = \strlen($this->buffer);
         $this->offset = 0;
+        if ($length > 0) {
+            $this->buffer = (string) \fread($this->stream, $length);
+        } else {
+            $this->buffer = '';
+        }
+        $this->bufferLength = \strlen($this->buffer);
 
         // If a stream wrapper is in use it is possible that
         // length values > 8096 will be ignored, so use the
         // increaseLength()-method to correct that behavior
         if ($this->bufferLength < $length && $this->increaseLength($length - $this->bufferLength)) {
             // increaseLength parameter is $minLength, so cut to have only the required bytes in the buffer
-            $this->buffer = \substr($this->buffer, 0, $length);
+            $this->buffer = (string) \substr($this->buffer, 0, $length);
             $this->bufferLength = \strlen($this->buffer);
         }
     }
@@ -425,10 +441,10 @@ class StreamReader {
      *
      * @param int $pos
      * @param int $length
-     *
      * @see reset()
      */
-    public function ensure($pos, $length) {
+    public function ensure($pos, $length)
+    {
         if (
             $pos >= $this->position
             && $pos < ($this->position + $this->bufferLength)
@@ -444,10 +460,10 @@ class StreamReader {
      * Forcefully read more data into the buffer.
      *
      * @param int $minLength
-     *
      * @return bool Returns false if the stream reaches the end
      */
-    public function increaseLength($minLength = 100) {
+    public function increaseLength($minLength = 100)
+    {
         $length = \max($minLength, 100);
 
         if (\feof($this->stream) || $this->getTotalLength() === $this->position + $this->bufferLength) {

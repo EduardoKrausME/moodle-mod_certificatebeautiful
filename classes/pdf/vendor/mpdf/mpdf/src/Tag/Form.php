@@ -2,7 +2,8 @@
 
 namespace Mpdf\Tag;
 
-class Form extends BlockTag {
+class Form extends BlockTag
+{
 
 
 }

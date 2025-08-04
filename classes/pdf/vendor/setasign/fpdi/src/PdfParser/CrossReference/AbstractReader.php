@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -18,7 +18,8 @@ use setasign\Fpdi\PdfParser\Type\PdfTypeException;
 /**
  * Abstract class for cross-reference reader classes.
  */
-abstract class AbstractReader {
+abstract class AbstractReader
+{
     /**
      * @var PdfParser
      */
@@ -33,11 +34,11 @@ abstract class AbstractReader {
      * AbstractReader constructor.
      *
      * @param PdfParser $parser
-     *
      * @throws CrossReferenceException
      * @throws PdfTypeException
      */
-    public function __construct(PdfParser $parser) {
+    public function __construct(PdfParser $parser)
+    {
         $this->parser = $parser;
         $this->readTrailer();
     }
@@ -47,7 +48,8 @@ abstract class AbstractReader {
      *
      * @return PdfDictionary
      */
-    public function getTrailer() {
+    public function getTrailer()
+    {
         return $this->trailer;
     }
 
@@ -57,7 +59,8 @@ abstract class AbstractReader {
      * @throws CrossReferenceException
      * @throws PdfTypeException
      */
-    protected function readTrailer() {
+    protected function readTrailer()
+    {
         try {
             $trailerKeyword = $this->parser->readValue(null, PdfToken::class);
             if ($trailerKeyword->value !== 'trailer') {

@@ -2,7 +2,8 @@
 
 namespace Mpdf\Tag;
 
-class Mark extends InlineTag {
+class Mark extends InlineTag
+{
 
 
 }

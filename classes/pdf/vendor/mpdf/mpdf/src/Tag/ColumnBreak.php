@@ -2,6 +2,7 @@
 
 namespace Mpdf\Tag;
 
-class ColumnBreak extends NewColumn {
+class ColumnBreak extends NewColumn
+{
 
 }

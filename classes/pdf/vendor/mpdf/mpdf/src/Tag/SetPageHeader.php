@@ -2,7 +2,8 @@
 
 namespace Mpdf\Tag;
 
-class SetPageHeader extends SetHtmlPageFooter {
+class SetPageHeader extends SetHtmlPageFooter
+{
 
 
 }

@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -23,7 +23,8 @@ use setasign\Fpdi\PdfParser\Type\PdfTypeException;
  *
  * This class processes the standard cross reference of a PDF document.
  */
-class CrossReference {
+class CrossReference
+{
     /**
      * The byte length in which the "startxref" keyword should be searched.
      *
@@ -50,11 +51,11 @@ class CrossReference {
      * CrossReference constructor.
      *
      * @param PdfParser $parser
-     *
      * @throws CrossReferenceException
      * @throws PdfTypeException
      */
-    public function __construct(PdfParser $parser, $fileHeaderOffset = 0) {
+    public function __construct(PdfParser $parser, $fileHeaderOffset = 0)
+    {
         $this->parser = $parser;
         $this->fileHeaderOffset = $fileHeaderOffset;
 
@@ -103,7 +104,8 @@ class CrossReference {
      *
      * @return integer
      */
-    public function getSize() {
+    public function getSize()
+    {
         return $this->getTrailer()->value['Size']->value;
     }
 
@@ -112,7 +114,8 @@ class CrossReference {
      *
      * @return PdfDictionary
      */
-    public function getTrailer() {
+    public function getTrailer()
+    {
         return $this->readers[0]->getTrailer();
     }
 
@@ -121,7 +124,8 @@ class CrossReference {
      *
      * @return ReaderInterface[]
      */
-    public function getReaders() {
+    public function getReaders()
+    {
         return $this->readers;
     }
 
@@ -129,10 +133,10 @@ class CrossReference {
      * Get the offset by an object number.
      *
      * @param int $objectNumber
-     *
      * @return integer|bool
      */
-    public function getOffsetFor($objectNumber) {
+    public function getOffsetFor($objectNumber)
+    {
         foreach ($this->getReaders() as $reader) {
             $offset = $reader->getOffsetFor($objectNumber);
             if ($offset !== false) {
@@ -147,11 +151,11 @@ class CrossReference {
      * Get an indirect object by its object number.
      *
      * @param int $objectNumber
-     *
      * @return PdfIndirectObject
      * @throws CrossReferenceException
      */
-    public function getIndirectObject($objectNumber) {
+    public function getIndirectObject($objectNumber)
+    {
         $offset = $this->getOffsetFor($objectNumber);
         if ($offset === false) {
             throw new CrossReferenceException(
@@ -192,12 +196,12 @@ class CrossReference {
      * Internally the method will try to evaluate the best reader for this cross-reference.
      *
      * @param int $offset
-     *
      * @return ReaderInterface
      * @throws CrossReferenceException
      * @throws PdfTypeException
      */
-    protected function readXref($offset) {
+    protected function readXref($offset)
+    {
         $this->parser->getStreamReader()->reset($offset);
         $this->parser->getTokenizer()->clearStack();
         $initValue = $this->parser->readValue();
@@ -209,12 +213,12 @@ class CrossReference {
      * Get a cross-reference reader instance.
      *
      * @param PdfToken|PdfIndirectObject $initValue
-     *
      * @return ReaderInterface|bool
      * @throws CrossReferenceException
      * @throws PdfTypeException
      */
-    protected function initReaderInstance($initValue) {
+    protected function initReaderInstance($initValue)
+    {
         $position = $this->parser->getStreamReader()->getPosition()
             + $this->parser->getStreamReader()->getOffset() + $this->fileHeaderOffset;
 
@@ -267,10 +271,10 @@ class CrossReference {
      * Check for encryption.
      *
      * @param PdfDictionary $dictionary
-     *
      * @throws CrossReferenceException
      */
-    protected function checkForEncryption(PdfDictionary $dictionary) {
+    protected function checkForEncryption(PdfDictionary $dictionary)
+    {
         if (isset($dictionary->value['Encrypt'])) {
             throw new CrossReferenceException(
                 'This PDF document is encrypted and cannot be processed with FPDI.',
@@ -285,7 +289,8 @@ class CrossReference {
      * @return int The byte-offset position of the first cross-reference.
      * @throws CrossReferenceException
      */
-    protected function findStartXref() {
+    protected function findStartXref()
+    {
         $reader = $this->parser->getStreamReader();
         $reader->reset(-self::$trailerSearchLength, self::$trailerSearchLength);
 

@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -18,17 +18,18 @@ use setasign\Fpdi\PdfParser\Tokenizer;
  *
  * @property array $value The value of the PDF type.
  */
-class PdfArray extends PdfType {
+class PdfArray extends PdfType
+{
     /**
      * Parses an array of the passed tokenizer and parser.
      *
      * @param Tokenizer $tokenizer
      * @param PdfParser $parser
-     *
      * @return false|self
      * @throws PdfTypeException
      */
-    public static function parse(Tokenizer $tokenizer, PdfParser $parser) {
+    public static function parse(Tokenizer $tokenizer, PdfParser $parser)
+    {
         $result = [];
 
         // Recurse into this function until we reach the end of the array.
@@ -50,10 +51,10 @@ class PdfArray extends PdfType {
      * Helper method to create an instance.
      *
      * @param PdfType[] $values
-     *
      * @return self
      */
-    public static function create(array $values = []) {
+    public static function create(array $values = [])
+    {
         $v = new self();
         $v->value = $values;
 
@@ -65,11 +66,11 @@ class PdfArray extends PdfType {
      *
      * @param mixed $array
      * @param null|int $size
-     *
      * @return self
      * @throws PdfTypeException
      */
-    public static function ensure($array, $size = null) {
+    public static function ensure($array, $size = null)
+    {
         $result = PdfType::ensureType(self::class, $array, 'Array value expected.');
 
         if ($size !== null && \count($array->value) !== $size) {

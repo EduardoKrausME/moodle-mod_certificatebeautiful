@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -17,7 +17,8 @@ use setasign\Fpdi\PdfParser\Tokenizer;
 /**
  * Class representing an indirect object
  */
-class PdfIndirectObject extends PdfType {
+class PdfIndirectObject extends PdfType
+{
     /**
      * Parses an indirect object from a tokenizer, parser and stream-reader.
      *
@@ -26,7 +27,6 @@ class PdfIndirectObject extends PdfType {
      * @param PdfParser $parser
      * @param Tokenizer $tokenizer
      * @param StreamReader $reader
-     *
      * @return self|false
      * @throws PdfTypeException
      */
@@ -50,8 +50,8 @@ class PdfIndirectObject extends PdfType {
         }
 
         $v = new self();
-        $v->objectNumber = (int)$objectNumber;
-        $v->generationNumber = (int)$objectGenerationNumber;
+        $v->objectNumber = (int) $objectNumber;
+        $v->generationNumber = (int) $objectGenerationNumber;
         $v->value = $value;
 
         return $v;
@@ -63,13 +63,13 @@ class PdfIndirectObject extends PdfType {
      * @param int $objectNumber
      * @param int $generationNumber
      * @param PdfType $value
-     *
      * @return self
      */
-    public static function create($objectNumber, $generationNumber, PdfType $value) {
+    public static function create($objectNumber, $generationNumber, PdfType $value)
+    {
         $v = new self();
-        $v->objectNumber = (int)$objectNumber;
-        $v->generationNumber = (int)$generationNumber;
+        $v->objectNumber = (int) $objectNumber;
+        $v->generationNumber = (int) $generationNumber;
         $v->value = $value;
 
         return $v;
@@ -79,11 +79,11 @@ class PdfIndirectObject extends PdfType {
      * Ensures that the passed value is a PdfIndirectObject instance.
      *
      * @param mixed $indirectObject
-     *
      * @return self
      * @throws PdfTypeException
      */
-    public static function ensure($indirectObject) {
+    public static function ensure($indirectObject)
+    {
         return PdfType::ensureType(self::class, $indirectObject, 'Indirect object expected.');
     }
 

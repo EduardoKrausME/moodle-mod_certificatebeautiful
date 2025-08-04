@@ -2,7 +2,8 @@
 
 namespace Mpdf\Tag;
 
-class Strike extends InlineTag {
+class Strike extends InlineTag
+{
 
 
 }

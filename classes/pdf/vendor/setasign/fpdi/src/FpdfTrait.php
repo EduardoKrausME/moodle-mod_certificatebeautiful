@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -19,8 +19,10 @@ use setasign\Fpdi\PdfParser\Type\PdfType;
 /**
  * This trait is used for the implementation of FPDI in FPDF and tFPDF.
  */
-trait FpdfTrait {
-    protected function _enddoc() {
+trait FpdfTrait
+{
+    protected function _enddoc()
+    {
         parent::_enddoc();
         $this->cleanUp();
     }
@@ -31,18 +33,18 @@ trait FpdfTrait {
      * Give only one of the size parameters (width, height) to calculate the other one automatically in view to the
      * aspect ratio.
      *
-     * @param mixed $tpl             The template id
-     * @param float|int|array $x     The abscissa of upper-left corner. Alternatively you could use an assoc array
-     *                               with the keys "x", "y", "width", "height", "adjustPageSize".
-     * @param float|int $y           The ordinate of upper-left corner.
-     * @param float|int|null $width  The width.
+     * @param mixed $tpl The template id
+     * @param float|int|array $x The abscissa of upper-left corner. Alternatively you could use an assoc array
+     *                           with the keys "x", "y", "width", "height", "adjustPageSize".
+     * @param float|int $y The ordinate of upper-left corner.
+     * @param float|int|null $width The width.
      * @param float|int|null $height The height.
      * @param bool $adjustPageSize
-     *
      * @return array The size
      * @see Fpdi::getTemplateSize()
      */
-    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false) {
+    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false)
+    {
         if (isset($this->importedPages[$tpl])) {
             $size = $this->useImportedPage($tpl, $x, $y, $width, $height, $adjustPageSize);
             if ($this->currentTemplateId !== null) {
@@ -60,13 +62,13 @@ trait FpdfTrait {
      * Give only one of the size parameters (width, height) to calculate the other one automatically in view to the
      * aspect ratio.
      *
-     * @param mixed $tpl             The template id
-     * @param float|int|null $width  The width.
+     * @param mixed $tpl The template id
+     * @param float|int|null $width The width.
      * @param float|int|null $height The height.
-     *
      * @return array|bool An array with following keys: width, height, 0 (=width), 1 (=height), orientation (L or P)
      */
-    public function getTemplateSize($tpl, $width = null, $height = null) {
+    public function getTemplateSize($tpl, $width = null, $height = null)
+    {
         $size = parent::getTemplateSize($tpl, $width, $height);
         if ($size === false) {
             return $this->getImportedPageSize($tpl, $width, $height);
@@ -79,7 +81,8 @@ trait FpdfTrait {
      * @throws CrossReferenceException
      * @throws PdfParserException
      */
-    protected function _putimages() {
+    protected function _putimages()
+    {
         $this->currentReaderId = null;
         parent::_putimages();
 
@@ -116,7 +119,8 @@ trait FpdfTrait {
     /**
      * @inheritdoc
      */
-    protected function _putxobjectdict() {
+    protected function _putxobjectdict()
+    {
         foreach ($this->importedPages as $pageData) {
             $this->_put('/' . $pageData['id'] . ' ' . $pageData['objectNumber'] . ' 0 R');
         }
@@ -126,18 +130,18 @@ trait FpdfTrait {
 
     /**
      * @param int $n
-     *
      * @return void
      * @throws PdfParser\Type\PdfTypeException
      */
-    protected function _putlinks($n) {
+    protected function _putlinks($n)
+    {
         foreach ($this->PageLinks[$n] as $pl) {
             $this->_newobj();
             $rect = sprintf('%.2F %.2F %.2F %.2F', $pl[0], $pl[1], $pl[0] + $pl[2], $pl[1] - $pl[3]);
             $this->_put('<</Type /Annot /Subtype /Link /Rect [' . $rect . ']', false);
             if (is_string($pl[4])) {
-                $this->_put('/A <</S /URI /URI ' . $this->_textstring($pl[4]) . '>>');
                 if (isset($pl['importedLink'])) {
+                    $this->_put('/A <</S /URI /URI (' . $this->_escape($pl[4]) . ')>>');
                     $values = $pl['importedLink']['pdfObject']->value;
 
                     foreach ($values as $name => $entry) {
@@ -154,6 +158,7 @@ trait FpdfTrait {
                         $this->_put($s);
                     }
                 } else {
+                    $this->_put('/A <</S /URI /URI ' . $this->_textstring($pl[4]) . '>>');
                     $this->_put('/Border [0 0 0]', false);
                 }
                 $this->_put('>>');
@@ -177,7 +182,8 @@ trait FpdfTrait {
         }
     }
 
-    protected function _put($s, $newLine = true) {
+    protected function _put($s, $newLine = true)
+    {
         if ($newLine) {
             $this->buffer .= $s . "\n";
         } else {

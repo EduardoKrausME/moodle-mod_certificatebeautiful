@@ -2,13 +2,14 @@
 
 namespace Mpdf\Output;
 
-class Destination {
+class Destination
+{
 
-    const FILE = 'F';
+	const FILE = 'F';
 
-    const DOWNLOAD = 'D';
+	const DOWNLOAD = 'D';
 
-    const STRING_RETURN = 'S';
+	const STRING_RETURN = 'S';
 
-    const INLINE = 'I';
+	const INLINE = 'I';
 }

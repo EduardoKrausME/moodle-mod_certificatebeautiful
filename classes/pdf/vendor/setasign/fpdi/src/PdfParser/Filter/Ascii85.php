@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -13,16 +13,17 @@ namespace setasign\Fpdi\PdfParser\Filter;
 /**
  * Class for handling ASCII base-85 encoded data
  */
-class Ascii85 implements FilterInterface {
+class Ascii85 implements FilterInterface
+{
     /**
      * Decode ASCII85 encoded string.
      *
      * @param string $data The input string
-     *
      * @return string
      * @throws Ascii85Exception
      */
-    public function decode($data) {
+    public function decode($data)
+    {
         $out = '';
         $state = 0;
         $chn = null;

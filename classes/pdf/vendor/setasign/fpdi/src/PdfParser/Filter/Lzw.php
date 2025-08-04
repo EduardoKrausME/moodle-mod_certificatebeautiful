@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -13,7 +13,8 @@ namespace setasign\Fpdi\PdfParser\Filter;
 /**
  * Class for handling LZW encoded data
  */
-class Lzw implements FilterInterface {
+class Lzw implements FilterInterface
+{
     /**
      * @var null|string
      */
@@ -63,11 +64,11 @@ class Lzw implements FilterInterface {
      * Method to decode LZW compressed data.
      *
      * @param string $data The compressed data
-     *
      * @return string The uncompressed data
      * @throws LzwException
      */
-    public function decode($data) {
+    public function decode($data)
+    {
         if ($data[0] === "\x00" && $data[1] === "\x01") {
             throw new LzwException(
                 'LZW flavour not supported.',
@@ -116,7 +117,8 @@ class Lzw implements FilterInterface {
     /**
      * Initialize the string table.
      */
-    protected function initsTable() {
+    protected function initsTable()
+    {
         $this->sTable = [];
 
         for ($i = 0; $i < 256; $i++) {
@@ -133,7 +135,8 @@ class Lzw implements FilterInterface {
      * @param string $oldString
      * @param string $newString
      */
-    protected function addStringToTable($oldString, $newString = '') {
+    protected function addStringToTable($oldString, $newString = '')
+    {
         $string = $oldString . $newString;
 
         // Add this new String to the table
@@ -153,7 +156,8 @@ class Lzw implements FilterInterface {
      *
      * @return int
      */
-    protected function getNextCode() {
+    protected function getNextCode()
+    {
         if ($this->bytePointer === $this->dataLength) {
             return 257;
         }

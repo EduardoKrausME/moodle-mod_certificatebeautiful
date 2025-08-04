@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -13,7 +13,8 @@ namespace setasign\Fpdi\PdfParser;
 /**
  * A tokenizer class.
  */
-class Tokenizer {
+class Tokenizer
+{
     /**
      * @var StreamReader
      */
@@ -31,7 +32,8 @@ class Tokenizer {
      *
      * @param StreamReader $streamReader
      */
-    public function __construct(StreamReader $streamReader) {
+    public function __construct(StreamReader $streamReader)
+    {
         $this->streamReader = $streamReader;
     }
 
@@ -40,14 +42,16 @@ class Tokenizer {
      *
      * @return StreamReader
      */
-    public function getStreamReader() {
+    public function getStreamReader()
+    {
         return $this->streamReader;
     }
 
     /**
      * Clear the token stack.
      */
-    public function clearStack() {
+    public function clearStack()
+    {
         $this->stack = [];
     }
 
@@ -56,16 +60,18 @@ class Tokenizer {
      *
      * @param string $token
      */
-    public function pushStack($token) {
+    public function pushStack($token)
+    {
         $this->stack[] = $token;
     }
 
     /**
      * Get next token.
      *
-     * @return bool|string
+     * @return false|string
      */
-    public function getNextToken() {
+    public function getNextToken()
+    {
         $token = \array_pop($this->stack);
         if ($token !== null) {
             return $token;
@@ -111,11 +117,8 @@ class Tokenizer {
         } while (
             // Break the loop if a delimiter or white space char is matched
             // in the current buffer or increase the buffers length
-            $lastBuffer !== false &&
-            (
-                $bufferOffset + $pos === \strlen($lastBuffer) &&
-                $this->streamReader->increaseLength()
-            )
+            $bufferOffset + $pos === \strlen($lastBuffer)
+            && $this->streamReader->increaseLength()
         );
 
         $result = \substr($lastBuffer, $bufferOffset - 1, $pos + 1);
@@ -129,7 +132,8 @@ class Tokenizer {
      *
      * @return boolean
      */
-    public function leapWhiteSpaces() {
+    public function leapWhiteSpaces()
+    {
         do {
             if (!$this->streamReader->ensureContent()) {
                 return false;

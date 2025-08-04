@@ -2,7 +2,8 @@
 
 namespace Mpdf\Tag;
 
-class FigCaption extends BlockTag {
+class FigCaption extends BlockTag
+{
 
 
 }

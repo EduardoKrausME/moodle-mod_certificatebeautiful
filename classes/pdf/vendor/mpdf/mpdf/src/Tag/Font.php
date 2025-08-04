@@ -2,7 +2,8 @@
 
 namespace Mpdf\Tag;
 
-class Font extends InlineTag {
+class Font extends InlineTag
+{
 
 
 }

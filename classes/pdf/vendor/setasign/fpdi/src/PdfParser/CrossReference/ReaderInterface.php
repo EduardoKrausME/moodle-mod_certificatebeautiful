@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -15,12 +15,12 @@ use setasign\Fpdi\PdfParser\Type\PdfDictionary;
 /**
  * ReaderInterface for cross-reference readers.
  */
-interface ReaderInterface {
+interface ReaderInterface
+{
     /**
      * Get an offset by an object number.
      *
      * @param int $objectNumber
-     *
      * @return int|bool False if the offset was not found.
      */
     public function getOffsetFor($objectNumber);

@@ -4,7 +4,7 @@
  * This file is part of FPDI
  *
  * @package   setasign\Fpdi
- * @copyright Copyright (c) 2023 Setasign GmbH & Co. KG (https://www.setasign.com)
+ * @copyright Copyright (c) 2024 Setasign GmbH & Co. KG (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  */
 
@@ -19,7 +19,8 @@ use setasign\Fpdi\PdfParser\StreamReader;
  * This reader allows a very less overhead parsing of single entries of the cross-reference, because the main entries
  * are only read when needed and not in a single run.
  */
-class FixedReader extends AbstractReader implements ReaderInterface {
+class FixedReader extends AbstractReader implements ReaderInterface
+{
     /**
      * @var StreamReader
      */
@@ -36,10 +37,10 @@ class FixedReader extends AbstractReader implements ReaderInterface {
      * FixedReader constructor.
      *
      * @param PdfParser $parser
-     *
      * @throws CrossReferenceException
      */
-    public function __construct(PdfParser $parser) {
+    public function __construct(PdfParser $parser)
+    {
         $this->reader = $parser->getStreamReader();
         $this->read();
         parent::__construct($parser);
@@ -50,7 +51,8 @@ class FixedReader extends AbstractReader implements ReaderInterface {
      *
      * @return array
      */
-    public function getSubSections() {
+    public function getSubSections()
+    {
         return $this->subSections;
     }
 
@@ -58,7 +60,8 @@ class FixedReader extends AbstractReader implements ReaderInterface {
      * @inheritdoc
      * @return int|false
      */
-    public function getOffsetFor($objectNumber) {
+    public function getOffsetFor($objectNumber)
+    {
         foreach ($this->subSections as $offset => list($startObject, $objectCount)) {
             /**
              * @var int $startObject
@@ -72,7 +75,7 @@ class FixedReader extends AbstractReader implements ReaderInterface {
                     return false;
                 }
 
-                return (int)\substr($line, 0, 10);
+                return (int) \substr($line, 0, 10);
             }
         }
 
@@ -87,7 +90,8 @@ class FixedReader extends AbstractReader implements ReaderInterface {
      *
      * @throws CrossReferenceException
      */
-    protected function read() {
+    protected function read()
+    {
         $subSections = [];
 
         $startObject = $entryCount = $lastLineStart = null;
@@ -172,7 +176,8 @@ class FixedReader extends AbstractReader implements ReaderInterface {
      *
      * @return bool
      */
-    public function fixFaultySubSectionShift() {
+    public function fixFaultySubSectionShift()
+    {
         $subSections = $this->getSubSections();
         if (\count($subSections) > 1) {
             return false;

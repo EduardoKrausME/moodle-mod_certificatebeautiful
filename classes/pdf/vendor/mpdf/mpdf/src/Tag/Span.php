@@ -2,7 +2,8 @@
 
 namespace Mpdf\Tag;
 
-class Span extends InlineTag {
+class Span extends InlineTag
+{
 
 
 }

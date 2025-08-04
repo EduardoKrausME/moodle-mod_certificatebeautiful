@@ -2,11 +2,12 @@
 
 namespace Mpdf\File;
 
-interface LocalContentLoaderInterface {
+interface LocalContentLoaderInterface
+{
 
-    /**
-     * @return string|null
-     */
-    public function load($path);
+	/**
+	 * @return string|null
+	 */
+	public function load($path);
 
 }
