@@ -22,10 +22,10 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once('../../../config.php');
+require_once("../../../config.php");
 require_login();
 $context = context_system::instance();
-require_capability('mod/certificatebeautiful:addinstance', $context);
+require_capability("mod/certificatebeautiful:addinstance", $context);
 
 ?>
 <!doctype html>
@@ -55,24 +55,24 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
     require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/fonts/font_util.php");
     $fontList = \mod_certificatebeautiful\fonts\font_util::mpdf_list_fonts();
 
-    echo "<style>{$fontList['css']}</style>"
+    echo "<style>{$fontList["css"]}</style>"
     ?>
 </head>
 <body>
 
 <?php
-$id = optional_param('id', false, PARAM_INT);
-$page = optional_param('page', 0, PARAM_INT);
+$id = optional_param("id", false, PARAM_INT);
+$page = optional_param("page", 0, PARAM_INT);
 
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/lib.php");
 
 $l = "8";
 if ($id === false) {
     foreach (certificatebeautiful_list_all_models() as $key => $model) {
-        echo "<p>{$model['key']} => ";
-        echo "<a href='_model/{$model['key']}/index.html?l={$l}'        target='ver'>Ver HTML</a> - ";
-        echo "<a href='?id={$key}&t={$model['key']}&l={$l}'             target='edi'>Editar</a> - ";
-        echo "<a href='test-pdf.php?id={$key}&t={$model['key']}&l={$l}' target='pdf'>Ver o PDF</a>";
+        echo "<p>{$model["key"]} => ";
+        echo "<a href='_model/{$model["key"]}/index.html?l={$l}'        target='ver'>Ver HTML</a> - ";
+        echo "<a href='?id={$key}&t={$model["key"]}&l={$l}'             target='edi'>Editar</a> - ";
+        echo "<a href='test-pdf.php?id={$key}&t={$model["key"]}&l={$l}' target='pdf'>Ver o PDF</a>";
         echo "</p>";
     }
 
@@ -89,23 +89,23 @@ if ($id === false) {
     if ($id == -1) {
         $content = file_get_contents("_model/sumary-secound-page/index.html");
         $html = str_replace("../../", "/mod/certificatebeautiful/_editor/", $content);
-        $html = str_replace('<tbody', '<tbody data-gjs-selectable="false" data-gjs-highlightable="false" data-gjs-hoverable="false"', $html);
-        $html = str_replace('<tr', '<tr data-gjs-selectable="false" data-gjs-highlightable="false" data-gjs-hoverable="false"', $html);
+        $html = str_replace("<tbody", '<tbody data-gjs-selectable="false" data-gjs-highlightable="false" data-gjs-hoverable="false"', $html);
+        $html = str_replace("<tr", '<tr data-gjs-selectable="false" data-gjs-highlightable="false" data-gjs-hoverable="false"', $html);
 
         echo '<div id="gjs" style="height:0; overflow:hidden" >';
         echo $html;
         echo '</div>';
     } else {
         $model = certificatebeautiful_list_all_models()[$id];
-        $content = file_get_contents("_model/{$model['key']}/index.html");
+        $content = file_get_contents("_model/{$model["key"]}/index.html");
         $html = str_replace("../../", "/mod/certificatebeautiful/_editor/", $content);
-        $html = str_replace('<tbody', '<tbody data-gjs-selectable="false" data-gjs-highlightable="false" data-gjs-hoverable="false"', $html);
-        $html = str_replace('<tr', '<tr data-gjs-selectable="false" data-gjs-highlightable="false" data-gjs-hoverable="false"', $html);
-        $html = str_replace('<table', '<table draggable="false"', $html);
+        $html = str_replace("<tbody", '<tbody data-gjs-selectable="false" data-gjs-highlightable="false" data-gjs-hoverable="false"', $html);
+        $html = str_replace("<tr", '<tr data-gjs-selectable="false" data-gjs-highlightable="false" data-gjs-hoverable="false"', $html);
+        $html = str_replace("<table", '<table draggable="false"', $html);
 
         echo '<div id="gjs" style="height:0; overflow:hidden" >';
         echo $html;
-        echo '</div>';
+        echo "</div>";
     }
 }
 
