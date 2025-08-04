@@ -1,7 +1,6 @@
 ## Licença:
 https://www.freepik.com/free-vector/gradient-elegant-certificate-template_14834977.htm
 
-
 ## Fonts used in this design:
 
 Font: Parisienne

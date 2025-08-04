@@ -1,7 +1,6 @@
 ## Licença:
 https://www.freepik.com/free-vector/flat-design-modern-certificate-template_14485837.htm
 
-
 ## Fonts used in this design:
 
 Font: Montserrat

@@ -1,7 +1,6 @@
 ## Licença:
 https://www.freepik.com/free-vector/gradient-golden-luxury-certificate_17542181.htm
 
-
 ## Fonts used in this design:
 
 Font: DM Serif Display
