@@ -126,7 +126,7 @@ class help_base {
                 }
 
                 $drag = "{\${$classsnameup}->{$structure["key"]}}";
-                if(isset($structure["drag"])){
+                if (isset($structure["drag"])) {
                     $drag = $structure["drag"];
                 }
 
