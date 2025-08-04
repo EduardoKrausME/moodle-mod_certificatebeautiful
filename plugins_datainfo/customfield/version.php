@@ -17,7 +17,7 @@
 /**
  * Plugin version course.
  *
- * @package    certificatebeautifuldatainfo_course
+ * @package    certificatebeautifuldatainfo_customfield
  * @copyright  2025 Eduardo Kraus https://eduardokraus.com/
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,5 +26,5 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->version = 2025100702;
 $plugin->requires = 2021041900;
-$plugin->component = "certificatebeautifuldatainfo_course";
+$plugin->component = "certificatebeautifuldatainfo_customfield";
 $plugin->maturity = MATURITY_STABLE;
