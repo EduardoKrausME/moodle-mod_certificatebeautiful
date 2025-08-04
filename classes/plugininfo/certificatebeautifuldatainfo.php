@@ -25,7 +25,6 @@
 namespace mod_certificatebeautiful\plugininfo;
 
 use coding_exception;
-use cache_exception;
 use core\plugininfo\base, core_plugin_manager;
 use dml_exception;
 
