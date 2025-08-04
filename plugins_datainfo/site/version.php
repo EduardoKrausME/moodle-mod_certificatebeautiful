@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version      = 2025100700;
-$plugin->requires     = 2021041900;
-$plugin->component    = 'certificatebeautifuldatainfo_site';
-$plugin->maturity     = MATURITY_STABLE;
+$plugin->version = 2025080400;
+$plugin->requires = 2021041900;
+$plugin->component = "certificatebeautifuldatainfo_site";
+$plugin->maturity = MATURITY_STABLE;

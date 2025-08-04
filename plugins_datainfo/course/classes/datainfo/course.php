@@ -152,7 +152,7 @@ class course extends help_base {
                      WHERE cm.id     IN ({$section->sequence})
                        AND m.name    != 'label'
                        AND cm.visible = 1";
-                if ($DB->get_dbfamily() == 'mysql') {
+                if ($DB->get_dbfamily() == "mysql") {
                     $sql .= "
                   ORDER BY FIELD(cm.id, {$section->sequence})";
                 }
