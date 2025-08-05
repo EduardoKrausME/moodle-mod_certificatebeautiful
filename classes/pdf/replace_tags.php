@@ -124,10 +124,14 @@ class replace_tags {
      * @throws Exception
      */
     public function repace_html() {
-
         $this->page->htmldata = str_replace("-&gt;", "->", $this->page->htmldata);
-        $this->page->htmldata = str_replace("time()", time(), $this->page->htmldata);
-        $this->page->htmldata = str_replace("now()", time(), $this->page->htmldata);
+
+        $this->page->htmldata = str_replace('{\$', '{$', $this->page->htmldata);
+        $this->page->htmldata = preg_replace('/\{\\\$/', '{$', $this->page->htmldata);
+        $this->page->htmldata = preg_replace('/\{\\\\\$/', '{$', $this->page->htmldata);
+
+        $this->page->htmldata = preg_replace('/time\s?\(\s?\)/', time(), $this->page->htmldata);
+        $this->page->htmldata = preg_replace('/now\s?\(\s?\)/', time(), $this->page->htmldata);
 
         preg_match_all('/{#s}(.*?){\/s}/', $this->page->htmldata, $strs);
         foreach ($strs[0] as $key => $str) {
