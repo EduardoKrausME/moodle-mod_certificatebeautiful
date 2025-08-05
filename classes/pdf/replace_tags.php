@@ -127,8 +127,7 @@ class replace_tags {
         $this->page->htmldata = str_replace("-&gt;", "->", $this->page->htmldata);
 
         $this->page->htmldata = str_replace('{\$', '{$', $this->page->htmldata);
-        $this->page->htmldata = preg_replace('/\{\\\$/', '{$', $this->page->htmldata);
-        $this->page->htmldata = preg_replace('/\{\\\\\$/', '{$', $this->page->htmldata);
+        $this->page->htmldata = preg_replace('/\{\s+$/', '{$', $this->page->htmldata);
 
         $this->page->htmldata = preg_replace('/time\s?\(\s?\)/', time(), $this->page->htmldata);
         $this->page->htmldata = preg_replace('/now\s?\(\s?\)/', time(), $this->page->htmldata);
