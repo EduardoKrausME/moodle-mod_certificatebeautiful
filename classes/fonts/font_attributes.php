@@ -99,7 +99,7 @@ class font_attributes {
     /**
      * Function return_value
      *
-     * @param $instring
+     * @param string $instring
      * @return mixed|string
      */
     private function return_value($instring) {

@@ -34,7 +34,7 @@ class get_template_file {
     /**
      * Function load_template_file
      *
-     * @param $model
+     * @param string $model
      * @return bool|mixed|string
      */
     public static function load_template_file($model) {

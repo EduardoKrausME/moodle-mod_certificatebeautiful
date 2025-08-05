@@ -144,7 +144,7 @@ class page_pdf {
     /**
      * get_background_page
      *
-     * @param $page
+     * @param object $page
      * @param Mpdf $mpdf
      */
     private function get_background_page($page, Mpdf $mpdf) {

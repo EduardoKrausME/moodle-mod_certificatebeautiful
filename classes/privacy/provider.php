@@ -212,8 +212,8 @@ class provider implements metadata_provider, plugin_provider, core_userlist_prov
      * Function recordset_loop_and_export
      *
      * @param moodle_recordset $recordset
-     * @param $splitkey
-     * @param $initial
+     * @param string $splitkey
+     * @param object $initial
      * @param callable $reducer
      * @param callable $export
      */

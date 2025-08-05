@@ -63,8 +63,8 @@ class course extends help_base {
     /**
      * Function get_data
      *
-     * @param $course
-     * @param $user
+     * @param object $course
+     * @param object $user
      * @return array
      * @throws Exception
      */
@@ -80,7 +80,7 @@ class course extends help_base {
     /**
      * Function sections
      *
-     * @param $course
+     * @param object $course
      * @return string
      * @throws Exception
      */
@@ -110,7 +110,7 @@ class course extends help_base {
     /**
      * Function sections_modules
      *
-     * @param $course
+     * @param object $course
      * @return string
      * @throws Exception
      */

@@ -56,8 +56,8 @@ class grade extends help_base {
     /**
      * Function get_data
      *
-     * @param $course
-     * @param $user
+     * @param object $course
+     * @param object $user
      * @return array
      * @throws Exception
      */
@@ -71,8 +71,8 @@ class grade extends help_base {
     /**
      * Function get_grade
      *
-     * @param $course
-     * @param $user
+     * @param object $course
+     * @param object $user
      * @return string
      */
     private static function get_grade($course, $user) {
@@ -93,8 +93,8 @@ class grade extends help_base {
     /**
      * Function get_table_grade
      *
-     * @param $course
-     * @param $user
+     * @param object $course
+     * @param object $user
      * @return string
      * @throws Exception
      */
@@ -137,9 +137,9 @@ class grade extends help_base {
     /**
      * Function get_mod_grade
      *
-     * @param $cm
-     * @param $course
-     * @param $user
+     * @param object $cm
+     * @param object $course
+     * @param object $user
      * @return string
      * @throws Exception
      */

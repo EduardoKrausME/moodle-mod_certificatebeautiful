@@ -47,7 +47,7 @@ class certificatebeautiful_view_user extends table_sql {
     /**
      * certificatebeautiful_view constructor.
      *
-     * @param $uniqueid
+     * @param string $uniqueid
      * @param object $user
      * @throws Exception
      */
@@ -123,7 +123,7 @@ class certificatebeautiful_view_user extends table_sql {
     /**
      * col_timecreated
      *
-     * @param $linha
+     * @param object $linha
      * @return string
      */
     public function col_timecreated($linha) {
@@ -133,7 +133,7 @@ class certificatebeautiful_view_user extends table_sql {
     /**
      * col_extra
      *
-     * @param $linha
+     * @param object $linha
      * @return string
      */
     public function col_extra($linha) {

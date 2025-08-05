@@ -25,6 +25,7 @@
 namespace mod_certificatebeautiful;
 
 use Exception;
+use mod_certificatebeautiful\vo\certificatebeautiful;
 use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 
 /**
@@ -46,9 +47,9 @@ class issue {
     /**
      * Function get
      *
-     * @param $user
-     * @param $certificatebeautiful
-     * @param $cm
+     * @param object $user
+     * @param certificatebeautiful $certificatebeautiful
+     * @param object $cm
      * @return certificatebeautiful_issue|object
      * @throws Exception
      */

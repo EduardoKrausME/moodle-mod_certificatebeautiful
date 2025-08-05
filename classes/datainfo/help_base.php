@@ -82,7 +82,7 @@ class help_base {
      * @param string $html
      * @param string $classname
      * @param array $fields
-     * @return mixed
+     * @return string
      */
     public static function replace($html, $classname, $fields) {
         foreach ($fields as $key => $field) {

@@ -68,8 +68,8 @@ class functions {
     /**
      * Function replace
      *
-     * @param $html
-     * @param $user
+     * @param string $html
+     * @param object $user
      * @return null|string|string[]
      * @throws Exception
      */

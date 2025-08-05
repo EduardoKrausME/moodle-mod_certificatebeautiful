@@ -69,8 +69,8 @@ class customfield extends help_base {
     /**
      * Function get_data
      *
-     * @param $course
-     * @param $user
+     * @param object $course
+     * @param object $user
      * @return array
      * @throws Exception
      */
@@ -100,7 +100,7 @@ class customfield extends help_base {
     /**
      * Function sections
      *
-     * @param $course
+     * @param object $course
      * @return string
      * @throws Exception
      */
@@ -129,7 +129,7 @@ class customfield extends help_base {
     /**
      * Function sections_modules
      *
-     * @param $course
+     * @param object $course
      * @return string
      * @throws Exception
      */

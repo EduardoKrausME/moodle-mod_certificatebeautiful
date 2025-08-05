@@ -58,8 +58,8 @@ class teachers extends help_base {
     /**
      * Function get_data
      *
-     * @param $course
-     * @param $user
+     * @param object $course
+     * @param object $user
      * @return array
      * @throws Exception
      */
@@ -88,7 +88,7 @@ class teachers extends help_base {
     /**
      * Function get_teachers
      *
-     * @param $course
+     * @param object $course
      * @return array
      * @throws Exception
      */

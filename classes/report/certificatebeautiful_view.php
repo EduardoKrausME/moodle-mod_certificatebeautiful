@@ -51,8 +51,8 @@ class certificatebeautiful_view extends table_sql {
     /**
      * certificatebeautiful_view constructor.
      *
-     * @param $uniqueid
-     * @param $cmid
+     * @param string $uniqueid
+     * @param int $cmid
      * @param certificatebeautiful $certificatebeautiful
      * @throws Exception
      */
@@ -128,7 +128,7 @@ class certificatebeautiful_view extends table_sql {
     /**
      * Function col_code
      *
-     * @param $row
+     * @param object $row
      * @return mixed
      * @throws Exception
      */
@@ -146,7 +146,7 @@ class certificatebeautiful_view extends table_sql {
     /**
      * col_timecreated
      *
-     * @param $row
+     * @param object $row
      * @return string
      * @throws Exception
      */
@@ -165,7 +165,7 @@ class certificatebeautiful_view extends table_sql {
     /**
      * col_extra
      *
-     * @param $row
+     * @param object $row
      * @return string
      * @throws Exception
      */

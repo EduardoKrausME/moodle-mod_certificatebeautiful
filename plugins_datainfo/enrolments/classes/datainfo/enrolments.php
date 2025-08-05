@@ -57,8 +57,8 @@ class enrolments extends help_base {
     /**
      * Function get_data
      *
-     * @param $course
-     * @param $user
+     * @param object $course
+     * @param object $user
      * @return array
      * @throws Exception
      */
