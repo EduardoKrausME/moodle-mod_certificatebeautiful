@@ -78,7 +78,7 @@ class customfield extends help_base {
         global $DB;
 
         $sql = "
-            SELECT cd.value, cf.shortname, cf.type
+            SELECT cf.shortname, cd.value, cf.type
               FROM {customfield_data}  cd
               JOIN {customfield_field} cf ON cf.id = cd.fieldid
              WHERE instanceid = :courseid";
