@@ -22,17 +22,15 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\model\get_template_file;
+
 /**
  * Book module upgrade task
  *
  * @param int $oldversion the version we are upgrading from
  *
  * @return bool always true
- * @throws coding_exception
- * @throws dml_exception
- * @throws downgrade_exception
- * @throws moodle_exception
- * @throws upgrade_exception
+ * @throws Exception
  */
 function xmldb_certificatebeautiful_upgrade($oldversion) {
     global $CFG, $DB;
@@ -69,11 +67,11 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
             if (!$DB->get_record("certificatebeautiful_model", ["name" => $model["name"]])) {
                 $pagesinfo = [
                     [
-                        "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model["key"]),
+                        "htmldata" => get_template_file::load_template_file($model["key"]),
                         "cssdata" => "",
                     ], [
                         "htmldata" =>
-                            \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page2"),
+                            get_template_file::load_template_file("sumary-secound-page2"),
                         "cssdata" => "",
                     ],
                 ];

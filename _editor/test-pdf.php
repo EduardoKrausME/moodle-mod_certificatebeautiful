@@ -20,6 +20,12 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\model\get_template_file;
+use mod_certificatebeautiful\pdf\page_pdf;
+use mod_certificatebeautiful\vo\certificatebeautiful;
+use mod_certificatebeautiful\vo\certificatebeautiful_issue;
+use mod_certificatebeautiful\vo\certificatebeautiful_model;
+
 require_once("../../../config.php");
 require_once("{$CFG->libdir}/tablelib.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/lib.php");
@@ -48,7 +54,7 @@ if ($temp = optional_param("temp", false, PARAM_TEXT)) {
 }
 
 if ($id) {
-    /** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $model */
+    /** @var certificatebeautiful_model $model */
     $model = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
 }
 
@@ -73,7 +79,7 @@ if ($htmldata && $cssdata) {
         $model->pages_info_object = [];
         foreach (certificatebeautiful_list_all_models() as $key => $model) {
             $model->pages_info_object[] = (object)[
-                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model["key"]),
+                "htmldata" => get_template_file::load_template_file($model["key"]),
                 "cssdata" => ""
             ];
         }
@@ -82,7 +88,7 @@ if ($htmldata && $cssdata) {
             $model->name = "sumary-secound-page";
             $model->pages_info_object = [
                 (object)[
-                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page"),
+                    "htmldata" => get_template_file::load_template_file("sumary-secound-page"),
                     "cssdata" => ""
                 ]
             ];
@@ -93,11 +99,11 @@ if ($htmldata && $cssdata) {
             $model->name = $model["key"];
             $model->pages_info_object = [
                 (object)[
-                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model["key"]),
+                    "htmldata" => get_template_file::load_template_file($model["key"]),
                     "cssdata" => ""
                 ],
                 (object)[
-                    "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page"),
+                    "htmldata" => get_template_file::load_template_file("sumary-secound-page"),
                     "cssdata" => ""
                 ]
             ];
@@ -105,13 +111,13 @@ if ($htmldata && $cssdata) {
     }
 }
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful $certificatebeautiful */
+/** @var certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = (object)[
     "name" => "teste",
     "description" => get_string("default-description", "certificatebeautiful")
 ];
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful_issue $certificatebeautifulissie */
+/** @var certificatebeautiful_issue $certificatebeautifulissie */
 $certificatebeautifulissie = (object)[
     "name" => "teste",
     "code" => "CODE-EX",
@@ -128,7 +134,7 @@ if ($DB->get_dbfamily() == "mysql") {
 $user = $DB->get_record_sql("SELECT   * FROM {user}   WHERE id >= 2 {$order} LIMIT 1");
 $course = $DB->get_record_sql("SELECT * FROM {course} WHERE id > 1  {$order} LIMIT 1");
 
-$pagepdf = new \mod_certificatebeautiful\pdf\page_pdf();
+$pagepdf = new page_pdf();
 $pdf = $pagepdf->create_pdf($certificatebeautiful, $certificatebeautifulissie, $model, $user, $course);
 
 $tempfilename = uniqid();

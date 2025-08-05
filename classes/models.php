@@ -24,6 +24,8 @@
 
 namespace mod_certificatebeautiful;
 
+use Exception;
+
 /**
  * Class models
  *
@@ -34,7 +36,7 @@ class models {
      * Function list_all
      *
      * @return array
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function list_all() {
         global $DB;

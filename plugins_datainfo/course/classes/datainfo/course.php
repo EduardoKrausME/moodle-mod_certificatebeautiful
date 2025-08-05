@@ -24,6 +24,7 @@
 
 namespace certificatebeautifuldatainfo_course\datainfo;
 
+use Exception;
 use mod_certificatebeautiful\datainfo\help_base;
 
 /**
@@ -42,7 +43,7 @@ class course extends help_base {
      * Function table_structure
      *
      * @return array
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function table_structure() {
         return [
@@ -64,10 +65,8 @@ class course extends help_base {
      *
      * @param $course
      * @param $user
-     *
      * @return array
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function get_data($course, $user) {
         $data = self::base_get_data(self::table_structure(), $course);
@@ -82,10 +81,8 @@ class course extends help_base {
      * Function sections
      *
      * @param $course
-     *
      * @return string
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     private static function sections($course) {
         global $DB;
@@ -114,10 +111,8 @@ class course extends help_base {
      * Function sections_modules
      *
      * @param $course
-     *
      * @return string
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     private static function sections_modules($course) {
         global $DB;
@@ -165,7 +160,7 @@ class course extends help_base {
                         if ($instance) {
                             $returnsections .= "<li>{$instance->name}</li>";
                         }
-                    } catch (\dml_exception $e) { // phpcs:disable
+                    } catch (Exception $e) { // phpcs:disable
                     }
                 }
 

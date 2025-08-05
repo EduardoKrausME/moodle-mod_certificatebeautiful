@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\report\certificatebeautiful_view;
+
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/report/certificatebeautiful_view.php");
@@ -37,7 +39,7 @@ $context = context_module::instance($cm->id);
 require_course_login($course, true, $cm);
 require_capability('mod/certificatebeautiful:viewreport', $context);
 
-$table = new \mod_certificatebeautiful\report\certificatebeautiful_view(
+$table = new certificatebeautiful_view(
     "certificatebeautiful_report", $cm->id, $certificatebeautiful);
 
 if (!$table->is_downloading()) {

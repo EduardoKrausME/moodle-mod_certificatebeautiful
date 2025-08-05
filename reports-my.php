@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\report\certificatebeautiful_view_user;
+
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
 
@@ -44,7 +46,7 @@ require_capability('mod/certificatebeautiful:view', $context);
 echo $OUTPUT->header();
 
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/report/certificatebeautiful_view_user.php");
-$table = new \mod_certificatebeautiful\report\certificatebeautiful_view_user("certificatebeautiful_view_user", $user);
+$table = new certificatebeautiful_view_user("certificatebeautiful_view_user", $user);
 $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/reports-my.php?user={$user->id}");
 $table->out(40, true);
 

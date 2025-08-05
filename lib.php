@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use core_user\output\myprofile\tree as treeAlias;
+
 /**
  * Checks if certificate activity supports a specific feature.
  *
@@ -70,9 +72,8 @@ function certificatebeautiful_supports(string $feature) {
  *
  * @param stdClass $data                           An object from the form.
  * @param mod_certificatebeautiful_mod_form $mform The form.
- *
  * @return int The id of the newly inserted record.
- * @throws dml_exception
+ * @throws Exception
  */
 function certificatebeautiful_add_instance(stdClass $data, $mform = null): int {
     global $DB;
@@ -96,9 +97,8 @@ function certificatebeautiful_add_instance(stdClass $data, $mform = null): int {
  *
  * @param stdClass $data                           An object from the form in mod_form.php.
  * @param mod_certificatebeautiful_mod_form $mform The form.
- *
  * @return bool True if successful, false otherwise.
- * @throws dml_exception
+ * @throws Exception
  */
 function certificatebeautiful_update_instance(stdClass $data, $mform = null): bool {
     global $DB;
@@ -113,10 +113,8 @@ function certificatebeautiful_update_instance(stdClass $data, $mform = null): bo
  * Removes an instance of the mod_certificatebeautiful from the database.
  *
  * @param int $id Id of the module instance.
- *
  * @return bool True if successful, false on failure.
- * @throws coding_exception
- * @throws dml_exception
+ * @throws Exception
  */
 function certificatebeautiful_delete_instance(int $id): bool {
     global $DB;
@@ -141,9 +139,8 @@ function certificatebeautiful_delete_instance(int $id): bool {
  * @param string $pagetype         current page type
  * @param stdClass $parentcontext  Block's parent context
  * @param stdClass $currentcontext Current context of block
- *
  * @return array array of page types and it's names
- * @throws coding_exception
+ * @throws Exception
  */
 function certificatebeautiful_page_type_list($pagetype, $parentcontext, $currentcontext): array {
     $modulepagetype = [
@@ -156,8 +153,7 @@ function certificatebeautiful_page_type_list($pagetype, $parentcontext, $current
  * The elements to add the course reset form.
  *
  * @param MoodleQuickForm $mform
- *
- * @throws coding_exception
+ * @throws Exception
  */
 function certificatebeautiful_reset_course_form_definition($mform) {
     $mform->addElement("header", "certificatebeautifulheader", get_string("modulenameplural", "certificatebeautiful"));
@@ -170,9 +166,8 @@ function certificatebeautiful_reset_course_form_definition($mform) {
  *
  * @param settings_navigation $settings
  * @param navigation_node $certificatebeautifulnode
- *
  * @return void
- * @throws \Exception
+ * @throws Exception
  */
 function certificatebeautiful_extend_settings_navigation($settings, $certificatebeautifulnode) {
     global $PAGE;
@@ -200,12 +195,10 @@ function certificatebeautiful_extend_settings_navigation($settings, $certificate
 /**
  * certificatebeautiful_extend_navigation_course function
  *
- * @param \navigation_node $navigation
+ * @param navigation_node $navigation
  * @param stdClass $course
- * @param \context $context
- *
- * @throws coding_exception
- * @throws moodle_exception
+ * @param context $context
+ * @throws Exception
  */
 function certificatebeautiful_extend_navigation_course($navigation, $course, $context) {
     if (has_capability("mod/certificatebeautiful:addinstance", $context)) {
@@ -226,15 +219,12 @@ function certificatebeautiful_extend_navigation_course($navigation, $course, $co
 /**
  * certificatebeautiful_myprofile_navigation
  *
- * @param \core_user\output\myprofile\tree $tree Tree object
+ * @param treeAlias $tree Tree object
  * @param stdClass $user                         user object
  * @param bool $iscurrentuser
  * @param stdClass $course                       Course object
- *
  * @return void
- * @throws coding_exception
- * @throws moodle_exception
- * @throws \core\exception\moodle_exception
+ * @throws Exception
  */
 function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tree $tree, $user, $iscurrentuser, $course) {
     global $DB;
@@ -289,7 +279,7 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
  * certificatebeautiful_list_all_models
  *
  * @return array
- * @throws coding_exception
+ * @throws Exception
  */
 function certificatebeautiful_list_all_models() {
     return [

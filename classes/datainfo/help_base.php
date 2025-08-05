@@ -25,7 +25,9 @@
 namespace mod_certificatebeautiful\datainfo;
 
 use certificatebeautifuldatainfo_course\datainfo\course;
+use Exception;
 use mod_certificatebeautiful\plugininfo\certificatebeautifuldatainfo;
+use stdClass;
 
 /**
  * Class help_base
@@ -38,7 +40,6 @@ class help_base {
      * Function help_text
      *
      * @param array $fields
-     *
      * @return string
      */
     public static function help_text($fields) {
@@ -57,8 +58,7 @@ class help_base {
      * Function base_get_data
      *
      * @param array $fields
-     * @param \stdClass $data
-     *
+     * @param stdClass $data
      * @return array
      */
     protected static function base_get_data($fields, $data) {
@@ -82,7 +82,6 @@ class help_base {
      * @param string $html
      * @param string $classname
      * @param array $fields
-     *
      * @return mixed
      */
     public static function replace($html, $classname, $fields) {
@@ -100,8 +99,7 @@ class help_base {
      * Function get_editor_components
      *
      * @return string
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function get_editor_components() {
 
@@ -154,8 +152,7 @@ class help_base {
      * Function get_form_components
      *
      * @return mixed
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function get_form_components() {
         global $OUTPUT;

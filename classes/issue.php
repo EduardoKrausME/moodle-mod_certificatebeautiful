@@ -24,6 +24,7 @@
 
 namespace mod_certificatebeautiful;
 
+use Exception;
 use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 
 /**
@@ -48,9 +49,8 @@ class issue {
      * @param $user
      * @param $certificatebeautiful
      * @param $cm
-     *
      * @return certificatebeautiful_issue|object
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function get($user, $certificatebeautiful, $cm) {
         global $DB;

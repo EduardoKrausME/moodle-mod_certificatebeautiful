@@ -24,28 +24,31 @@
 
 namespace mod_certificatebeautiful\privacy;
 
+use context;
+use context_module;
 use core_privacy\local\metadata\collection;
+use core_privacy\local\metadata\provider as metadata_provider;
 use core_privacy\local\request\approved_contextlist;
 use core_privacy\local\request\approved_userlist;
 use core_privacy\local\request\contextlist;
+use core_privacy\local\request\core_userlist_provider;
 use core_privacy\local\request\helper;
+use core_privacy\local\request\plugin\provider as plugin_provider;
 use core_privacy\local\request\transform;
 use core_privacy\local\request\userlist;
 use core_privacy\local\request\writer;
+use Exception;
+use moodle_recordset;
 
 /**
  * Privacy API implementation for the certificatebeautiful plugin.
  */
-class provider implements
-    \core_privacy\local\metadata\provider,
-    \core_privacy\local\request\plugin\provider,
-    \core_privacy\local\request\core_userlist_provider {
+class provider implements metadata_provider, plugin_provider, core_userlist_provider {
 
     /**
      * Returns metadata.
      *
      * @param collection $collection The initialised collection to add items to.
-     *
      * @return collection A listing of user data stored through this system.
      */
     public static function get_metadata(collection $collection): collection {
@@ -60,9 +63,8 @@ class provider implements
      * Function get_contexts_for_userid
      *
      * @param int $userid
-     *
      * @return contextlist
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function get_contexts_for_userid(int $userid): contextlist {
         if (!\core_user::get_user($userid)) {
@@ -95,9 +97,7 @@ class provider implements
      * Function export_user_data
      *
      * @param approved_contextlist $contextlist
-     *
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function export_user_data(approved_contextlist $contextlist) {
         global $DB;
@@ -135,7 +135,7 @@ class provider implements
                 return $carry;
             },
             function ($instanceid, $data) use ($user, $instanceidstocmids) {
-                $context = \context_module::instance($instanceidstocmids[$instanceid]);
+                $context = context_module::instance($instanceidstocmids[$instanceid]);
                 $contextdata = helper::get_context_data($context, $user);
                 $finaldata = (object)array_merge((array)$contextdata, ["logs" => $data]);
                 helper::export_context_files($context, $user);
@@ -147,14 +147,14 @@ class provider implements
     /**
      * Function delete_data_for_all_users_in_context
      *
-     * @param \context $context
+     * @param context $context
      *
-     * @throws \dml_exception
+     * @throws Exception
      */
-    public static function delete_data_for_all_users_in_context(\context $context) {
+    public static function delete_data_for_all_users_in_context(context $context) {
         global $DB;
 
-        if (!$context instanceof \context_module) {
+        if (!$context instanceof context_module) {
             return;
         }
 
@@ -166,8 +166,7 @@ class provider implements
      * Function delete_data_for_user
      *
      * @param approved_contextlist $contextlist
-     *
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function delete_data_for_user(approved_contextlist $contextlist) {
         global $DB;
@@ -177,7 +176,7 @@ class provider implements
         }
         $userid = $contextlist->get_user()->id;
         foreach ($contextlist->get_contexts() as $context) {
-            if (!$context instanceof \context_module) {
+            if (!$context instanceof context_module) {
                 return;
             }
             $instanceid = $DB->get_field("course_modules", "instance", ["id" => $context->instanceid], MUST_EXIST);
@@ -189,10 +188,8 @@ class provider implements
      * Function get_instance_ids_to_cmids_from_cmids
      *
      * @param array $cmids
-     *
      * @return array
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     protected static function get_instance_ids_to_cmids_from_cmids(array $cmids) {
         global $DB;
@@ -214,14 +211,14 @@ class provider implements
     /**
      * Function recordset_loop_and_export
      *
-     * @param \moodle_recordset $recordset
+     * @param moodle_recordset $recordset
      * @param $splitkey
      * @param $initial
      * @param callable $reducer
      * @param callable $export
      */
     protected static function recordset_loop_and_export(
-        \moodle_recordset $recordset,
+        moodle_recordset $recordset,
         $splitkey,
         $initial,
         callable $reducer,
@@ -250,10 +247,10 @@ class provider implements
      *
      * @param userlist $userlist
      */
-    public static function get_users_in_context(\core_privacy\local\request\userlist $userlist) {
+    public static function get_users_in_context(userlist $userlist) {
         $context = $userlist->get_context();
 
-        if (!$context instanceof \context_module) {
+        if (!$context instanceof context_module) {
             return;
         }
 
@@ -273,11 +270,9 @@ class provider implements
      * Function delete_data_for_users
      *
      * @param approved_userlist $userlist
-     *
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
-    public static function delete_data_for_users(\core_privacy\local\request\approved_userlist $userlist) {
+    public static function delete_data_for_users(approved_userlist $userlist) {
         global $DB;
 
         $context = $userlist->get_context();

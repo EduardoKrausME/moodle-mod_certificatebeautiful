@@ -71,7 +71,6 @@ class customfield extends help_base {
      *
      * @param $course
      * @param $user
-     *
      * @return array
      * @throws Exception
      */
@@ -102,7 +101,6 @@ class customfield extends help_base {
      * Function sections
      *
      * @param $course
-     *
      * @return string
      * @throws Exception
      */
@@ -132,7 +130,6 @@ class customfield extends help_base {
      * Function sections_modules
      *
      * @param $course
-     *
      * @return string
      * @throws Exception
      */
@@ -180,7 +177,7 @@ class customfield extends help_base {
                         if ($instance) {
                             $returnsections .= "<li>{$instance->name}</li>";
                         }
-                    } catch (\dml_exception $e) { // phpcs:disable
+                    } catch (Exception $e) { // phpcs:disable
                     }
                 }
 

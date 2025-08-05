@@ -24,6 +24,8 @@
 
 namespace mod_certificatebeautiful\fonts;
 
+use Exception;
+
 defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/fonts/font_attributes.php");
 
@@ -38,8 +40,7 @@ class font_util {
      * mpdf_list_fonts function
      *
      * @return array
-     *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function mpdf_list_fonts() {
         global $CFG;

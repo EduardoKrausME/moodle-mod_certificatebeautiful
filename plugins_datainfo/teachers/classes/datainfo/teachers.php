@@ -25,6 +25,8 @@
 namespace certificatebeautifuldatainfo_teachers\datainfo;
 
 use context_course;
+use Exception;
+use Exceptionception as ExceptionceptionAlias;
 use mod_certificatebeautiful\datainfo\help_base;
 
 /**
@@ -43,7 +45,7 @@ class teachers extends help_base {
      * Function table_structure
      *
      * @return array
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function table_structure() {
         return [
@@ -58,10 +60,8 @@ class teachers extends help_base {
      *
      * @param $course
      * @param $user
-     *
      * @return array
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function get_data($course, $user) {
         $teachers = self::get_teachers($course);
@@ -89,10 +89,8 @@ class teachers extends help_base {
      * Function get_teachers
      *
      * @param $course
-     *
      * @return array
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     private static function get_teachers($course) {
         global $CFG, $DB;

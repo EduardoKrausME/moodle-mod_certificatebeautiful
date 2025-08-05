@@ -22,11 +22,12 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\model\get_template_file;
+
 /**
  * Perform the post-install procedures.
  *
- * @throws coding_exception
- * @throws dml_exception
+ * @throws Exception
  */
 function xmldb_certificatebeautiful_install() {
     global $DB;
@@ -34,10 +35,10 @@ function xmldb_certificatebeautiful_install() {
     foreach (certificatebeautiful_list_all_models() as $model) {
         $pagesinfo = [
             [
-                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file($model["key"]),
+                "htmldata" => get_template_file::load_template_file($model["key"]),
                 "cssdata" => "",
             ], [
-                "htmldata" => \mod_certificatebeautiful\model\get_template_file::load_template_file("sumary-secound-page2"),
+                "htmldata" => get_template_file::load_template_file("sumary-secound-page2"),
                 "cssdata" => "",
             ],
         ];

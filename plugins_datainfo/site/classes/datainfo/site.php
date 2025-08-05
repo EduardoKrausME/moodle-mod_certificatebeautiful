@@ -24,6 +24,7 @@
 
 namespace certificatebeautifuldatainfo_site\datainfo;
 
+use Exception;
 use mod_certificatebeautiful\datainfo\help_base;
 
 /**
@@ -42,7 +43,7 @@ class site extends help_base {
      * Function table_structure
      *
      * @return array
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function table_structure() {
         return [
@@ -57,9 +58,8 @@ class site extends help_base {
      *
      * @param $course
      * @param $user
-     *
      * @return array
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function get_data($course, $user) {
         global $SITE;

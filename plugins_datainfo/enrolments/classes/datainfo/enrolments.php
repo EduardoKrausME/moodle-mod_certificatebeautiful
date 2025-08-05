@@ -24,6 +24,7 @@
 
 namespace certificatebeautifuldatainfo_enrolments\datainfo;
 
+use Exception;
 use mod_certificatebeautiful\datainfo\help_base;
 
 /**
@@ -42,7 +43,7 @@ class enrolments extends help_base {
      * Function table_structure
      *
      * @return array
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function table_structure() {
         return [
@@ -58,9 +59,8 @@ class enrolments extends help_base {
      *
      * @param $course
      * @param $user
-     *
      * @return array
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function get_data($course, $user) {
         global $DB;

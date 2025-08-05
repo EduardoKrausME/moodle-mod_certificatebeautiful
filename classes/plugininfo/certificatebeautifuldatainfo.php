@@ -24,9 +24,11 @@
 
 namespace mod_certificatebeautiful\plugininfo;
 
-use coding_exception;
+use admin_settingpage;
 use core\plugininfo\base, core_plugin_manager;
-use dml_exception;
+use Exception;
+use part_of_admin_tree;
+use progress_trace;
 
 /**
  * The mod_certificatebeautiful course module viewed event class.
@@ -41,9 +43,7 @@ class certificatebeautifuldatainfo extends base {
      * Function get_enabled_plugins
      *
      * @return array|null
-     *
-     * @throws coding_exception
-     * @throws dml_exception
+     * @throws Exception
      */
     public static function get_enabled_plugins() {
         global $DB;
@@ -81,9 +81,8 @@ class certificatebeautifuldatainfo extends base {
      *
      * @param string $pluginname
      * @param int $enabled
-     *
      * @return bool
-     * @throws dml_exception
+     * @throws Exception
      */
     public static function enable_plugin(string $pluginname, int $enabled): bool {
         $haschanged = false;
@@ -98,7 +97,7 @@ class certificatebeautifuldatainfo extends base {
             $haschanged = true;
 
             add_to_config_log("disabled", $oldvalue, $disabled, $plugin);
-            \core_plugin_manager::reset_caches();
+            core_plugin_manager::reset_caches();
         }
 
         return $haschanged;
@@ -125,11 +124,11 @@ class certificatebeautifuldatainfo extends base {
     /**
      * Function load_settings
      *
-     * @param \part_of_admin_tree $adminroot
+     * @param part_of_admin_tree $adminroot
      * @param string $parentnodename
      * @param bool $hassiteconfig
      */
-    public function load_settings(\part_of_admin_tree $adminroot, $parentnodename, $hassiteconfig) {
+    public function load_settings(part_of_admin_tree $adminroot, $parentnodename, $hassiteconfig) {
 
         if (!$this->is_installed_and_upgraded()) {
             return;
@@ -141,7 +140,7 @@ class certificatebeautifuldatainfo extends base {
 
         $section = $this->get_settings_section_name();
 
-        $settings = new \admin_settingpage($section, $this->displayname, "moodle/site:config", $this->is_enabled() === false);
+        $settings = new admin_settingpage($section, $this->displayname, "moodle/site:config", $this->is_enabled() === false);
 
         if ($adminroot->fulltree) {
             include($this->full_path("settings.php"));
@@ -153,11 +152,10 @@ class certificatebeautifuldatainfo extends base {
     /**
      * Function uninstall
      *
-     * @param \progress_trace $progress
-     *
+     * @param progress_trace $progress
      * @return bool
      */
-    public function uninstall(\progress_trace $progress) {
+    public function uninstall(progress_trace $progress) {
         return true;
     }
 }

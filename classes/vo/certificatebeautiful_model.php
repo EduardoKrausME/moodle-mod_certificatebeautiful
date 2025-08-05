@@ -24,12 +24,14 @@
 
 namespace mod_certificatebeautiful\vo;
 
+use stdClass;
+
 /**
  * Class certificatebeautiful_model
  *
  * @package mod_certificatebeautiful\vo
  */
-class certificatebeautiful_model extends \stdClass {
+class certificatebeautiful_model extends stdClass {
 
     /** @var int */
     public $id;

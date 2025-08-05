@@ -24,10 +24,13 @@
 
 namespace mod_certificatebeautiful\report;
 
+use context_system;
+use Exception;
 use html_writer;
 use mod_certificatebeautiful\vo\certificatebeautiful;
 use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 use moodle_url;
+use table_sql;
 
 defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/tablelib.php");
@@ -37,7 +40,7 @@ require_once("{$CFG->libdir}/tablelib.php");
  *
  * @package mod_certificatebeautiful\report
  */
-class certificatebeautiful_view extends \table_sql {
+class certificatebeautiful_view extends table_sql {
 
     /** @var int */
     public $cmid = 0;
@@ -51,8 +54,7 @@ class certificatebeautiful_view extends \table_sql {
      * @param $uniqueid
      * @param $cmid
      * @param certificatebeautiful $certificatebeautiful
-     *
-     * @throws \coding_exception
+     * @throws Exception
      */
     public function __construct($uniqueid, $cmid, $certificatebeautiful) {
         parent::__construct($uniqueid);
@@ -104,10 +106,7 @@ class certificatebeautiful_view extends \table_sql {
      * @param object $row   the data from the db containing all fields from the
      *                      users table necessary to construct the full name of the user in
      *                      current language.
-     *
      * @return string contents of cell in column 'fullname', for this row.
-     *
-     * @throws \moodle_exception
      */
     public function col_fullname($row) {
         global $COURSE;
@@ -130,9 +129,8 @@ class certificatebeautiful_view extends \table_sql {
      * Function col_code
      *
      * @param $row
-     *
      * @return mixed
-     * @throws \dml_exception
+     * @throws Exception
      */
     public function col_code(&$row) {
         global $DB;
@@ -149,9 +147,8 @@ class certificatebeautiful_view extends \table_sql {
      * col_timecreated
      *
      * @param $row
-     *
      * @return string
-     * @throws \dml_exception
+     * @throws Exception
      */
     public function col_timecreated(&$row) {
         global $DB;
@@ -169,10 +166,8 @@ class certificatebeautiful_view extends \table_sql {
      * col_extra
      *
      * @param $row
-     *
      * @return string
-     *
-     * @throws \moodle_exception
+     * @throws Exception
      */
     public function col_extra($row) {
         global $DB, $OUTPUT;
@@ -191,7 +186,7 @@ class certificatebeautiful_view extends \table_sql {
                 "url-view" => (new moodle_url("/mod/certificatebeautiful/view-pdf.php", $paramsview))->out(),
             ];
 
-            if (has_capability("mod/certificatebeautiful:addinstance", \context_system::instance())) {
+            if (has_capability("mod/certificatebeautiful:addinstance", context_system::instance())) {
                 $paramsdelete = [
                     "id" => $this->cmid,
                     "issueid" => $issue->id,
@@ -222,8 +217,7 @@ class certificatebeautiful_view extends \table_sql {
      *
      * @param int $pagesize
      * @param bool $useinitialsbar
-     *
-     * @throws \dml_exception
+     * @throws Exception
      */
     public function query_db($pagesize, $useinitialsbar = true) {
         global $DB;

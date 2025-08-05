@@ -23,7 +23,10 @@
  */
 
 use core\output\notification;
+use mod_certificatebeautiful\datainfo\help_base;
 use mod_certificatebeautiful\form\changue_cert_info;
+use mod_certificatebeautiful\model\get_template_file;
+use mod_certificatebeautiful\vo\certificatebeautiful_model;
 
 require_once("../../config.php");
 require_once("{$CFG->libdir}/tablelib.php");
@@ -44,7 +47,7 @@ $PAGE->add_body_class("certificatebeautiful-pages");
 require_login();
 require_capability("mod/certificatebeautiful:addinstance", $context);
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $certificatebeautifulmodel */
+/** @var certificatebeautiful_model $certificatebeautifulmodel */
 $certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
@@ -127,7 +130,7 @@ switch ($action) {
         $model = required_param("model", PARAM_TEXT);
         $page = required_param("page", PARAM_INT);
 
-        $htmldata = \mod_certificatebeautiful\model\get_template_file::load_template_file($model);
+        $htmldata = get_template_file::load_template_file($model);
 
         $certificatebeautifulmodel->pages_info_object[$page] = [
             "htmldata" => $htmldata,
@@ -197,7 +200,7 @@ switch ($action) {
             "url-changeupload" => "?id={$id}&page={$page}&action=changeupload",
             "url-setting" => "{$CFG->wwwroot}/admin/settings.php?section=modsettingcertificatebeautiful",
             "iframe-url" => "{$CFG->wwwroot}/mod/certificatebeautiful/_editor/index.php?id={$id}&page={$page}",
-            "form_components" => \mod_certificatebeautiful\datainfo\help_base::get_form_components(),
+            "form_components" => help_base::get_form_components(),
         ];
         echo $OUTPUT->render_from_template("mod_certificatebeautiful/editpage", $data);
 

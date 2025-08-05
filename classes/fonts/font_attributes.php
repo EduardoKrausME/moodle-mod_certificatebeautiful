@@ -100,7 +100,6 @@ class font_attributes {
      * Function return_value
      *
      * @param $instring
-     *
      * @return mixed|string
      */
     private function return_value($instring) {
@@ -252,7 +251,6 @@ class font_attributes {
      * Read the Font Attributes
      *
      * @return bool
-     *
      * @throws Exception
      */
     private function read_font_attributes() {
@@ -378,7 +376,6 @@ class font_attributes {
      * font_attributes constructor.
      *
      * @param string $filename
-     *
      * @throws Exception
      */
     public function __construct($filename = "") {

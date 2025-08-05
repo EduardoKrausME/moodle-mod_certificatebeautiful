@@ -24,8 +24,10 @@
 
 namespace mod_certificatebeautiful\report;
 
+use Exception;
 use html_writer;
 use moodle_url;
+use table_sql;
 
 defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/tablelib.php");
@@ -35,7 +37,7 @@ require_once("{$CFG->libdir}/tablelib.php");
  *
  * @package mod_certificatebeautiful\report
  */
-class certificatebeautiful_view_user extends \table_sql {
+class certificatebeautiful_view_user extends table_sql {
 
     /**
      * @var object
@@ -47,8 +49,7 @@ class certificatebeautiful_view_user extends \table_sql {
      *
      * @param $uniqueid
      * @param object $user
-     *
-     * @throws \coding_exception
+     * @throws Exception
      */
     public function __construct($uniqueid, $user) {
         parent::__construct($uniqueid);
@@ -99,10 +100,8 @@ class certificatebeautiful_view_user extends \table_sql {
      * @param object $linha the data from the db containing all fields from the
      *                      users table necessary to construct the full name of the user in
      *                      current language.
-     *
      * @return string contents of cell in column 'fullname', for this row.
-     *
-     * @throws \moodle_exception
+     * @throws Exception
      */
     public function col_fullname($linha) {
         global $COURSE;
@@ -125,7 +124,6 @@ class certificatebeautiful_view_user extends \table_sql {
      * col_timecreated
      *
      * @param $linha
-     *
      * @return string
      */
     public function col_timecreated($linha) {
@@ -136,10 +134,7 @@ class certificatebeautiful_view_user extends \table_sql {
      * col_extra
      *
      * @param $linha
-     *
      * @return string
-     *
-     * @throws \moodle_exception
      */
     public function col_extra($linha) {
         global $OUTPUT;
@@ -159,8 +154,7 @@ class certificatebeautiful_view_user extends \table_sql {
      *
      * @param int $pagesize
      * @param bool $useinitialsbar
-     *
-     * @throws \dml_exception
+     * @throws Exception
      */
     public function query_db($pagesize, $useinitialsbar = true) {
         global $DB;

@@ -23,6 +23,10 @@
  */
 
 use mod_certificatebeautiful\issue;
+use mod_certificatebeautiful\pdf\page_pdf;
+use mod_certificatebeautiful\vo\certificatebeautiful;
+use mod_certificatebeautiful\vo\certificatebeautiful_issue;
+use mod_certificatebeautiful\vo\certificatebeautiful_model;
 
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
@@ -41,7 +45,7 @@ if ($action == "createadmin") {
     $cmid = required_param("cmid", PARAM_INT);
     $cm = get_coursemodule_from_id("certificatebeautiful", $cmid, 0, false, MUST_EXIST);
 
-    /** @var \mod_certificatebeautiful\vo\certificatebeautiful $certificatebeautiful */
+    /** @var certificatebeautiful $certificatebeautiful */
     $certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], '*', MUST_EXIST);
 
     $issue = issue::get($user, $certificatebeautiful, $cm);
@@ -49,13 +53,13 @@ if ($action == "createadmin") {
     redirect(new moodle_url('/mod/certificatebeautiful/view-pdf.php?', $paramsview));
 }
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful_issue $certificatebeautifulissue */
+/** @var certificatebeautiful_issue $certificatebeautifulissue */
 $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", ["code" => $code], '*', MUST_EXIST);
 
 $cm = get_coursemodule_from_id("certificatebeautiful", $certificatebeautifulissue->cmid, 0, false, MUST_EXIST);
 $course = $DB->get_record("course", ["id" => $cm->course], '*', MUST_EXIST);
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful $certificatebeautiful */
+/** @var certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], '*', MUST_EXIST);
 
 $user = $DB->get_record("user", ["id" => $certificatebeautifulissue->userid]);
@@ -79,7 +83,7 @@ $filerecord = (object)[
     "filename" => "{$certificatebeautifulissue->code}.pdf",
 ];
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful_model $certificatebeautifulmodel */
+/** @var certificatebeautiful_model $certificatebeautifulmodel */
 $certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model",
     ["id" => $certificatebeautiful->model], "*", MUST_EXIST);
 
@@ -103,7 +107,7 @@ if ($storedfile) {
 
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
 
-$pagepdf = new \mod_certificatebeautiful\pdf\page_pdf();
+$pagepdf = new page_pdf();
 $contentpdf = $pagepdf->create_pdf(
     $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $user, $course);
 

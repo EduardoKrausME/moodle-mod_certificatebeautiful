@@ -154,7 +154,6 @@ class qrcode {
      *
      * @param $data
      * @param $options
-     *
      * @return array
      */
     private function encode_and_calculate_size($data, $options) {
@@ -192,7 +191,6 @@ class qrcode {
      *
      * @param $image
      * @param $color
-     *
      * @return int
      */
     private function allocate_color($image, $color) {
@@ -210,7 +208,6 @@ class qrcode {
      *
      * @param $data
      * @param $options
-     *
      * @return array|null
      */
     private function dispatch_encode($data, $options) {
@@ -235,7 +232,6 @@ class qrcode {
      *
      * @param $code
      * @param $widths
-     *
      * @return array
      */
     private function calculate_size($code, $widths) {
@@ -259,7 +255,6 @@ class qrcode {
      *
      * @param $data
      * @param $ecl
-     *
      * @return array
      */
     private function qr_encode($data, $ecl) {
@@ -280,7 +275,6 @@ class qrcode {
      *
      * @param $data
      * @param $ecl
-     *
      * @return array
      */
     private function qr_encode_data($data, $ecl) {
@@ -362,7 +356,6 @@ class qrcode {
      * Function qr_detect_mode
      *
      * @param $data
-     *
      * @return int
      */
     private function qr_detect_mode($data) {
@@ -387,7 +380,6 @@ class qrcode {
      * @param $data
      * @param $mode
      * @param $ecl
-     *
      * @return int
      */
     private function qr_detect_version($data, $mode, $ecl) {
@@ -408,7 +400,6 @@ class qrcode {
      *
      * @param $data
      * @param $versiongroup
-     *
      * @return array
      */
     private function qr_encode_numeric($data, $versiongroup) {
@@ -459,7 +450,6 @@ class qrcode {
      *
      * @param $data
      * @param $versiongroup
-     *
      * @return array
      */
     private function qr_encode_alphanumeric($data, $versiongroup) {
@@ -519,7 +509,6 @@ class qrcode {
      *
      * @param $data
      * @param $versiongroup
-     *
      * @return array
      */
     private function qr_encode_binary($data, $versiongroup) {
@@ -565,7 +554,6 @@ class qrcode {
      *
      * @param $data
      * @param $versiongroup
-     *
      * @return array
      */
     private function qr_encode_kanji($data, $versiongroup) {
@@ -625,7 +613,6 @@ class qrcode {
      * @param $data
      * @param $ecparams
      * @param $version
-     *
      * @return array
      */
     private function qr_encode_ec($data, $ecparams, $version) {
@@ -668,7 +655,6 @@ class qrcode {
      *
      * @param $data
      * @param $ecparams
-     *
      * @return array
      */
     private function qr_ec_split($data, $ecparams) {
@@ -690,7 +676,6 @@ class qrcode {
      *
      * @param $data
      * @param $ecparams
-     *
      * @return array
      */
     private function qr_ec_divide($data, $ecparams) {
@@ -717,7 +702,6 @@ class qrcode {
      * Function qr_ec_interleave
      *
      * @param $blocks
-     *
      * @return array
      */
     private function qr_ec_interleave($blocks) {
@@ -743,7 +727,6 @@ class qrcode {
      *
      * @param $version
      * @param $data
-     *
      * @return array
      */
     private function qr_create_matrix($version, $data) {
@@ -854,7 +837,6 @@ class qrcode {
      *
      * @param $matrix
      * @param $size
-     *
      * @return array
      */
     private function qr_apply_best_mask($matrix, $size) {
@@ -879,7 +861,6 @@ class qrcode {
      * @param $matrix
      * @param $size
      * @param $mask
-     *
      * @return mixed
      */
     private function qr_apply_mask($matrix, $size, $mask) {
@@ -901,7 +882,6 @@ class qrcode {
      * @param $mask
      * @param $r
      * @param $c
-     *
      * @return bool
      */
     private function qr_mask($mask, $r, $c) {
@@ -930,7 +910,6 @@ class qrcode {
      *
      * @param $matrix
      * @param $size
-     *
      * @return float|int
      */
     private function qr_penalty(&$matrix, $size) {
@@ -946,7 +925,6 @@ class qrcode {
      *
      * @param $matrix
      * @param $size
-     *
      * @return int
      */
     private function qr_penalty_1(&$matrix, $size) {
@@ -993,7 +971,6 @@ class qrcode {
      *
      * @param $matrix
      * @param $size
-     *
      * @return int
      */
     private function qr_penalty_2(&$matrix, $size) {

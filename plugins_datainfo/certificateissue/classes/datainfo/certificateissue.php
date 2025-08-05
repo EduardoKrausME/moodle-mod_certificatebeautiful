@@ -24,6 +24,7 @@
 
 namespace certificatebeautifuldatainfo_certificateissue\datainfo;
 
+use Exception;
 use mod_certificatebeautiful\datainfo\help_base;
 use certificatebeautifuldatainfo_certificateissue\util\qrcode;
 
@@ -43,7 +44,7 @@ class certificateissue extends help_base {
      * Function table_structure
      *
      * @return array
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function table_structure() {
         return [
@@ -62,9 +63,8 @@ class certificateissue extends help_base {
      *
      * @param $certificatebeautiful
      * @param $issue
-     *
      * @return array
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function get_data($certificatebeautiful, $issue) {
         global $CFG;
@@ -85,7 +85,6 @@ class certificateissue extends help_base {
      *
      * @param $html
      * @param $issue
-     *
      * @return mixed
      */
     public static function custom_replace($html, $issue) {

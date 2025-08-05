@@ -24,6 +24,8 @@
 
 namespace mod_certificatebeautiful\event;
 
+use core\event\course_module_viewed;
+
 /**
  * The mod_certificatebeautiful instance list viewed event class
  *
@@ -34,7 +36,7 @@ namespace mod_certificatebeautiful\event;
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class certificatebeautiful_course_module_viewed extends \core\event\course_module_viewed {
+class certificatebeautiful_course_module_viewed extends course_module_viewed {
 
     /**
      * Initialize the event

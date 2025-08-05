@@ -24,6 +24,7 @@
 
 namespace certificatebeautifuldatainfo_user\datainfo;
 
+use Exception;
 use mod_certificatebeautiful\datainfo\help_base;
 
 /**
@@ -42,7 +43,7 @@ class user extends help_base {
      * Function table_structure
      *
      * @return array
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function table_structure() {
         return [
@@ -81,9 +82,8 @@ class user extends help_base {
      *
      * @param $course
      * @param $user
-     *
      * @return array
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function get_data($course, $user) {
         $newuser = self::base_get_data(self::table_structure(), $user);

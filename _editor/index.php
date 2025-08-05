@@ -22,6 +22,9 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\fonts\font_util;
+use mod_certificatebeautiful\model\form_create_page;
+
 require_once('../../../config.php');
 require_login();
 $context = context_system::instance();
@@ -53,7 +56,7 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
 
     <?php
     require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/fonts/font_util.php");
-    $fontList = \mod_certificatebeautiful\fonts\font_util::mpdf_list_fonts();
+    $fontList = font_util::mpdf_list_fonts();
 
     echo "<style>{$fontList["css"]}</style>"
     ?>
@@ -76,7 +79,7 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
     }
 
     if (!isset($pageinfo->htmldata)) {
-        $empty = \mod_certificatebeautiful\model\form_create_page::empty_page($certificatebeautifulmodel);
+        $empty = form_create_page::empty_page($certificatebeautifulmodel);
         $pageinfo->htmldata = $empty->htmldata;
         $pageinfo->cssdata = $empty->cssdata;
     }

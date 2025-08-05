@@ -24,6 +24,7 @@
 
 namespace mod_certificatebeautiful\pdf;
 
+use Exception;
 use mod_certificatebeautiful\fonts\font_util;
 use mod_certificatebeautiful\vo\certificatebeautiful;
 use mod_certificatebeautiful\vo\certificatebeautiful_issue;
@@ -34,6 +35,7 @@ use Mpdf\Config\ConfigVariables;
 use Mpdf\Config\FontVariables;
 use Mpdf\MpdfException;
 use Mpdf\Output\Destination;
+use stdClass;
 
 /**
  * Class page_pdf
@@ -59,12 +61,10 @@ class page_pdf {
      * @param certificatebeautiful $certificatebeautiful
      * @param certificatebeautiful_issue $certificatebeautifulissue
      * @param certificatebeautiful_model $certificatebeautifulmodel
-     * @param \stdClass $user
-     * @param \stdClass $course
-     *
+     * @param stdClass $user
+     * @param stdClass $course
      * @return string
-     * @throws MpdfException
-     * @throws \Exception
+     * @throws Exception
      */
     public function create_pdf($certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $user, $course) {
         global $COURSE, $CFG;

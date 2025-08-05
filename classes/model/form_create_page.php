@@ -24,6 +24,7 @@
 
 namespace mod_certificatebeautiful\model;
 
+use Exception;
 use mod_certificatebeautiful\vo\certificatebeautiful_model;
 
 /**
@@ -37,9 +38,8 @@ class form_create_page {
      * Function empty_page
      *
      * @param certificatebeautiful_model $model
-     *
      * @return object
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function empty_page($model) {
         global $CFG;

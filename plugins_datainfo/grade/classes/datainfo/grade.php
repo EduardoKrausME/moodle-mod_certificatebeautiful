@@ -24,6 +24,7 @@
 
 namespace certificatebeautifuldatainfo_grade\datainfo;
 
+use Exception;
 use grade_item;
 use mod_certificatebeautiful\datainfo\help_base;
 
@@ -43,7 +44,7 @@ class grade extends help_base {
      * Function table_structure
      *
      * @return array
-     * @throws \coding_exception
+     * @throws Exception
      */
     public static function table_structure() {
         return [
@@ -57,11 +58,8 @@ class grade extends help_base {
      *
      * @param $course
      * @param $user
-     *
      * @return array
-     *
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function get_data($course, $user) {
         return [
@@ -75,7 +73,6 @@ class grade extends help_base {
      *
      * @param $course
      * @param $user
-     *
      * @return string
      */
     private static function get_grade($course, $user) {
@@ -98,10 +95,8 @@ class grade extends help_base {
      *
      * @param $course
      * @param $user
-     *
      * @return string
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     private static function get_table_grade($course, $user) {
 
@@ -145,9 +140,8 @@ class grade extends help_base {
      * @param $cm
      * @param $course
      * @param $user
-     *
      * @return string
-     * @throws \dml_exception
+     * @throws Exception
      */
     private static function get_mod_grade($cm, $course, $user) {
         global $DB;

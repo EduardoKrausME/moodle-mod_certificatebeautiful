@@ -24,6 +24,9 @@
 
 namespace mod_certificatebeautiful\report;
 
+use Exception;
+use moodleform;
+
 defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/formslib.php");
 
@@ -32,7 +35,7 @@ require_once("{$CFG->libdir}/formslib.php");
  *
  * @package mod_certificatebeautiful\report
  */
-class validate_certificate_form extends \moodleform {
+class validate_certificate_form extends moodleform {
 
     /**
      * validate_certificate_form constructor.
@@ -53,7 +56,7 @@ class validate_certificate_form extends \moodleform {
     /**
      * definition
      *
-     * @throws \coding_exception
+     * @throws Exception
      */
     public function definition() {
         $this->_form->addElement("text", "code", get_string("validate_certificate_code", "certificatebeautiful"));

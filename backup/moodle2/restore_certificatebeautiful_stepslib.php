@@ -52,8 +52,7 @@ class restore_certificatebeautiful_activity_structure_step extends restore_activ
      * Processes the element restore data.
      *
      * @param array $data Parsed element data.
-     *
-     * @throws dml_exception
+     * @throws Exception
      */
     protected function process_certificatebeautiful(array $data): void {
         global $DB;
@@ -69,18 +68,16 @@ class restore_certificatebeautiful_activity_structure_step extends restore_activ
      * Handles restoring a tool_certificate issue.
      *
      * @param stdClass $data Parsed element data.
-     *
-     * @throws ddl_exception
-     * @throws dml_exception
+     * @throws Exception
      */
     protected function process_tool_certificate_issue($data) {
         global $DB;
 
         if (!$DB->get_manager()->table_exists("certificatebeautiful_issue")) {
-            throw new \dml_exception("certificatebeautiful_issue table does not exists");
+            throw new Exception("certificatebeautiful_issue table does not exists");
         }
         if (!$DB->get_manager()->table_exists("certificatebeautiful_model")) {
-            throw new \dml_exception("certificatebeautiful_model table does not exists");
+            throw new Exception("certificatebeautiful_model table does not exists");
         }
         $data = (object) $data;
 

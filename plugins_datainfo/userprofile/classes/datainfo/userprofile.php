@@ -24,7 +24,9 @@
 
 namespace certificatebeautifuldatainfo_userprofile\datainfo;
 
+use Exception;
 use mod_certificatebeautiful\datainfo\help_base;
+use profile_field_base;
 
 /**
  * Class userprofile
@@ -42,7 +44,7 @@ class userprofile extends help_base {
      * Function table_structure
      *
      * @return array
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function table_structure() {
         global $DB;
@@ -76,10 +78,8 @@ class userprofile extends help_base {
      *
      * @param $course
      * @param $user
-     *
      * @return array
-     * @throws \coding_exception
-     * @throws \dml_exception
+     * @throws Exception
      */
     public static function get_data($course, $user) {
         global $CFG, $DB;
@@ -91,7 +91,7 @@ class userprofile extends help_base {
                 require_once("{$CFG->dirroot}/user/profile/field/{$userinfofield->datatype}/field.class.php");
                 $newfield = "profile_field_" . $userinfofield->datatype;
 
-                /** @var \profile_field_base $formfield */
+                /** @var profile_field_base $formfield */
                 $formfield = new $newfield($userinfofield->id, $user->id);
                 if ($formfield->is_visible() && !$formfield->is_empty()) {
 

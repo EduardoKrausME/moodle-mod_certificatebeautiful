@@ -27,11 +27,13 @@ namespace mod_certificatebeautiful\pdf;
 use certificatebeautifuldatainfo_certificateissue\datainfo\certificateissue;
 use certificatebeautifuldatainfo_course\datainfo\course;
 use certificatebeautifuldatainfo_functions\datainfo\functions;
+use Exception;
 use mod_certificatebeautiful\datainfo\help_base;
 use mod_certificatebeautiful\fonts\font_util;
 use mod_certificatebeautiful\plugininfo\certificatebeautifuldatainfo;
 use mod_certificatebeautiful\vo\certificatebeautiful;
 use mod_certificatebeautiful\vo\certificatebeautiful_issue;
+use stdClass;
 
 /**
  * Class replace_tags
@@ -40,13 +42,13 @@ use mod_certificatebeautiful\vo\certificatebeautiful_issue;
  */
 class replace_tags {
 
-    /** @var \stdClass */
+    /** @var stdClass */
     public $page;
 
-    /** @var \stdClass */
+    /** @var stdClass */
     public $course;
 
-    /** @var \stdClass */
+    /** @var stdClass */
     public $user;
 
     /** @var certificatebeautiful */
@@ -58,13 +60,13 @@ class replace_tags {
     /**
      * replace_tags constructor.
      *
-     * @param \stdClass $page
-     * @param \stdClass $course
-     * @param \stdClass $user
+     * @param stdClass $page
+     * @param stdClass $course
+     * @param stdClass $user
      * @param certificatebeautiful $certificatebeautiful
      * @param certificatebeautiful_issue $certificatebeautifulissue
      */
-    public function __construct(\stdClass $page, $course, $user, $certificatebeautiful, $certificatebeautifulissue) {
+    public function __construct(stdClass $page, $course, $user, $certificatebeautiful, $certificatebeautifulissue) {
         $this->page = $page;
         $this->course = $course;
         $this->user = $user;
@@ -119,9 +121,7 @@ class replace_tags {
     /**
      * repace_html
      *
-     * @throws \coding_exception
-     * @throws \dml_exception
-     * @throws \moodle_exception
+     * @throws Exception
      */
     public function repace_html() {
 
@@ -176,7 +176,7 @@ class replace_tags {
     /**
      * Function repace_signature
      *
-     * @throws \dml_exception
+     * @throws Exception
      */
     public function repace_signature() {
         global $CFG;
@@ -230,7 +230,7 @@ class replace_tags {
     /**
      * Function out_page
      *
-     * @return \stdClass|string
+     * @return stdClass|string
      */
     public function out_page() {
         return $this->page;

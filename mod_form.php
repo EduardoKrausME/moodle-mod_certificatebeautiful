@@ -36,8 +36,7 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
 
     /**
      * Defines forms elements
-     * @throws coding_exception
-     * @throws moodle_exception
+     * @throws Exception
      */
     public function definition(): void {
         global $CFG;

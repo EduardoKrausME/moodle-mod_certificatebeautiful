@@ -24,7 +24,9 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use core_user\fields;
 use mod_certificatebeautiful\issue;
+use mod_certificatebeautiful\report\validate_certificate_form;
 
 require_once("../../../config.php");
 require_once($CFG->dirroot . '/lib/adminlib.php');
@@ -33,7 +35,7 @@ global $PAGE, $CFG;
 $code = optional_param("code", false, PARAM_TEXT);
 
 $PAGE->set_url('/mod/certificatebeautiful/v/', ["code" => $code]);
-$PAGE->set_context(\context_system::instance());
+$PAGE->set_context(context_system::instance());
 $PAGE->set_title(get_string("validate_certificate_title", "certificatebeautiful"));
 $PAGE->set_heading(format_string(get_string("validate_certificate_title", "certificatebeautiful")));
 
@@ -48,7 +50,7 @@ if ($code) {
             "date" => userdate($certificatebeautifulissue->timecreated),
         ];
 
-        $namefields = implode(",", \core_user\fields::get_name_fields());
+        $namefields = implode(",", fields::get_name_fields());
         if ($user = $DB->get_record("user", ["id" => $certificatebeautifulissue->userid], "{$namefields},email")) {
 
             $config = get_config("certificatebeautiful");
@@ -98,7 +100,7 @@ if ($code) {
 }
 
 if (!$code) {
-    $form = new \mod_certificatebeautiful\report\validate_certificate_form(
+    $form = new validate_certificate_form(
         "{$CFG->wwwroot}/mod/certificatebeautiful/v/");
     $form->display();
 }

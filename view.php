@@ -22,6 +22,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\event\certificatebeautiful_course_module_viewed;
+use mod_certificatebeautiful\issue;
+use mod_certificatebeautiful\report\certificatebeautiful_view;
+use mod_certificatebeautiful\vo\certificatebeautiful;
+
 require_once("../../config.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/issue.php");
 
@@ -65,7 +70,7 @@ if (optional_param("action", "", PARAM_TEXT) == "delete") {
         get_string("report_deleted_certificate", "certificatebeautiful"));
 }
 
-/** @var \mod_certificatebeautiful\vo\certificatebeautiful $certificatebeautiful */
+/** @var certificatebeautiful $certificatebeautiful */
 $certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], "*", MUST_EXIST);
 
 $PAGE->set_context($context);
@@ -76,7 +81,7 @@ $PAGE->set_heading(format_string($course->fullname));
 require_course_login($course, true, $cm);
 require_capability("mod/certificatebeautiful:view", $context);
 
-$event = \mod_certificatebeautiful\event\certificatebeautiful_course_module_viewed::create([
+$event = certificatebeautiful_course_module_viewed::create([
     "objectid" => $PAGE->cm->instance,
     "context" => $PAGE->context,
 ]);
@@ -95,12 +100,12 @@ if (has_capability("mod/certificatebeautiful:addinstance", $context)) {
     $title = get_string("report_filename", "certificatebeautiful");
     echo $OUTPUT->heading($title, 2, "main", "certificatebeautifulheading");
 
-    $table = new \mod_certificatebeautiful\report\certificatebeautiful_view(
+    $table = new certificatebeautiful_view(
         "certificatebeautiful_report", $cm->id, $certificatebeautiful);
     $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/report.php?id={$cm->id}");
     $table->out(40, true);
 } else {
-    $certificatebeautifulissue = \mod_certificatebeautiful\issue::get($USER, $certificatebeautiful, $cm);
+    $certificatebeautifulissue = issue::get($USER, $certificatebeautiful, $cm);
     $viewerurl = "{$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html";
     $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?code={$certificatebeautifulissue->code}";
 

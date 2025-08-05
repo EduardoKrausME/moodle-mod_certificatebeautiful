@@ -35,9 +35,7 @@ class backup_certificatebeautiful_activity_structure_step extends backup_activit
      * Defines the structure of the resulting xml file.
      *
      * @return backup_nested_element The structure wrapped by the common 'activity' element.
-     * @throws base_element_struct_exception
-     * @throws base_step_exception
-     * @throws dml_exception
+     * @throws Exception
      */
     protected function define_structure() {
         // Course certificate.

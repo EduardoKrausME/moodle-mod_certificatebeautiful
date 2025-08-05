@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\fonts\font_util;
+
 require_once("../../../config.php");
 require_login();
 $context = context_system::instance();
@@ -53,7 +55,7 @@ require_capability("mod/certificatebeautiful:addinstance", $context);
 
     <?php
     require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/fonts/font_util.php");
-    $fontList = \mod_certificatebeautiful\fonts\font_util::mpdf_list_fonts();
+    $fontList = font_util::mpdf_list_fonts();
 
     echo "<style>{$fontList["css"]}</style>"
     ?>
