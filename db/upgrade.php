@@ -38,7 +38,6 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
     $dbman = $DB->get_manager();
 
     if ($oldversion < 2024021200) {
-
         $table = new xmldb_table("certificatebeautiful");
         $field = new xmldb_field("description", XMLDB_TYPE_TEXT, null, null, null, null, null, "name");
 
@@ -53,7 +52,6 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
     }
 
     if ($oldversion < 2024021402) {
-
         $table = new xmldb_table("certificatebeautiful_model");
         $field = new xmldb_field("model_key", XMLDB_TYPE_TEXT, null, null, null, null, null, "name");
 
@@ -100,6 +98,12 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         $DB->execute("UPDATE {certificatebeautiful_model} SET orientation = 'L'");
 
         upgrade_mod_savepoint(true, 2025030901, "certificatebeautiful");
+    }
+
+    if ($oldversion < 2025080500) {
+        $DB->execute("UPDATE {certificatebeautiful_model} SET orientation = 'L' WHERE orientation = ''");
+
+        upgrade_mod_savepoint(true, 2025080500, "certificatebeautiful");
     }
 
     return true;
