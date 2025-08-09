@@ -94,7 +94,7 @@ if ($ADMIN->fulltree) {
     foreach ($plugins as $plugin) {
         if (file_exists(__DIR__ . "/plugins_datainfo/{$plugin}/settings.php")) {
             $settings->add(new admin_setting_heading("{$plugin}_heading",
-                get_string("pluginname", "certificatebeautifuldatainfo_icsf"), ""));
+                get_string("pluginname", "certificatebeautifuldatainfo_{$plugin}"), ""));
 
             require_once(__DIR__ . "/plugins_datainfo/{$plugin}/settings.php");
         }
