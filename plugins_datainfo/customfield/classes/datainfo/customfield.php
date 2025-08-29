@@ -48,7 +48,7 @@ class customfield extends help_base {
     public static function table_structure() {
         global $DB;
         $sql = "
-            SELECT cc.name AS 'cc_name', cf.shortname, cf.name, cf.type
+            SELECT cc.name AS cc_name, cf.shortname, cf.name, cf.type
               FROM {customfield_category}  cc
               JOIN {customfield_field}     cf ON cc.id = cf.categoryid
              WHERE cf.type IN('text','number','textarea','date')
