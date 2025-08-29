@@ -18,7 +18,7 @@
  * The mod_certificatebeautiful instance list viewed event.
  *
  * @package   mod_certificatebeautiful
- * @copyright 2025 Eduardo kraus (http://eduardokraus.com)
+ * @copyright 2025 Eduardo Kraus {@link https://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -28,7 +28,7 @@ namespace mod_certificatebeautiful\event;
  * The mod_certificatebeautiful instance list viewed event class.
  *
  * @package   mod_certificatebeautiful
- * @copyright 2025 Eduardo kraus (http://eduardokraus.com)
+ * @copyright 2025 Eduardo Kraus {@link https://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class course_module_instance_list_viewed extends \core\event\course_module_instance_list_viewed {
