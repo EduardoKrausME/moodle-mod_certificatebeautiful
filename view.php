@@ -39,6 +39,22 @@ $course = $DB->get_record("course", ["id" => $cm->course], "*", MUST_EXIST);
 
 $context = context_module::instance($cm->id);
 
+if ($token = optional_param("token", false, PARAM_TEXT)) {
+    $externalservice = $DB->get_record("external_services", ["shortname" => MOODLE_OFFICIAL_MOBILE_SERVICE]);
+    $externaltoken = $DB->get_record("external_tokens", ["token" => $token, "externalserviceid" => $externalservice->id], "userid");
+    $user = $DB->get_record("user", ["id" => $externaltoken->userid]);
+
+    if ($user) {
+        \core\session\manager::login_user($user);
+        $PAGE->set_pagelayout("embedded");
+        $PAGE->add_body_class("body-certificatebeautiful-mobile-view");
+    }
+    require_course_login($course, false, null, false, true);
+} else {
+    require_course_login($course, true, $cm);
+}
+require_capability("mod/certificatebeautiful:view", $context);
+
 if (optional_param("action", "", PARAM_TEXT) == "delete") {
     require_sesskey();
     $issueid = required_param("issueid", PARAM_INT);
@@ -77,9 +93,6 @@ $PAGE->set_context($context);
 $PAGE->set_url("/mod/certificatebeautiful/view.php", ["id" => $id]);
 $PAGE->set_title($course->shortname . ": " . $certificatebeautiful->name);
 $PAGE->set_heading(format_string($course->fullname));
-
-require_course_login($course, true, $cm);
-require_capability("mod/certificatebeautiful:view", $context);
 
 $event = certificatebeautiful_course_module_viewed::create([
     "objectid" => $PAGE->cm->instance,

@@ -88,7 +88,7 @@
   right: 0;
   text-align: center;
   background: #fff;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.831372549) 50%, #fff 100%);
+  background: linear-gradient(180deg, #ffffff00 0%, #ffffffd4 50%, #fff 100%);
   padding: 14px;
 }
 .certificatebeautiful-pages .editpage .certificate-editor,
@@ -148,4 +148,18 @@
   gap: 10px;
 }
 
-/*# sourceMappingURL=styles.css.map */
+body.body-certificatebeautiful-mobile-view {
+  height: 100%;
+  margin: 0;
+}
+body.body-certificatebeautiful-mobile-view #page {
+  background: transparent !important;
+  height: 100%;
+}
+body.body-certificatebeautiful-mobile-view [vw] {
+  display: none !important;
+}
+body.body-certificatebeautiful-mobile-view .activity-header,
+body.body-certificatebeautiful-mobile-view #header {
+  display: none;
+}
