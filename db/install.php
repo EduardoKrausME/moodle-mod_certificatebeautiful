@@ -45,6 +45,8 @@ function xmldb_certificatebeautiful_install() {
 
         $certificatebeautifulmodel = (object)[
             "name" => $model["name"],
+            "model_key" => $model["key"],
+            "orientation" => $model["orientation"],
             "pages_info" => json_encode($pagesinfo, JSON_PRETTY_PRINT),
             "timecreated" => time(),
             "timemodified" => time(),

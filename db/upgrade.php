@@ -100,10 +100,19 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2025030901, "certificatebeautiful");
     }
 
-    if ($oldversion < 2025080500) {
-        $DB->execute("UPDATE {certificatebeautiful_model} SET orientation = 'L' WHERE orientation = ''");
+    if ($oldversion < 2025091100) {
+        foreach (certificatebeautiful_list_all_models() as $model) {
+            $certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model", ["name" => $model["name"]], "id");
+            if ($certificatebeautifulmodel) {
+                $certificatebeautifulmodel->orientation = $model["orientation"];
+                $certificatebeautifulmodel->model_key = $model["key"];
+                $certificatebeautifulmodel->timemodified = time();
 
-        upgrade_mod_savepoint(true, 2025080500, "certificatebeautiful");
+                $DB->update_record("certificatebeautiful_model", $certificatebeautifulmodel);
+            }
+        }
+
+        upgrade_mod_savepoint(true, 2025091100, "certificatebeautiful");
     }
 
     return true;
