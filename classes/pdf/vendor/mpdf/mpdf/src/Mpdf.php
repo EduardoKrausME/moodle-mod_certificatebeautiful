@@ -25,7 +25,7 @@ use Psr\Log\NullLogger;
  *
  * @license GPL-2.0
  */
-class Mpdf implements \Psr\Log\LoggerAwareInterface
+class Mpdf
 {
 
 	use Strict;
