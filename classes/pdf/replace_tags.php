@@ -174,6 +174,8 @@ class replace_tags {
                     break;
             }
         }
+
+        $this->page->htmldata = preg_replace('/\{\$\w+->(\w+)\}/', '$1', $this->page->htmldata);
     }
 
     /**
