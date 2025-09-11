@@ -11,84 +11,84 @@
   border: none;
   min-width: 61px;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens,
-.path-mod-certificatebeautiful .structuresitens .structuresitens,
-.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens {
-  height: 130px;
+.certificatebeautiful-pages .structuresitens,
+.path-mod-certificatebeautiful .structuresitens,
+.path-mod-certificatebeautiful-manage-model .structuresitens {
+  height: 220px;
   overflow: hidden;
   position: relative;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens fieldset,
-.path-mod-certificatebeautiful .structuresitens .structuresitens fieldset,
-.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens fieldset {
+.certificatebeautiful-pages .structuresitens fieldset,
+.path-mod-certificatebeautiful .structuresitens fieldset,
+.path-mod-certificatebeautiful-manage-model .structuresitens fieldset {
   border: 1px solid #c8c8c8;
   padding-inline-start: 0.75em;
   border-radius: 5px;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens legend,
-.path-mod-certificatebeautiful .structuresitens .structuresitens legend,
-.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens legend {
+.certificatebeautiful-pages .structuresitens legend,
+.path-mod-certificatebeautiful .structuresitens legend,
+.path-mod-certificatebeautiful-manage-model .structuresitens legend {
   float: initial;
   width: auto;
   margin-bottom: 5px;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens table,
-.path-mod-certificatebeautiful .structuresitens .structuresitens table,
-.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens table {
+.certificatebeautiful-pages .structuresitens table,
+.path-mod-certificatebeautiful .structuresitens table,
+.path-mod-certificatebeautiful-manage-model .structuresitens table {
   width: 100%;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens table th,
-.path-mod-certificatebeautiful .structuresitens .structuresitens table th,
-.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens table th {
+.certificatebeautiful-pages .structuresitens table th,
+.path-mod-certificatebeautiful .structuresitens table th,
+.path-mod-certificatebeautiful-manage-model .structuresitens table th {
   white-space: nowrap;
   width: 10px;
   position: relative;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens table th span,
-.path-mod-certificatebeautiful .structuresitens .structuresitens table th span,
-.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens table th span {
+.certificatebeautiful-pages .structuresitens table th span,
+.path-mod-certificatebeautiful .structuresitens table th span,
+.path-mod-certificatebeautiful-manage-model .structuresitens table th span {
   position: absolute;
   top: -15px;
   left: 0;
   opacity: 1;
   font-weight: 400;
   animation: smooth 0.8s ease-in;
-  background: #fff;
+  background: #ffffff;
 }
 @keyframes smooth {
   0% {
     top: -15px;
     opacity: 1;
-    background: #fff;
+    background: #ffffff;
   }
   70% {
     opacity: 0.8;
-    background: #fff;
+    background: #ffffff;
   }
   100% {
     top: -30px;
     opacity: 0;
-    background: #ddd;
+    background: #dddddd;
   }
 }
-.certificatebeautiful-pages .structuresitens .structuresitens table th span.delete,
-.path-mod-certificatebeautiful .structuresitens .structuresitens table th span.delete,
-.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens table th span.delete {
+.certificatebeautiful-pages .structuresitens table th span.delete,
+.path-mod-certificatebeautiful .structuresitens table th span.delete,
+.path-mod-certificatebeautiful-manage-model .structuresitens table th span.delete {
   top: -40px;
   opacity: 0;
-  background: #ddd;
+  background: #dddddd;
 }
-.certificatebeautiful-pages .structuresitens .structuresitens .read-more,
-.path-mod-certificatebeautiful .structuresitens .structuresitens .read-more,
-.path-mod-certificatebeautiful-manage-model .structuresitens .structuresitens .read-more {
+.certificatebeautiful-pages .structuresitens .read-more,
+.path-mod-certificatebeautiful .structuresitens .read-more,
+.path-mod-certificatebeautiful-manage-model .structuresitens .read-more {
   width: 100% !important;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   text-align: center;
-  background: #fff;
-  background: linear-gradient(180deg, #ffffff00 0%, #ffffffd4 50%, #fff 100%);
+  background: #ffffff;
+  background: linear-gradient(180deg, #ffffff00 0%, #ffffffd4 50%, #ffffff 100%);
   padding: 14px;
 }
 .certificatebeautiful-pages .editpage .certificate-editor,

@@ -10,70 +10,68 @@
         border: none;
         min-width: 61px;
     }
-    
+
     .structuresitens {
-        .structuresitens {
-            height: 130px;
-            overflow: hidden;
-            position: relative;
-        }
-        .structuresitens fieldset {
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+        fieldset {
             border: 1px solid #c8c8c8;
             padding-inline-start: 0.75em;
             border-radius: 5px;
         }
-        .structuresitens legend {
+        legend {
             float: initial;
             width: auto;
             margin-bottom: 5px;
         }
-        .structuresitens table {
+        table {
             width: 100%;
         }
-        .structuresitens table th {
+        table th {
             white-space: nowrap;
             width: 10px;
             position: relative;
         }
-        .structuresitens table th span {
+        table th span {
             position: absolute;
             top: -15px;
             left: 0;
             opacity: 1;
             font-weight: 400;
             animation: smooth .8s ease-in;
-            background: #fff;
+            background: #ffffff;
         }
         @keyframes smooth {
             0% {
                 top: -15px;
                 opacity: 1;
-                background: #fff;
+                background: #ffffff;
             }
             70% {
                 opacity: .8;
-                background: #fff;
+                background: #ffffff;
             }
             100% {
                 top: -30px;
                 opacity: 0;
-                background: #ddd;
+                background: #dddddd;
             }
         }
-        .structuresitens table th span.delete {
+        table th span.delete {
             top: -40px;
             opacity: 0;
-            background: #ddd;
+            background: #dddddd;
         }
-        .structuresitens .read-more {
+        .read-more {
             width: 100% !important;
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
             text-align: center;
-            background: #fff;
-            background: linear-gradient(180deg, #ffffff00 0%, #ffffffd4 50%, #fff 100%);
+            background: #ffffff;
+            background: linear-gradient(180deg, #ffffff00 0%, #ffffffd4 50%, #ffffff 100%);
             padding: 14px;
         }
     }
