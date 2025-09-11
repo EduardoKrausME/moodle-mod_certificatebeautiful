@@ -43,13 +43,14 @@
         <div>
             {{> mod_certificatebeautiful/list-certificate }}
 
-            {{#add-new-page}}
-                <div class="mt-4">
+            <div class="d-flex">
+                {{#add-new-page}}
                     <a href="{{{add-new-page-link}}}"
-                       class="btn btn-info add-new pt-1 pb-1">
-                        {{#str}}add_new_page, certificatebeautiful{{/str}}</a>
-                </div>
-            {{/add-new-page}}
+                       class="btn btn-info mt-4 mt-1 mb-1">{{#str}}add_new_page, certificatebeautiful{{/str}}</a>
+                {{/add-new-page}}
+                <a href="{{{duplicate-page-link}}}" class="btn btn-primary mt-4 mt-1 mb-1 ms-1">{{#str}}duplicate{{/str}}</a>
+                <a href="{{{delete-page-link}}}" class="btn btn-danger mt-4 mt-1 mb-1 ms-3">{{#str}}delete{{/str}}</a>
+            </div>
         </div>
     </div>
 </div>

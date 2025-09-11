@@ -189,6 +189,12 @@ function certificatebeautiful_extend_settings_navigation($settings, $certificate
             navigation_node::TYPE_SETTING, null, "mod_certificatebeautiful_report",
             new pix_icon("i/report", ""));
         $certificatebeautifulnode->add_node($node, $beforekey);
+
+        $node = navigation_node::create(get_string("manage_models", "certificatebeautiful"),
+            new moodle_url("/mod/certificatebeautiful/manage-model-list.php"),
+            navigation_node::TYPE_SETTING, null, "mod_certificatebeautiful_manage_models",
+            new pix_icon("i/report", ""));
+        $certificatebeautifulnode->add_node($node, $beforekey);
     }
 }
 
@@ -201,7 +207,7 @@ function certificatebeautiful_extend_settings_navigation($settings, $certificate
  * @throws Exception
  */
 function certificatebeautiful_extend_navigation_course($navigation, $course, $context) {
-    if (has_capability("mod/certificatebeautiful:addinstance", $context)) {
+    if (has_capability("moodle/course:manageactivities", $context)) {
         $certificatenode1 = $navigation->add(get_string("course_certificates", "certificatebeautiful"),
             null, navigation_node::TYPE_CONTAINER, null, uniqid());
         $url = new moodle_url("/mod/certificatebeautiful/reports.php", ["course" => $course->id]);
@@ -354,4 +360,3 @@ function certificatebeautiful_list_all_models() {
         ],
     ];
 }
-

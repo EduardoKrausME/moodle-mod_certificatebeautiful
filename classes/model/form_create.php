@@ -84,9 +84,12 @@ class form_create extends moodleform {
                 ];
             }
 
-            $data["add-new-page"] = count($data["pages"]) < 3;
-            $data["add-new-page-link"] = "manage-model-editpage.php?id={$certificatebeautifulmodel->id}&action=select&page=" .
-                count($data["pages"]);
+            $countpages = count($data["pages"]);
+            $data["add-new-page"] = $countpages < 3;
+            $data["add-new-page-link"] = "manage-model-editpage.php?id={$certificatebeautifulmodel->id}&action=select&page={$countpages}";
+
+            $data["duplicate-page-link"] = "manage-model.php?id={$certificatebeautifulmodel->id}&action=duplicate";
+            $data["delete-page-link"] = "manage-model.php?id={$certificatebeautifulmodel->id}&action=deletemodel";
 
             $mform->addElement("html", $OUTPUT->render_from_template('mod_certificatebeautiful/formgroup_create-page', $data));
 

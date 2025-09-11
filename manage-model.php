@@ -79,7 +79,40 @@ switch (optional_param("action", false, PARAM_TEXT)) {
 
             redirect("manage-model.php?id={$certificatebeautifulmodel->id}");
         }
+        break;
+    case "deletemodel":
+        $PAGE->navbar->add(get_string("edit_page", "certificatebeautiful"));
+        $PAGE->navbar->add(get_string("select_model", "certificatebeautiful"));
 
+        echo $OUTPUT->header();
+
+        $model = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
+
+        if (optional_param("confirm", 0, PARAM_INT) && confirm_sesskey()) {
+            $DB->delete_records("certificatebeautiful_model", ["id" => $model->id]);
+            redirect(
+                new moodle_url("/mod/certificatebeautiful/manage-model-list.php"),
+                get_string("deletedmodel", "certificatebeautiful", $model->name)
+            );
+        } else {
+            $confirmurl = new moodle_url("/mod/certificatebeautiful/manage-model.php",
+                ["id" => $model->id, "action" => "deletemodel", "confirm" => 1, "sesskey" => sesskey()]);
+            $cancelurl = new moodle_url("/mod/certificatebeautiful/manage-model.php", ["id" => $model->id]);
+
+            $options = ["continuestr" => get_string('yes')];
+            echo $OUTPUT->confirm(
+                get_string("deletemodelconfirm", "certificatebeautiful", $model->name), $confirmurl, $cancelurl, $options
+            );
+        }
+
+        echo $OUTPUT->footer();
+        break;
+    case "duplicate":
+        $model = $DB->get_record("certificatebeautiful_model", ["id" => $id]);
+        unset($model->id);
+        $model->name = get_string("duplicatedmodule", "moodle", $model->name);
+        $model->id = $DB->insert_record("certificatebeautiful_model", $model);
+        redirect("manage-model.php?id={$model->id}");
         break;
 }
 

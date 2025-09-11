@@ -23,20 +23,22 @@
  */
 
 use mod_certificatebeautiful\model\table_list;
+use mod_certificatebeautiful\models;
 
-require_once('../../config.php');
+require_once("../../config.php");
 require_once("{$CFG->libdir}/tablelib.php");
+require_once(__DIR__ . "/lib.php");
 
 global $PAGE, $USER, $CFG;
 
 $context = context_system::instance();
 $PAGE->add_body_class("certificatebeautiful-pages");
 $PAGE->set_context($context);
-$PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php');
+$PAGE->set_url("/mod/certificatebeautiful/manage-model-list.php");
 $PAGE->set_title(get_string("list_model", "certificatebeautiful"));
 
 require_login();
-require_capability('mod/certificatebeautiful:addinstance', $context);
+require_capability("mod/certificatebeautiful:addinstance", $context);
 
 $PAGE->set_heading(format_string(get_string("list_model", "certificatebeautiful")));
 
@@ -44,15 +46,15 @@ $PAGE->navbar->add(get_string("list_model", "certificatebeautiful"), $PAGE->url)
 
 echo $OUTPUT->header();
 
-echo $OUTPUT->render_from_template('mod_certificatebeautiful/heading-addnew', [
+echo $OUTPUT->render_from_template("mod_certificatebeautiful/heading-addnew", [
     "url" => "manage-model.php?id=-1",
     "text" => get_string("add_new_model", "certificatebeautiful"),
 ]);
 
 $models = $DB->get_records("certificatebeautiful_model");
+models::order($models);
 $data = ["pages" => [], "class-root" => "d-flex flex-wrap certificate-flex-gap"];
 foreach ($models as $model) {
-
     $pagesinfo = json_decode($model->pages_info, true);
 
     $htmldata = "{$pagesinfo[0]["htmldata"]}<style>{$pagesinfo[0]["cssdata"]}</style>";
@@ -67,6 +69,6 @@ foreach ($models as $model) {
         "zoom" => true,
     ];
 }
-echo $OUTPUT->render_from_template('mod_certificatebeautiful/list-certificate', $data);
+echo $OUTPUT->render_from_template("mod_certificatebeautiful/list-certificate", $data);
 
 echo $OUTPUT->footer();

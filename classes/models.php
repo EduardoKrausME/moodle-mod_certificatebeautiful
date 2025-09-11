@@ -41,11 +41,33 @@ class models {
     public static function list_all() {
         global $DB;
         $models = [];
-        $sql = "SELECT id, name FROM {certificatebeautiful_model}";
+        $sql = "SELECT id, name, model_key FROM {certificatebeautiful_model}";
         $records = $DB->get_records_sql($sql, []);
+        self::order($records);
         foreach ($records as $record) {
             $models[$record->id] = format_string($record->name);
         }
         return $models;
+    }
+
+    /**
+     * Order models
+     *
+     * @param array $models
+     */
+    public static function order(&$models) {
+        usort($models, function($a, $b) {
+            // If one has an empty model_key and the other doesn't, send the empty one to the beginning.
+            $aempty = empty($a->model_key);
+            $bempty = empty($b->model_key);
+
+            if ($aempty && !$bempty) {
+                return -1; // The $a comes first.
+            } else if (!$aempty && $bempty) {
+                return 1;  // The $b comes first.
+            }
+
+            return strcmp($a->name, $b->name);
+        });
     }
 }
