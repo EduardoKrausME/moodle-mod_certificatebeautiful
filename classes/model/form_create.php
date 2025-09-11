@@ -86,7 +86,8 @@ class form_create extends moodleform {
 
             $countpages = count($data["pages"]);
             $data["add-new-page"] = $countpages < 3;
-            $data["add-new-page-link"] = "manage-model-editpage.php?id={$certificatebeautifulmodel->id}&action=select&page={$countpages}";
+            $data["add-new-page-link"] =
+                "manage-model-editpage.php?id={$certificatebeautifulmodel->id}&action=select&page={$countpages}";
 
             $data["duplicate-page-link"] = "manage-model.php?id={$certificatebeautifulmodel->id}&action=duplicate";
             $data["delete-page-link"] = "manage-model.php?id={$certificatebeautifulmodel->id}&action=deletemodel";
