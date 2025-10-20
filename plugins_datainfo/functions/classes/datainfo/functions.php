@@ -48,19 +48,14 @@ class functions {
     public static function table_structure() {
         return [
             [
-                "key" => "{{date(xxx)}}",
-                "drag" => "{{date(d/m/Y)}}",
-                "label" => get_string("date", "certificatebeautifuldatainfo_functions"),
+                "key" => "{{time()}}",
+                "drag" => "{{time()}}",
+                "label" => get_string("time", "certificatebeautifuldatainfo_functions"),
             ],
             [
                 "key" => "{{userdate(xx,yy)}}",
                 "drag" => "{{userdate(time(),strftimedate)}}",
                 "label" => get_string("userdate", "certificatebeautifuldatainfo_functions"),
-            ],
-            [
-                "key" => "{{time()}}",
-                "drag" => "{{time()}}",
-                "label" => get_string("time", "certificatebeautifuldatainfo_functions"),
             ],
         ];
     }
@@ -76,39 +71,16 @@ class functions {
     public static function replace($html, $user) {
         self::$user = $user;
 
-        $pattern = '/{{(?<function>userdate|date)\((?<parameters>.*?)\)}}/';
-        $html = preg_replace_callback($pattern, function ($matches) {
-            if (strpos($matches["parameters"], ",")) {
-                preg_match('/(?<p1>.*?[,\)])(?<p2>.*?[,\)])?(?<p3>.*?[,\)])?/', $matches["parameters"], $functions);
-                foreach ($functions as $key => $function) {
-                    $function = str_replace(",", "", $function);
-                    $function = str_replace(")", "", $function);
-                    $functions[$key] = trim($function);
-                }
-            } else {
-                $functions = ["p1" => $matches["parameters"]];
+        $html = str_replace('{{time()}}', time(), $html);
+
+        $pattern = '/\{\{userdate\(\s*(\d+)\s*(?:,\s*([^)}]+?)\s*)?\)\}\}/u';
+        $html = preg_replace_callback($pattern, function ($m) {
+            $numero = (int)$m[1];
+            if (isset($m[2]) && $m[2] !== '') {
+                return userdate($numero, $m[2]);
             }
-            switch ($matches["function"]) {
-                case "userdate":
-                    if (isset($functions["p3"])) {
-                        return userdate($functions["p1"], get_string($functions["p2"], "langconfig"), $functions["p3"]);
-                    } else if (isset($functions["p2"])) {
-                        return userdate($functions["p1"], get_string($functions["p2"], "langconfig"), self::$user->timezone);
-                    } else if (isset($functions["p1"])) {
-                        return userdate($functions["p1"], get_string("strftimedate", "langconfig"), self::$user->timezone);
-                    }
-                    break;
-                case "date":
-                    if (isset($functions["p2"])) {
-                        return date($functions["p1"], $functions["p2"]);
-                    } else if (isset($functions["p1"])) {
-                        return date($functions["p1"]);
-                    }
-                    break;
-            }
-        },
-            $html
-        );
+            return userdate($numero);
+        }, $html);
 
         return $html;
     }
