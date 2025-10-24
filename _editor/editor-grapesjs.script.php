@@ -1379,8 +1379,8 @@ function get_lang_string($item) {
                     html = html.split("</body>").join("");
 
                     var css = editor.getCss();
-                    css = css.split(/\*.*?}/s).join("");
                     css = css.split(/body.*?}/s).join("");
+                    css = css.split(/\[data-gjs-type=wrapper]\s?>\s?div\s?\*.*?}/s).join("");
                     css = css.split(/\[data-gjs-type="?wrapper"?]\s?>\s?#/).join("#");
                     css = css.split(/\[data-gjs-type="?wrapper"?]\s?>\s/).join("");
 
