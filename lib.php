@@ -278,7 +278,6 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
             $tree->add_node($node);
         }
     }
-
 }
 
 /**
