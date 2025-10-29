@@ -27,6 +27,7 @@ namespace mod_certificatebeautiful\fonts;
 use Exception;
 
 /**
+ * phpcs:disable PSR2.Classes.PropertyDeclaration.Underscore
  * Class font_attributes
  *
  * @package mod_certificatebeautiful\fonts
