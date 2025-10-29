@@ -12,7 +12,7 @@ jobs:
   release-at-moodle-org:
     runs-on: ubuntu-latest
     env:
-      PLUGIN: theme_eadtraining
+      PLUGIN: mod_certificatebeautiful
       CURL: curl -s
       ENDPOINT: https://moodle.org/webservice/rest/server.php
       TOKEN: ${{ secrets.MOODLE_ORG_TOKEN }}
