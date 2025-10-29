@@ -43,7 +43,7 @@ use moodle_recordset;
 /**
  * Privacy API implementation for the certificatebeautiful plugin.
  */
-class provider implements metadata_provider, plugin_provider, core_userlist_provider {
+class provider implements core_userlist_provider, metadata_provider, plugin_provider {
 
     /**
      * Returns metadata.
