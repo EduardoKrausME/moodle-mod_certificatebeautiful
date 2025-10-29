@@ -206,4 +206,3 @@ switch ($action) {
 
         echo $OUTPUT->footer();
 }
-
