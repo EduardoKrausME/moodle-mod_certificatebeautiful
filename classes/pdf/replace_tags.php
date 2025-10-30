@@ -241,4 +241,3 @@ class replace_tags {
         return $this->page;
     }
 }
-
