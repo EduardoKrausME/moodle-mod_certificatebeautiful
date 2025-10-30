@@ -2,7 +2,7 @@ name: Auto-release via commit message
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 permissions:
   contents: write
