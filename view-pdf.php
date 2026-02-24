@@ -92,12 +92,20 @@ $storedfile = $fs->get_file(
     $filerecord->filearea, $filerecord->itemid,
     $filerecord->filepath, $filerecord->filename);
 
+if ($certificatebeautiful->timemodified != $certificatebeautifulissue->version) {
+    if ($storedfile) {
+        $storedfile->delete();
+        $storedfile = null;
+    }
+}
+
 if ($storedfile) {
     if ($storedfile->get_timecreated() > $certificatebeautifulmodel->timemodified) {
         $content = $storedfile->get_content();
 
         certificatebeautiful_show_header($action, $context, $name);
         header('Content-Length: ' . strlen($content));
+        ob_clean();
         echo $content;
         die();
     } else {
@@ -115,6 +123,7 @@ $fs->create_file_from_string($filerecord, $contentpdf);
 
 certificatebeautiful_show_header($action, $context, $name);
 header('Content-Length: ' . strlen($contentpdf));
+ob_clean();
 echo $contentpdf;
 
 /**
