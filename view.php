@@ -64,7 +64,7 @@ if (optional_param("action", "", PARAM_TEXT) == "delete") {
     $DB->delete_records("certificatebeautiful_issue", ["id" => $issueid]);
 
     $fs = get_file_storage();
-    $filerecord = (object)[
+    $filerecord = (object) [
         "component" => "mod_certificatebeautiful",
         "contextid" => $context->id,
         "filearea" => "certificate",
@@ -76,7 +76,8 @@ if (optional_param("action", "", PARAM_TEXT) == "delete") {
     $storedfile = $fs->get_file(
         $filerecord->contextid, $filerecord->component,
         $filerecord->filearea, $filerecord->itemid,
-        $filerecord->filepath, $filerecord->filename);
+        $filerecord->filepath, $filerecord->filename
+    );
 
     if ($storedfile) {
         $storedfile->delete();
@@ -108,13 +109,14 @@ $completion->set_module_viewed($cm);
 
 echo $OUTPUT->header();
 
-if (has_capability("mod/certificatebeautiful:addinstance", $context)) {
+if (has_capability("mod/certificatebeautiful:viewreport", $context)) {
 
     $title = get_string("report_filename", "certificatebeautiful");
     echo $OUTPUT->heading($title, 2, "main", "certificatebeautifulheading");
 
     $table = new certificatebeautiful_view(
-        "certificatebeautiful_report", $cm->id, $certificatebeautiful);
+        "certificatebeautiful_report", $cm->id, $certificatebeautiful
+    );
     $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/report.php?id={$cm->id}");
     $table->out(40, true);
 } else {

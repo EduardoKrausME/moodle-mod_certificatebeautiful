@@ -1,25 +1,10 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Class certificatebeautiful_view
  *
- * @package   mod_certificatebeautiful
+ * @package mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 namespace mod_certificatebeautiful\report;
@@ -34,6 +19,7 @@ use table_sql;
 
 defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/tablelib.php");
+require_once("{$CFG->libdir}/gradelib.php");
 
 /**
  * Class certificatebeautiful_view
@@ -48,6 +34,9 @@ class certificatebeautiful_view extends table_sql {
     /** @var certificatebeautiful */
     public $certificatebeautiful;
 
+    /** @var array */
+    public $coursegradecache = [];
+
     /**
      * certificatebeautiful_view constructor.
      *
@@ -58,7 +47,6 @@ class certificatebeautiful_view extends table_sql {
      */
     public function __construct($uniqueid, $cmid, $certificatebeautiful) {
         parent::__construct($uniqueid);
-
         $this->cmid = $cmid;
         $this->certificatebeautiful = $certificatebeautiful;
 
@@ -76,12 +64,14 @@ class certificatebeautiful_view extends table_sql {
             "fullname",
             "email",
             "code",
+            "finalgrade",
             "timecreated",
         ];
         $headers = [
             get_string("report_usernome", "certificatebeautiful"),
             get_string("report_useremail", "certificatebeautiful"),
             get_string("report_code", "certificatebeautiful"),
+            get_string("report_finalgrade", "certificatebeautiful"),
             get_string("report_timecreated", "certificatebeautiful"),
         ];
 
@@ -99,14 +89,13 @@ class certificatebeautiful_view extends table_sql {
      * Fullname is treated as a special columname in tablelib and should always
      * be treated the same as the fullname of a user.
      *
+     * @param object $row
+     * @return string
+     * @throws Exception
      * @uses $this->useridfield if the userid field is not expected to be id
      * then you need to override $this->useridfield to point at the correct
      * field for the user id.
      *
-     * @param object $row   the data from the db containing all fields from the
-     *                      users table necessary to construct the full name of the user in
-     *                      current language.
-     * @return string contents of cell in column 'fullname', for this row.
      */
     public function col_fullname($row) {
         global $COURSE;
@@ -119,8 +108,10 @@ class certificatebeautiful_view extends table_sql {
         if ($COURSE->id == SITEID) {
             $profileurl = new moodle_url("/user/profile.php", ["id" => $row->userid]);
         } else {
-            $profileurl = new moodle_url("/user/view.php",
-                ["id" => $row->userid, "course" => $COURSE->id]);
+            $profileurl = new moodle_url("/user/view.php", [
+                "id" => $row->userid,
+                "course" => $COURSE->id,
+            ]);
         }
         return html_writer::link($profileurl, $name, ["target" => "_blank"]);
     }
@@ -135,12 +126,41 @@ class certificatebeautiful_view extends table_sql {
     public function col_code(&$row) {
         global $DB;
 
-        $row->code = $DB->get_field("certificatebeautiful_issue", "code", ["userid" => $row->userid, "cmid" => $this->cmid]);
+        $row->code = $DB->get_field("certificatebeautiful_issue", "code", [
+            "userid" => $row->userid,
+            "cmid" => $this->cmid,
+        ]);
+
         if ($row->code) {
             return $row->code;
-        } else {
+        }
+
+        return "--";
+    }
+
+    /**
+     * Return the current final course grade.
+     *
+     * The grade is not stored in the plugin table. It is loaded from Moodle
+     * gradebook at runtime and cached per user during the request.
+     *
+     * @param object $row
+     * @return string
+     */
+    public function col_finalgrade(&$row) {
+        if (!array_key_exists($row->userid, $this->coursegradecache)) {
+            $this->coursegradecache[$row->userid] = grade_get_course_grade(
+                $row->userid,
+                $this->certificatebeautiful->course
+            );
+        }
+
+        $grade = $this->coursegradecache[$row->userid];
+
+        if (!$grade || !isset($grade->str_grade) || $grade->str_grade === "-") {
             return "--";
         }
+        return $grade->str_grade;
     }
 
     /**
@@ -153,13 +173,16 @@ class certificatebeautiful_view extends table_sql {
     public function col_timecreated(&$row) {
         global $DB;
 
-        $row->timecreated = $DB->get_field("certificatebeautiful_issue", "timecreated",
-            ["userid" => $row->userid, "cmid" => $this->cmid]);
+        $row->timecreated = $DB->get_field("certificatebeautiful_issue", "timecreated", [
+            "userid" => $row->userid,
+            "cmid" => $this->cmid,
+        ]);
+
         if ($row->timecreated) {
             return userdate($row->timecreated);
-        } else {
-            return "--";
         }
+
+        return "--";
     }
 
     /**
@@ -173,8 +196,10 @@ class certificatebeautiful_view extends table_sql {
         global $DB, $OUTPUT;
 
         /** @var certificatebeautiful_issue $issue */
-        $issue = $DB->get_record("certificatebeautiful_issue",
-            ["userid" => $row->userid, "cmid" => $this->cmid]);
+        $issue = $DB->get_record("certificatebeautiful_issue", [
+            "userid" => $row->userid,
+            "cmid" => $this->cmid,
+        ]);
 
         if ($row->timecreated) {
             $paramsvalidate = ["code" => $row->code];
@@ -195,7 +220,7 @@ class certificatebeautiful_view extends table_sql {
                     "action" => "delete",
                     "sesskey" => sesskey(),
                 ];
-                $data["url-delete"] = (new moodle_url("/mod/certificatebeautiful/view.php", $paramsdelete))->out();
+                $data["url-delete"] = new moodle_url("/mod/certificatebeautiful/view.php", $paramsdelete);
             }
         } else {
             $paramscreate = [
@@ -206,7 +231,7 @@ class certificatebeautiful_view extends table_sql {
             ];
             $data = [
                 "create" => true,
-                "url-create" => (new moodle_url("/mod/certificatebeautiful/view-pdf.php", $paramscreate))->out(),
+                "url-create" => new moodle_url("/mod/certificatebeautiful/view-pdf.php", $paramscreate),
             ];
         }
         return $OUTPUT->render_from_template("mod_certificatebeautiful/certificatebeautiful_view-extra", $data);
@@ -266,6 +291,11 @@ class certificatebeautiful_view extends table_sql {
             $this->initialbars(true);
         }
 
-        $this->rawdata = $DB->get_recordset_sql($this->sql, $params, $this->get_page_start(), $this->get_page_size());
+        $this->rawdata = $DB->get_recordset_sql(
+            $this->sql,
+            $params,
+            $this->get_page_start(),
+            $this->get_page_size()
+        );
     }
 }
