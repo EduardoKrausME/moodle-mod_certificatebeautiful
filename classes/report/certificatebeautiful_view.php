@@ -292,10 +292,17 @@ class certificatebeautiful_view extends table_sql {
                     ORDER BY {$order}";
 
         if ($pagesize != -1) {
-            $countsql = "SELECT COUNT(cbi.code) as c
-                           FROM {certificatebeautiful_issue} cbi
-                           JOIN {user}                       u   ON u.id = cbi.userid
-                          WHERE cbi.cmid = :cmid {$where}";
+            $countsql = "SELECT COUNT(DISTINCT u.id)
+                   FROM {course}           c
+                   JOIN {enrol}            e ON c.id = e.courseid
+                   JOIN {user_enrolments} ue ON e.id = ue.enrolid
+                   JOIN {user}             u ON u.id = ue.userid
+                  WHERE u.deleted   = 0
+                    AND u.suspended = 0
+                    AND ue.status   = 0
+                    AND e.status    = 0
+                    AND c.id        = :courseid
+                        {$where}";
             $total = $DB->get_field_sql($countsql, $params);
             $this->pagesize($pagesize, $total);
         } else {
