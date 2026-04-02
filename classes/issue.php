@@ -8,19 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-/**
- * Class issue
- *
- * @package   mod_certificatebeautiful
- * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 
 namespace mod_certificatebeautiful;
 
@@ -37,15 +29,18 @@ class issue {
 
     /** @var string */
     const ISSUE_HIDDEN = "hidden";
+
     /** @var string */
     const ISSUE_ADMINS_ONLY = "admins_only";
+
     /** @var string */
     const ISSUE_NAME_VISIBLE = "name_visible";
+
     /** @var string */
     const ISSUE_EMAIL_ANONIMIZED = "email_anonimized";
 
     /**
-     * Function get
+     * Returns existing issue or creates a new one.
      *
      * @param object $user
      * @param certificatebeautiful $certificatebeautiful
@@ -54,23 +49,43 @@ class issue {
      * @throws Exception
      */
     public static function get($user, $certificatebeautiful, $cm) {
+        list($issue) = self::get_or_create($user, $certificatebeautiful, $cm);
+        return $issue;
+    }
+
+    /**
+     * Returns existing issue or creates a new one, also telling whether it was created now.
+     *
+     * @param object $user
+     * @param certificatebeautiful $certificatebeautiful
+     * @param object $cm
+     * @return array{0:object,1:bool}
+     * @throws Exception
+     */
+    public static function get_or_create($user, $certificatebeautiful, $cm): array {
         global $DB;
 
         /** @var certificatebeautiful_issue $issue */
-        $issue = $DB->get_record("certificatebeautiful_issue", ["userid" => $user->id, "cmid" => $cm->id]);
-        if (!$issue) {
-            $issue = (object)[
-                "userid" => $user->id,
-                "cmid" => $cm->id,
-                "certificatebeautifulid" => $certificatebeautiful->id,
-                "code" => substr(strtoupper(md5("{$cm->id}-{$user->id}-{$certificatebeautiful->id}")), 0, 10),
-                "version" => $certificatebeautiful->timemodified,
-                "timecreated" => time(),
-                "timemodified" => time(),
-            ];
-            $issue->id = $DB->insert_record("certificatebeautiful_issue", $issue);
+        $issue = $DB->get_record("certificatebeautiful_issue", [
+            "userid" => $user->id,
+            "cmid" => $cm->id,
+        ]);
+
+        if ($issue) {
+            return [$issue, false];
         }
 
-        return $issue;
+        $issue = (object)[
+            "userid" => $user->id,
+            "cmid" => $cm->id,
+            "certificatebeautifulid" => $certificatebeautiful->id,
+            "code" => substr(strtoupper(md5("{$cm->id}-{$user->id}-{$certificatebeautiful->id}")), 0, 10),
+            "version" => $certificatebeautiful->timemodified,
+            "timecreated" => time(),
+        ];
+
+        $issue->id = $DB->insert_record("certificatebeautiful_issue", $issue);
+
+        return [$issue, true];
     }
 }

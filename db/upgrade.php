@@ -115,5 +115,25 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2025091100, "certificatebeautiful");
     }
 
+    if ($oldversion < 2026040200) {
+        $table = new xmldb_table("certificatebeautiful");
+
+        $fields = [
+            new xmldb_field("autogenerate", XMLDB_TYPE_INTEGER, "1", null, null, null, "0", "model"),
+            new xmldb_field("autotrigger", XMLDB_TYPE_CHAR, "30", null, null, null, "", "autogenerate"),
+            new xmldb_field("triggercmid", XMLDB_TYPE_INTEGER, "10", null, null, null, "0", "autotrigger"),
+            new xmldb_field("gradepass", XMLDB_TYPE_CHAR, "32", null, null, null, "", "triggercmid"),
+            new xmldb_field("notifyuser", XMLDB_TYPE_INTEGER, "1", null, null, null, "0", "gradepass"),
+        ];
+
+        foreach ($fields as $field) {
+            if (!$dbman->field_exists($table, $field)) {
+                $dbman->add_field($table, $field);
+            }
+        }
+
+        upgrade_mod_savepoint(true, 2026040200, "certificatebeautiful");
+    }
+
     return true;
 }

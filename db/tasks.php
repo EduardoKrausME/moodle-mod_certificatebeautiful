@@ -8,14 +8,14 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * version file
+ * Plugin capabilities are defined here.
  *
  * @package   mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
@@ -24,8 +24,14 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version = 2026040200;
-$plugin->release = "3.2.0";
-$plugin->requires = 2021041900;
-$plugin->maturity = MATURITY_STABLE;
-$plugin->component = "mod_certificatebeautiful";
+$tasks = [
+    [
+        "classname" => "\\mod_certificatebeautiful\\task\\auto_issue_task",
+        "blocking" => 0,
+        "minute" => "*/5",
+        "hour" => "*",
+        "day" => "*",
+        "month" => "*",
+        "dayofweek" => "*",
+    ],
+];

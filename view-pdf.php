@@ -120,6 +120,8 @@ $contentpdf = $pagepdf->create_pdf(
     $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $user, $course);
 
 $fs->create_file_from_string($filerecord, $contentpdf);
+$certificatebeautifulissue->version = $certificatebeautiful->timemodified;
+$DB->update_record("certificatebeautiful_issue", $certificatebeautifulissue);
 
 certificatebeautiful_show_header($action, $context, $name);
 header('Content-Length: ' . strlen($contentpdf));
