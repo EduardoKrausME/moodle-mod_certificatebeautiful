@@ -174,8 +174,8 @@ class certificatebeautiful_view_user extends table_sql {
                              u.id AS user_id, u.email, u.firstnamephonetic, u.lastnamephonetic,
                              u.middlename, u.alternatename, u.firstname, u.lastname
                         FROM {certificatebeautiful_issue} cbi
-                        JOIN {user}                   u ON u.id = cbi.userid
-                        JOIN {certificatebeautiful}        cb ON cb.id = cbi.certificatebeautifulid
+                        JOIN {user}                       u   ON u.id = cbi.userid
+                        JOIN {certificatebeautiful}       cb  ON cb.id = cbi.certificatebeautifulid
                        WHERE cbi.userid = :userid
                              {$where}
                     ORDER BY {$order}";
@@ -183,7 +183,7 @@ class certificatebeautiful_view_user extends table_sql {
         if ($pagesize != -1) {
             $countsql = "SELECT COUNT(cbi.code) as c
                            FROM {certificatebeautiful_issue} cbi
-                           JOIN {user}                         u ON u.id = cbi.userid
+                           JOIN {user}                       u   ON u.id = cbi.userid
                           WHERE cbi.userid = :userid {$where}";
             $total = $DB->get_field_sql($countsql, $params);
             $this->pagesize($pagesize, $total);

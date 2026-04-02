@@ -72,16 +72,11 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
         }
 
         $sql = "SELECT c.id
-                  FROM {context} c
-            INNER JOIN {course_modules} cm
-                    ON cm.id = c.instanceid
-                   AND c.contextlevel = :contextlevel
-            INNER JOIN {modules} m
-                    ON m.id = cm.module
-                   AND m.name = :modname
-            INNER JOIN {certificatebeautiful_issue} issue
-                    ON issue.cmid = cm.id
-                 WHERE issue.userid = :userid";
+                  FROM {context}                    c
+            INNER JOIN {course_modules}             cm  ON cm.id  = c.instanceid AND c.contextlevel = :contextlevel
+            INNER JOIN {modules}                    m   ON m.id   = cm.module     AND m.name = :modname
+            INNER JOIN {certificatebeautiful_issue} i   ON i.cmid = cm.id
+                 WHERE i.userid = :userid";
 
         $params = [
             "modname" => "certificatebeautiful",
@@ -197,11 +192,8 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
         list($insql, $inparams) = $DB->get_in_or_equal($cmids, SQL_PARAMS_NAMED);
         $sql = "SELECT cb.id, cm.id AS cmid
                  FROM {certificatebeautiful} cb
-                 JOIN {modules}               m
-                                             ON m.name = 'certificatebeautiful'
-                 JOIN {course_modules}       cm
-                                             ON cm.instance = cb.id
-                                            AND cm.module   = m.id
+                 JOIN {modules}               m ON m.name = 'certificatebeautiful'
+                 JOIN {course_modules}       cm ON cm.instance = cb.id AND cm.module   = m.id
                 WHERE cm.id $insql";
         $params = array_merge($inparams, []);
 
@@ -258,9 +250,9 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
             "instanceid" => $context->instanceid,
         ];
 
-        $sql = "SELECT issue.userid
-                  FROM {course_modules} cm
-                  JOIN {certificatebeautiful_issue} issue ON issue.cmid = cm.id
+        $sql = "SELECT i.userid
+                  FROM {course_modules}             cm
+                  JOIN {certificatebeautiful_issue} i  ON i.cmid = cm.id
                  WHERE cm.id = :instanceid";
 
         $userlist->add_from_sql("userid", $sql, $params);

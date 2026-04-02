@@ -254,10 +254,8 @@ class automation {
         global $DB;
 
         $sql = "SELECT cc.userid, cc.userid
-                  FROM {course_completions} cc
-             LEFT JOIN {certificatebeautiful_issue} cbi
-                    ON cbi.cmid = :cmid
-                   AND cbi.userid = cc.userid
+                  FROM {course_completions}         cc
+             LEFT JOIN {certificatebeautiful_issue} cbi ON cbi.cmid = :cmid AND cbi.userid = cc.userid
                  WHERE cc.course = :courseid
                    AND cc.timecompleted > 0
                    AND cbi.id IS NULL";
@@ -284,10 +282,8 @@ class automation {
         }
 
         $sql = "SELECT cmc.userid, cmc.userid
-                  FROM {course_modules_completion} cmc
-             LEFT JOIN {certificatebeautiful_issue} cbi
-                    ON cbi.cmid = :cmid
-                   AND cbi.userid = cmc.userid
+                  FROM {course_modules_completion}  cmc
+             LEFT JOIN {certificatebeautiful_issue} cbi ON cbi.cmid = :cmid AND cbi.userid = cmc.userid
                  WHERE cmc.coursemoduleid = :triggercmid
                    AND cmc.completionstate > 0
                    AND cbi.id IS NULL";
@@ -310,20 +306,16 @@ class automation {
         global $DB;
 
         $sql = "SELECT DISTINCT u.id, u.id
-                  FROM {enrol} e
-                  JOIN {user_enrolments} ue
-                    ON ue.enrolid = e.id
-                  JOIN {user} u
-                    ON u.id = ue.userid
-             LEFT JOIN {certificatebeautiful_issue} cbi
-                    ON cbi.cmid = :cmid
-                   AND cbi.userid = u.id
-                 WHERE e.courseid = :courseid
-                   AND e.status = 0
-                   AND ue.status = 0
-                   AND u.deleted = 0
+                  FROM {enrol}                      e
+                  JOIN {user_enrolments}            ue  ON ue.enrolid = e.id
+                  JOIN {user}                       u   ON u.id = ue.userid
+             LEFT JOIN {certificatebeautiful_issue} cbi ON cbi.cmid = :cmid AND cbi.userid = u.id
+                 WHERE e.courseid  = :courseid
+                   AND e.status    = 0
+                   AND ue.status   = 0
+                   AND u.deleted   = 0
                    AND u.suspended = 0
-                   AND cbi.id IS NULL";
+                   AND cbi.id      IS NULL";
 
         $userids = array_map("intval", array_keys($DB->get_records_sql_menu($sql, [
             "cmid" => $cm->id,

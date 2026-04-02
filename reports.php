@@ -44,8 +44,8 @@ $title = get_string("reports") . ": " . get_string("modulename", "certificatebea
 echo $OUTPUT->heading($title, 2, "main", "certificatebeautifulheading");
 
 $sql = "SELECT cm.*, cb.name
-          FROM {course_modules} cm
-          JOIN {modules}        md ON md.id = cm.module
+          FROM {course_modules}       cm
+          JOIN {modules}              md ON md.id = cm.module
           JOIN {certificatebeautiful} cb ON cb.id = cm.instance
          WHERE cb.course = :course
            AND md.name   = 'certificatebeautiful'";
