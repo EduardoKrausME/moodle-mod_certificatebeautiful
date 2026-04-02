@@ -22,6 +22,24 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['completionstatus'] = 'Course completion status';
+$string['completiontimeenrolled'] = 'Course completion enrollment timestamp';
+$string['completiontimeenrolleddate'] = 'Course completion enrollment date';
+$string['completiontimeenrolleddatetime'] = 'Course completion enrollment date and time';
+$string['completiontimestarted'] = 'Course completion started timestamp';
+$string['completiontimestarteddate'] = 'Course completion started date';
+$string['completiontimestarteddatetime'] = 'Course completion started date and time';
 $string['pluginname'] = 'Data of the student\'s enrollment in the course';
 $string['privacy:metadata'] = 'The plugin does not store any personal data.';
-$string['timestart'] = 'Date of the user\'s enrollment';
+$string['timecompleted'] = 'Course completion timestamp';
+$string['timecompleteddate'] = 'Course completion date';
+$string['timecompleteddatetime'] = 'Course completion date and time';
+$string['timecreated'] = 'Enrollment creation timestamp';
+$string['timecreateddate'] = 'Enrollment creation date';
+$string['timecreateddatetime'] = 'Enrollment creation date and time';
+$string['timeend'] = 'Enrollment end timestamp';
+$string['timeenddate'] = 'Enrollment end date';
+$string['timeenddatetime'] = 'Enrollment end date and time';
+$string['timestart'] = 'Enrollment start timestamp';
+$string['timestartdate'] = 'Enrollment start date';
+$string['timestartdatetime'] = 'Enrollment start date and time';
