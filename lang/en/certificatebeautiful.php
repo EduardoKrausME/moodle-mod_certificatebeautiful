@@ -55,6 +55,7 @@ $string['certificate-simple'] = 'Simple Certificate';
 $string['certificate-vintage'] = 'Vintage Certificate';
 $string['certificate_description'] = 'Describe the certificate';
 $string['certificate_description_help'] = 'Certificate description text. It can contain simple HTML such as &lt;b&gt;, &lt;i&gt;, &lt;u&gt; and color styles, but be cautious as the <a href="https://mpdf.github.io/" target="_blank">PDF converter has limitations</a>.';
+$string['certificate_not_issued'] = 'Your certificate has not been issued yet.';
 $string['certificatebeautiful-page_empty'] = 'Empty';
 $string['certificatebeautiful:addinstance'] = 'Add instance';
 $string['certificatebeautiful:delete'] = 'Delete certificate instance';

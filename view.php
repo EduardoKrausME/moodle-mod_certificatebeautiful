@@ -109,27 +109,45 @@ $completion->set_module_viewed($cm);
 
 echo $OUTPUT->header();
 
-if (has_capability("mod/certificatebeautiful:viewreport", $context)) {
-
+if (has_capability("mod/certificatebeautiful:addinstance", $context)) {
     $title = get_string("report_filename", "certificatebeautiful");
     echo $OUTPUT->heading($title, 2, "main", "certificatebeautifulheading");
 
     $table = new certificatebeautiful_view(
-        "certificatebeautiful_report", $cm->id, $certificatebeautiful
+        "certificatebeautiful_report",
+        $cm->id,
+        $certificatebeautiful
     );
     $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/report.php?id={$cm->id}");
     $table->out(40, true);
-} else {
-    $certificatebeautifulissue = issue::get($USER, $certificatebeautiful, $cm);
-    $viewerurl = "{$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html";
-    $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?code={$certificatebeautifulissue->code}";
 
-    $data = [
-        "issueid" => $certificatebeautifulissue->id,
-        "pdf-viewer-url" => "{$viewerurl}?file=" . urlencode("{$urlbase}&action=view"),
-        "pdf-url_base" => $urlbase,
-    ];
-    echo $OUTPUT->render_from_template("mod_certificatebeautiful/view", $data);
+} else {
+    if (!empty($certificatebeautiful->autogenerate)) {
+        $certificatebeautifulissue = issue::get($USER, $certificatebeautiful, $cm);
+    } else {
+        $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", [
+            "userid" => $USER->id,
+            "cmid" => $cm->id,
+        ]);
+    }
+
+    if (!$certificatebeautifulissue) {
+        echo $OUTPUT->notification(
+            get_string("certificate_not_issued", "certificatebeautiful"),
+            "info"
+        );
+    } else {
+        $viewerurl = "{$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html";
+        $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?code={$certificatebeautifulissue->code}";
+
+        $data = [
+            "issueid" => $certificatebeautifulissue->id,
+            "pdf-viewer-url" => "{$viewerurl}?file=" . urlencode("{$urlbase}&action=view"),
+            "pdf-url_base" => $urlbase,
+        ];
+
+        echo $OUTPUT->render_from_template("mod_certificatebeautiful/view", $data);
+    }
 }
 
 echo $OUTPUT->footer();
