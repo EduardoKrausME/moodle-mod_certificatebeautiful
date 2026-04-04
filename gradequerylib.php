@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * phpcs:disable moodle.Files.MoodleInternal.MoodleInternalGlobalState
+ *
  * Functions used to retrieve grades objects
  *
  * @package   mod_certificatebeautiful
@@ -49,7 +51,7 @@ if (file_exists("{$CFG->libdir}/grade/querylib.php")) {
             if (!$grades = grade_get_course_grade($userid, [$courseidorids])) {
                 return false;
             } else {
-                // only one grade - not array
+                // Only one grade - not array.
                 $grade = reset($grades);
                 return $grade;
             }
@@ -105,7 +107,7 @@ if (file_exists("{$CFG->libdir}/grade/querylib.php")) {
             $grade->dategraded = $gradegrade->get_dategraded();
             $grade->item = $item;
 
-            // create text representation of grade
+            // Create text representation of grade.
             if ($gradeitem->needsupdate) {
                 $grade->grade = false;
                 $grade->str_grade = get_string('error');
@@ -117,7 +119,7 @@ if (file_exists("{$CFG->libdir}/grade/querylib.php")) {
 
             } else {
                 $grade->str_grade = grade_format_gradevalue($grade->grade, $gradeitem);
-                if ($gradeitem->gradetype == GRADE_TYPE_SCALE or $gradeitem->get_displaytype() != GRADE_DISPLAY_TYPE_REAL) {
+                if ($gradeitem->gradetype == GRADE_TYPE_SCALE || $gradeitem->get_displaytype() != GRADE_DISPLAY_TYPE_REAL) {
                     $grade->str_long_grade = $grade->str_grade;
                 } else {
                     $a = new stdClass();
@@ -127,7 +129,7 @@ if (file_exists("{$CFG->libdir}/grade/querylib.php")) {
                 }
             }
 
-            // create html representation of feedback
+            // Create html representation of feedback.
             if (is_null($grade->feedback)) {
                 $grade->str_feedback = '';
             } else {
@@ -144,7 +146,8 @@ if (file_exists("{$CFG->libdir}/grade/querylib.php")) {
      * Returns the aggregated or calculated course grade(s) for a single course for one or more users
      *
      * @param int $courseid The ID of course
-     * @param null $useridorids Optional ID of the graded user or array of user IDs; if userid not used, returns only information about grade_item
+     * @param null $useridorids Optional ID of the graded user or array of user IDs; if userid not used,
+     *                          returns only information about grade_item
      * @return stdClass Returns an object containing information about course grade item. scaleid, name, grade
      *         and locked status etc and user course grades: $item->grades[$userid] => $usercoursegrade
      * @throws coding_exception
@@ -210,7 +213,7 @@ if (file_exists("{$CFG->libdir}/grade/querylib.php")) {
                 $grade->dategraded = $gradegrades[$userid]->get_dategraded();
                 $grade->datesubmitted = $gradegrades[$userid]->get_datesubmitted();
 
-                // create text representation of grade
+                // Create text representation of grade.
                 if ($gradeitem->needsupdate) {
                     $grade->grade = false;
                     $grade->str_grade = get_string('error');
@@ -222,7 +225,7 @@ if (file_exists("{$CFG->libdir}/grade/querylib.php")) {
 
                 } else {
                     $grade->str_grade = grade_format_gradevalue($grade->grade, $gradeitem);
-                    if ($gradeitem->gradetype == GRADE_TYPE_SCALE or $gradeitem->get_displaytype() != GRADE_DISPLAY_TYPE_REAL) {
+                    if ($gradeitem->gradetype == GRADE_TYPE_SCALE || $gradeitem->get_displaytype() != GRADE_DISPLAY_TYPE_REAL) {
                         $grade->str_long_grade = $grade->str_grade;
                     } else {
                         $a = new stdClass();
@@ -232,7 +235,7 @@ if (file_exists("{$CFG->libdir}/grade/querylib.php")) {
                     }
                 }
 
-                // create html representation of feedback
+                // Create html representation of feedback.
                 if (is_null($grade->feedback)) {
                     $grade->str_feedback = '';
                 } else {
