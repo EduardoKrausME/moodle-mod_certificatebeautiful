@@ -71,8 +71,7 @@ class certificateissue extends help_base {
     public static function get_data($certificatebeautiful, $issue) {
         global $CFG;
 
-        $issue->description = trim($certificatebeautiful->description);
-        $issue->description = str_replace("\n", "<br>", $certificatebeautiful->description);
+        $issue->description = str_replace("\n", "<br>", trim($certificatebeautiful->description));
         $issue->url = "{$CFG->wwwroot}/mod/certificatebeautiful/v/?code={$issue->code}";
         $issue->page = "{$CFG->wwwroot}/mod/certificatebeautiful/v/";
         $issue->codelink = "<a href=\"{$issue->url}\">{$issue->code}</a>";
@@ -86,10 +85,10 @@ class certificateissue extends help_base {
      * Function custom_replace
      *
      * @param string $html
-     * @param certificatebeautiful_issue $issue
-     * @return mixed
+     * @param array $issuedata
+     * @return string
      */
-    public static function custom_replace($html, $issue) {
+    public static function custom_replace($html, $issuedata) {
         if (strpos($html, "img/qr-code.svg")) {
 
             $pngfile = make_temp_directory("certificatebeautiful") . "/" . uniqid() . ".png";
@@ -100,7 +99,7 @@ class certificateissue extends help_base {
                 "h" => 500,
                 "p" => 0,
             ];
-            $generator = new qrcode($issue["url"], $options);
+            $generator = new qrcode($issuedata["url"], $options);
             $image = $generator->render_image();
             imagepng($image, $pngfile);
 

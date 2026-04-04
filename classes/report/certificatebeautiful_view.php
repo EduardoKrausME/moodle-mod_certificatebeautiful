@@ -35,6 +35,7 @@ use table_sql;
 defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/tablelib.php");
 require_once("{$CFG->libdir}/gradelib.php");
+require_once("{$CFG->rootdir}/mod/certificatebeautiful/gradequerylib.php");
 
 /**
  * Class certificatebeautiful_view

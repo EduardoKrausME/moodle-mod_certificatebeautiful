@@ -403,6 +403,7 @@ class automation {
         }
 
         require_once("{$CFG->libdir}/gradelib.php");
+        require_once("{$CFG->rootdir}/mod/certificatebeautiful/gradequerylib.php");
 
         $grade = grade_get_course_grade($userid, $courseid);
         if (!$grade || $grade->grade === null) {

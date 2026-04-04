@@ -146,12 +146,13 @@ class replace_tags {
                 case "functions":
                     break;
                 case "certificateissue":
-                    $certificateissuedata = certificateissue::get_data(
-                        $this->certificatebeautiful, $this->certificatebeautifulissue);
-                    $this->page->htmldata = help_base::replace(
-                        $this->page->htmldata, certificateissue::CLASS_NAME, $certificateissuedata);
-                    $this->page->htmldata = certificateissue::custom_replace(
-                        $this->page->htmldata, $certificateissuedata);
+
+                    $certificateissuedata =
+                        certificateissue::get_data($this->certificatebeautiful, $this->certificatebeautifulissue);
+                    $this->page->htmldata =
+                        help_base::replace($this->page->htmldata, certificateissue::CLASS_NAME, $certificateissuedata);
+                    $this->page->htmldata =
+                        certificateissue::custom_replace($this->page->htmldata, $certificateissuedata);
                     break;
                 default:
                     /** @var course $class */
