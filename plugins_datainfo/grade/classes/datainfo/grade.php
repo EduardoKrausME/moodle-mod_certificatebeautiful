@@ -80,7 +80,7 @@ class grade extends help_base {
 
         require_once("{$CFG->dirroot}/grade/querylib.php");
         require_once("{$CFG->dirroot}/lib/gradelib.php");
-        require_once("{$CFG->rootdir}/mod/certificatebeautiful/gradequerylib.php");
+        require_once("{$CFG->dirroot}/mod/certificatebeautiful/gradequerylib.php");
 
         $resultkrb = grade_get_course_grades($course->id, $user->id);
         if (isset($resultkrb->grades[$user->id])) {
