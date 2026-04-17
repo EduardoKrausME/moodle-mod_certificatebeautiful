@@ -80,7 +80,7 @@ class grade extends help_base {
 
         require_once("{$CFG->dirroot}/grade/querylib.php");
         require_once("{$CFG->dirroot}/lib/gradelib.php");
-        require_once("{$CFG->dirroot}/mod/certificatebeautiful/gradequerylib.php");
+        require_once(__DIR__ . "/../../../../gradequerylib.php");
 
         $resultkrb = grade_get_course_grades($course->id, $user->id);
         if (isset($resultkrb->grades[$user->id])) {
@@ -107,7 +107,7 @@ class grade extends help_base {
         }
 
         // Sorting grade itens by sortorder.
-        usort($items, function ($a, $b) {
+        usort($items, function($a, $b) {
             $asortorder = $a->sortorder;
             $bsortorder = $b->sortorder;
             if ($asortorder == $bsortorder) {
