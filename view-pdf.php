@@ -28,6 +28,7 @@ use mod_certificatebeautiful\vo\certificatebeautiful;
 use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 use mod_certificatebeautiful\vo\certificatebeautiful_model;
 
+// phpcs:disable moodle.Files.MoodleInternal.MoodleInternalGlobalState
 global $PAGE, $CFG, $DB;
 
 require_once('../../config.php');
