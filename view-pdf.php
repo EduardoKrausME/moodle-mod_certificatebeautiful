@@ -28,12 +28,12 @@ use mod_certificatebeautiful\vo\certificatebeautiful;
 use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 use mod_certificatebeautiful\vo\certificatebeautiful_model;
 
+global $PAGE, $CFG, $DB;
+
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
 
 ob_start();
-
-global $PAGE, $CFG;
 
 $code = required_param("code", PARAM_TEXT);
 $action = required_param("action", PARAM_TEXT);
@@ -45,7 +45,6 @@ if ($action == "createadmin") {
     $cmid = required_param("cmid", PARAM_INT);
     $cm = get_coursemodule_from_id("certificatebeautiful", $cmid, 0, false, MUST_EXIST);
 
-    /** @var certificatebeautiful $certificatebeautiful */
     $certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], '*', MUST_EXIST);
 
     $issue = issue::get($user, $certificatebeautiful, $cm);
@@ -120,8 +119,11 @@ $contentpdf = $pagepdf->create_pdf(
     $certificatebeautiful, $certificatebeautifulissue, $certificatebeautifulmodel, $user, $course);
 
 $fs->create_file_from_string($filerecord, $contentpdf);
-$certificatebeautifulissue->version = $certificatebeautiful->timemodified;
-$DB->update_record("certificatebeautiful_issue", $certificatebeautifulissue);
+$certificatebeautifulissueupdate = (object) [
+    "id" => $certificatebeautiful->id,
+    "version" => $certificatebeautiful->timemodified,
+];
+$DB->update_record("certificatebeautiful_issue", $certificatebeautifulissueupdate);
 
 certificatebeautiful_show_header($action, $context, $name);
 header('Content-Length: ' . strlen($contentpdf));
