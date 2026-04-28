@@ -26,7 +26,9 @@
 
 if (file_exists("{$CFG->libdir}/grade/querylib.php")) {
     require_once("{$CFG->libdir}/grade/querylib.php");
-} else {
+}
+
+if (!function_exists("grade_get_course_grade")) {
     /**
      * Returns the aggregated or calculated course grade for a single user for one or more courses
      *
@@ -141,7 +143,9 @@ if (file_exists("{$CFG->libdir}/grade/querylib.php")) {
 
         return $grades;
     }
+}
 
+if (!function_exists("grade_get_course_grades")) {
     /**
      * Returns the aggregated or calculated course grade(s) for a single course for one or more users
      *
