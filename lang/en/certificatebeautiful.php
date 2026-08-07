@@ -26,10 +26,6 @@ defined('MOODLE_INTERNAL') || die;
 
 $string['add_new_model'] = 'Add new model';
 $string['add_new_page'] = 'Add a new page to the certificate';
-$string['autogenerate'] = 'Generate certificates automatically';
-$string['autogenerate_help'] = 'When enabled, the scheduled task will automatically create certificate issues and PDF files.';
-$string['autogenerate_task_name'] = 'Automatic Beautiful Certificate generation';
-$string['automationheader'] = 'Automatic certificate generation';
 $string['autotrigger'] = 'Automatic generation trigger';
 $string['autotrigger_activity'] = 'Activity required for completion trigger';
 $string['autotrigger_activitycompletion'] = 'Activity completion';
