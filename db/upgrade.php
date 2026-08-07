@@ -135,25 +135,5 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2026040200, "certificatebeautiful");
     }
 
-    if ($oldversion < 2026080700) {
-        $table = new xmldb_table("certificatebeautiful");
-        $field = new xmldb_field(
-            "autoissueoncompletion",
-            XMLDB_TYPE_INTEGER,
-            "1",
-            null,
-            null,
-            null,
-            "0",
-            "model"
-        );
-
-        if (!$dbman->field_exists($table, $field)) {
-            $dbman->add_field($table, $field);
-        }
-
-        upgrade_mod_savepoint(true, 2026080700, "certificatebeautiful");
-    }
-
     return true;
 }

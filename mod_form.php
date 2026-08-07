@@ -70,22 +70,6 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
                     target='_blank'>{$text}</a>";
         $mform->addElement("static", "manage_models", "", $link);
 
-        $mform->addElement("header", "automationheader", get_string("automationheader", "certificatebeautiful"));
-
-        $hascoursecompletion = !empty($CFG->enablecompletion)
-            && !empty($this->_course->enablecompletion)
-            && !empty($this->_course->id)
-            && $DB->record_exists("course_completion_criteria", ["course" => $this->_course->id]);
-
-        if ($hascoursecompletion) {
-            $label = get_string("autogenerate", "certificatebeautiful") .
-                ": " . get_string("autotrigger_coursecompletion", "certificatebeautiful");
-            $mform->addElement("advcheckbox", "autoissueoncompletion", $label);
-        } else {
-            $mform->addElement("hidden", "autoissueoncompletion", 0);
-            $mform->setType("autoissueoncompletion", PARAM_BOOL);
-        }
-
         $mform->addElement("advcheckbox", "autogenerate", get_string("autogenerate", "certificatebeautiful"));
         $mform->addHelpButton("autogenerate", "autogenerate", "certificatebeautiful");
 
