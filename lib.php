@@ -23,6 +23,7 @@
  */
 
 use core_user\output\myprofile\tree as treeAlias;
+use mod_certificatebeautiful\automation;
 
 /**
  * Checks if certificate activity supports a specific feature.
@@ -80,6 +81,19 @@ function certificatebeautiful_add_instance(stdClass $data, $mform = null): int {
 
     $data->timecreated = time();
     $data->gradepass = $data->gradepass ?? "";
+    $data->triggercmid = $data->triggercmid ?? 0;
+    $data->notifyuser = $data->notifyuser ?? 0;
+
+    if ($data->autotrigger == automation::TRIGGER_NONE) {
+        $data->notifyuser = 0;
+    }
+    if ($data->autotrigger != automation::TRIGGER_ACTIVITY_COMPLETION) {
+        $data->triggercmid = 0;
+    }
+    if ($data->autotrigger != automation::TRIGGER_GRADE_THRESHOLD) {
+        $data->gradepass = "";
+    }
+
     $cmid = $data->coursemodule;
 
     $data->id = $DB->insert_record("certificatebeautiful", $data);
@@ -106,6 +120,19 @@ function certificatebeautiful_update_instance(stdClass $data, $mform = null): bo
 
     $data->timemodified = time();
     $data->gradepass = $data->gradepass ?? "";
+    $data->triggercmid = $data->triggercmid ?? 0;
+    $data->notifyuser = $data->notifyuser ?? 0;
+
+    if ($data->autotrigger == automation::TRIGGER_NONE) {
+        $data->notifyuser = 0;
+    }
+    if ($data->autotrigger != automation::TRIGGER_ACTIVITY_COMPLETION) {
+        $data->triggercmid = 0;
+    }
+    if ($data->autotrigger != automation::TRIGGER_GRADE_THRESHOLD) {
+        $data->gradepass = "";
+    }
+
     $data->id = $data->instance;
 
     return $DB->update_record("certificatebeautiful", $data);

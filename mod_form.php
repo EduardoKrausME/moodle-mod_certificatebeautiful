@@ -70,9 +70,6 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
                     target='_blank'>{$text}</a>";
         $mform->addElement("static", "manage_models", "", $link);
 
-        $mform->addElement("advcheckbox", "autogenerate", get_string("autogenerate", "certificatebeautiful"));
-        $mform->addHelpButton("autogenerate", "autogenerate", "certificatebeautiful");
-
         $autotriggeroptions = [
             automation::TRIGGER_NONE => get_string("none"),
             automation::TRIGGER_COURSE_COMPLETION => get_string("autotrigger_coursecompletion", "certificatebeautiful"),
@@ -80,7 +77,6 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
             automation::TRIGGER_GRADE_THRESHOLD => get_string("autotrigger_gradethreshold", "certificatebeautiful"),
         ];
         $mform->addElement("select", "autotrigger", get_string("autotrigger", "certificatebeautiful"), $autotriggeroptions);
-        $mform->hideIf("autotrigger", "autogenerate", "notchecked");
 
         $activityoptions = [0 => get_string("choose")];
         $currentcmid = $this->current->coursemodule ?? 0;
@@ -106,7 +102,7 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
         $mform->hideIf("gradepass", "autotrigger", "neq", automation::TRIGGER_GRADE_THRESHOLD);
 
         $mform->addElement("advcheckbox", "notifyuser", get_string("notifyuser", "certificatebeautiful"));
-        $mform->hideIf("notifyuser", "autogenerate", "notchecked");
+        $mform->hideIf("notifyuser", "autotrigger", "eq", automation::TRIGGER_NONE);
 
         // Add standard elements.
         $this->standard_coursemodule_elements();
@@ -125,19 +121,13 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
     public function validation($data, $files) {
         $errors = parent::validation($data, $files);
 
-        if (!empty($data["autogenerate"])) {
-            if (empty($data["autotrigger"])) {
-                $errors["autotrigger"] = get_string("autotrigger_required", "certificatebeautiful");
-            }
+        if ($data["autotrigger"] === automation::TRIGGER_ACTIVITY_COMPLETION && empty($data["triggercmid"])) {
+            $errors["triggercmid"] = get_string("triggercmid_required", "certificatebeautiful");
+        }
 
-            if ($data["autotrigger"] === automation::TRIGGER_ACTIVITY_COMPLETION && empty($data["triggercmid"])) {
-                $errors["triggercmid"] = get_string("triggercmid_required", "certificatebeautiful");
-            }
-
-            if ($data["autotrigger"] === automation::TRIGGER_GRADE_THRESHOLD) {
-                if ($data["gradepass"] === "" || !is_numeric($data["gradepass"])) {
-                    $errors["gradepass"] = get_string("gradepass_required", "certificatebeautiful");
-                }
+        if ($data["autotrigger"] === automation::TRIGGER_GRADE_THRESHOLD) {
+            if ($data["gradepass"] === "" || !is_numeric($data["gradepass"])) {
+                $errors["gradepass"] = get_string("gradepass_required", "certificatebeautiful");
             }
         }
 

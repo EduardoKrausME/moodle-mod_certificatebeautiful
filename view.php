@@ -22,13 +22,12 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_certificatebeautiful\automation;
 use mod_certificatebeautiful\event\certificatebeautiful_course_module_viewed;
-use mod_certificatebeautiful\issue;
 use mod_certificatebeautiful\report\certificatebeautiful_view;
 use mod_certificatebeautiful\vo\certificatebeautiful;
 
 require_once("../../config.php");
-require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/issue.php");
 
 global $PAGE, $USER, $CFG;
 
@@ -122,14 +121,14 @@ if (has_capability("mod/certificatebeautiful:addinstance", $context)) {
     $table->out(40, true);
 
 } else {
-    if (!empty($certificatebeautiful->autogenerate)) {
-        $certificatebeautifulissue = issue::get($USER, $certificatebeautiful, $cm);
-    } else {
-        $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", [
-            "userid" => $USER->id,
-            "cmid" => $cm->id,
-        ]);
+    if ($certificatebeautiful->autotrigger !== automation::TRIGGER_NONE) {
+        automation::process_user($cm->id, $USER->id);
     }
+
+    $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", [
+        "userid" => $USER->id,
+        "cmid" => $cm->id,
+    ]);
 
     if (!$certificatebeautifulissue) {
         echo $OUTPUT->notification(

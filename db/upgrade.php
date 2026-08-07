@@ -135,5 +135,37 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2026040200, "certificatebeautiful");
     }
 
+    if ($oldversion < 2026080702) {
+        $table = new xmldb_table("certificatebeautiful");
+        $field = new xmldb_field("autogenerate");
+
+        if ($dbman->field_exists($table, $field)) {
+            // Preserve the previous disabled state before removing the redundant field.
+            $sql = "UPDATE {certificatebeautiful}
+                       SET autotrigger = '',
+                           notifyuser = 0
+                     WHERE autogenerate = 0";
+            $DB->execute($sql);
+            $dbman->drop_field($table, $field);
+        }
+
+        $sql = "UPDATE {certificatebeautiful}
+                   SET notifyuser = 0
+                 WHERE autotrigger = ''";
+        $DB->execute($sql);
+
+        $sql = "UPDATE {certificatebeautiful}
+                   SET triggercmid = 0
+                 WHERE autotrigger <> 'activitycompletion'";
+        $DB->execute($sql);
+
+        $sql="UPDATE {certificatebeautiful}
+                 SET gradepass = ''
+               WHERE autotrigger <> 'gradethreshold'";
+        $DB->execute($sql);
+
+        upgrade_mod_savepoint(true, 2026080702, "certificatebeautiful");
+    }
+
     return true;
 }

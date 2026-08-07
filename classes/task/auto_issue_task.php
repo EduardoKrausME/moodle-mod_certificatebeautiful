@@ -56,15 +56,8 @@ class auto_issue_task extends scheduled_task {
 
         mtrace("mod_certificatebeautiful: automatic issue task started");
 
-        $records = $DB->get_records_select(
-            "certificatebeautiful",
-            "autogenerate = :autogenerate AND autotrigger <> :autotrigger",
-            [
-                "autogenerate" => 1,
-                "autotrigger" => automation::TRIGGER_NONE,
-            ],
-            "course ASC, id ASC"
-        );
+        $select = ["autotrigger" => automation::TRIGGER_NONE,];
+        $records = $DB->get_records_select("certificatebeautiful", "autotrigger <> :autotrigger", $select, "course ASC, id ASC");
 
         foreach ($records as $certificatebeautiful) {
             $cm = get_coursemodule_from_instance(
