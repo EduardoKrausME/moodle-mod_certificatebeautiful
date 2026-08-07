@@ -159,7 +159,7 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
                  WHERE autotrigger <> 'activitycompletion'";
         $DB->execute($sql);
 
-        $sql="UPDATE {certificatebeautiful}
+        $sql = "UPDATE {certificatebeautiful}
                  SET gradepass = ''
                WHERE autotrigger <> 'gradethreshold'";
         $DB->execute($sql);
