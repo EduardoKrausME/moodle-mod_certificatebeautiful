@@ -135,6 +135,7 @@ class certificatebeautiful_view_user extends table_sql {
      *
      * @param object $linha
      * @return string
+     * @throws \core\exception\moodle_exception
      */
     public function col_extra($linha) {
         global $OUTPUT;

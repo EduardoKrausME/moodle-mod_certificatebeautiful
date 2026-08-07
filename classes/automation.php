@@ -28,7 +28,9 @@ use context_module;
 use core_user;
 use mod_certificatebeautiful\pdf\page_pdf;
 use mod_certificatebeautiful\vo\certificatebeautiful;
+use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 use mod_certificatebeautiful\vo\certificatebeautiful_model;
+use moodle_url;
 use stdClass;
 
 /**
@@ -57,6 +59,7 @@ class automation {
      * @param stdClass $cm
      * @return int[]
      * @throws \dml_exception
+     * @throws \Throwable
      */
     public static function get_candidate_user_ids(stdClass $certificatebeautiful, stdClass $cm): array {
         switch ($certificatebeautiful->autotrigger) {
@@ -96,7 +99,7 @@ class automation {
             return false;
         }
 
-        list($issue, $created) = issue::get_or_create($user, $certificatebeautiful, $cm);
+        [$issue, $created] = issue::get_or_create($user, $certificatebeautiful, $cm);
 
         self::ensure_pdf_file($certificatebeautiful, $issue, $user, $course, $cm);
 
@@ -113,7 +116,7 @@ class automation {
      * @param stdClass $certificatebeautiful
      * @param int $userid
      * @return bool
-     * @throws \dml_exception
+     * @throws \dml_exception|\Throwable
      */
     public static function user_matches_rule(stdClass $certificatebeautiful, int $userid): bool {
         switch ($certificatebeautiful->autotrigger) {
@@ -121,7 +124,7 @@ class automation {
                 return self::is_course_completed($certificatebeautiful->course, $userid);
 
             case self::TRIGGER_ACTIVITY_COMPLETION:
-                return self::is_activity_completed((int)$certificatebeautiful->triggercmid, $userid);
+                return self::is_activity_completed($certificatebeautiful->triggercmid, $userid);
 
             case self::TRIGGER_GRADE_THRESHOLD:
                 return self::matches_grade_threshold($certificatebeautiful->course, $userid, $certificatebeautiful->gradepass);
@@ -134,21 +137,15 @@ class automation {
     /**
      * Ensures the PDF file exists and is up to date.
      *
-     * @param stdClass $certificatebeautiful
-     * @param stdClass $issue
+     * @param certificatebeautiful $certificatebeautiful
+     * @param certificatebeautiful_issue $issue
      * @param stdClass $user
      * @param stdClass $course
      * @param stdClass $cm
      * @return void
      * @throws \Throwable
      */
-    public static function ensure_pdf_file(
-        stdClass $certificatebeautiful,
-        stdClass $issue,
-        stdClass $user,
-        stdClass $course,
-        stdClass $cm
-    ): void {
+    public static function ensure_pdf_file($certificatebeautiful, $issue, $user, $course, $cm): void {
         global $DB;
 
         $context = context_module::instance($cm->id);
@@ -183,7 +180,7 @@ class automation {
 
         $stale = false;
 
-        if ($storedfile && (int)$issue->version !== (int)$certificatebeautiful->timemodified) {
+        if ($storedfile && $issue->version != $certificatebeautiful->timemodified) {
             $storedfile->delete();
             $storedfile = null;
             $stale = true;
@@ -232,15 +229,13 @@ class automation {
         stdClass $cm,
         stdClass $user
     ): void {
-        global $CFG;
-
         $supportuser = core_user::get_support_user();
 
         $data = (object)[
             "fullname" => fullname($user),
             "certificatename" => format_string($certificatebeautiful->name),
             "coursename" => format_string($course->fullname),
-            "url" => (new \moodle_url("/mod/certificatebeautiful/view.php", ["id" => $cm->id]))->out(false),
+            "url" => (new moodle_url("/mod/certificatebeautiful/view.php", ["id" => $cm->id]))->out(false),
         ];
 
         $subject = get_string("notification_subject", "certificatebeautiful", $data);
@@ -398,7 +393,7 @@ class automation {
     private static function matches_grade_threshold(int $courseid, int $userid, string $gradepass): bool {
         global $CFG;
 
-        if ($gradepass === "") {
+        if ($gradepass == "") {
             return false;
         }
 

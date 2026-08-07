@@ -41,11 +41,11 @@ class changue_cert_info extends moodleform {
 
     /**
      * Define the form.
+     *
+     * @throws \coding_exception
      */
     public function definition() {
         $mform = $this->_form;
-        $editoroptions = null;
-        $filemanageroptions = null;
 
         $mform->addElement("hidden", "id", null);
         $mform->setType("id", PARAM_ALPHANUM);

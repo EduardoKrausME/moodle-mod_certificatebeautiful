@@ -26,6 +26,7 @@ namespace mod_certificatebeautiful\task;
 
 use core\task\scheduled_task;
 use mod_certificatebeautiful\automation;
+use Throwable;
 
 /**
  * Scheduled task responsible for automatic certificate generation.
@@ -84,8 +85,8 @@ class auto_issue_task extends scheduled_task {
 
             foreach ($candidateuserids as $userid) {
                 try {
-                    automation::process_user($cm->id, (int)$userid);
-                } catch (\Throwable $exception) {
+                    automation::process_user($cm->id, $userid);
+                } catch (Throwable $exception) {
                     mtrace(
                         "mod_certificatebeautiful: error issuing certificate for cmid {$cm->id}, " .
                         "userid {$userid}: {$exception->getMessage()}"

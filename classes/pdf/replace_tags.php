@@ -212,6 +212,8 @@ class replace_tags {
 
     /**
      * Function repace_css
+     *
+     * @throws \Exception
      */
     public function repace_css() {
 
