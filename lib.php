@@ -79,6 +79,7 @@ function certificatebeautiful_add_instance(stdClass $data, $mform = null): int {
     global $DB;
 
     $data->timecreated = time();
+    $data->gradepass = $data->gradepass ?? "";
     $cmid = $data->coursemodule;
 
     $data->id = $DB->insert_record("certificatebeautiful", $data);
@@ -104,6 +105,7 @@ function certificatebeautiful_update_instance(stdClass $data, $mform = null): bo
     global $DB;
 
     $data->timemodified = time();
+    $data->gradepass = $data->gradepass ?? "";
     $data->id = $data->instance;
 
     return $DB->update_record("certificatebeautiful", $data);
