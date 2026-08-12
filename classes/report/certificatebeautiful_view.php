@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class certificatebeautiful_view
+ * Certificate report table.
  *
  * @package mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
@@ -24,23 +24,19 @@
 
 namespace mod_certificatebeautiful\report;
 
-use context_system;
+use context_module;
 use Exception;
 use html_writer;
 use mod_certificatebeautiful\vo\certificatebeautiful;
-use mod_certificatebeautiful\vo\certificatebeautiful_issue;
 use moodle_url;
 use table_sql;
 
 defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/tablelib.php");
 require_once("{$CFG->libdir}/gradelib.php");
-require_once(__DIR__ . "/../../gradequerylib.php");
 
 /**
- * Class certificatebeautiful_view
- *
- * @package mod_certificatebeautiful\report
+ * Certificate report table.
  */
 class certificatebeautiful_view extends table_sql {
 
@@ -50,11 +46,14 @@ class certificatebeautiful_view extends table_sql {
     /** @var certificatebeautiful */
     public $certificatebeautiful;
 
-    /** @var array */
-    public $coursegradecache = [];
+    /** @var \grade_item|false Course grade item used only for formatting. */
+    protected $coursegradeitem = false;
+
+    /** @var bool Whether the current user may create/delete issued certificates. */
+    protected $canmanageissues = false;
 
     /**
-     * certificatebeautiful_view constructor.
+     * Constructor.
      *
      * @param string $uniqueid
      * @param int $cmid
@@ -65,6 +64,11 @@ class certificatebeautiful_view extends table_sql {
         parent::__construct($uniqueid);
         $this->cmid = $cmid;
         $this->certificatebeautiful = $certificatebeautiful;
+        $this->coursegradeitem = \grade_item::fetch_course_item($certificatebeautiful->course);
+        $this->canmanageissues = has_capability(
+            "mod/certificatebeautiful:viewreport",
+            context_module::instance($this->cmid)
+        );
 
         $this->is_downloadable(true);
         $this->show_download_buttons_at([TABLE_P_BOTTOM]);
@@ -102,16 +106,10 @@ class certificatebeautiful_view extends table_sql {
     }
 
     /**
-     * Fullname is treated as a special columname in tablelib and should always
-     * be treated the same as the fullname of a user.
+     * Formats the user fullname.
      *
      * @param object $row
      * @return string
-     * @throws Exception
-     * @uses $this->useridfield if the userid field is not expected to be id
-     * then you need to override $this->useridfield to point at the correct
-     * field for the user id.
-     *
      */
     public function col_fullname($row) {
         global $COURSE;
@@ -133,91 +131,49 @@ class certificatebeautiful_view extends table_sql {
     }
 
     /**
-     * Function col_code
-     *
-     * @param object $row
-     * @return mixed
-     * @throws Exception
-     */
-    public function col_code(&$row) {
-        global $DB;
-
-        $row->code = $DB->get_field("certificatebeautiful_issue", "code", [
-            "userid" => $row->userid,
-            "cmid" => $this->cmid,
-        ]);
-
-        if ($row->code) {
-            return $row->code;
-        }
-
-        return "--";
-    }
-
-    /**
-     * Return the current final course grade.
-     *
-     * The grade is not stored in the plugin table. It is loaded from Moodle
-     * gradebook at runtime and cached per user during the request.
+     * Returns the certificate validation code already loaded by the main query.
      *
      * @param object $row
      * @return string
      */
-    public function col_finalgrade(&$row) {
-        if (!array_key_exists($row->userid, $this->coursegradecache)) {
-            $this->coursegradecache[$row->userid] = grade_get_course_grade(
-                $row->userid,
-                $this->certificatebeautiful->course
-            );
-        }
+    public function col_code($row) {
+        return !empty($row->code) ? $row->code : "--";
+    }
 
-        $grade = $this->coursegradecache[$row->userid];
-
-        if (!$grade || !isset($grade->str_grade) || $grade->str_grade === "-") {
+    /**
+     * Returns the current final course grade already loaded by the main query.
+     *
+     * @param object $row
+     * @return string
+     */
+    public function col_finalgrade($row) {
+        if ($row->finalgrade === null || !$this->coursegradeitem) {
             return "--";
         }
-        return $grade->str_grade;
+
+        return grade_format_gradevalue($row->finalgrade, $this->coursegradeitem, true);
     }
 
     /**
-     * col_timecreated
+     * Formats issue creation time.
      *
      * @param object $row
      * @return string
-     * @throws Exception
      */
-    public function col_timecreated(&$row) {
-        global $DB;
-
-        $row->timecreated = $DB->get_field("certificatebeautiful_issue", "timecreated", [
-            "userid" => $row->userid,
-            "cmid" => $this->cmid,
-        ]);
-
-        if ($row->timecreated) {
-            return userdate($row->timecreated);
-        }
-
-        return "--";
+    public function col_timecreated($row) {
+        return !empty($row->timecreated) ? userdate($row->timecreated) : "--";
     }
 
     /**
-     * col_extra
+     * Renders actions without additional per-row database queries.
      *
      * @param object $row
      * @return string
-     * @throws Exception
      */
     public function col_extra($row) {
-        global $DB, $OUTPUT;
+        global $OUTPUT;
 
-        /** @var certificatebeautiful_issue $issue */
-        $issue = $DB->get_record("certificatebeautiful_issue", [
-            "userid" => $row->userid,
-            "cmid" => $this->cmid,
-        ]);
-
-        if ($row->timecreated) {
+        if (!empty($row->issueid)) {
             $paramsvalidate = ["code" => $row->code];
             $paramsview = ["code" => $row->code, "action" => "view"];
             $data = [
@@ -227,38 +183,38 @@ class certificatebeautiful_view extends table_sql {
                 "url-view" => (new moodle_url("/mod/certificatebeautiful/view-pdf.php", $paramsview))->out(),
             ];
 
-            if (has_capability("mod/certificatebeautiful:addinstance", context_system::instance())) {
-                $paramsdelete = [
+            if ($this->canmanageissues) {
+                $data["url-delete"] = new moodle_url("/mod/certificatebeautiful/view.php", [
                     "id" => $this->cmid,
-                    "issueid" => $issue->id,
-                    "issuecode" => $issue->code,
-                    "userid" => $issue->userid,
+                    "issueid" => $row->issueid,
                     "action" => "delete",
                     "sesskey" => sesskey(),
-                ];
-                $data["url-delete"] = new moodle_url("/mod/certificatebeautiful/view.php", $paramsdelete);
+                ]);
             }
         } else {
-            $paramscreate = [
-                "userid" => $row->userid,
-                "action" => "createadmin",
-                "cmid" => $this->cmid,
-                "code" => "createadmin",
-            ];
             $data = [
                 "create" => true,
-                "url-create" => new moodle_url("/mod/certificatebeautiful/view-pdf.php", $paramscreate),
+                "url-create" => new moodle_url("/mod/certificatebeautiful/view-pdf.php", [
+                    "userid" => $row->userid,
+                    "action" => "createadmin",
+                    "cmid" => $this->cmid,
+                    "sesskey" => sesskey(),
+                ]),
             ];
         }
+
         return $OUTPUT->render_from_template("mod_certificatebeautiful/certificatebeautiful_view-extra", $data);
     }
 
     /**
-     * query_db
+     * Loads report data.
+     *
+     * The issue and grade data are joined in the main query so rendering a page does not
+     * execute extra database/gradebook queries for each student.
      *
      * @param int $pagesize
      * @param bool $useinitialsbar
-     * @throws Exception
+     * @return void
      */
     public function query_db($pagesize, $useinitialsbar = true) {
         global $DB;
@@ -266,6 +222,7 @@ class certificatebeautiful_view extends table_sql {
         $params = [
             "cmid" => $this->cmid,
             "courseid" => $this->certificatebeautiful->course,
+            "gradeitemid" => $this->coursegradeitem ? $this->coursegradeitem->id : 0,
         ];
 
         $sqlwhere = $this->get_sql_where();
@@ -277,34 +234,48 @@ class certificatebeautiful_view extends table_sql {
             $order = "u.firstname";
         }
 
-        $this->sql = "SELECT u.id AS userid, u.email, u.firstname, u.lastname,
-                             u.firstnamephonetic, u.lastnamephonetic, u.middlename, u.alternatename
-                        FROM {course}           c
-                        JOIN {enrol}            e ON c.id = e.courseid
-                        JOIN {user_enrolments} ue ON e.id = ue.enrolid
-                        JOIN {user}             u ON u.id = ue.userid
+        $this->sql = "SELECT DISTINCT
+                             u.id AS userid,
+                             u.email,
+                             u.firstname,
+                             u.lastname,
+                             u.firstnamephonetic,
+                             u.lastnamephonetic,
+                             u.middlename,
+                             u.alternatename,
+                             cbi.id AS issueid,
+                             cbi.code,
+                             cbi.timecreated,
+                             gg.finalgrade
+                        FROM {course}                     c
+                        JOIN {enrol}                      e   ON c.id = e.courseid
+                        JOIN {user_enrolments}            ue  ON e.id = ue.enrolid
+                        JOIN {user}                       u   ON u.id = ue.userid
+                   LEFT JOIN {certificatebeautiful_issue} cbi ON cbi.userid = u.id AND cbi.cmid = :cmid
+                   LEFT JOIN {grade_grades}               gg  ON gg.userid = u.id AND gg.itemid = :gradeitemid
                        WHERE u.deleted   = 0
                          AND u.suspended = 0
                          AND ue.status   = 0
                          AND e.status    = 0
                          AND c.id        = :courseid
                              {$where}
-                    GROUP BY u.id
                     ORDER BY {$order}";
 
         if ($pagesize != -1) {
             $countsql = "SELECT COUNT(DISTINCT u.id)
-                   FROM {course}           c
-                   JOIN {enrol}            e ON c.id = e.courseid
-                   JOIN {user_enrolments} ue ON e.id = ue.enrolid
-                   JOIN {user}             u ON u.id = ue.userid
-                  WHERE u.deleted   = 0
-                    AND u.suspended = 0
-                    AND ue.status   = 0
-                    AND e.status    = 0
-                    AND c.id        = :courseid
-                        {$where}";
-            $total = $DB->get_field_sql($countsql, $params);
+                           FROM {course}           c
+                           JOIN {enrol}            e  ON c.id = e.courseid
+                           JOIN {user_enrolments} ue ON e.id = ue.enrolid
+                           JOIN {user}             u  ON u.id = ue.userid
+                          WHERE u.deleted   = 0
+                            AND u.suspended = 0
+                            AND ue.status   = 0
+                            AND e.status    = 0
+                            AND c.id        = :courseid
+                                {$where}";
+            $countparams = $params;
+            unset($countparams["cmid"], $countparams["gradeitemid"]);
+            $total = $DB->get_field_sql($countsql, $countparams);
             $this->pagesize($pagesize, $total);
         } else {
             $this->pageable(false);
