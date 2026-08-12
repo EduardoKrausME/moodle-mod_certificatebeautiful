@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * version file
+ * Version file.
  *
  * @package   mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version = 2026080702;
-$plugin->release = "3.2.8";
+$plugin->version = 2026081200;
+$plugin->release = "3.2.9";
 $plugin->requires = 2021041900;
 $plugin->maturity = MATURITY_STABLE;
 $plugin->component = "mod_certificatebeautiful";
