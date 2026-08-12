@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Book module upgrade code
+ * Upgrade code for mod_certificatebeautiful.
  *
  * @package   mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
@@ -25,10 +25,9 @@
 use mod_certificatebeautiful\model\get_template_file;
 
 /**
- * Book module upgrade task
+ * Upgrade task.
  *
  * @param int $oldversion the version we are upgrading from
- *
  * @return bool always true
  * @throws Exception
  */
@@ -160,11 +159,108 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         $DB->execute($sql);
 
         $sql = "UPDATE {certificatebeautiful}
-                 SET gradepass = ''
-               WHERE autotrigger <> 'gradethreshold'";
+                   SET gradepass = ''
+                 WHERE autotrigger <> 'gradethreshold'";
         $DB->execute($sql);
 
         upgrade_mod_savepoint(true, 2026080702, "certificatebeautiful");
+    }
+
+    if ($oldversion < 2026081200) {
+        $table = new xmldb_table("certificatebeautiful_issue");
+
+        // Remove duplicate issues before adding the unique userid/cmid index.
+        $duplicatesql = "SELECT MIN(id) AS keepid, userid, cmid
+                           FROM {certificatebeautiful_issue}
+                       GROUP BY userid, cmid
+                         HAVING COUNT(*) > 1";
+        $duplicates = $DB->get_records_sql($duplicatesql);
+
+        if ($duplicates) {
+            $fs = get_file_storage();
+
+            foreach ($duplicates as $duplicate) {
+                $params = [
+                    "userid" => $duplicate->userid,
+                    "cmid" => $duplicate->cmid,
+                    "keepid" => $duplicate->keepid,
+                ];
+                $extraissues = $DB->get_records_select(
+                    "certificatebeautiful_issue",
+                    "userid = :userid AND cmid = :cmid AND id <> :keepid",
+                    $params
+                );
+
+                foreach ($extraissues as $extraissue) {
+                    $context = context_module::instance($extraissue->cmid, IGNORE_MISSING);
+                    if ($context && !empty($extraissue->code)) {
+                        $file = $fs->get_file(
+                            $context->id,
+                            "mod_certificatebeautiful",
+                            "certificate",
+                            $extraissue->userid,
+                            "/",
+                            "{$extraissue->code}.pdf"
+                        );
+                        if ($file) {
+                            $file->delete();
+                        }
+                    }
+
+                    $DB->delete_records("certificatebeautiful_issue", ["id" => $extraissue->id]);
+                }
+            }
+        }
+
+        // Older install.xml versions declared cmid as a logical FK to the activity instance table.
+        $oldkey = new xmldb_key(
+            "cmid",
+            XMLDB_KEY_FOREIGN,
+            ["cmid"],
+            "certificatebeautiful",
+            ["id"]
+        );
+        // The previous plugin schema always defined this logical key. Moodle's database_manager
+        // does not expose key_exists(), so drop the known old key directly during this one-time upgrade.
+        $dbman->drop_key($table, $oldkey);
+
+        $cmkey = new xmldb_key(
+            "cmid",
+            XMLDB_KEY_FOREIGN,
+            ["cmid"],
+            "course_modules",
+            ["id"]
+        );
+        $dbman->add_key($table, $cmkey);
+
+        $certificatekey = new xmldb_key(
+            "certificatebeautifulid",
+            XMLDB_KEY_FOREIGN,
+            ["certificatebeautifulid"],
+            "certificatebeautiful",
+            ["id"]
+        );
+        $dbman->add_key($table, $certificatekey);
+
+        $usercmindex = new xmldb_index(
+            "userid_cmid",
+            XMLDB_INDEX_UNIQUE,
+            ["userid", "cmid"]
+        );
+        if (!$dbman->index_exists($table, $usercmindex)) {
+            $dbman->add_index($table, $usercmindex);
+        }
+
+        $certificateindex = new xmldb_index(
+            "certificatebeautifulid",
+            XMLDB_INDEX_NOTUNIQUE,
+            ["certificatebeautifulid"]
+        );
+        if (!$dbman->index_exists($table, $certificateindex)) {
+            $dbman->add_index($table, $certificateindex);
+        }
+
+        upgrade_mod_savepoint(true, 2026081200, "certificatebeautiful");
     }
 
     return true;
