@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * manage-model-editpage file
+ * Edit a certificate model page.
  *
  * @package   mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
@@ -37,15 +37,19 @@ global $PAGE, $USER, $CFG;
 
 $id = required_param("id", PARAM_INT);
 $page = required_param("page", PARAM_INT);
-$action = optional_param("action", "", PARAM_TEXT);
+$action = optional_param("action", "", PARAM_ALPHA);
 
 $context = context_system::instance();
 $PAGE->set_context($context);
-$PAGE->set_url("/mod/certificatebeautiful/manage-model-list.php", ["id" => $id, "page" => $page, "action" => $action]);
+$PAGE->set_url("/mod/certificatebeautiful/manage-model-editpage.php", [
+    "id" => $id,
+    "page" => $page,
+    "action" => $action,
+]);
 $PAGE->add_body_class("certificatebeautiful-pages");
 
 require_login();
-require_capability("mod/certificatebeautiful:addinstance", $context);
+require_capability("mod/certificatebeautiful:managemodels", $context);
 
 /** @var certificatebeautiful_model $certificatebeautifulmodel */
 $certificatebeautifulmodel = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
@@ -56,15 +60,15 @@ $PAGE->set_title("{$certificatebeautifulmodel->name} - {$title}");
 $PAGE->set_heading("{$certificatebeautifulmodel->name} - {$title}");
 
 $PAGE->navbar->add(get_string("list_model", "certificatebeautiful"), "manage-model-list.php");
-if (!$id) {
-    $PAGE->navbar->add(get_string("new_model", "certificatebeautiful"), "manage-model.php?id={$certificatebeautifulmodel->id}");
-}
+$PAGE->navbar->add($certificatebeautifulmodel->name, "manage-model.php?id={$certificatebeautifulmodel->id}");
+$PAGE->navbar->add($title, $PAGE->url);
 
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info, true);
 
 $cssdata = optional_param("cssdata", false, PARAM_RAW);
 $htmldata = optional_param("htmldata", false, PARAM_RAW);
-if ($cssdata && $htmldata && sesskey() == optional_param("sesskey", false, PARAM_RAW)) {
+if ($cssdata !== false && $htmldata !== false) {
+    require_sesskey();
 
     $cssdata = preg_replace('/\*(\s+)?\{.*?\}|body(\s+)?\{.*?\}/', "", $cssdata);
     $htmldata = preg_replace('/<body>(.*)<\/body>/', "$1", $htmldata);
@@ -102,7 +106,6 @@ switch ($action) {
 
         $data = ["pages" => [], "class-root" => "d-flex flex-wrap certificate-flex-gap"];
         foreach ($models as $model) {
-
             if ($model["orientation"] != $certificatebeautifulmodel->orientation) {
                 continue;
             }
@@ -117,20 +120,23 @@ switch ($action) {
                 "title" => $model["name"],
                 "pagina" => $htmldata,
                 "addpage_title" => get_string("using_this_page", "certificatebeautiful"),
-                "addpage_href" => "manage-model-editpage.php?id={$id}&page={$page}&model={$model["key"]}&action=changue",
+                "addpage_href" => "manage-model-editpage.php?id={$id}&page={$page}&model={$model["key"]}" .
+                    "&action=changue&sesskey=" . sesskey(),
                 "zoom" => true,
             ];
         }
         echo $OUTPUT->render_from_template("mod_certificatebeautiful/list-certificate", $data);
 
         echo $OUTPUT->footer();
-        break;
+        die();
 
     case "changue":
-        $model = required_param("model", PARAM_TEXT);
+        require_sesskey();
+
+        $modelkey = required_param("model", PARAM_TEXT);
         $page = required_param("page", PARAM_INT);
 
-        $htmldata = get_template_file::load_template_file($model);
+        $htmldata = get_template_file::load_template_file($modelkey);
 
         $certificatebeautifulmodel->pages_info_object[$page] = [
             "htmldata" => $htmldata,
@@ -152,7 +158,7 @@ switch ($action) {
 
         echo $OUTPUT->header();
 
-        $model = $DB->get_record("certificatebeautiful_model", ["id" => $id]);
+        $model = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
         $model->pages_info_object = json_decode($model->pages_info);
 
         $info = new changue_cert_info(null, [
@@ -165,7 +171,6 @@ switch ($action) {
         if ($info->is_cancelled()) {
             redirect("manage-model-editpage.php?id={$id}&page={$page}");
         } else if ($data = $info->get_data()) {
-
             $fs = get_file_storage();
             $contextuser = context_user::instance($USER->id);
             $files = $fs->get_area_files($contextuser->id, "user", "draft", $data->background, "filesize DESC");
@@ -187,9 +192,8 @@ switch ($action) {
         }
 
         $info->display();
-
         echo $OUTPUT->footer();
-        break;
+        die();
 
     default:
         $PAGE->navbar->add(get_string("edit_page", "certificatebeautiful"));

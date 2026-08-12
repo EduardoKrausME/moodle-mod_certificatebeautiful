@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class form_create
+ * Class form_create.
  *
  * @package   mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
@@ -33,14 +33,12 @@ defined('MOODLE_INTERNAL') || die;
 require_once("{$CFG->libdir}/formslib.php");
 
 /**
- * Class form_create
- *
- * @package mod_certificatebeautiful\model
+ * Model create/edit form.
  */
 class form_create extends moodleform {
 
     /**
-     * Form definition. Abstract method - always override!
+     * Form definition.
      *
      * @throws Exception
      */
@@ -80,7 +78,9 @@ class form_create extends moodleform {
                     "addpage_title" => get_string("edit_this_page", "certificatebeautiful"),
                     "addpage_href" => "manage-model-editpage.php?id={$certificatebeautifulmodel->id}&page={$key}",
                     "zoom" => false,
-                    "delete_href" => $key ? "manage-model.php?id={$certificatebeautifulmodel->id}&page={$key}&action=delete" : "",
+                    "delete_href" => $key
+                        ? "manage-model.php?id={$certificatebeautifulmodel->id}&page={$key}&action=delete&sesskey=" . sesskey()
+                        : "",
                 ];
             }
 
@@ -89,14 +89,13 @@ class form_create extends moodleform {
             $data["add-new-page-link"] =
                 "manage-model-editpage.php?id={$certificatebeautifulmodel->id}&action=select&page={$countpages}";
 
-            $data["duplicate-page-link"] = "manage-model.php?id={$certificatebeautifulmodel->id}&action=duplicate";
+            $data["duplicate-page-link"] =
+                "manage-model.php?id={$certificatebeautifulmodel->id}&action=duplicate&sesskey=" . sesskey();
             $data["delete-page-link"] = "manage-model.php?id={$certificatebeautifulmodel->id}&action=deletemodel";
 
             $mform->addElement("html", $OUTPUT->render_from_template('mod_certificatebeautiful/formgroup_create-page', $data));
-
             $this->add_action_buttons(true, get_string("save_model", "certificatebeautiful"));
         } else {
-
             $options = [
                 "L" => get_string("model_orientation_l", "certificatebeautiful"),
                 "P" => get_string("model_orientation_p", "certificatebeautiful"),

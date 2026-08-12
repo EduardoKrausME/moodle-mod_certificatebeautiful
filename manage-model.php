@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * manage-model file
+ * Manage certificate model.
  *
  * @package   mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
@@ -31,16 +31,16 @@ require_once("{$CFG->libdir}/tablelib.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/model/form_create.php");
 require_once("{$CFG->dirroot}/mod/certificatebeautiful/classes/model/form_create_page.php");
 
-global $PAGE, $USER, $CFG;
+global $PAGE, $CFG;
 
 $id = required_param("id", PARAM_INT);
 
 $context = context_system::instance();
 $PAGE->set_context($context);
-$PAGE->set_url('/mod/certificatebeautiful/manage-model-list.php', ["id" => $id]);
+$PAGE->set_url('/mod/certificatebeautiful/manage-model.php', ["id" => $id]);
 
 require_login();
-require_capability('mod/certificatebeautiful:addinstance', $context);
+require_capability('mod/certificatebeautiful:managemodels', $context);
 
 if ($id > 0) {
     /** @var certificatebeautiful_model $certificatebeautifulmodel */
@@ -66,20 +66,30 @@ if ($id > 0) {
     $PAGE->navbar->add(get_string("new_model", "certificatebeautiful"), $PAGE->url);
 }
 
-switch (optional_param("action", false, PARAM_TEXT)) {
+switch (optional_param("action", false, PARAM_ALPHA)) {
     case "delete":
+        require_sesskey();
         $page = required_param("page", PARAM_INT);
-        if ($page) {
+
+        if (array_key_exists($page, $certificatebeautifulmodel->pages_info_object)) {
             unset($certificatebeautifulmodel->pages_info_object[$page]);
             $certificatebeautifulmodel->pages_info_object = array_values($certificatebeautifulmodel->pages_info_object);
 
-            $certificatebeautifulmodel->pages_info = json_encode($certificatebeautifulmodel->pages_info_object, JSON_PRETTY_PRINT);
+            if (!$certificatebeautifulmodel->pages_info_object) {
+                $certificatebeautifulmodel->pages_info_object = [form_create_page::empty_page($certificatebeautifulmodel)];
+            }
+
+            $certificatebeautifulmodel->pages_info = json_encode(
+                $certificatebeautifulmodel->pages_info_object,
+                JSON_PRETTY_PRINT
+            );
             $certificatebeautifulmodel->timemodified = time();
             $DB->update_record("certificatebeautiful_model", $certificatebeautifulmodel);
-
-            redirect("manage-model.php?id={$certificatebeautifulmodel->id}");
         }
+
+        redirect("manage-model.php?id={$certificatebeautifulmodel->id}");
         break;
+
     case "deletemodel":
         $PAGE->navbar->add(get_string("edit_page", "certificatebeautiful"));
         $PAGE->navbar->add(get_string("select_model", "certificatebeautiful"));
@@ -95,22 +105,34 @@ switch (optional_param("action", false, PARAM_TEXT)) {
                 get_string("deletedmodel", "certificatebeautiful", $model->name)
             );
         } else {
-            $confirmurl = new moodle_url("/mod/certificatebeautiful/manage-model.php",
-                ["id" => $model->id, "action" => "deletemodel", "confirm" => 1, "sesskey" => sesskey()]);
+            $confirmurl = new moodle_url("/mod/certificatebeautiful/manage-model.php", [
+                "id" => $model->id,
+                "action" => "deletemodel",
+                "confirm" => 1,
+                "sesskey" => sesskey(),
+            ]);
             $cancelurl = new moodle_url("/mod/certificatebeautiful/manage-model.php", ["id" => $model->id]);
 
             $options = ["continuestr" => get_string('yes')];
             echo $OUTPUT->confirm(
-                get_string("deletemodelconfirm", "certificatebeautiful", $model->name), $confirmurl, $cancelurl, $options
+                get_string("deletemodelconfirm", "certificatebeautiful", $model->name),
+                $confirmurl,
+                $cancelurl,
+                $options
             );
         }
 
         echo $OUTPUT->footer();
-        break;
+        die();
+
     case "duplicate":
-        $model = $DB->get_record("certificatebeautiful_model", ["id" => $id]);
+        require_sesskey();
+
+        $model = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
         unset($model->id);
         $model->name = get_string("duplicatedmodule", "moodle", $model->name);
+        $model->timecreated = time();
+        $model->timemodified = time();
         $model->id = $DB->insert_record("certificatebeautiful_model", $model);
         redirect("manage-model.php?id={$model->id}");
         break;
@@ -118,7 +140,6 @@ switch (optional_param("action", false, PARAM_TEXT)) {
 
 $formcreate = new form_create(null, ["certificatebeautiful_model" => $certificatebeautifulmodel]);
 if (!$formcreate->is_cancelled() && $certificatebeautifulmodel = $formcreate->get_data()) {
-
     if ($id > 0) {
         $model = (object)[
             "id" => $certificatebeautifulmodel->id,

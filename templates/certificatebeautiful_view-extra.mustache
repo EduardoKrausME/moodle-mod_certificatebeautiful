@@ -48,7 +48,7 @@
             <p class="text-center text-nowrap">
                 <a href="{{{url-delete}}}"
                    class="btn btn-danger certificatebeautiful-report-btn-small">{{#str}}yes{{/str}}</a>
-                <a id="cancel-{{uniqid}}" href="{{url-delete}}"
+                <a id="cancel-{{uniqid}}" href="#"
                    class="btn btn-info certificatebeautiful-report-btn-small">{{#str}}cancel{{/str}}</a>
             </p>
         </div>
@@ -60,7 +60,8 @@
                 $("#box-link-{{uniqid}}").hide(200);
             });
 
-            $("#cancel-{{uniqid}}").click(function() {
+            $("#cancel-{{uniqid}}").click(function(event) {
+                event.preventDefault();
                 $("#box-confirm-{{uniqid}}").hide(200);
                 $("#box-link-{{uniqid}}").show(200);
             });
