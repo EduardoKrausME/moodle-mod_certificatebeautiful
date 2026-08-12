@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Define the complete structure for backup, with file and id annotations.
+ * Backup structure for mod_certificatebeautiful.
  *
  * @package   mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
@@ -23,45 +23,86 @@
  */
 
 /**
- * THe class defines the complete structure for backup, with file and id annotations.
- *
- * @package   mod_certificatebeautiful
- * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * Defines the complete structure for one Beautiful Certificate activity.
  */
 class backup_certificatebeautiful_activity_structure_step extends backup_activity_structure_step {
 
     /**
-     * Defines the structure of the resulting xml file.
+     * Defines the structure of the resulting XML file.
      *
-     * @return backup_nested_element The structure wrapped by the common 'activity' element.
-     * @throws Exception
+     * @return backup_nested_element
      */
     protected function define_structure() {
-        // Course certificate.
-        $fields = ["name", "description", "timecreated", "timemodified", "intro", "introformat", "model", "template", "expires"];
-        $certificatebeautiful = new backup_nested_element("certificatebeautiful", ["id"], $fields);
+        $certificatebeautiful = new backup_nested_element(
+            "certificatebeautiful",
+            ["id"],
+            [
+                "name",
+                "description",
+                "intro",
+                "introformat",
+                "model",
+                "autotrigger",
+                "triggercmid",
+                "gradepass",
+                "notifyuser",
+                "timecreated",
+                "timemodified",
+            ]
+        );
 
-        // Issues.
+        // The selected model is global data, so include a self-contained copy in the activity backup.
+        $model = new backup_nested_element(
+            "certificate_model",
+            ["id"],
+            [
+                "name",
+                "orientation",
+                "model_key",
+                "pages_info",
+                "timecreated",
+                "timemodified",
+            ]
+        );
+
         $issues = new backup_nested_element("issues");
-        $issue = new backup_nested_element("issue", ["id"],
-            ["userid", "templateid", "code", "emailed", "timecreated", "expires", "data", "component", "courseid"]);
+        $issue = new backup_nested_element(
+            "issue",
+            ["id"],
+            [
+                "userid",
+                "code",
+                "version",
+                "timecreated",
+            ]
+        );
 
-        // Build the tree.
+        $certificatebeautiful->add_child($model);
         $certificatebeautiful->add_child($issues);
         $issues->add_child($issue);
 
-        // Define the source tables for the elements.
         $certificatebeautiful->set_source_table("certificatebeautiful", ["id" => backup::VAR_ACTIVITYID]);
 
-        // Define id annotations.
+        $model->set_source_sql(
+            "SELECT m.*
+               FROM {certificatebeautiful_model} m
+               JOIN {certificatebeautiful} cb ON cb.model = m.id
+              WHERE cb.id = ?",
+            [backup::VAR_ACTIVITYID]
+        );
+
+        if ($this->get_setting_value("userinfo")) {
+            $issue->set_source_table(
+                "certificatebeautiful_issue",
+                ["certificatebeautifulid" => backup::VAR_ACTIVITYID]
+            );
+        }
+
+        $certificatebeautiful->annotate_ids("course_module", "triggercmid");
         $issue->annotate_ids("user", "userid");
 
-        // Define file annotations.
-        $certificatebeautiful->annotate_files("mod_certificatebeautiful", "intro", null); // This file area hasn't itemid.
-        if ($this->get_setting_value("userinfo")) {
-            $issue->annotate_files("tool_certificate", "issues", "id", context_system::instance()->id);
-        }
+        // Generated PDFs are cache/derived data. They are regenerated after restore.
+        $certificatebeautiful->annotate_files("mod_certificatebeautiful", "intro", null);
 
         return $this->prepare_activity_structure($certificatebeautiful);
     }
