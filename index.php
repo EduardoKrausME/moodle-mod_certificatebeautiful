@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * index file
+ * Course instance list.
  *
  * @package   mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus {@link https://eduardokraus.com}
@@ -30,7 +30,6 @@ require_once(dirname(__FILE__) . "/lib.php");
 $id = required_param("id", PARAM_INT); // Course.
 
 $course = $DB->get_record("course", ["id" => $id], "*", MUST_EXIST);
-
 require_course_login($course);
 
 $params = [
@@ -48,45 +47,55 @@ $PAGE->set_heading($course->fullname);
 $PAGE->set_pagelayout("incourse");
 
 echo $OUTPUT->header();
-$usesections = course_format_uses_sections($course->format);
-
-if ($usesections) {
-    $sortorder = "cw.section ASC";
-} else {
-    $sortorder = "m.timemodified DESC";
-}
 
 if (!$certificatebeautifuls = get_all_instances_in_course("certificatebeautiful", $course)) {
     notice(get_string("thereareno", "moodle", get_string("modulenameplural", "mod_certificatebeautiful")));
     exit;
 }
 
-$table = new html_table();
-
-$table->head = [get_string("sectionname", "format_" . $course->format), get_string("name")];
-$table->align = ["center", "left", "left"];
-
+$reportaccess = [];
 $showreport = false;
-if (has_capability("mod/certificatebeautiful:viewreport", context_system::instance())) {
+foreach ($certificatebeautifuls as $certificatebeautiful) {
+    $modulecontext = context_module::instance($certificatebeautiful->coursemodule);
+    $reportaccess[$certificatebeautiful->coursemodule] = has_capability(
+        "mod/certificatebeautiful:viewreport",
+        $modulecontext
+    );
+    $showreport = $showreport || $reportaccess[$certificatebeautiful->coursemodule];
+}
+
+$table = new html_table();
+$table->head = [get_string("sectionname", "format_" . $course->format), get_string("name")];
+$table->align = ["center", "left"];
+
+if ($showreport) {
     $table->head[] = get_string("report", "mod_certificatebeautiful");
     $table->align[] = "left";
-    $showreport = true;
 }
 
 foreach ($certificatebeautifuls as $certificatebeautiful) {
-    $tt = "&nbsp;";
+    $sectionname = "&nbsp;";
     if ($certificatebeautiful->section) {
-        $tt = get_section_name($course, $certificatebeautiful->section);
+        $sectionname = get_section_name($course, $certificatebeautiful->section);
     }
 
     $data = [
-        $tt,
-        html_writer::link("view.php?id=" . $certificatebeautiful->coursemodule, format_string($certificatebeautiful->name)),
+        $sectionname,
+        html_writer::link(
+            "view.php?id=" . $certificatebeautiful->coursemodule,
+            format_string($certificatebeautiful->name)
+        ),
     ];
 
     if ($showreport) {
-        $data[] = html_writer::link("report.php?id={$certificatebeautiful->coursemodule}",
-            get_string("report_title", "mod_certificatebeautiful"));
+        if (!empty($reportaccess[$certificatebeautiful->coursemodule])) {
+            $data[] = html_writer::link(
+                "report.php?id={$certificatebeautiful->coursemodule}",
+                get_string("report_title", "mod_certificatebeautiful")
+            );
+        } else {
+            $data[] = "";
+        }
     }
 
     $table->data[] = $data;

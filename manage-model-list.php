@@ -15,21 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * manage-model-list file
+ * Manage model list.
  *
  * @package   mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use mod_certificatebeautiful\model\table_list;
 use mod_certificatebeautiful\models;
 
 require_once("../../config.php");
 require_once("{$CFG->libdir}/tablelib.php");
 require_once(__DIR__ . "/lib.php");
 
-global $PAGE, $USER, $CFG;
+global $PAGE, $CFG;
 
 $context = context_system::instance();
 $PAGE->add_body_class("certificatebeautiful-pages");
@@ -38,10 +37,9 @@ $PAGE->set_url("/mod/certificatebeautiful/manage-model-list.php");
 $PAGE->set_title(get_string("list_model", "certificatebeautiful"));
 
 require_login();
-require_capability("mod/certificatebeautiful:addinstance", $context);
+require_capability("mod/certificatebeautiful:managemodels", $context);
 
 $PAGE->set_heading(format_string(get_string("list_model", "certificatebeautiful")));
-
 $PAGE->navbar->add(get_string("list_model", "certificatebeautiful"), $PAGE->url);
 
 echo $OUTPUT->header();

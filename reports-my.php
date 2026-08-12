@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Report for certificatebeautiful.
+ * User certificate report.
  *
  * @package   mod_certificatebeautiful
  * @copyright 2025 Eduardo Kraus https://eduardokraus.com/
@@ -27,21 +27,25 @@ use mod_certificatebeautiful\report\certificatebeautiful_view_user;
 require_once('../../config.php');
 require_once("{$CFG->libdir}/tablelib.php");
 
-$userid = optional_param("user", 0, PARAM_INT);
-$context = context_system::instance();
-if (!has_capability('moodle/course:manageactivities', $context, $USER)) {
+require_login();
+
+$userid = optional_param("user", $USER->id, PARAM_INT);
+
+// This page is primarily the current user's certificate history. Only site administrators
+// may request another user's global history; module-level report permissions are enforced
+// again when an individual certificate PDF is opened.
+if ((int)$userid !== (int)$USER->id && !is_siteadmin()) {
     $userid = $USER->id;
 }
+
 $user = $DB->get_record("user", ["id" => $userid], '*', MUST_EXIST);
+$context = context_user::instance($user->id);
 
 $PAGE->set_context($context);
-$PAGE->set_url('/mod/certificatebeautiful/reports.php', ["user" => $userid]);
+$PAGE->set_url('/mod/certificatebeautiful/reports-my.php', ["user" => $userid]);
 $PAGE->set_title(fullname($user) . " " . get_string("reports"));
 $PAGE->set_heading(get_string("from_certificates", "certificatebeautiful", fullname($user)));
 $PAGE->add_body_class("certificatebeautiful-pages");
-
-require_login();
-require_capability('mod/certificatebeautiful:view', $context);
 
 echo $OUTPUT->header();
 

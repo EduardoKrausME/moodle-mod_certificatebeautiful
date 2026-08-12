@@ -28,18 +28,8 @@ use mod_certificatebeautiful\automation;
 /**
  * Checks if certificate activity supports a specific feature.
  *
- * @uses FEATURE_GROUPS
- * @uses FEATURE_GROUPINGS
- * @uses FEATURE_MOD_INTRO
- * @uses FEATURE_SHOW_DESCRIPTION
- * @uses FEATURE_COMPLETION_TRACKS_VIEWS
- * @uses FEATURE_COMPLETION_HAS_RULES
- * @uses FEATURE_MODEDIT_DEFAULT_COMPLETION
- * @uses FEATURE_BACKUP_MOODLE2
- *
  * @param string $feature FEATURE_xx constant for requested feature
- *
- * @return mixed True if module supports feature, false if not, null if doesn't know
+ * @return mixed
  */
 function certificatebeautiful_supports(string $feature) {
     switch ($feature) {
@@ -65,16 +55,11 @@ function certificatebeautiful_supports(string $feature) {
 }
 
 /**
- * Saves a new instance of the mod_certificatebeautiful into the database.
+ * Saves a new instance of the module.
  *
- * Given an object containing all the necessary data, (defined by the form
- * in mod_form.php) this function will create a new instance and return the id
- * number of the instance.
- *
- * @param stdClass $data                           An object from the form.
- * @param mod_certificatebeautiful_mod_form $mform The form.
- * @return int The id of the newly inserted record.
- * @throws Exception
+ * @param stdClass $data
+ * @param mod_certificatebeautiful_mod_form|null $mform
+ * @return int
  */
 function certificatebeautiful_add_instance(stdClass $data, $mform = null): int {
     global $DB;
@@ -95,7 +80,6 @@ function certificatebeautiful_add_instance(stdClass $data, $mform = null): int {
     }
 
     $cmid = $data->coursemodule;
-
     $data->id = $DB->insert_record("certificatebeautiful", $data);
 
     // We need to use context now, so we need to make sure all needed info is already in db.
@@ -105,15 +89,11 @@ function certificatebeautiful_add_instance(stdClass $data, $mform = null): int {
 }
 
 /**
- * Updates an instance of the mod_certificatebeautiful in the database.
+ * Updates an instance of the module.
  *
- * Given an object containing all the necessary data (defined in mod_form.php),
- * this function will update an existing instance with new data.
- *
- * @param stdClass $data                           An object from the form in mod_form.php.
- * @param mod_certificatebeautiful_mod_form $mform The form.
- * @return bool True if successful, false otherwise.
- * @throws Exception
+ * @param stdClass $data
+ * @param mod_certificatebeautiful_mod_form|null $mform
+ * @return bool
  */
 function certificatebeautiful_update_instance(stdClass $data, $mform = null): bool {
     global $DB;
@@ -139,11 +119,10 @@ function certificatebeautiful_update_instance(stdClass $data, $mform = null): bo
 }
 
 /**
- * Removes an instance of the mod_certificatebeautiful from the database.
+ * Removes an instance of the module.
  *
- * @param int $id Id of the module instance.
- * @return bool True if successful, false on failure.
- * @throws Exception
+ * @param int $id
+ * @return bool
  */
 function certificatebeautiful_delete_instance(int $id): bool {
     global $DB;
@@ -156,33 +135,30 @@ function certificatebeautiful_delete_instance(int $id): bool {
         return false;
     }
     $DB->delete_records("certificatebeautiful", ["id" => $id]);
-
     $DB->delete_records("certificatebeautiful_issue", ["certificatebeautifulid" => $id]);
 
     return true;
 }
 
 /**
- * Return a list of page types
+ * Returns page types.
  *
- * @param string $pagetype         current page type
- * @param stdClass $parentcontext  Block's parent context
- * @param stdClass $currentcontext Current context of block
- * @return array array of page types and it's names
- * @throws Exception
+ * @param string $pagetype
+ * @param stdClass $parentcontext
+ * @param stdClass $currentcontext
+ * @return array
  */
 function certificatebeautiful_page_type_list($pagetype, $parentcontext, $currentcontext): array {
-    $modulepagetype = [
+    return [
         "mod-certificatebeautiful-*" => get_string("page-mod-certificatebeautiful-x", "mod_certificatebeautiful"),
     ];
-    return $modulepagetype;
 }
 
 /**
- * The elements to add the course reset form.
+ * Adds course reset controls.
  *
  * @param MoodleQuickForm $mform
- * @throws Exception
+ * @return void
  */
 function certificatebeautiful_reset_course_form_definition($mform) {
     $mform->addElement("header", "certificatebeautifulheader", get_string("modulenameplural", "certificatebeautiful"));
@@ -191,18 +167,15 @@ function certificatebeautiful_reset_course_form_definition($mform) {
 }
 
 /**
- * certificatebeautiful_extend_settings_navigation function
+ * Extends activity settings navigation.
  *
  * @param settings_navigation $settings
  * @param navigation_node $certificatebeautifulnode
  * @return void
- * @throws Exception
  */
 function certificatebeautiful_extend_settings_navigation($settings, $certificatebeautifulnode) {
     global $PAGE;
 
-    // We want to add these new nodes after the Edit settings node, and before the
-    // Locally assigned roles node. Of course, both of those are controlled by capabilities.
     $keys = $certificatebeautifulnode->get_children_key_list();
     $beforekey = null;
     $i = array_search("modedit", $keys);
@@ -212,54 +185,109 @@ function certificatebeautiful_extend_settings_navigation($settings, $certificate
         $beforekey = $keys[$i + 1];
     }
 
-    if (has_capability("moodle/course:manageactivities", $PAGE->cm->context)) {
-        $node = navigation_node::create(get_string("report", "certificatebeautiful"),
+    if (has_capability("mod/certificatebeautiful:viewreport", $PAGE->cm->context)) {
+        $node = navigation_node::create(
+            get_string("report", "certificatebeautiful"),
             new moodle_url("/mod/certificatebeautiful/report.php", ["id" => $PAGE->cm->id]),
-            navigation_node::TYPE_SETTING, null, "mod_certificatebeautiful_report",
-            new pix_icon("i/report", ""));
+            navigation_node::TYPE_SETTING,
+            null,
+            "mod_certificatebeautiful_report",
+            new pix_icon("i/report", "")
+        );
         $certificatebeautifulnode->add_node($node, $beforekey);
+    }
 
-        $node = navigation_node::create(get_string("manage_models", "certificatebeautiful"),
+    if (has_capability("mod/certificatebeautiful:managemodels", context_system::instance())) {
+        $node = navigation_node::create(
+            get_string("manage_models", "certificatebeautiful"),
             new moodle_url("/mod/certificatebeautiful/manage-model-list.php"),
-            navigation_node::TYPE_SETTING, null, "mod_certificatebeautiful_manage_models",
-            new pix_icon("i/report", ""));
+            navigation_node::TYPE_SETTING,
+            null,
+            "mod_certificatebeautiful_manage_models",
+            new pix_icon("i/report", "")
+        );
         $certificatebeautifulnode->add_node($node, $beforekey);
     }
 }
 
 /**
- * certificatebeautiful_extend_navigation_course function
+ * Checks whether the current user can access at least one certificate report in a course.
+ *
+ * @param int $courseid
+ * @return bool
+ */
+function certificatebeautiful_can_view_course_reports(int $courseid): bool {
+    $modinfo = get_fast_modinfo($courseid);
+
+    foreach ($modinfo->get_cms() as $cm) {
+        if ($cm->modname !== "certificatebeautiful" || $cm->deletioninprogress) {
+            continue;
+        }
+
+        if (has_capability("mod/certificatebeautiful:viewreport", context_module::instance($cm->id))) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * Extends course navigation.
  *
  * @param navigation_node $navigation
  * @param stdClass $course
  * @param context $context
- * @throws Exception
+ * @return void
  */
 function certificatebeautiful_extend_navigation_course($navigation, $course, $context) {
-    if (has_capability("moodle/course:manageactivities", $context)) {
-        $certificatenode1 = $navigation->add(get_string("course_certificates", "certificatebeautiful"),
-            null, navigation_node::TYPE_CONTAINER, null, uniqid());
+    if (certificatebeautiful_can_view_course_reports((int)$course->id)) {
+        $certificatenode = $navigation->add(
+            get_string("course_certificates", "certificatebeautiful"),
+            null,
+            navigation_node::TYPE_CONTAINER,
+            null,
+            uniqid()
+        );
         $url = new moodle_url("/mod/certificatebeautiful/reports.php", ["course" => $course->id]);
-        $certificatenode1->add(get_string("course_certificates", "certificatebeautiful"), $url, navigation_node::TYPE_SETTING,
-            null, null, new pix_icon("i/report", ""));
+        $certificatenode->add(
+            get_string("course_certificates", "certificatebeautiful"),
+            $url,
+            navigation_node::TYPE_SETTING,
+            null,
+            null,
+            new pix_icon("i/report", "")
+        );
+    }
 
-        $certificatenode2 = $navigation->add(get_string("manage_models", "certificatebeautiful"),
-            null, navigation_node::TYPE_CONTAINER, null, "manage_models");
+    if (has_capability("mod/certificatebeautiful:managemodels", context_system::instance())) {
+        $certificatenode = $navigation->add(
+            get_string("manage_models", "certificatebeautiful"),
+            null,
+            navigation_node::TYPE_CONTAINER,
+            null,
+            "manage_models"
+        );
         $url = new moodle_url("/mod/certificatebeautiful/manage-model-list.php");
-        $certificatenode2->add(get_string("manage_models", "certificatebeautiful"), $url, navigation_node::TYPE_SETTING,
-            null, null, new pix_icon("i/report", ""));
+        $certificatenode->add(
+            get_string("manage_models", "certificatebeautiful"),
+            $url,
+            navigation_node::TYPE_SETTING,
+            null,
+            null,
+            new pix_icon("i/report", "")
+        );
     }
 }
 
 /**
- * certificatebeautiful_myprofile_navigation
+ * Adds issued certificates to the user profile.
  *
- * @param treeAlias $tree Tree object
- * @param stdClass $user                         user object
+ * @param treeAlias $tree
+ * @param stdClass $user
  * @param bool $iscurrentuser
- * @param stdClass $course                       Course object
+ * @param stdClass|null $course
  * @return void
- * @throws Exception
  */
 function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tree $tree, $user, $iscurrentuser, $course) {
     global $DB;
@@ -267,21 +295,21 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
     $addnodes = [];
     if ($iscurrentuser || is_siteadmin()) {
         if ($course) {
-            $sql = "
-            SELECT issue.id, issue.code, issue.timecreated, issue.cmid, cert.name, cert.course, course.fullname
-              FROM {certificatebeautiful_issue} issue
-              JOIN {certificatebeautiful}       cert   ON cert.id   = issue.certificatebeautifulid
-              JOIN {course}                     course ON course.id = cert.course
-             WHERE issue.userid = :userid
-               AND cert.course  = :courseid";
+            $sql = "SELECT issue.id, issue.code, issue.timecreated, issue.cmid,
+                           cert.name, cert.course, course.fullname
+                      FROM {certificatebeautiful_issue} issue
+                      JOIN {certificatebeautiful}       cert   ON cert.id = issue.certificatebeautifulid
+                      JOIN {course}                     course ON course.id = cert.course
+                     WHERE issue.userid = :userid
+                       AND cert.course  = :courseid";
             $params = ["userid" => $user->id, "courseid" => $course->id];
         } else {
-            $sql = "
-            SELECT issue.id, issue.code, issue.timecreated, issue.cmid, cert.name, cert.course, course.fullname
-              FROM {certificatebeautiful_issue} issue
-              JOIN {certificatebeautiful}       cert  ON issue.certificatebeautifulid = cert.id
-              JOIN {course}                     course ON course.id = cert.course
-             WHERE issue.userid = :userid";
+            $sql = "SELECT issue.id, issue.code, issue.timecreated, issue.cmid,
+                           cert.name, cert.course, course.fullname
+                      FROM {certificatebeautiful_issue} issue
+                      JOIN {certificatebeautiful}       cert   ON issue.certificatebeautifulid = cert.id
+                      JOIN {course}                     course ON course.id = cert.course
+                     WHERE issue.userid = :userid";
             $params = ["userid" => $user->id];
         }
         $certificates = $DB->get_records_sql($sql, $params);
@@ -291,13 +319,18 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
                 $url = new moodle_url("/mod/certificatebeautiful/view.php", ["id" => $certificate->cmid]);
                 $link = html_writer::link($url, $certificate->name);
 
-                $addnodes[] = new core_user\output\myprofile\node("certificates", "certificates-{$certificate->cmid}",
-                    $certificate->fullname, null, null, $link);
+                $addnodes[] = new core_user\output\myprofile\node(
+                    "certificates",
+                    "certificates-{$certificate->cmid}",
+                    $certificate->fullname,
+                    null,
+                    null,
+                    $link
+                );
             }
         }
     }
 
-    // Add nodes, if any.
     if (!empty($addnodes)) {
         $myname = get_string("my_certificates", "certificatebeautiful");
         $mobilecat = new core_user\output\myprofile\category("certificates", $myname, "contact");
@@ -310,10 +343,9 @@ function certificatebeautiful_myprofile_navigation(core_user\output\myprofile\tr
 }
 
 /**
- * certificatebeautiful_list_all_models
+ * Lists bundled models.
  *
  * @return array
- * @throws Exception
  */
 function certificatebeautiful_list_all_models() {
     return [

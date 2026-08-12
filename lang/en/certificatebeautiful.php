@@ -55,6 +55,7 @@ $string['certificate_not_issued'] = 'Your certificate has not been issued yet.';
 $string['certificatebeautiful-page_empty'] = 'Empty';
 $string['certificatebeautiful:addinstance'] = 'Add instance';
 $string['certificatebeautiful:delete'] = 'Delete certificate instance';
+$string['certificatebeautiful:managemodels'] = 'Manage Beautiful certificate models';
 $string['certificatebeautiful:view'] = 'Allow the user to view the Beautiful certificate';
 $string['certificatebeautiful:viewreport'] = 'View Beautiful certificate reports';
 $string['certpresented'] = 'This certificate is proudly presented to';

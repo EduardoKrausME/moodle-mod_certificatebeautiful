@@ -58,6 +58,7 @@ $string['certificate_not_issued'] = 'Seu certificado ainda não foi emitido.';
 $string['certificatebeautiful-page_empty'] = 'Vazio';
 $string['certificatebeautiful:addinstance'] = 'Adicionar instância';
 $string['certificatebeautiful:delete'] = 'Excluir instância do certificado';
+$string['certificatebeautiful:managemodels'] = 'Gerenciar modelos do Beautiful Certificate';
 $string['certificatebeautiful:view'] = 'Permitir que o usuário visualize o Beautiful Certificate';
 $string['certificatebeautiful:viewreport'] = 'Visualizar relatórios do Beautiful Certificate';
 $string['certpresented'] = 'Este certificado é orgulhosamente concedido a';

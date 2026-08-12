@@ -44,6 +44,13 @@ $capabilities = [
             "manager" => CAP_ALLOW,
         ],
     ],
+    "mod/certificatebeautiful:managemodels" => [
+        "captype" => "write",
+        "contextlevel" => CONTEXT_SYSTEM,
+        "archetypes" => [
+            "manager" => CAP_ALLOW,
+        ],
+    ],
     "mod/certificatebeautiful:addinstance" => [
         "captype" => "write",
         "contextlevel" => CONTEXT_COURSE,
