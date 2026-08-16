@@ -31,7 +31,7 @@ use advanced_testcase;
  *
  * @covers \mod_certificatebeautiful\issue
  */
-class issue_test extends advanced_testcase {
+final class issue_test extends advanced_testcase {
 
     /**
      * Repeated calls return the same issue instead of creating duplicates.

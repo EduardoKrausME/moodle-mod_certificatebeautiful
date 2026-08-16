@@ -32,7 +32,7 @@ use context_module;
  *
  * @covers \mod_certificatebeautiful\access_manager
  */
-class access_manager_test extends advanced_testcase {
+final class access_manager_test extends advanced_testcase {
 
     /**
      * Owners can view their own issue, other students cannot, and report users can view others.
