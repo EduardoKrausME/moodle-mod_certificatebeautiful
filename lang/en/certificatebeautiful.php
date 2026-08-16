@@ -159,3 +159,4 @@ $string['validate_certificate_title'] = 'Verify certificate authenticity';
 $string['validate_certificate_user'] = 'Issued to';
 $string['validate_certificate_validate'] = 'Validate';
 $string['view_my_certificate'] = 'View my certificate in a new tab';
+$string['page-mod-certificatebeautiful-x'] = 'Any certificate beautiful module page';
