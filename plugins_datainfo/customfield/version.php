@@ -28,3 +28,7 @@ $plugin->version = 2025100702;
 $plugin->requires = 2021041900;
 $plugin->component = "certificatebeautifuldatainfo_customfield";
 $plugin->maturity = MATURITY_STABLE;
+
+$plugin->dependencies = [
+    "mod_certificatebeautiful" => 2026081200,
+];
