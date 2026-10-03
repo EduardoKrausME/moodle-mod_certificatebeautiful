@@ -1,5 +1,7 @@
 <?php
 
+defined('MOODLE_INTERNAL') || die;
+
 $subsarray = array (
   913 => '<tts>65</tts>',
   914 => '<tts>66</tts>',

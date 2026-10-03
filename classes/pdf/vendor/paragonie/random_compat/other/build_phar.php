@@ -1,4 +1,7 @@
 <?php
+
+defined('MOODLE_INTERNAL') || die;
+
 $dist = dirname(__DIR__).'/dist';
 if (!is_dir($dist)) {
     mkdir($dist, 0755);

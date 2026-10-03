@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['finalgrade'] = 'Student\'s final grade';
 $string['pluginname'] = 'Student\'s grade in the course';
 $string['privacy:metadata'] = 'The plugin does not store any personal data.';

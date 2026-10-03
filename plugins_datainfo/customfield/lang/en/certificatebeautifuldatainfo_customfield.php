@@ -22,5 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['pluginname'] = 'Data from the extra fields of the course profile for which the certificate is being generated';
 $string['privacy:metadata'] = 'The plugin does not store any personal data.';

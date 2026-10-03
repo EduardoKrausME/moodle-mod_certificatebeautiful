@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['date'] = 'PHP date() function';
 $string['pluginname'] = 'Execute functions of the following Moodle and PHP native functions';
 $string['privacy:metadata'] = 'The plugin does not store any personal data.';

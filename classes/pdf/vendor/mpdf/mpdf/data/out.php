@@ -1,5 +1,7 @@
 <?php
 
+defined('MOODLE_INTERNAL') || die;
+
 $path = '../tmp/';
 
 $tempfilename = $_REQUEST['filename'].'.pdf';
