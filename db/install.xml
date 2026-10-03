@@ -58,7 +58,6 @@
       <INDEXES>
         <INDEX NAME="code" UNIQUE="true" FIELDS="code"/>
         <INDEX NAME="userid_cmid" UNIQUE="true" FIELDS="userid, cmid"/>
-        <INDEX NAME="certificatebeautifulid" UNIQUE="false" FIELDS="certificatebeautifulid"/>
       </INDEXES>
     </TABLE>
   </TABLES>
