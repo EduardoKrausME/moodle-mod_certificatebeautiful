@@ -26,6 +26,7 @@ defined('MOODLE_INTERNAL') || die;
 
 $string['add_new_model'] = 'Add new model';
 $string['add_new_page'] = 'Add a new page to the certificate';
+$string['autogenerate_task_name'] = '';
 $string['autotrigger'] = 'Automatic generation trigger';
 $string['autotrigger_activity'] = 'Activity required for completion trigger';
 $string['autotrigger_activitycompletion'] = 'Activity completion';
