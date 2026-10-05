@@ -367,7 +367,6 @@ final class BackgroundWriter
 			$out .= "\n" . 'endobj';
 			$this->writer->write($out);
 
-
 			$this->mpdf->gradients[$id]['pattern'] = $this->mpdf->n;
 
 			if (isset($grad['trans']) && $grad['trans']) {

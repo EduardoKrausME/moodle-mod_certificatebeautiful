@@ -33,7 +33,6 @@ abstract class BlockTag extends Tag
 			}
 		}
 
-
 		$p = $this->cssManager->PreviewBlockCSS($tag, $attr);
 		if (isset($p['DISPLAY']) && strtolower($p['DISPLAY']) === 'none') {
 			$this->mpdf->blklvl++;
@@ -79,7 +78,6 @@ abstract class BlockTag extends Tag
 		}
 		/* -- END FORMS -- */
 
-
 		/* -- CSS-POSITION -- */
 		if ((isset($p['POSITION'])
 				&& (strtolower($p['POSITION']) === 'fixed'
@@ -103,7 +101,6 @@ abstract class BlockTag extends Tag
 		}
 		$this->mpdf->lastblockbottommargin = 0;
 		$this->mpdf->blockjustfinished = false;
-
 
 		$this->mpdf->InlineBDF = []; // mPDF 6
 		$this->mpdf->InlineBDFctr = 0; // mPDF 6
@@ -356,7 +353,6 @@ abstract class BlockTag extends Tag
 			}
 		}
 
-
 		// mPDF 6  Lists
 		// List-type set by attribute
 		if ($tag === 'OL' || $tag === 'UL' || $tag === 'LI') {
@@ -399,7 +395,6 @@ abstract class BlockTag extends Tag
 			$currblk['block-align'] = $this->getAlign($attr['ALIGN']);
 		}
 
-
 		if (isset($properties['HEIGHT'])) {
 			$currblk['css_set_height'] = $this->sizeConverter->convert(
 				$properties['HEIGHT'],
@@ -415,7 +410,6 @@ abstract class BlockTag extends Tag
 		} else {
 			$currblk['css_set_height'] = false;
 		}
-
 
 		// Added mPDF 3.0 Float DIV
 		if (isset($prevblk['blockContext'])) {
@@ -573,7 +567,6 @@ abstract class BlockTag extends Tag
 			}
 		}
 		/* -- END CSS-FLOAT -- */
-
 
 		/* -- BORDER-RADIUS -- */
 		// Automatically increase padding if required for border-radius
@@ -1068,7 +1061,6 @@ abstract class BlockTag extends Tag
 		}
 		/* -- END CSS-FLOAT -- */
 
-
 		//Print content
 		$blockstate = 0;
 		if ($this->mpdf->lastblocklevelchange == 1) {
@@ -1124,7 +1116,6 @@ abstract class BlockTag extends Tag
 		} else {
 			$this->mpdf->printbuffer($this->mpdf->textbuffer, $blockstate);
 		}
-
 
 		$this->mpdf->textbuffer = [];
 

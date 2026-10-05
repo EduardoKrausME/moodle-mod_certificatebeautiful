@@ -162,7 +162,6 @@ class Td extends Tag
 			} // mPDF 5.7.1
 		}
 
-
 		if ($this->mpdf->trow_text_rotate) {
 			$c['R'] = $this->mpdf->trow_text_rotate;
 		}
@@ -182,7 +181,6 @@ class Td extends Tag
 
 		$c['dfs'] = $this->mpdf->FontSize; // Default Font size
 
-
 		if (isset($properties['BACKGROUND-COLOR'])) {
 			$c['bgcolor'] = $properties['BACKGROUND-COLOR'];
 		} elseif (isset($properties['BACKGROUND'])) {
@@ -190,8 +188,6 @@ class Td extends Tag
 		} elseif (isset($attr['BGCOLOR'])) {
 			$c['bgcolor'] = $attr['BGCOLOR'];
 		}
-
-
 
 		/* -- BACKGROUNDS -- */
 		if (isset($properties['BACKGROUND-GRADIENT'])) {
@@ -212,7 +208,6 @@ class Td extends Tag
 		} elseif (isset($attr['VALIGN'])) {
 			$c['va'] = $this->getAlign($attr['VALIGN']);
 		}
-
 
 		if (!empty($properties['TEXT-ALIGN'])) {
 			if (0 === strpos($properties['TEXT-ALIGN'], 'D')) {

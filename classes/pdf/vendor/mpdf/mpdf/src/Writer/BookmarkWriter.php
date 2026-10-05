@@ -76,7 +76,6 @@ final class BookmarkWriter
 			$level = $o['l'];
 		}
 
-
 		// Outline items
 		$n = $this->mpdf->n + 1;
 		foreach ($this->mpdf->BMoutlines as $i => $o) {
@@ -95,7 +94,6 @@ final class BookmarkWriter
 			if (isset($o['last'])) {
 				$this->writer->write('/Last ' . ($n + $o['last']) . ' 0 R');
 			}
-
 
 			if (isset($this->mpdf->pageDim[$o['p']]['h'])) {
 				$h = $this->mpdf->pageDim[$o['p']]['h'];

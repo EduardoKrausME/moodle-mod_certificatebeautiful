@@ -2785,7 +2785,6 @@ $MarkAttachmentType = ' . var_export($this->MarkAttachmentType, true) . ';
 
 	  ¦\${1}\${2} ¦\${3}\${4} ¦REPL¦\${5+} \${6+}¦\${7+} \${8+}¦
 
-
 	  INPUT nInput = 5
 	  ============================================================
 	  ¦(0612)¦(ign) (0613)¦(ign) (0614)¦(ign) (0615)¦(ign) (0615)¦
@@ -4064,7 +4063,6 @@ $MarkAttachmentType = ' . var_export($this->MarkAttachmentType, true) . ';
 			}
 		}
 	}
-
 
 	//////////////////////////////////////////////////////////////////////////////////
 

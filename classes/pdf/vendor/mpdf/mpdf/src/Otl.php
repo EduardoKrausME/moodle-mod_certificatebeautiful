@@ -357,7 +357,6 @@ class Otl
 				$this->tibetanLineBreaking();
 			}
 
-
 			////////////////////////////////////////////////////////////////
 			//////////       GSUB          /////////////////////////////////
 			////////////////////////////////////////////////////////////////
@@ -396,7 +395,6 @@ class Otl
 				}
 
 				$this->GSUBLookups = $this->mpdf->CurrentFont['GSUBLookups'];
-
 
 				// 5(A). GSUB - Shaper - ARABIC
 				//==============================
@@ -922,7 +920,6 @@ class Otl
 							}
 						}
 
-
 						// =========================
 						// Decomposition for TIBETAN
 						// =========================
@@ -950,7 +947,6 @@ class Otl
 						 */
 					}
 
-
 					//-----------------------------------------------------------------------------------
 					// b. Apply all GSUB Lookups (in order specified in lookup list)
 					//-----------------------------------------------------------------------------------
@@ -958,7 +954,6 @@ class Otl
 					// pref blwf abvf pstf required for Tibetan
 					// " RQD" is a non-standard tag in Garuda font - presumably intended to be used by default ? "ReQuireD"
 					// Being a 3 letter tag is non-standard, and does not allow it to be set by font-feature-settings
-
 
 					/* ?Add these until shapers witten?
 					  Hangul:   ljmo vjmo tjmo
@@ -1001,7 +996,6 @@ class Otl
 				}
 			}
 
-
 			// Shapers - INDIC & ARABIC & KHMER & SINHALA  & MYANMAR - Remove ZWJ and ZWNJ
 			//=======================================================
 			if ($this->shaper == 'I' || $this->shaper == 'S' || $this->shaper == 'A' || $this->shaper == 'K' || $this->shaper == 'M') {
@@ -1013,7 +1007,6 @@ class Otl
 					}
 				}
 			}
-
 
 			////////////////////////////////////////////////////////////////
 			////////////////////////////////////////////////////////////////
@@ -1035,7 +1028,6 @@ class Otl
 
 				$this->GPOSLookups = $this->mpdf->CurrentFont['GPOSLookups'];
 
-
 				// 7. Select Feature tags to use (incl optional)
 				//==============================
 				$tags = 'abvm blwm mark mkmk curs cpsp dist requ'; // Default set
@@ -1056,8 +1048,6 @@ class Otl
 					$usetags = $this->_applyTagSettings($tags, $GPOSFeatures, $omittags, false);
 				}
 
-
-
 				// 8. Get GPOS LookupList from Feature tags
 				//==============================
 				$LookupList = [];
@@ -1069,7 +1059,6 @@ class Otl
 					}
 				}
 				ksort($LookupList);
-
 
 				// 9. Apply GPOS Lookups (in order specified in lookup list but selecting from specified tags)
 				//==============================
@@ -1608,7 +1597,6 @@ class Otl
 				return 0;
 			} // Only expecting to work with 2:1 (and no ignore characters in between)
 
-
 			$gid = $this->read_ushort();
 			$checkGlyph = $this->glyphToChar($gid); // Other component/input Glyphs starting at position 2 (arrayindex 1)
 
@@ -1622,7 +1610,6 @@ class Otl
 			$GlyphPos = [];
 			$GlyphPos[] = $ptr;
 			$GlyphPos[] = $ptr + 1;
-
 
 			if ($match) {
 				$shift = $this->GSUBsubstitute($ptr, $substitute, 4, $GlyphPos); // GlyphPos contains positions to set null
@@ -1805,7 +1792,6 @@ class Otl
 						break;
 					}
 				}
-
 
 				if ($match) {
 					$shift = $this->GSUBsubstitute($ptr, $substitute, $Type, $GlyphPos); // GlyphPos contains positions to set null
@@ -2158,14 +2144,12 @@ class Otl
 								$Lookahead[$r] = $this->read_ushort();
 							}
 
-
 							// These contain classes of glyphs as arrays
 							// $InputClasses[(class)] e.g. 0x02E6,0x02E7,0x02E8
 							// $LookaheadClasses[(class)]
 							// $BacktrackClasses[(class)]
 							// These contain arrays of classIndexes
 							// [Backtrack] [Lookahead] and [Input] (Input is from the second position only)
-
 
 							$inputClass = $s; //???
 
@@ -2213,7 +2197,6 @@ class Otl
 								}
 							}
 
-
 							if ($LookaheadGlyphCount) {
 								for ($gcl = 0; $gcl < $LookaheadGlyphCount; $gcl++) {
 									$classindex = $Lookahead[$gcl];
@@ -2234,7 +2217,6 @@ class Otl
 									$lclass0excl = $lclass0excl + $LookaheadClasses[$gc];
 								}
 							}
-
 
 							$matched = $this->checkContextMatchMultipleUni($inputGlyphs, $backtrackGlyphs, $lookaheadGlyphs, $ignore, $ptr, $class0excl, $bclass0excl, $lclass0excl);
 							if ($matched) {
@@ -2436,7 +2418,6 @@ class Otl
 				$newOTLdata[$i] = [];
 				$newOTLdata[$i]['uni'] = $uni;
 				$newOTLdata[$i]['hex'] = $this->unicode_hex($uni);
-
 
 				// Get types of new inserted chars - or replicate type of char being replaced
 				//  $bt = Ucdn::get_bidi_class($uni);
@@ -2667,7 +2648,6 @@ class Otl
 			}
 
 			$newOTLdata[0]['is_ligature'] = true;
-
 
 			array_splice($this->OTLdata, $pos, 1, $newOTLdata);
 
@@ -3525,7 +3505,6 @@ class Otl
 				return;
 			}
 
-
 			// "To identify the base glyph that combines with a mark, the text-processing client must look backward in the glyph string from the mark to the preceding base glyph."
 			while (isset($this->OTLdata[$checkpos]) && strpos($this->GlyphClassMarks, $this->OTLdata[$checkpos]['hex']) !== false) {
 				$checkpos--;
@@ -3593,7 +3572,6 @@ class Otl
 
 			$this->seek($LigatureCoverage);
 			$LigatureGlyphs = implode('|', $this->_getCoverage());
-
 
 			$checkpos = $ptr;
 			$checkpos--;
@@ -3752,7 +3730,6 @@ class Otl
 						return 0;
 					}
 				}
-
 
 				if (!defined("OMIT_OTL_FIX_2") || OMIT_OTL_FIX_2 != 1) {
 					/* OTL_FIX_2 */
@@ -4718,8 +4695,6 @@ class Otl
 			$chardata[$i]['eor'] = max($right, $level) % 2 ? Ucdn::BIDI_CLASS_R : Ucdn::BIDI_CLASS_L;
 		}
 
-
-
 		// 3.3.3 Resolving Weak Types
 		// Weak types are now resolved one level run at a time. At level run boundaries where the type of the character on the other side of the boundary is required, the type assigned to sor or eor is used.
 		// Nonspacing marks are now resolved based on the previous characters.
@@ -4917,7 +4892,6 @@ class Otl
 			}
 		}
 
-
 		// L2. From the highest level found in the text to the lowest odd level on each line, including intermediate levels not actually present in the text, reverse any contiguous sequence of characters that are at that level or higher.
 		for ($j = $maxlevel; $j > 0; $j--) {
 			$ordarray = [];
@@ -4969,7 +4943,6 @@ class Otl
 			}
 			$cctr++;
 		}
-
 
 		$chunkOTLdata['group'] = $group;
 		if ($useGPOS) {
@@ -5130,7 +5103,6 @@ class Otl
 						$next_level = $cel + ($cel % 2) + 1;
 					}
 
-
 					//  Increment the isolate count by one, and push an entry consisting of the new embedding level,
 					//  neutral directional override status, and true directional isolate status onto the directional status stack.
 					$remember[] = ['num' => $chunkOTLdata['char_data'][$i]['uni'], 'cel' => $cel, 'dos' => $dos, 'diid' => $diid];
@@ -5260,7 +5232,6 @@ class Otl
 			}
 		}
 
-
 		// 3.3.3 Resolving Weak Types
 		// Weak types are now resolved one level run at a time. At level run boundaries where the type of the character on the other side of the boundary is required, the type assigned to sor or eor is used.
 		// Nonspacing marks are now resolved based on the previous characters.
@@ -5309,7 +5280,6 @@ class Otl
 			}
 		}
 
-
 		// W3. Change all ALs to R.
 		for ($nc = 0; $nc < $numchunks; $nc++) {
 			$chardata = & $para[$nc][18]['char_data'];
@@ -5320,7 +5290,6 @@ class Otl
 				}
 			}
 		}
-
 
 		// W4. A single European separator between two European numbers changes to a European number. A single common separator between two numbers of the same type changes to that type.
 		for ($ir = 0; $ir <= $dictr; $ir++) {
@@ -6046,7 +6015,6 @@ class Otl
 		  NB If change for RTL - cf. function magic_reverse_dir in mpdf.php to update
 
 		 */
-
 
 		if ($scriptblock == Ucdn::SCRIPT_LATIN) {
 			if (!($useOTL & 0x01)) {

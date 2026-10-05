@@ -219,7 +219,6 @@ class TextCircle extends Tag
 		$extraheight = $objattr['padding_top'] + $objattr['padding_bottom'] + $objattr['margin_top'] + $objattr['margin_bottom'] + $objattr['border_top']['w'] + $objattr['border_bottom']['w'];
 		$extrawidth = $objattr['padding_left'] + $objattr['padding_right'] + $objattr['margin_left'] + $objattr['margin_right'] + $objattr['border_left']['w'] + $objattr['border_right']['w'];
 
-
 		$w = $objattr['r'] * 2;
 		$h = $w;
 		$objattr['height'] = $h + $extraheight;

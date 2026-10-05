@@ -495,7 +495,6 @@ class LanguageToFont implements \Mpdf\Language\LanguageToFontInterface
 			//CASE 'prti':	// INSCRIPTIONAL_PARTHIAN
 			//CASE 'phli':	// INSCRIPTIONAL_PAHLAVI
 
-
 			/* Central Asian */
 			//CASE 'orkh':	// OLD_TURKIC
 			//CASE 'phag':	// PHAGS_PA		(Vertical script)

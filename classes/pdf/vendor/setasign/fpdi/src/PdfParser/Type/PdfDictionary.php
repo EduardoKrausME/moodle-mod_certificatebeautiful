@@ -58,7 +58,6 @@ class PdfDictionary extends PdfType
                 break;
             }
 
-
             $value = $parser->readValue();
             if ($value === false) {
                 return false;

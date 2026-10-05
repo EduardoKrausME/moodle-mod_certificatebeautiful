@@ -8,7 +8,6 @@ No modification of the license is permitted, only verbatim copy is allowed.
 This license is copied below, and is also available with a FAQ at:
 http://scripts.sil.org/OFL
 
-
 -----------------------------------------------------------
 SIL OPEN FONT LICENSE Version 1.0 - 22 November 2005
 -----------------------------------------------------------

@@ -84,7 +84,6 @@ class Hr extends Tag
 			);
 		}
 
-
 		/* -- TABLES -- */
 		if ($this->mpdf->tableLevel) {
 			$objattr['W-PERCENT'] = 100;

@@ -596,7 +596,6 @@ class Indic
 		 * need to worry about that.
 		 */
 
-
 		/* 3.	Reorder marks to canonical order:
 		 *
 		 * Adjacent nukta and halant or nukta and vedic sign are always repositioned
@@ -637,7 +636,6 @@ class Indic
 				$info[$start]['indic_position'] = self::POS_RA_TO_BECOME_REPH;
 			}
 		}
-
 
 		/* For old-style Indic script tags, move the first post-base Halant after
 		 * last consonant.	Only do this if there is *not* a Halant after last
@@ -700,7 +698,6 @@ class Indic
 			}
 		}
 
-
 		if ($scriptblock == Ucdn::SCRIPT_KHMER) {
 			/* KHMER_FIX_2 */
 			/* Move Coeng+RO (Halant,Ra) sequence before base consonant. */
@@ -712,7 +709,6 @@ class Indic
 				}
 			}
 		}
-
 
 		/*
 		  if (!defined("OMIT_INDIC_FIX_2") || OMIT_INDIC_FIX_2 != 1) {
@@ -731,7 +727,6 @@ class Indic
 		for ($i = $start; $i < $end; $i++) {
 			$info[$i]['mask'] = 0;
 		}
-
 
 		if ($scriptblock == Ucdn::SCRIPT_KHMER) {
 			/* Find a Coeng+RO (Halant,Ra) sequence and mark it for pre-base processing. */
@@ -755,8 +750,6 @@ class Indic
 				}
 			}
 		}
-
-
 
 		/* Sit tight, rock 'n roll! */
 		self::bubble_sort($info, $start, $end - $start);
@@ -791,7 +784,6 @@ class Indic
 			$info[$i]['mask'] |= $mask;
 		}
 
-
 		if ($scriptblock != Ucdn::SCRIPT_KHMER) {
 			if (!defined("OMIT_INDIC_FIX_3") || OMIT_INDIC_FIX_3 != 1) {
 				/* INDIC_FIX_3 */
@@ -816,8 +808,6 @@ class Indic
 				}
 			}
 		}
-
-
 
 		if ($is_old_spec && $scriptblock == Ucdn::SCRIPT_DEVANAGARI) {
 			/* Old-spec eye-lash Ra needs special handling.	From the spec:
@@ -860,7 +850,6 @@ class Indic
 				}
 			}
 		}
-
 
 		/* Apply ZWJ/ZWNJ effects */
 		for ($i = $start + 1; $i < $end; $i++) {
@@ -935,7 +924,6 @@ class Indic
 			$base--;
 		}
 
-
 		/* 	o Reorder matras:
 		 *
 		 * 	If a pre-base matra character had been reordered before applying basic
@@ -945,7 +933,6 @@ class Indic
 		 * 	position and before the main consonant". If ZWJ or ZWNJ follow this
 		 * 	halant, position is moved after it.
 		 */
-
 
 		if ($start + 1 < $end && $start < $base) { /* Otherwise there can't be any pre-base matra characters. */
 			/* If we lost track of base, alas, position before last thingy. */
@@ -989,7 +976,6 @@ class Indic
 				}
 			}
 		}
-
 
 		/* 	o Reorder reph:
 		 *
@@ -1099,7 +1085,6 @@ class Indic
 				}
 			}
 
-
 			/* 	6. Otherwise, reorder reph to the end of the syllable.
 			 */
 			if (!$skip_to_reph_move) {
@@ -1126,7 +1111,6 @@ class Indic
 				}
 			}
 
-
 			/* Move */
 			self::_move_info_pos($info, $start, $new_reph_pos + 1);
 
@@ -1135,13 +1119,11 @@ class Indic
 			}
 		}
 
-
 		/* 	o Reorder pre-base reordering consonants:
 		 *
 		 * 	If a pre-base reordering consonant is found, reorder it according to
 		 * 	the following rules:
 		 */
-
 
 		if (count($GSUBdata['pref']) && $base + 1 < $end) { /* Otherwise there can't be any pre-base reordering Ra. */
 			for ($i = $base + 1; $i < $end; $i++) {
@@ -1203,7 +1185,6 @@ class Indic
 			}
 		}
 
-
 		/* Apply 'init' to the Left Matra if it's a word start. */
 		if ($info[$start]['indic_position'] == self::POS_PRE_M &&
 			($start == 0 ||
@@ -1211,7 +1192,6 @@ class Indic
 			)) {
 			$info[$start]['mask'] |= self::FLAG(self::INIT);
 		}
-
 
 		/*
 		 * Finish off and go home!
@@ -1344,12 +1324,9 @@ class Indic
 		84 => [false, 0xA9C0, 1, 10, 0], /* Javanese */
 	];
 
-
-
 	/*
 
 	  // from "hb-ot-shape-complex-indic-table.cc"
-
 
 	  const ISC_A	 = 0; //	INDIC_SYLLABIC_CATEGORY_AVAGRAHA		Avagraha
 	  const ISC_Bi = 8; //	INDIC_SYLLABIC_CATEGORY_BINDU			Bindu

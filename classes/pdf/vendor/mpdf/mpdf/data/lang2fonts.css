@@ -40,7 +40,6 @@
 	font-family: dejavusanscondensed;
 }
 
-
 :lang("el"), :lang("ell")  {	/* GREEK */
 	font-family: dejavusanscondensed;
 }
@@ -66,8 +65,6 @@
 :lang("uk"), :lang("ukr")  {	/* Ukrainian */
 	font-family: dejavusanscondensed;
 }
-
-
 
 :lang("hy"), :lang("hye")  {	/* ARMENIAN */
 	font-family: dejavusanscondensed;
@@ -109,9 +106,6 @@
 	font-family: mph2bdamase;
 }
 
-
-
-
 /* African */
 :lang("am"), :lang("amh")  {	/* Amharic ETHIOPIC */
 	font-family: abyssinicasil;
@@ -137,10 +131,6 @@
 :lang("und-Tfng") {	/* TIFINAGH */
 	font-family: dejavusanscondensed;
 }
-
-
-
-
 
 /* Middle Eastern */
 :lang("ar"), :lang("ara")  {	/* Arabic */
@@ -191,16 +181,11 @@
 	font-family: akkadian;
 }
 
-
-
-
 /* Central Asian */
 :lang("bo"), :lang("bod"),	/* TIBETAN */
 :lang("dz"), :lang("dzo")  {	/* Dzongkha */
 	font-family: jomolhari;
 }
-
-
 
 /* South Asian */
 :lang("as"), :lang("asm")  {	/* Assamese */
@@ -273,9 +258,6 @@
 	font-family: eeyekunicode;
 }
 
-
-
-
 /* South East Asian */
 :lang("km"), :lang("khm")  {	/* KHMER */
 	font-family: khmeros;
@@ -290,11 +272,9 @@
 	font-family: garuda;
 }
 
-
 :lang("vi"), :lang("vie")  {	/* Vietnamese */
 	font-family: dejavusanscondensed; 
 }
-
 
 :lang("bug") {		/* BUGINESE */
 	font-family: freeserif;
@@ -318,8 +298,6 @@
 	font-family: daibannasilbook;
 }
 
-
-
 /* Phillipine */
 :lang("bku") {		/* BUHID */
 	font-family: quivira;
@@ -333,9 +311,6 @@
 :lang("tbw") {		/* TAGBANWA */
 	font-family: quivira;
 }
-
-
-
 
 /* East Asian */
 :lang("zh"), :lang("zho")  {	/* Chinese */
@@ -370,8 +345,6 @@
 	font-family: sun-exta;
 }
 
-
-
 /* American */
 :lang("chr") {		/* CHEROKEE */
 	font-family: aboriginalsans;
@@ -384,9 +357,6 @@
 :lang("und-Dsrt") {	/* DESERET */
 	font-family: mph2bdamase;
 }
-
-
-
 
 /*  Other */
 :lang("und-Brai") {	/* BRAILLE */
