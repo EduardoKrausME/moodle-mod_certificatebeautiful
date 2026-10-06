@@ -92,11 +92,6 @@ class help_base {
                 $html);
         }
 
-        /**
-         * Property html.
-         *
-         * @var return
-         */
         return $html;
     }
 
