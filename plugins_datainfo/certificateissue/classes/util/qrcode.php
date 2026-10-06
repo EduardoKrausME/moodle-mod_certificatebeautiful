@@ -50,6 +50,9 @@ namespace certificatebeautifuldatainfo_certificateissue\util;
  * DEALINGS IN THE SOFTWARE.
  *
  * \****************************************************************************/
+/**
+ * Class qrcode.
+ */
 class qrcode {
     /**
      * Var data
