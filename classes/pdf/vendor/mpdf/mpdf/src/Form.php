@@ -1815,7 +1815,6 @@ f Q ';
 		$this->writer->write('/NM ' . $this->writer->string(sprintf('%04u-%04u', $n, 5000 + $form['n'])));
 		$this->writer->write('/M ' . $this->writer->string('D:' . date('YmdHis')));
 
-
 		if (isset($this->array_form_text_js[$form['T']])) {
 			$put_js = 1;
 			$cc = 0;

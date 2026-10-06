@@ -450,7 +450,6 @@ class DirectWrite
 			$text = mb_convert_encoding($text, $this->mpdf->mb_enc, 'UTF-8');
 		}
 
-
 		// DIRECTIONALITY
 		if (preg_match('/([' . $this->mpdf->pregRTLchars . '])/u', $text)) {
 			$this->mpdf->biDirectional = true;

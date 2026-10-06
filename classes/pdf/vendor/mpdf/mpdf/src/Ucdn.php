@@ -1780,7 +1780,6 @@ class Ucdn
 		65379 => 65378,
 	];
 
-
 	/* index tables for the database records */
 
 	private static $index0 = [

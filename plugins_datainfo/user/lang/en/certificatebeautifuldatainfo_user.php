@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['address'] = 'User\'s address.';
 $string['alternatename'] = 'User\'s alternative name.';
 $string['calendartype'] = 'User\'s preferred calendar type.';

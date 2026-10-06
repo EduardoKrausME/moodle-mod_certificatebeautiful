@@ -54,17 +54,14 @@ class Progress extends Meter
 				$svg .= '<rect x="0" y="0" rx="' . ($h * $border_radius) . 'px" ry="' . ($h * $border_radius) . 'px" width="' . $barw . '" height="' . $h . '" fill="' . $barcol . '" stroke="none" />';
 			}
 
-
 			// Borders
 			$svg .= '<rect x="0" y="0" rx="' . ($h * $border_radius) . 'px" ry="' . ($h * $border_radius) . 'px" width="' . $w . '" height="' . $h . '" fill="none" stroke="#888888" stroke-width="0.5px" />';
 			if ($value) {
 				//  $svg .= '<rect x="0" y="0" rx="'.($h*$border_radius).'px" ry="'.($h*$border_radius).'px" width="'.$barw.'" height="'.$h.'" fill="none" stroke="#888888" stroke-width="0.5px" />';
 			}
 
-
 			$svg .= '</g></svg>';
 		}
-
 
 		return $svg;
 	}

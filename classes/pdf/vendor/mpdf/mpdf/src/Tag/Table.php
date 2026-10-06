@@ -33,8 +33,6 @@ class Table extends Tag
 		$this->mpdf->textbuffer = [];
 		$this->mpdf->lastblocklevelchange = -1;
 
-
-
 		if ($this->mpdf->tableLevel) { // i.e. now a nested table coming...
 			// Save current level table
 			$this->mpdf->cell['PARENTCELL'] = $this->mpdf->saveInlineProperties();
@@ -133,7 +131,6 @@ class Table extends Tag
 			$table['cellLineStackingStrategy'] = $cellLineStackingStrategy;
 			$table['cellLineStackingShift'] = $cellLineStackingShift;
 		}
-
 
 		$lastbottommargin = 0;
 		if ($this->mpdf->blockjustfinished && !count($this->mpdf->textbuffer) && $this->mpdf->y != $this->mpdf->tMargin && $this->mpdf->collapseBlockMargins && $this->mpdf->tableLevel == 1) {
@@ -275,7 +272,6 @@ class Table extends Tag
 			}
 			$this->mpdf->currentLang = $properties['LANG'];
 		}
-
 
 		if (isset($properties['FONT-FAMILY'])) {
 			$this->mpdf->default_font = $properties['FONT-FAMILY'];
@@ -1146,7 +1142,6 @@ class Table extends Tag
 			}
 			$this->mpdf->table_rotate = 0;
 		}
-
 
 		$this->mpdf->x = $this->mpdf->lMargin + $this->mpdf->blk[$this->mpdf->blklvl]['outer_left_margin'];
 

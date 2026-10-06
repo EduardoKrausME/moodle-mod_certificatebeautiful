@@ -62,7 +62,6 @@ class issue {
         return $issue;
     }
 
-
     /**
      * Updates the stored activity version for one issued certificate.
      *

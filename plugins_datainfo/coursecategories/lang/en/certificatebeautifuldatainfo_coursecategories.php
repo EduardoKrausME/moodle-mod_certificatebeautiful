@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['description'] = 'Description of the course category.';
 $string['id'] = 'Unique identifier of the course category.';
 $string['idnumber'] = 'Unique identification number of the course category.';

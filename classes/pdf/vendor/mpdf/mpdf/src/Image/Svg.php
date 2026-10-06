@@ -516,7 +516,6 @@ class Svg
 			}
 		}
 
-
 		$return = "";
 
 		if (isset($gradient_info['units']) && strtolower($gradient_info['units']) == 'userspaceonuse') {
@@ -533,7 +532,6 @@ class Svg
 				$spread = 'R';
 			} // repeat
 		}
-
 
 		for ($i = 0; $i < (count($gradient_info['color'])); $i++) {
 			if (stristr($gradient_info['color'][$i]['offset'], '%') !== false) {
@@ -565,9 +563,6 @@ class Svg
 			$gradient_info['color'][($ns)]['offset'] = 1;
 		}
 		$ns = count($gradient_info['color']);
-
-
-
 
 		if ($gradient_info['type'] == 'linear') {
 			// mPDF 4.4.003
@@ -946,7 +941,6 @@ class Svg
 				$y1 -= ($y1 - $y0) / 100;
 			}
 
-
 			if ($spread == 'R' || $spread == 'F') { // Repeat  /  Reflect
 				$offs = [];
 				for ($i = 0; $i < $ns; $i++) {
@@ -1120,7 +1114,6 @@ class Svg
 				}
 			}
 		}
-
 
 		return ['x' => $x2, 'y' => $y2];
 	}
@@ -1437,7 +1430,6 @@ class Svg
 			}
 		}
 
-
 		if ($critere_style['stroke'] != 'none') {
 			if ($critere_style['stroke-linejoin'] == 'miter') {
 				$path_style .= ' 0 j ';
@@ -1579,7 +1571,6 @@ class Svg
 		} else {
 			$relative = false;
 		}
-
 
 		$argumentCount = count($a);
 
@@ -2107,7 +2098,6 @@ class Svg
 		$cx = $cosPhi * $cxdash - $sinPhi * $cydash + ($x1 + $x2) / 2.0;
 		$cy = $sinPhi * $cxdash + $cosPhi * $cydash + ($y1 + $y2) / 2.0;
 
-
 		$theta1 = $this->CalcVectorAngle(1.0, 0.0, ($x1dash - $cxdash) / $rx, ($y1dash - $cydash) / $ry);
 		$dtheta = $this->CalcVectorAngle(($x1dash - $cxdash) / $rx, ($y1dash - $cydash) / $ry, (-$x1dash - $cxdash) / $rx, (-$y1dash - $cydash) / $ry);
 
@@ -2506,7 +2496,6 @@ class Svg
 
 					// Get next character
 					$char = mb_substr($txt, $i, 1, 'UTF-8');
-
 
 					if (isset($svg_font['glyphs'][$char])) {
 						$d = $svg_font['glyphs'][$char]['d'];
@@ -3994,7 +3983,6 @@ class Svg
 				$array_style = $this->svgDefineStyle($attribs);
 
 				$this->txt_data = [];
-
 
 				// If absolute position adjustment (x or y), creates new block of text for text-alignment
 				if (isset($attribs['x']) || isset($attribs['y'])) {

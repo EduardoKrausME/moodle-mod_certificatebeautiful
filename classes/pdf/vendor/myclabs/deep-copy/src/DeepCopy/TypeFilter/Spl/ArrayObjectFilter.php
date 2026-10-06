@@ -33,4 +33,3 @@ final class ArrayObjectFilter implements TypeFilter
         return $clone;
     }
 }
-

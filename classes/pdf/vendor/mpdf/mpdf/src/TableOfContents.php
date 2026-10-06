@@ -749,7 +749,6 @@ class TableOfContents
 				$this->m_TOC[$toc_id]['TOCsheetsize'] = '';
 			}
 
-
 			if (isset($attr['TOC-PREHTML']) && $attr['TOC-PREHTML']) {
 				$this->m_TOC[$toc_id]['TOCpreHTML'] = htmlspecialchars_decode($attr['TOC-PREHTML'], ENT_QUOTES);
 			}

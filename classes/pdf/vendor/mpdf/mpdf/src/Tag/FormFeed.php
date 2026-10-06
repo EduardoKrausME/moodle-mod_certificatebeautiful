@@ -125,7 +125,6 @@ class FormFeed extends Tag
 
 		$this->mpdf->ignorefollowingspaces = true;
 
-
 		$resetpagenum = '';
 		$pagenumstyle = '';
 		$suppress = '';

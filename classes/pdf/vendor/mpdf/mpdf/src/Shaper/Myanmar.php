@@ -384,7 +384,6 @@ class Myanmar
 			}
 		}
 
-
 		/* Reorder! */
 		$i = $start;
 		for (; $i < $start + ($has_reph ? 3 : 0); $i++) {
@@ -430,7 +429,6 @@ class Myanmar
 			}
 			$info[$i]['myanmar_position'] = $pos;
 		}
-
 
 		/* Sit tight, rock 'n roll! */
 		self::bubble_sort($info, $start, $end - $start);

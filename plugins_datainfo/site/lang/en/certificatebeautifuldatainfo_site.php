@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['fullname'] = 'The full name of Moodle.';
 $string['pluginname'] = 'Data of the Moodle instance for which the certificate is being generated';
 $string['privacy:metadata'] = 'The plugin does not store any personal data.';

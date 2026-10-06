@@ -84,7 +84,6 @@ License. If you modify this font, you may extend this exception to your
 version of the font, but you are not obligated to do so.  If you do not
 wish to do so, delete this exception statement from your version.
 
-
 Files and their suffixes
 ------------------------
 
@@ -98,7 +97,6 @@ systems using FreeType, on Mac OS, and on older Windows systems.
 OpenType fonts (with suffix .otf) are for use in Windows Vista. 
 Note that although they can be installed on Linux, but many applications
 in Linux still don't support them.
-
 
 --------------------------------------------------------------------------
 Primoz Peterlin, <primoz.peterlin@biofiz.mf.uni-lj.si>

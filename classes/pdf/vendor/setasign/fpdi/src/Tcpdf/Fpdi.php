@@ -203,7 +203,6 @@ class Fpdi extends \TCPDF
             }
         }
 
-
         parent::_putxobjects();
         $this->currentObjectNumber = null;
     }

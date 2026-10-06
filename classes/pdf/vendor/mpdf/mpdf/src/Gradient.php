@@ -515,7 +515,6 @@ class Gradient
 			}
 		}
 
-
 		if (isset($stops[0]['offset']) && $stops[0]['offset'] > 0) {
 			$firststop = $stops[0];
 			$firststop['offset'] = 0;

@@ -1,4 +1,7 @@
 <?php
+
+defined('MOODLE_INTERNAL') || die;
+
 $aarr = array(
 160 => 160,
 161 => 161,

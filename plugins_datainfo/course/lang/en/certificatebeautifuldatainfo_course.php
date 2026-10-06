@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['category'] = 'The identifier of the category to which the course belongs.';
 $string['enddate'] = 'The end date of the course.';
 $string['fullname'] = 'The full name of the course.';

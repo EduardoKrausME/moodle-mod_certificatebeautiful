@@ -243,8 +243,6 @@ class TTFontFileAnalysis extends TTFontFile
 		$this->skip(4);
 		$isFixedPitch = $this->read_ulong();
 
-
-
 		///////////////////////////////////
 		// cmap - Character to glyph index mapping table
 		///////////////////////////////////
@@ -396,7 +394,6 @@ class TTFontFileAnalysis extends TTFontFile
 				}
 			}
 		}
-
 
 		$bold = false;
 		$italic = false;
