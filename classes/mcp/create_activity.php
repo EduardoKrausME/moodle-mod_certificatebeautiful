@@ -8,11 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * Create a certificate activity via the standard Moodle module API.
@@ -33,22 +33,44 @@ use local_mcp\write\tool\base_tool;
 use mod_certificatebeautiful\automation;
 use moodle_url;
 
-/** Create a configured certificate activity, without inserting raw course_module rows. */
+/**
+ * Create a configured certificate activity, without inserting raw course_module rows.
+ */
 final class create_activity extends base_tool {
+    /**
+     * get_name
+     *
+     * @return string
+     */
     public function get_name(): string {
         return 'certificatebeautiful_create_activity';
     }
 
+    /**
+     * get_title
+     *
+     * @return string
+     */
     public function get_title(): string {
         return 'Certificate Beautiful: create course activity';
     }
 
+    /**
+     * get_description
+     *
+     * @return string
+     */
     public function get_description(): string {
         return 'Add a certificate activity to a Moodle course section using an existing '
             . 'certificate model. Supports manual, course completion, activity completion '
             . 'or course grade threshold issuance; requires confirmation.';
     }
 
+    /**
+     * get_input_schema
+     *
+     * @return array
+     */
     public function get_input_schema(): array {
         return $this->object_schema([
             'courseid' => ['type' => 'integer', 'minimum' => 1],
@@ -65,19 +87,45 @@ final class create_activity extends base_tool {
         ], ['courseid', 'sectionnum', 'name', 'description', 'modelid']);
     }
 
+    /**
+     * get_required_capability
+     *
+     * @return string
+     */
     public function get_required_capability(): string {
         return 'moodle/course:manageactivities';
     }
 
+    /**
+     * resolve_context
+     *
+     * @param array $arguments
+     * @return context
+     */
     public function resolve_context(array $arguments): context {
         return context_course::instance((int)$arguments['courseid'], MUST_EXIST);
     }
 
+    /**
+     * supports_dry_run
+     *
+     * @return bool
+     */
     public function supports_dry_run(): bool {
         return true;
     }
 
-    /** @return array Normalized validated activity information. */
+    /**
+     * validated
+     *
+     * @param array $arguments
+     * @param authenticated_identity $identity
+     * @return array
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws api_exception
+     * @throws invalid_parameter_exception
+     */
     private function validated(array $arguments, authenticated_identity $identity): array {
         global $DB;
 
@@ -132,10 +180,34 @@ final class create_activity extends base_tool {
         ];
     }
 
+    /**
+     * preview
+     *
+     * @param array $arguments
+     * @param authenticated_identity $identity
+     * @return array|true[]
+     * @throws \coding_exception
+     * @throws \dml_exception
+     * @throws api_exception
+     * @throws invalid_parameter_exception
+     */
     public function preview(array $arguments, authenticated_identity $identity): array {
         return $this->validated($arguments, $identity) + ['requires_confirmation' => true];
     }
 
+    /**
+     * execute
+     *
+     * @param array $arguments
+     * @param authenticated_identity $identity
+     * @return array
+     * @throws \coding_exception
+     * @throws \core\exception\moodle_exception
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     * @throws api_exception
+     * @throws invalid_parameter_exception
+     */
     public function execute(array $arguments, authenticated_identity $identity): array {
         global $CFG;
 

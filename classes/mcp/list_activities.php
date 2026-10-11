@@ -8,11 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * Read certificate activities in a Moodle course.
@@ -31,35 +31,78 @@ use local_mcp\read\tool_interface;
 use local_mcp\security\authenticated_identity;
 use moodle_url;
 
-/** List activities in a course, including their automation configuration. */
+/**
+ * List activities in a course, including their automation configuration.
+ */
 final class list_activities implements tool_interface {
+    /**
+     * get_name
+     *
+     * @return string
+     */
     public function get_name(): string {
         return 'certificatebeautiful_list_activities';
     }
 
+    /**
+     * get_title
+     *
+     * @return string
+     */
     public function get_title(): string {
         return 'Certificate Beautiful: list course activities';
     }
 
+    /**
+     * get_description
+     *
+     * @return string
+     */
     public function get_description(): string {
         return 'List certificate activities in a course with template, trigger and link. '
             . 'Only activities whose reports the connected user may view are included.';
     }
 
+    /**
+     * get_input_schema
+     *
+     * @return array
+     */
     public function get_input_schema(): array {
         return ['type' => 'object',
             'properties' => ['courseid' => ['type' => 'integer', 'minimum' => 1]],
             'required' => ['courseid'], 'additionalProperties' => false];
     }
 
+    /**
+     * get_required_capability
+     *
+     * @return string
+     */
     public function get_required_capability(): string {
         return 'moodle/course:manageactivities';
     }
 
+    /**
+     * resolve_context
+     *
+     * @param array $arguments
+     * @return context
+     */
     public function resolve_context(array $arguments): context {
         return context_course::instance((int)$arguments['courseid'], MUST_EXIST);
     }
 
+    /**
+     * execute
+     *
+     * @param array $arguments
+     * @param authenticated_identity $identity
+     * @return array
+     * @throws \coding_exception
+     * @throws \core\exception\moodle_exception
+     * @throws \dml_exception
+     */
     public function execute(array $arguments, authenticated_identity $identity): array {
         global $DB;
 

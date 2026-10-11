@@ -8,11 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * Read issued certificates through MCP.
@@ -29,21 +29,43 @@ use context_module;
 use local_mcp\read\tool_interface;
 use local_mcp\security\authenticated_identity;
 
-/** Read report records with the activity report capability, not ordinary view permission. */
+/**
+ * Read report records with the activity report capability, not ordinary view permission.
+ */
 final class list_issues implements tool_interface {
+    /**
+     * get_name
+     *
+     * @return string
+     */
     public function get_name(): string {
         return 'certificatebeautiful_list_issues';
     }
 
+    /**
+     * get_title
+     *
+     * @return string
+     */
     public function get_title(): string {
         return 'Certificate Beautiful: list issued certificates';
     }
 
+    /**
+     * get_description
+     *
+     * @return string
+     */
     public function get_description(): string {
         return 'List issued certificate records for a certificate course module, including '
             . 'user ids and verification codes. Requires viewreport permission for that activity.';
     }
 
+    /**
+     * get_input_schema
+     *
+     * @return array
+     */
     public function get_input_schema(): array {
         return ['type' => 'object', 'properties' => [
             'cmid' => ['type' => 'integer', 'minimum' => 1],
@@ -52,16 +74,37 @@ final class list_issues implements tool_interface {
         ], 'required' => ['cmid'], 'additionalProperties' => false];
     }
 
+    /**
+     * get_required_capability
+     *
+     * @return string
+     */
     public function get_required_capability(): string {
         return 'mod/certificatebeautiful:viewreport';
     }
 
+    /**
+     * resolve_context
+     *
+     * @param array $arguments
+     * @return context
+     * @throws \coding_exception
+     */
     public function resolve_context(array $arguments): context {
         $cm = get_coursemodule_from_id('certificatebeautiful', (int)$arguments['cmid'],
             0, false, MUST_EXIST);
         return context_module::instance((int)$cm->id);
     }
 
+    /**
+     * execute
+     *
+     * @param array $arguments
+     * @param authenticated_identity $identity
+     * @return array
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
     public function execute(array $arguments, authenticated_identity $identity): array {
         global $DB;
 
