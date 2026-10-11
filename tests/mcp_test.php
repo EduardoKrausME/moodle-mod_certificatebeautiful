@@ -8,11 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * Tests for optional local_mcp integration.
@@ -28,8 +28,15 @@ use advanced_testcase;
 use mod_certificatebeautiful\mcp\model_service;
 use mod_certificatebeautiful\mcp\provider;
 
-/** MCP provider registration and certificate template round-trip tests. */
+/**
+ * MCP provider registration and certificate template round-trip tests.
+ */
 final class mcp_test extends advanced_testcase {
+    /**
+     * test_provider_discovery_and_tool_contracts
+     *
+     * @return void
+     */
     public function test_provider_discovery_and_tool_contracts(): void {
         if (!class_exists(\local_mcp\extension\read_provider_interface::class)) {
             $this->markTestSkipped('local_mcp is not installed.');
@@ -46,6 +53,11 @@ final class mcp_test extends advanced_testcase {
         }
     }
 
+    /**
+     * test_template_round_trip_and_stale_revision
+     *
+     * @return void
+     */
     public function test_template_round_trip_and_stale_revision(): void {
         if (!class_exists(\local_mcp\extension\read_provider_interface::class)) {
             $this->markTestSkipped('local_mcp is not installed.');
