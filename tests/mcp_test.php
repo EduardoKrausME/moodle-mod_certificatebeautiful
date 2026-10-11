@@ -35,6 +35,7 @@ final class mcp_test extends advanced_testcase {
     /**
      * test_provider_discovery_and_tool_contracts
      *
+     * @covers \mod_certificatebeautiful\mcp\provider
      * @return void
      */
     public function test_provider_discovery_and_tool_contracts(): void {
@@ -56,6 +57,7 @@ final class mcp_test extends advanced_testcase {
     /**
      * test_template_round_trip_and_stale_revision
      *
+     * @covers \mod_certificatebeautiful\mcp\model_service
      * @return void
      */
     public function test_template_round_trip_and_stale_revision(): void {
