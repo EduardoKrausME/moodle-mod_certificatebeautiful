@@ -114,7 +114,7 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2025091100, "certificatebeautiful");
     }
 
-    if ($oldversion < 2026040200) {
+    if ($oldversion < 2026080702) {
         $table = new xmldb_table("certificatebeautiful");
 
         $fields = [
@@ -131,10 +131,6 @@ function xmldb_certificatebeautiful_upgrade($oldversion) {
             }
         }
 
-        upgrade_mod_savepoint(true, 2026040200, "certificatebeautiful");
-    }
-
-    if ($oldversion < 2026080702) {
         $table = new xmldb_table("certificatebeautiful");
         $field = new xmldb_field("autogenerate");
 
