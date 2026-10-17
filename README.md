@@ -46,7 +46,7 @@ Este plugin está licenciado sob a Licença MIT.
 
 ## MCP integration (optional)
 
-When [local_mcp](https://github.com/EduardoKrausME/moodle-local_mcp) is installed,
+When [local_mcp](https://eduardokrausme.github.io/moodle-local_mcp/) is installed,
 its automatic discovery loads `mod_certificatebeautiful\mcp\provider` from
 `classes/mcp/provider.php`. No callback, manually configured tool, or dependency
 in `version.php` is required. With local_mcp absent the normal certificate
