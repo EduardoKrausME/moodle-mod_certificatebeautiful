@@ -24,19 +24,30 @@
 
 namespace mod_certificatebeautiful;
 
-/** Site administrator visibility, dismissal, and template data for the MCP notice. */
+/**
+ * Control visibility, dismissal and template data for the optional MCP notice.
+ */
 final class mcp_banner {
     /** @var string Per-user permanent dismissal flag. */
     public const PREFERENCE_HIDDEN = "mod_certificatebeautiful_mcp_banner_hidden";
 
-    /** Return whether the current user should see the optional integration notice. */
+    /**
+ * Determine whether the administrator should see the integration notice.
+ *
+ * @return bool True if the notice is visible.
+ */
     public static function should_show(): bool {
         return is_siteadmin()
             && get_config("local_mcp", "version") === false
             && !get_user_preferences(self::PREFERENCE_HIDDEN, false);
     }
 
-    /** Process a dismissal before rendering or changing plugin data. */
+    /**
+ * Persist a session-protected dismissal before processing other page actions.
+ *
+ * @param \moodle_url $returnurl Page to display after the preference is saved.
+ * @return void
+ */
     public static function dismiss_if_requested(\moodle_url $returnurl): void {
         if (!optional_param("dismiss_mcp_banner", 0, PARAM_BOOL)) {
             return;
@@ -50,7 +61,13 @@ final class mcp_banner {
         redirect($returnurl);
     }
 
-    /** Render the accessible Mustache component using a page-scoped POST action. */
+    /**
+ * Render the accessible Mustache notice using a page-scoped POST action.
+ *
+ * @param \core_renderer $output Current Moodle renderer.
+ * @param \moodle_url $pageurl Page used as the dismissal endpoint.
+ * @return string Banner HTML or an empty string.
+ */
     public static function render(\core_renderer $output, \moodle_url $pageurl): string {
         if (!self::should_show()) {
             return "";
