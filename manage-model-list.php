@@ -34,6 +34,8 @@ $context = context_system::instance();
 $PAGE->add_body_class("certificatebeautiful-pages");
 $PAGE->set_context($context);
 $PAGE->set_url("/mod/certificatebeautiful/manage-model-list.php");
+
+\mod_certificatebeautiful\mcp_banner::dismiss_if_requested($PAGE->url);
 $PAGE->set_title(get_string("list_model", "certificatebeautiful"));
 
 require_login();
@@ -43,6 +45,10 @@ $PAGE->set_heading(format_string(get_string("list_model", "certificatebeautiful"
 $PAGE->navbar->add(get_string("list_model", "certificatebeautiful"), $PAGE->url);
 
 echo $OUTPUT->header();
+if (\mod_certificatebeautiful\mcp_banner::should_show()) {
+    echo \mod_certificatebeautiful\mcp_banner::render($OUTPUT, $PAGE->url);
+}
+
 
 echo $OUTPUT->render_from_template("mod_certificatebeautiful/heading-addnew", [
     "url" => "manage-model.php?id=-1",

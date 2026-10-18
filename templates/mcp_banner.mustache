@@ -1,0 +1,22 @@
+<aside class="mcp-promo" aria-labelledby="mod_certificatebeautiful-mcp-title">
+    <div class="mcp-promo__icon" aria-hidden="true">MCP</div>
+    <div class="mcp-promo__content">
+        <span class="mcp-promo__badge">{{#str}}mcp_banner_badge,mod_certificatebeautiful{{/str}}</span>
+        <h3 id="mod_certificatebeautiful-mcp-title">{{#str}}mcp_banner_title,mod_certificatebeautiful{{/str}}</h3>
+        <p>{{#str}}mcp_banner_description,mod_certificatebeautiful{{/str}}</p>
+        <ul>
+            <li>{{#str}}mcp_banner_benefit_discovery,mod_certificatebeautiful{{/str}}</li>
+            <li>{{#str}}mcp_banner_benefit_security,mod_certificatebeautiful{{/str}}</li>
+            <li>{{#str}}mcp_banner_benefit_control,mod_certificatebeautiful{{/str}}</li>
+        </ul>
+        <a class="mcp-promo__link" href="https://eduardokrausme.github.io/moodle-local_mcp/"
+           target="_blank" rel="noopener noreferrer">{{#str}}mcp_banner_cta,mod_certificatebeautiful{{/str}} &#8599;</a>
+    </div>
+    <form class="mcp-promo__close" method="post" action="{{mcp_banner_dismiss_url}}">
+        <input type="hidden" name="sesskey" value="{{sesskey}}">
+        <input type="hidden" name="dismiss_mcp_banner" value="1">
+        <button class="mcp-promo__dismiss" type="submit"
+            aria-label="{{#str}}mcp_banner_dismiss,mod_certificatebeautiful{{/str}}"
+            title="{{#str}}mcp_banner_dismiss,mod_certificatebeautiful{{/str}}">&times;</button>
+    </form>
+</aside>
