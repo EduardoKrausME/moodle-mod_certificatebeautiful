@@ -23,7 +23,7 @@ This changelog documents only the two latest published GitHub releases. Each ent
 
 ### Changed
 
-- Removed `db/events.php`, which previously registered the `\\core\\event\\course_completed` observer callback `\\mod_certificatebeautiful\\observer::course_completed`.
+- Removed `db/events.php`, which previously registered the `\core\event\course_completed` observer callback `\mod_certificatebeautiful\observer::course_completed`.
 - Updated the GitHub Actions CI database service from MariaDB 11 to MariaDB 11.4, including its initialization variables and health-check command.
 - Updated the plugin release to `3.2.19` and its build number to `2026101500`.
 
