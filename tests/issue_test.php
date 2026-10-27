@@ -56,6 +56,97 @@ final class issue_test extends advanced_testcase {
     }
 
     /**
+     * Visiting the certificate creates an issue when automatic issuance is disabled.
+     */
+    public function test_view_issues_certificate_without_automatic_trigger(): void {
+        global $DB;
+
+        $this->resetAfterTest();
+
+        [$course, $user, $activity, $cm] = $this->create_activity_and_user();
+
+        $first = issue::get_for_view($user, $activity, $cm);
+        $second = issue::get_for_view($user, $activity, $cm);
+
+        $this->assertNotFalse($first);
+        $this->assertEquals($first->id, $second->id);
+        $this->assertEquals(1, $DB->count_records("certificatebeautiful_issue", [
+            "userid" => $user->id,
+            "cmid" => $cm->id,
+        ]));
+    }
+
+    /**
+     * A student may request a certificate even without meeting the automatic rule.
+     */
+    public function test_view_issues_certificate_when_automatic_condition_is_unmet(): void {
+        global $DB;
+
+        $this->resetAfterTest();
+
+        [$course, $user, $activity, $cm] = $this->create_activity_and_user();
+
+        $activity->autotrigger = automation::TRIGGER_COURSE_COMPLETION;
+        $DB->set_field("certificatebeautiful", "autotrigger", $activity->autotrigger, ["id" => $activity->id]);
+
+        $this->assertFalse(automation::process_user($cm->id, $user->id));
+
+        $issue = issue::get_for_view($user, $activity, $cm);
+        $this->assertNotFalse($issue);
+        $this->assertEquals(1, $DB->count_records("certificatebeautiful_issue", [
+            "userid" => $user->id,
+            "cmid" => $cm->id,
+        ]));
+    }
+
+    /**
+     * Access without an active enrolment never creates a certificate.
+     */
+    public function test_view_does_not_issue_certificate_for_unenrolled_user(): void {
+        global $DB;
+
+        $this->resetAfterTest();
+
+        [$course, $user, $activity, $cm] = $this->create_activity_and_user();
+        $outsider = $this->getDataGenerator()->create_user();
+
+        $this->assertFalse(issue::get_for_view($outsider, $activity, $cm));
+        $this->assertFalse($DB->record_exists("certificatebeautiful_issue", [
+            "userid" => $outsider->id,
+            "cmid" => $cm->id,
+        ]));
+    }
+
+    /**
+     * Previously issued certificates remain stable if the owner is no longer enrolled.
+     */
+    public function test_view_reuses_previously_issued_certificate(): void {
+        global $DB;
+
+        $this->resetAfterTest();
+
+        [$course, $user, $activity, $cm] = $this->create_activity_and_user();
+        $first = issue::get_for_view($user, $activity, $cm);
+
+        $enrolments = $DB->get_records_sql(
+            "SELECT ue.id FROM {user_enrolments} ue
+               JOIN {enrol} e ON e.id = ue.enrolid
+              WHERE e.courseid = :courseid AND ue.userid = :userid",
+            ["courseid" => $course->id, "userid" => $user->id]
+        );
+        foreach ($enrolments as $enrolment) {
+            $DB->set_field("user_enrolments", "status", 1, ["id" => $enrolment->id]);
+        }
+
+        $second = issue::get_for_view($user, $activity, $cm);
+        $this->assertEquals($first->id, $second->id);
+        $this->assertEquals(1, $DB->count_records("certificatebeautiful_issue", [
+            "userid" => $user->id,
+            "cmid" => $cm->id,
+        ]));
+    }
+
+    /**
      * Updating the issue version targets the issue id, not the activity instance id.
      */
     public function test_update_version_targets_issue_id(): void {
