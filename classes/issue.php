@@ -63,6 +63,38 @@ class issue {
     }
 
     /**
+     * Returns the student's certificate, issuing it on the first eligible page visit.
+     *
+     * The configured automatic trigger is intentionally not consulted: it controls
+     * proactive issuance, whereas an actively enrolled student may request their
+     * own certificate when viewing the activity. Previously issued certificates
+     * remain available without creating another issue.
+     *
+     * @param object $user Viewer.
+     * @param certificatebeautiful $certificatebeautiful Certificate activity.
+     * @param object $cm Course module.
+     * @return certificatebeautiful_issue|object|false
+     * @throws Exception
+     */
+    public static function get_for_view($user, $certificatebeautiful, $cm) {
+        global $DB;
+
+        $existing = $DB->get_record("certificatebeautiful_issue", [
+            "userid" => $user->id,
+            "cmid" => $cm->id,
+        ]);
+        if ($existing) {
+            return $existing;
+        }
+
+        if (!is_enrolled(\context_course::instance($cm->course), $user, "", true)) {
+            return false;
+        }
+
+        return self::get($user, $certificatebeautiful, $cm);
+    }
+
+    /**
      * Updates the stored activity version for one issued certificate.
      *
      * Keeping this update keyed by the issue id avoids accidentally using the

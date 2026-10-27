@@ -62,8 +62,8 @@ final class create_activity extends base_tool {
      */
     public function get_description(): string {
         return 'Add a certificate activity to a Moodle course section using an existing '
-            . 'certificate model. Supports administrator-issued, on-access, course completion, '
-            . 'activity completion, or course grade threshold issuance; requires confirmation.';
+            . 'certificate model. Supports manual, course completion, activity completion '
+            . 'or course grade threshold issuance; requires confirmation.';
     }
 
     /**
@@ -80,7 +80,7 @@ final class create_activity extends base_tool {
             'intro' => ['type' => 'string'],
             'modelid' => ['type' => 'integer', 'minimum' => 1],
             'autotrigger' => ['type' => 'string',
-                'enum' => ['', 'onview', 'coursecompletion', 'activitycompletion', 'gradethreshold']],
+                'enum' => ['', 'coursecompletion', 'activitycompletion', 'gradethreshold']],
             'triggercmid' => ['type' => 'integer', 'minimum' => 1],
             'gradepass' => ['type' => 'number'],
             'notifyuser' => ['type' => 'boolean'],
@@ -145,7 +145,7 @@ final class create_activity extends base_tool {
 
         $trigger = $arguments['autotrigger'] ?? automation::TRIGGER_NONE;
         if (!in_array($trigger, [
-            automation::TRIGGER_NONE, automation::TRIGGER_ON_VIEW, automation::TRIGGER_COURSE_COMPLETION,
+            automation::TRIGGER_NONE, automation::TRIGGER_COURSE_COMPLETION,
             automation::TRIGGER_ACTIVITY_COMPLETION, automation::TRIGGER_GRADE_THRESHOLD,
         ], true)) {
             throw new invalid_parameter_exception('Unknown auto issuance trigger.');

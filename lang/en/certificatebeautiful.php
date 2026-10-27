@@ -32,7 +32,6 @@ $string['autotrigger_activity'] = 'Activity required for completion trigger';
 $string['autotrigger_activitycompletion'] = 'Activity completion';
 $string['autotrigger_coursecompletion'] = 'Course completion';
 $string['autotrigger_gradethreshold'] = 'Minimum final course grade';
-$string['autotrigger_onview'] = 'When an enrolled student opens the certificate activity';
 $string['autotrigger_required'] = 'You must choose an automatic generation trigger.';
 $string['best'] = 'Best';
 $string['certdate'] = 'Date';

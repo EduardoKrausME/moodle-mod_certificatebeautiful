@@ -25,6 +25,7 @@
 use mod_certificatebeautiful\access_manager;
 use mod_certificatebeautiful\automation;
 use mod_certificatebeautiful\event\certificatebeautiful_course_module_viewed;
+use mod_certificatebeautiful\issue;
 use mod_certificatebeautiful\report\certificatebeautiful_view;
 use mod_certificatebeautiful\vo\certificatebeautiful;
 
@@ -130,14 +131,14 @@ if (has_capability("mod/certificatebeautiful:viewreport", $context)) {
     $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/report.php?id={$cm->id}");
     $table->out(40, true);
 } else {
-    if ($certificatebeautiful->autotrigger !== automation::TRIGGER_NONE) {
+    // Automatic rules control proactive issuance, not the student's ability to request a certificate.
+    // Do not issue certificates to users without an active enrolment on page access.
+    if ($certificatebeautiful->autotrigger !== automation::TRIGGER_NONE &&
+            is_enrolled(context_course::instance($course->id), $USER, "", true)) {
         automation::process_user($cm->id, $USER->id);
     }
 
-    $certificatebeautifulissue = $DB->get_record("certificatebeautiful_issue", [
-        "userid" => $USER->id,
-        "cmid" => $cm->id,
-    ]);
+    $certificatebeautifulissue = issue::get_for_view($USER, $certificatebeautiful, $cm);
 
     if (!$certificatebeautifulissue) {
         echo $OUTPUT->notification(
