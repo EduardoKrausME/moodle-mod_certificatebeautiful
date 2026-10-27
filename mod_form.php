@@ -85,6 +85,7 @@ class mod_certificatebeautiful_mod_form extends moodleform_mod {
 
         $autotriggeroptions = [
             automation::TRIGGER_NONE => get_string("none"),
+            automation::TRIGGER_ON_VIEW => get_string("autotrigger_onview", "certificatebeautiful"),
             automation::TRIGGER_COURSE_COMPLETION => get_string("autotrigger_coursecompletion", "certificatebeautiful"),
             automation::TRIGGER_ACTIVITY_COMPLETION => get_string("autotrigger_activitycompletion", "certificatebeautiful"),
             automation::TRIGGER_GRADE_THRESHOLD => get_string("autotrigger_gradethreshold", "certificatebeautiful"),

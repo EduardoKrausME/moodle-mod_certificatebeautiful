@@ -44,6 +44,9 @@ class automation {
     const TRIGGER_NONE = "";
 
     /** @var string */
+    const TRIGGER_ON_VIEW = "onview";
+
+    /** @var string */
     const TRIGGER_COURSE_COMPLETION = "coursecompletion";
 
     /** @var string */
@@ -120,6 +123,9 @@ class automation {
      */
     public static function user_matches_rule(stdClass $certificatebeautiful, int $userid): bool {
         switch ($certificatebeautiful->autotrigger) {
+            case self::TRIGGER_ON_VIEW:
+                return is_enrolled(\context_course::instance($certificatebeautiful->course), $userid, "", true);
+
             case self::TRIGGER_COURSE_COMPLETION:
                 return self::is_course_completed($certificatebeautiful->course, $userid);
 

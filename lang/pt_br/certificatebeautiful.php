@@ -34,6 +34,7 @@ $string['autotrigger_activity'] = 'Atividade necessária para o gatilho de concl
 $string['autotrigger_activitycompletion'] = 'Conclusão da atividade';
 $string['autotrigger_coursecompletion'] = 'Conclusão do curso';
 $string['autotrigger_gradethreshold'] = 'Nota final mínima do curso';
+$string['autotrigger_onview'] = 'Quando um aluno matriculado acessar a atividade de certificado';
 $string['autotrigger_required'] = 'Você deve escolher um gatilho de geração automática.';
 $string['best'] = 'Melhor';
 $string['certdate'] = 'Data';
