@@ -30,6 +30,7 @@ use mod_certificatebeautiful\report\certificatebeautiful_view;
 use mod_certificatebeautiful\vo\certificatebeautiful;
 
 require_once("../../config.php");
+require_once($CFG->dirroot . "/grade/lib.php");
 
 global $PAGE, $USER, $CFG;
 
