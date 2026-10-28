@@ -23,6 +23,7 @@
  */
 
 use mod_certificatebeautiful\access_manager;
+use mod_certificatebeautiful\datainfo\data_validator;
 use mod_certificatebeautiful\issue;
 use mod_certificatebeautiful\pdf\page_pdf;
 use mod_certificatebeautiful\vo\certificatebeautiful;
@@ -58,6 +59,12 @@ if ($action === "createadmin") {
     }
 
     $certificatebeautiful = $DB->get_record("certificatebeautiful", ["id" => $cm->instance], "*", MUST_EXIST);
+
+    $validationerrors = data_validator::validate($course, $user);
+    if ($validationerrors) {
+        throw new moodle_exception("certificate_data_invalid_details", "certificatebeautiful",
+            "", implode("; ", $validationerrors));
+    }
 
     $certificatebeautifulissue = issue::get($user, $certificatebeautiful, $cm);
     redirect(new moodle_url('/mod/certificatebeautiful/view-pdf.php', [
@@ -135,6 +142,13 @@ if ($storedfile) {
     }
 
     $storedfile->delete();
+}
+
+// Direct PDF links and downloads must enforce the same validation as view.php.
+$validationerrors = data_validator::validate($course, $user);
+if ($validationerrors) {
+    throw new moodle_exception("certificate_data_invalid_details", "certificatebeautiful",
+        "", implode("; ", $validationerrors));
 }
 
 $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);
