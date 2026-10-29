@@ -22,9 +22,10 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace mod_certificatebeautiful\datainfo;
+namespace mod_certificatebeautiful;
 
 use advanced_testcase;
+use mod_certificatebeautiful\datainfo\data_validator;
 
 /**
  * Validation must remain backward-compatible with existing data subplugins.
