@@ -23,6 +23,7 @@
  */
 
 use mod_certificatebeautiful\access_manager;
+use mod_certificatebeautiful\datainfo\data_validator;
 use mod_certificatebeautiful\automation;
 use mod_certificatebeautiful\event\certificatebeautiful_course_module_viewed;
 use mod_certificatebeautiful\issue;
@@ -132,31 +133,39 @@ if (has_capability("mod/certificatebeautiful:viewreport", $context)) {
     $table->define_baseurl("{$CFG->wwwroot}/mod/certificatebeautiful/report.php?id={$cm->id}");
     $table->out(40, true);
 } else {
-    // Automatic rules control proactive issuance, not the student's ability to request a certificate.
-    // Do not issue certificates to users without an active enrolment on page access.
-    if ($certificatebeautiful->autotrigger !== automation::TRIGGER_NONE &&
-            is_enrolled(context_course::instance($course->id), $USER, "", true)) {
-        automation::process_user($cm->id, $USER->id);
-    }
+    $validationerrors = data_validator::validate($course, $USER);
 
-    $certificatebeautifulissue = issue::get_for_view($USER, $certificatebeautiful, $cm);
-
-    if (!$certificatebeautifulissue) {
-        echo $OUTPUT->notification(
-            get_string("certificate_not_issued", "certificatebeautiful"),
-            "info"
-        );
+    if ($validationerrors) {
+        echo $OUTPUT->notification(get_string("certificate_data_invalid", "certificatebeautiful"), "error");
+        echo html_writer::alist(array_map("s", $validationerrors));
     } else {
-        $viewerurl = "{$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html";
-        $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?code={$certificatebeautifulissue->code}";
 
-        $data = [
-            "issueid" => $certificatebeautifulissue->id,
-            "pdf-viewer-url" => "{$viewerurl}?file=" . urlencode("{$urlbase}&action=view"),
-            "pdf-url_base" => $urlbase,
-        ];
+        // Automatic rules control proactive issuance, not the student's ability to request a certificate.
+        // Do not issue certificates to users without an active enrolment on page access.
+        if ($certificatebeautiful->autotrigger !== automation::TRIGGER_NONE &&
+                is_enrolled(context_course::instance($course->id), $USER, "", true)) {
+            automation::process_user($cm->id, $USER->id);
+        }
 
-        echo $OUTPUT->render_from_template("mod_certificatebeautiful/view", $data);
+        $certificatebeautifulissue = issue::get_for_view($USER, $certificatebeautiful, $cm);
+
+        if (!$certificatebeautifulissue) {
+            echo $OUTPUT->notification(
+                get_string("certificate_not_issued", "certificatebeautiful"),
+                "info"
+            );
+        } else {
+            $viewerurl = "{$CFG->wwwroot}/mod/certificatebeautiful/_pdfjs-2.8.335-legacy/web/viewer.html";
+            $urlbase = "{$CFG->wwwroot}/mod/certificatebeautiful/view-pdf.php?code={$certificatebeautifulissue->code}";
+
+            $data = [
+                "issueid" => $certificatebeautifulissue->id,
+                "pdf-viewer-url" => "{$viewerurl}?file=" . urlencode("{$urlbase}&action=view"),
+                "pdf-url_base" => $urlbase,
+            ];
+
+            echo $OUTPUT->render_from_template("mod_certificatebeautiful/view", $data);
+        }
     }
 }
 

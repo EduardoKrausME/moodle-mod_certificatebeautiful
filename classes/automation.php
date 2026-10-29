@@ -26,6 +26,7 @@ namespace mod_certificatebeautiful;
 
 use context_module;
 use core_user;
+use mod_certificatebeautiful\datainfo\data_validator;
 use mod_certificatebeautiful\pdf\page_pdf;
 use mod_certificatebeautiful\vo\certificatebeautiful;
 use mod_certificatebeautiful\vo\certificatebeautiful_issue;
@@ -96,6 +97,11 @@ class automation {
         $user = core_user::get_user($userid, "*", MUST_EXIST);
 
         if (!self::user_matches_rule($certificatebeautiful, $user->id)) {
+            return false;
+        }
+
+        // Do not issue a certificate or start PDF generation with invalid subplugin data.
+        if (data_validator::validate($course, $user)) {
             return false;
         }
 
@@ -194,6 +200,13 @@ class automation {
 
         if ($storedfile && !$stale) {
             return;
+        }
+
+        // Also guard direct calls to ensure_pdf_file(), not only process_user().
+        $validationerrors = data_validator::validate($course, $user);
+        if ($validationerrors) {
+            throw new \moodle_exception("certificate_data_invalid_details", "certificatebeautiful",
+                "", implode("; ", $validationerrors));
         }
 
         $certificatebeautifulmodel->pages_info_object = json_decode($certificatebeautifulmodel->pages_info);

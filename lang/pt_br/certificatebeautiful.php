@@ -52,6 +52,8 @@ $string['certificate-modern'] = 'Certificado Moderno';
 $string['certificate-modern-2'] = 'Certificado Moderno 2';
 $string['certificate-simple'] = 'Certificado Simples';
 $string['certificate-vintage'] = 'Certificado Vintage';
+$string['certificate_data_invalid'] = 'O certificado não pode ser gerado porque há dados obrigatórios ausentes ou inválidos.';
+$string['certificate_data_invalid_details'] = 'O certificado não pode ser gerado: {$a}';
 $string['certificate_description'] = 'Descreva o certificado';
 $string['certificate_description_help'] = 'Texto de descrição do certificado. Pode conter HTML simples, como &lt;b&gt;, &lt;i&gt;, &lt;u&gt; e estilos de cor, mas tenha cuidado, pois o <a href="https://mpdf.github.io/" target="_blank">conversor de PDF possui limitações</a>.';
 $string['certificate_not_issued'] = 'Seu certificado ainda não foi emitido.';
