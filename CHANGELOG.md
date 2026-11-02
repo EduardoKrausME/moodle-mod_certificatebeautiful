@@ -2,6 +2,14 @@
 
 This changelog documents only the two latest published GitHub releases. Each entry is based on the differences between its release tag and the immediately preceding published release. Later changes on `master` are excluded.
 
+## 3.2.21 - 2026-10-27
+
+- Allowed certificate issuance when an activity is accessed if explicitly configured to issue on access.
+- Fixed certificate issuance for enrolled learners independently of automatic issuance triggers, with regression tests.
+- Reordered language strings and corrected documentation of the Moodle event observer namespace.
+
+**Full comparison:** [3.2.20...3.2.21](https://github.com/EduardoKrausME/moodle-mod_certificatebeautiful/compare/3.2.20...3.2.21)
+
 ## 3.2.20 - 2026-10-19
 
 ### Added
