@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.2.22 - 2026-11-21
+
+- Added certificate data validation and regression tests.
+- Updated certificate automation and certificate viewing flows.
+
+**Comparison:** [3.2.21...3.2.22](https://github.com/EduardoKrausME/moodle-mod_certificatebeautiful/compare/3.2.21...3.2.22)
+
 This changelog documents only the two latest published GitHub releases. Each entry is based on the differences between its release tag and the immediately preceding published release. Later changes on `master` are excluded.
 
 ## 3.2.21 - 2026-10-27
