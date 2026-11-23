@@ -25,7 +25,8 @@
 namespace mod_certificatebeautiful\plugininfo;
 
 use admin_settingpage;
-use core\plugininfo\base, core_plugin_manager;
+use core\plugininfo\base;
+use core_plugin_manager;
 use Exception;
 use part_of_admin_tree;
 use progress_trace;

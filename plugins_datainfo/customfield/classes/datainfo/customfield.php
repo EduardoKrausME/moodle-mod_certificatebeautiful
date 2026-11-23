@@ -172,13 +172,16 @@ class customfield extends help_base {
 
                 $returnsections = "";
                 foreach ($modules as $module) {
+                    // phpcs:disable Generic.CodeAnalysis.EmptyStatement.DetectedCatch
                     try {
                         $instance = $DB->get_record($module->modulename, ["id" => $module->instance], "name");
                         if ($instance) {
                             $returnsections .= "<li>{$instance->name}</li>";
                         }
-                    } catch (Exception $e) { // phpcs:disable
+                    } catch (Exception $e) {
+                        // Skip modules whose records can no longer be loaded.
                     }
+                    // phpcs:enable Generic.CodeAnalysis.EmptyStatement.DetectedCatch
                 }
 
                 $return .= "<h3>{$section->name}</h3><ul>{$returnsections}</ul>";
