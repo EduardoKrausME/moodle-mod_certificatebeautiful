@@ -45,6 +45,7 @@ require_capability('mod/certificatebeautiful:addinstance', $context);
     <script src="js/jquery.js"></script>
     <script src="js/toastr.js"></script>
     <script src="js/grapes.js"></script>
+    <script src="js/css-cleaner.js"></script>
     <script src="js/plugins/grapesjs-preset-webpage.js"></script>
     <!--script src="js/plugins/grapesjs-blocks-basic.js"></script-->
     <script src="js/plugins/grapesjs-custom-code.js"></script>

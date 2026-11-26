@@ -60,12 +60,12 @@ if ($id) {
     $model = $DB->get_record("certificatebeautiful_model", ["id" => $id], "*", MUST_EXIST);
 }
 
-if ($htmldata && $cssdata) {
+if ($htmldata !== false && $cssdata !== false) {
     require_sesskey();
     $model->pages_info_object = [
         (object)[
             "htmldata" => $htmldata,
-            "cssdata" => $cssdata
+            "cssdata" => \mod_certificatebeautiful\local\css_cleaner::clean($cssdata)
         ]
     ];
 } else {

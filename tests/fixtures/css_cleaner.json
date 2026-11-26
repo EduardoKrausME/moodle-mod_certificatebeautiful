@@ -1,0 +1,102 @@
+[
+  [
+    "basic",
+    "*{box-sizing:border-box;}body{margin:0;}.a{color:red}",
+    ".a{color:red}"
+  ],
+  [
+    "datainfo",
+    "body{background:url(\"{$AVASUS->fundo}\") no-repeat;background-image-resize:6;}#t{top:1px}",
+    "#t{top:1px}"
+  ],
+  [
+    "retained datainfo",
+    "[data-gjs-type=wrapper]{background-image:url(\"{$AVASUS->fundo}\")}#t{content:\"{$USER->name}\"}",
+    "[data-gjs-type=wrapper]{background-image:url(\"{$AVASUS->fundo}\")}#t{content:\"{$USER->name}\"}"
+  ],
+  [
+    "selectors",
+    ".body-x{color:red}#b *{x:1}html,body{margin:0}",
+    ".body-x{color:red}#b *{x:1}html,body{margin:0}"
+  ],
+  [
+    "strings",
+    "body{content:\"}\";margin:0}.a{content:\";body{color:red}\"}",
+    ".a{content:\";body{color:red}\"}"
+  ],
+  [
+    "escapes",
+    "body{content:\"\\\"}\";x:1}.a{content:\"\\\\\"}",
+    ".a{content:\"\\\\\"}"
+  ],
+  [
+    "comments",
+    "/* body{keep:1} */body{/* } */x:1}.a{color:red}",
+    "/* body{keep:1} */.a{color:red}"
+  ],
+  [
+    "nested",
+    "@media print{body{x:1}@supports(display:grid){*{x:1}.a{x:2}}}",
+    "@media print{@supports(display:grid){.a{x:2}}}"
+  ],
+  [
+    "nested values",
+    "body{--x:{{a:b}}}.a{x:1}",
+    ".a{x:1}"
+  ],
+  [
+    "grouped wrapper",
+    "#a,[data-gjs-type=wrapper] > div *{x:1}.b{x:2}",
+    "#a,[data-gjs-type=wrapper] > div *{x:1}.b{x:2}"
+  ],
+  [
+    "wrapper reset",
+    "[data-gjs-type='wrapper']   >  div   *{position:initial!important}.b{x:2}",
+    ".b{x:2}"
+  ],
+  [
+    "wrapper scope",
+    "[data-gjs-type=\"wrapper\"] > #a{x:1}[data-gjs-type=wrapper] .b{x:2}",
+    "#a{x:1}.b{x:2}"
+  ],
+  [
+    "wrapper background",
+    "[data-gjs-type=wrapper]{background-image:url(data:image/png;base64,AAAA)}",
+    "[data-gjs-type=wrapper]{background-image:url(data:image/png;base64,AAAA)}"
+  ],
+  [
+    "unquoted URL",
+    "body{background:url(data:image/svg+xml,%7B{a}b%7D)}.a{x:1}",
+    ".a{x:1}"
+  ],
+  [
+    "attribute",
+    "[title=\";body{x:1}\"]{color:red}",
+    "[title=\";body{x:1}\"]{color:red}"
+  ],
+  [
+    "keyframes",
+    "@keyframes body{from{x:1}to{x:2}}body{x:1}",
+    "@keyframes body{from{x:1}to{x:2}}"
+  ],
+  [
+    "at statement",
+    "@import url(\"a;b\");body{x:1}.a{x:2}",
+    "@import url(\"a;b\");.a{x:2}"
+  ],
+  [
+    "malformed",
+    "body{x:1}.a{content:\"unterminated}",
+    "body{x:1}.a{content:\"unterminated}"
+  ],
+  [
+    "unicode",
+    " body{x:1}",
+    " body{x:1}"
+  ],
+  [
+    "idempotent wrapper",
+    "[data-gjs-type=wrapper] body{x:1}",
+    "[data-gjs-type=wrapper] body{x:1}"
+  ]
+]

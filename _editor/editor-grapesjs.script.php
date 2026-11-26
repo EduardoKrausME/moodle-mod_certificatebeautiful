@@ -1380,11 +1380,7 @@ function get_lang_string($item) {
                     html = html.split(/<body.*?>/).join("");
                     html = html.split("</body>").join("");
 
-                    var css = editor.getCss();
-                    css = css.replace(/(?:^|(?<=[{};]))\s*body\s*\{(?:[^{}]|\{[^{}]*\})*\}/g, "");
-                    css = css.replace(/\[data-gjs-type="?wrapper"?]\s?>\s?div\s?\*\s*\{(?:[^{}]|\{[^{}]*\})*\}/g, "");
-                    css = css.split(/\[data-gjs-type="?wrapper"?]\s?>\s?#/).join("#");
-                    css = css.split(/\[data-gjs-type="?wrapper"?]\s?>\s/).join("");
+                    var css = cleanCertificateCss(editor.getCss());
 
                     return `${html}\n<style>\n${css}</style>`;
                 },
@@ -1603,12 +1599,7 @@ function get_lang_string($item) {
         html = html.split(/<body.*?>/).join("");
         html = html.split("</body>").join("");
 
-        var css = editor.getCss();
-        // Removes the "*" and "body" rules; values may have braces, such as url("{$PLUGIN->field}").
-        css = css.replace(/(?:^|(?<=[{};]))\s*(?:\*|body)\s*\{(?:[^{}]|\{[^{}]*\})*\}/g, "");
-        css = css.replace(/\[data-gjs-type="?wrapper"?]\s?>\s?div\s?\*\s*\{(?:[^{}]|\{[^{}]*\})*\}/g, "");
-        css = css.split(/\[data-gjs-type="?wrapper"?]\s?>\s?#/).join("#");
-        css = css.split(/\[data-gjs-type="?wrapper"?]\s?>\s/).join("");
+        var css = cleanCertificateCss(editor.getCss());
 
         $("#form-htmldata").val(html);
         $("#form-cssdata").val(css);

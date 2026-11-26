@@ -97,6 +97,10 @@ jobs:
       if: ${{ !cancelled() }}
       run: moodle-plugin-ci savepoints
 
+    - name: CSS cleaner JavaScript tests
+      if: ${{ !cancelled() }}
+      run: node plugin/tests/js/css_cleaner_test.js
+
     - name: PHPUnit tests
       if: ${{ !cancelled() }}
       run: moodle-plugin-ci phpunit --fail-on-warning
