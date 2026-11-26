@@ -98,5 +98,20 @@
     "idempotent wrapper",
     "[data-gjs-type=wrapper] body{x:1}",
     "[data-gjs-type=wrapper] body{x:1}"
+  ],
+  [
+    "comment before wrapper descendant",
+    "[data-gjs-type=wrapper] /* keep */ body{x:1}",
+    "[data-gjs-type=wrapper] /* keep */ body{x:1}"
+  ],
+  [
+    "multiline wrapper child",
+    "[data-gjs-type=wrapper] > #a\n .b{x:1}",
+    "#a\n .b{x:1}"
+  ],
+  [
+    "Unicode selector",
+    "[data-gjs-type=wrapper] .a b{x:1}",
+    ".a b{x:1}"
   ]
 ]

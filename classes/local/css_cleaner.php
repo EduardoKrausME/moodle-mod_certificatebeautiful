@@ -175,13 +175,13 @@ final class css_cleaner {
                     $remove = true;
                 } else {
                     $candidate = "";
-                    if (preg_match('/^[ \t\r\n\f]*>[ \t\r\n\f]*(#.+)$/D', $rest, $child)) {
+                    if (preg_match('/^[ \t\r\n\f]*>[ \t\r\n\f]*(#.+)$/sD', $rest, $child)) {
                         $candidate = $child[1];
-                    } else if (preg_match('/^[ \t\r\n\f]+([^>+~ \t\r\n\f].*)$/D', $rest, $descendant)) {
+                    } else if (preg_match('/^[ \t\r\n\f]+([^>+~ \t\r\n\f].*)$/sD', $rest, $descendant)) {
                         $candidate = $descendant[1];
                     }
                     if ($candidate !== "" && $candidate !== "body" && $candidate !== "*" &&
-                            !preg_match(self::WRAPPER, $candidate)) {
+                            substr($candidate, 0, 2) !== "/*" && !preg_match(self::WRAPPER, $candidate)) {
                         $normalized = $candidate;
                     }
                 }

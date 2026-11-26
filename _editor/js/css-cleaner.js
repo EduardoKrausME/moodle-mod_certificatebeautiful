@@ -135,10 +135,11 @@ function cleanCertificateCss(css) {
                 if (/^[ \t\r\n\f]*>[ \t\r\n\f]*div[ \t\r\n\f]+\*$/.test(rest)) {
                     remove = true;
                 } else {
-                    const child = /^[ \t\r\n\f]*>[ \t\r\n\f]*(#.+)$/.exec(rest);
-                    const descendant = /^[ \t\r\n\f]+([^>+~ \t\r\n\f].*)$/.exec(rest);
+                    const child = /^[ \t\r\n\f]*>[ \t\r\n\f]*(#[\s\S]+)$/.exec(rest);
+                    const descendant = /^[ \t\r\n\f]+([^>+~ \t\r\n\f][\s\S]*)$/.exec(rest);
                     const candidate = child ? child[1] : descendant ? descendant[1] : "";
-                    if (candidate && candidate !== "body" && candidate !== "*" && !wrapper.test(candidate)) {
+                    if (candidate && candidate !== "body" && candidate !== "*" &&
+                            candidate.slice(0, 2) !== "/*" && !wrapper.test(candidate)) {
                         normalized = candidate;
                     }
                 }
